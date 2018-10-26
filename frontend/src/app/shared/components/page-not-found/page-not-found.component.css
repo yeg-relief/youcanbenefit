@@ -1,0 +1,28 @@
+main {
+  height: 94vh;
+  width: 100vw;
+  position: fixed;
+}
+
+md-card {
+  background-color: silver;
+  font-family: 'Open Sans', sans-serif;
+}
+
+
+@media(min-width: 40em) {
+ 
+  md-card {
+    height: 50vh;
+    
+  }
+}
+
+
+@media(max-width: 40em){
+
+  md-card {
+    height: 40vh;
+    margin-top: 5%;
+  }
+}

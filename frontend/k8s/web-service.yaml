@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: youcanbenefit-web-service
+  labels:
+    app: youcanbenefit-web-service
+    technology: angular
+    tier: frontend
+    product: youcanbenefit
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+  selector:
+    app: youcanbenefit-web
+    technology: angular
+    tier: frontend
+    product: youcanbenefit
+  type: NodePort

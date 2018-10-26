@@ -1,0 +1,49 @@
+.ng-invalid {
+  background-color: darkred;
+}
+
+.ng-error {
+  background-color: lightgoldenrodyellow;
+}
+
+.dragStart {
+  opacity: 0.4;
+}
+
+.dragOver {
+  border: 2px dashed #000;
+}
+
+.container_over {
+  color: ghostwhite;
+  border: 2px solid ghostwhite;
+}
+
+.filtered_me {
+  border: 2px solid teal
+}
+
+.selected {
+  border: 0.25em dashed darkorange;
+}
+
+.header {
+  min-height: 5em;
+  padding-right: 1em;
+}
+
+md-list {
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: ghostwhite;
+  border: solid lightgrey 0.1em;
+}
+
+.question-item {
+  cursor: pointer;
+}
+
+button {
+  background-color: darkorange;
+}

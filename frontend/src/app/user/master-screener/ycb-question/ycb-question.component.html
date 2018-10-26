@@ -1,0 +1,76 @@
+<md-card style="background-color: lightyellow;">
+    <form novalidate [formGroup]="form">
+
+        <section [ngSwitch]="question.controlType">
+
+            <div *ngSwitchCase="'NumberInput'">
+
+                <md-card-title> {{ question.label }} </md-card-title>
+
+                <div class="py1"></div>
+                <md-input-container>
+                    <input
+                        type="number"
+                        mdInput
+                        (input)="handleInput($event.target.value)"
+                        [formControlName]="question.key"
+                        placeholder="answer"
+                        (keypress)="checkEnter($event)"
+                    />
+                </md-input-container>
+
+                <div class="error-container" [@error]="errorInDOM">
+                    Please, answer using only a number with no spaces, commas, decimals or negaives.
+                </div>
+            </div>
+
+            <div *ngSwitchCase="'Toggle'">
+                <md-card-title> {{ question.label }} </md-card-title>
+                <md-button-toggle-group [formControlName]="question.key">
+                    <md-button-toggle value="true">
+                        yes
+                    </md-button-toggle>
+                    <md-button-toggle value="false">
+                        no
+                    </md-button-toggle>
+                </md-button-toggle-group>
+            </div>
+
+
+            <div *ngSwitchCase="'NumberSelect'" placeholder="select an option">
+                <md-card-title> {{ question.label }} </md-card-title>
+                <md-select [formControlName]="question.key" placeholder="select an option">
+                   <!-- <md-option selected disabled [value]="null"> Select an option </md-option> -->
+                    <md-option *ngFor="let option of question.options" [value]="option"> {{ option }} </md-option>
+                </md-select>
+            </div>
+
+            <div *ngSwitchCase="'Multiselect'" class="multi-select">
+                <md-card-title> {{ question.label }} </md-card-title>
+                <md-list>
+                    <md-list-item class="multi-select-option" *ngFor="let q of question.multiSelectOptions">
+                        <md-checkbox class="multi-select-checkbox" [formControlName]="q.key.name"></md-checkbox>
+                        {{ q.text }}
+                    </md-list-item>
+                </md-list>
+            </div>
+
+            <div *ngSwitchDefault> <strong> {{ question.controlType }} is invalid </strong> </div>
+        </section>
+    </form>
+
+    <div *ngIf="showQuestions"
+         class="conditional-container"
+         [@questionExpand]="expand"
+         (@questionExpand.done)="animationDone($event)"
+    >
+        <app-ycb-question
+            *ngFor="let expandableQuestion of conditionalQuestions"
+            [question]="expandableQuestion"
+            [form]="form">
+        </app-ycb-question>
+    </div>
+
+
+    <div class="py1"></div>
+</md-card>

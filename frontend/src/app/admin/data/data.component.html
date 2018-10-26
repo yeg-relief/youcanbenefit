@@ -1,0 +1,72 @@
+<main class="wrapper">
+    <md-list class="side-bar">
+        <md-list-item [ngClass]="states.BACKUP" (click)="select('BACKUP')">Backup</md-list-item>
+        <md-list-item [ngClass]="states.INIT" (click)="select('INIT')">Init</md-list-item>
+        <md-list-item [ngClass]="states.UPLOAD" (click)="select('UPLOAD')">Upload</md-list-item>
+    </md-list>
+
+    <div class="main-content">
+
+        <section *ngIf="states.BACKUP.active === true">
+            <h1>BACKUP/DOWNLOAD DATA</h1>
+            <p>here you can download data</p>
+
+            <p [style.backgroundColor]="'red'">{{error}}</p>
+            <p [style.backgroundColor]="'green'">{{success}}</p>
+
+            <button
+                md-raised-button
+                color="primary"
+                (click)="downloadData()"
+            >
+                Download
+            </button>
+
+        </section>
+
+        <section *ngIf="states.INIT.active === true">
+            <h1>INITIALIZE SEARCH ENGINE</h1>
+            <p>The search engine will need to be initialized before programs and questions can be created.</p>
+
+            <div *ngIf="hasBeenInitialized" [style.display]="'flex'">
+                <md-icon [style.color]="'green'">done</md-icon>
+                <div>The search engine has been initialized</div>
+            </div>
+
+            <div *ngIf="!hasBeenInitialized" [style.display]="'flex'">
+                <md-icon [style.color]="'red'">cancel</md-icon>
+                <div>The search engine has not been initialized</div>
+            </div>
+
+
+            <md-checkbox [value]="force" (change)="force = $event.checked">Force the update (will reset search engine)</md-checkbox>
+
+            <p [style.backgroundColor]="'red'">{{error}}</p>
+            <p [style.backgroundColor]="'green'">{{success}}</p>
+
+            <br><br>
+
+            <button
+                md-raised-button
+                color="primary"
+                (click)="initSearchEngine()"
+            >
+                INITIALIZE
+            </button>
+        </section>
+
+        <section *ngIf="states.UPLOAD.active === true">
+            <h1>UPLOAD DATA TO THE SEARCH ENGINE</h1>
+            <p>Here you can upload data.</p>
+
+            <p [style.backgroundColor]="'red'">{{error}}</p>
+            <p [style.backgroundColor]="'green'">{{success}}</p>
+
+            <label for="file">Choose file to upload</label>
+            <input type="file" (change)="onUploadChange($event)" name="file" id="file">
+
+
+        </section>
+
+    </div>
+</main>

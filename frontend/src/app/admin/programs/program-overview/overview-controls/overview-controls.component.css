@@ -1,0 +1,103 @@
+option[value="invalid"][disabled] {
+  display: none;
+}
+
+option {
+  background-color: darkorange;
+  color: white;
+  padding-bottom: 0.5em;
+}
+
+md-select{
+  padding-bottom: 0.2em;
+  width: 30%;
+}
+
+main {
+  position: relative;
+  width: 75%;
+  min-height: 5em;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 2em auto 0 auto;
+  background-color: ghostwhite;
+  border: solid #d4c9c9 1px;
+}
+
+main > * {
+  height: 100%;
+}
+
+main > *:not(:first-child) {
+  margin-left: 0.5em;
+
+}
+
+main > *:first-child {
+  margin-left: 15%;
+}
+
+main > div {
+  display: flex;
+  width: 50%;
+  align-items: center;
+}
+
+main > div > * {
+  margin-right: 0.5em;
+}
+
+md-icon {
+  font-size: 36px;
+  padding-bottom: 2px;
+}
+
+button {
+  background-color: transparent;
+}
+
+i.material-icons {
+  background-color: orange;
+  color: white;
+}
+
+i.material-icons.select-option {
+  background-color: inherit;
+  color: darkorange;
+}
+
+i.material-icons.select-option.filter_inactive {
+  color: black;
+  opacity: 0.6;
+}
+
+
+section {
+  display: flex;
+}
+
+section > md-icon {
+  padding-top: 0.25em;
+}
+
+section > *:not(:first-child) {
+  margin-left: 0.5em;
+  align-items: center;
+}
+
+md-icon.filter_active {
+  color: darkorange;
+  opacity: 1;
+}
+
+md-icon.filter_inactive {
+  color: black;
+  opacity: 0.6;
+}
+
+md-option {
+  display: flex;
+  align-items: center;
+}
+

@@ -1,0 +1,39 @@
+
+<div id="preface">
+    <h3 > Eligibility Screener </h3>
+</div>
+
+<main *ngIf="!loading" [@flyinHalf]>
+    <div *ngIf="errorMessage" class="center"> <strong>{{errorMessage}} </strong></div>
+    <form novalidate (ngSubmit)="onSubmit()" [formGroup]="form" *ngIf="errorMessage.length === 0 && questions.length > 0">
+
+        <div class="questions">
+            <app-ycb-question
+                *ngFor="let question of questions"
+                [question]="question"
+                [conditionalQuestions]="gatherConditionals(question)"
+                [form]="form"
+                (onExpand)="addControls($event)"
+                (onHide)="removeControls($event)">
+            </app-ycb-question>
+        </div>
+
+
+        <button
+            id="submit-button"
+            md-raised-button
+            type="submit"
+            mdTooltip="Click to submit your information."
+        >
+            <span>SUBMIT</span>
+            <md-icon>send</md-icon>
+        </button>
+
+
+    </form>
+    <div class="center" *ngIf="errorMessage.length === 0 && questions.length === 0"><strong>There are no questions available</strong></div>
+</main>
+
+<div *ngIf="loading">
+    <md-progress-spinner style="margin: 10vh auto 0 auto" *ngIf="loading" color="primary" mode="indeterminate"></md-progress-spinner>
+</div>

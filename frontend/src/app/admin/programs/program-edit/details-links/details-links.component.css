@@ -1,0 +1,28 @@
+:host {
+    display: flex;
+    align-content: center;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+#tag-input > * {
+    margin-left: 1em;
+}
+
+md-icon {
+    cursor: pointer;
+}
+
+md-chip {
+    cursor: pointer;
+}
+
+md-input {
+    width: 25%;
+}
+
+md-chip-list {
+    padding: 1em;
+    border: 1px solid lightslategray;
+    width: 300px;
+}

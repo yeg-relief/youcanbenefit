@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<main class="wrapper">
+    <h2 md-dialog-title> {{ data.title }} </h2>
+    <button md-button class="close-button">
+        <md-icon [style.color]="'white'" (click)="close()">cancel</md-icon>
+    </button>
+
+
+    <md-dialog-content>
+        <textarea disabled>
+          {{ data.details }}
+        </textarea>
+    </md-dialog-content>
+
+    <section class="detail-links">
+        <h3 *ngIf="data.detailLinks.length > 0">  Additional Links</h3>
+        <ul>
+            <li *ngFor="let link of data.detailLinks">
+                <a [href]=link target="_blank">{{link}}</a>
+            </li>
+        </ul>
+    </section>
+
+    <button md-button md-dialog-close>Close</button>
+</main>

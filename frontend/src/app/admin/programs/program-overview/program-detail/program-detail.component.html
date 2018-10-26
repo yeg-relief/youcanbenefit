@@ -1,0 +1,25 @@
+<md-card>
+  <md-card-actions>
+    <button md-button routerLink="/admin/programs/application-edit/{{program.guid}}" mdTooltip="edit queries"><i class="material-icons">content_copy</i></button>
+    <button md-button routerLink="/admin/programs/edit/{{program.guid}}" mdTooltip="edit details"><i class="material-icons">create</i></button>
+    <button class="delete-program-button" md-button (click)="delete.emit(program.guid)" mdTooltip="delete program"><i class="material-icons">clear</i></button>
+  </md-card-actions>
+
+    <md-card-title>
+       <span>{{program.user.title}}</span>
+       <span mdTooltip="program details" (click)="detailView(program.guid)"><md-icon>import_contacts</md-icon></span>  
+    </md-card-title>
+    <md-card-subtitle> uploaded on: {{ program.user.created | date}}</md-card-subtitle>
+    <md-card-content>{{ program.user.description }}</md-card-content>
+    <md-card-subtitle>
+      link: {{ program.user.externalLink }}
+    </md-card-subtitle>
+    <div class="p1"></div>
+    <div class="clearfix flex">
+      <div 
+        class="col-2 border bg-silver black center rounded mr1 md-show" 
+        *ngFor="let tag of program.user.tags">
+        {{tag}}
+      </div>
+    </div>
+</md-card>

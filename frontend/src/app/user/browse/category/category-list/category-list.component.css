@@ -1,0 +1,29 @@
+section {
+    width: 100vw;
+    margin: 0 auto;
+}
+
+.loading-section {
+    background: transparent;
+}
+
+md-progress-spinner {
+    margin: 10% auto 0 auto;
+}
+
+.program-animation-container {
+    will-change: opacity;
+}
+
+app-user-facing-program {
+    margin-bottom: 0.5em;
+}
+
+app-user-facing-program:first-child {
+    margin-top: 0.5em;
+}
+
+app-program-list {
+    width: 81vw;
+    margin-right: 2vw;
+}

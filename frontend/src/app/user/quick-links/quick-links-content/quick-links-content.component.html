@@ -1,0 +1,5 @@
+<div class="quick-link-content" *ngFor="let item of fragments" [id]="item.fragment">
+    <h1>{{item.title}}</h1>
+    <div [innerHtml]="item.content"></div>
+    <md-divider></md-divider>
+</div>

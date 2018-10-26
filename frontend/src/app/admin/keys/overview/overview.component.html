@@ -1,0 +1,23 @@
+<app-bread-crumb>
+  <app-key-overview-controls (onFilter)="handleFilter($event)"></app-key-overview-controls>
+</app-bread-crumb>
+<div class="py2"></div>
+
+<section class="col-10 flex" style="margin: 0 auto">
+  <div class="col-3 bg-grey border-right"></div>
+  <div class="col-4" style="margin: 0 auto">
+    <table class="col-12 table-light" >
+      <thead class="bg-darken-2">
+        <th> <strong>key name</strong> </th>
+        <th> key type </th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let key of (loadedKeys$ | async)" class="py2">
+          <td> {{ key.name }} </td>
+          <td> {{ key.type }} </td>
+        </tr>
+      </tbody>
+    </table> 
+  </div>
+  <div class="col-3 bg-grey border-left"></div>
+</section>

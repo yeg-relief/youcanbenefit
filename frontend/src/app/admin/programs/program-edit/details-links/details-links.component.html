@@ -1,0 +1,13 @@
+<md-input-container>
+  <span mdPrefix> http:// </span>
+  <input mdInput [formControl]="linkInput" prefix placeholder="detail-link.ca"/>
+</md-input-container>
+<button md-button [attr.disabled]="!linkInput.valid">
+  <md-icon
+          (click)="addLink()"
+          mdTooltip="add link"
+          [style.color]="!linkInput.valid ? 'red' : 'green'">done</md-icon>
+</button>
+<md-chip-list class="flex-grow">
+  <md-chip (click)="removeLinkAt(i)" *ngFor="let link of links.value; let i = index">{{ link }}</md-chip>
+</md-chip-list>

@@ -1,0 +1,33 @@
+:host {
+    background-color: transparent;
+}
+
+md-list {
+    border-left: solid lightgrey 1px;
+    border-right: solid lightgrey 1px;
+}
+
+@media screen and (min-width: 75em) {
+    h3 {
+        font-size: xx-large !important;
+    }
+}
+
+@media screen and (min-width: 37.5em) and (max-width: 75em) {
+    h3 {
+        font-size: x-large !important;
+    }
+}
+
+@media screen and (max-width: 37.5em) {
+    h3 {
+        font-size: large !important;
+    }
+}
+
+
+
+.program-item {
+    background-color: lightgoldenrodyellow;
+    cursor: pointer;
+}

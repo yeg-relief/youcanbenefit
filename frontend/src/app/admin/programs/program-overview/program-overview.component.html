@@ -1,0 +1,28 @@
+<div id="animation-wrapper" 
+  [@routeAnimation] 
+  *ngIf="programs | async; else loadingScreen; let programs">
+    <app-overview-controls></app-overview-controls>
+    
+
+    <div class="program-list-container" *ngIf="programs.length > 0">
+      <section id="program-count"> {{ programs.length }} program(s) present.</section>
+      <div class="program" *ngFor="let program of programs">
+        <app-program-detail 
+          [program]="program" 
+          (delete)="handleDelete($event)"
+          (details)="handleDetailInspection($event)">
+        </app-program-detail>
+      </div>
+    </div>
+    <div class="empty-statement" *ngIf="programs.length === 0">
+      <div>No programs found</div>
+    </div>
+</div>
+
+<ng-template #loadingScreen>
+  <md-progress-spinner 
+    [@fadeinAndOut]
+    color="accent" 
+    mode="indeterminate">
+  </md-progress-spinner>
+</ng-template>

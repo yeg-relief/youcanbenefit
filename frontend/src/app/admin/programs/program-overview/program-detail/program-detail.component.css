@@ -1,0 +1,43 @@
+md-card {
+  font-family: 'Open Sans', sans-serif;
+  height: 35vh;
+}
+
+md-card-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+md-card-title > span > md-icon {
+  cursor: pointer;
+}
+
+md-card-title > span > md-icon:hover {
+  color: darkorange;
+}
+
+md-card-actions {
+  position: relative;
+  width: 100%;
+  border-bottom: dashed 1px darkorange;
+}
+
+md-card-actions > button[md-button]:hover {
+  color: darkorange;
+}
+
+md-card-content {
+  width: 100%;
+  height: 5vh;
+  overflow-y: hidden;
+  background-color: lightgray;
+  padding: 2px 2px;
+  font-weight: bold;
+  font-size: large;
+}
+
+.delete-program-button {
+  position: absolute;
+  right: 1em;
+}
+

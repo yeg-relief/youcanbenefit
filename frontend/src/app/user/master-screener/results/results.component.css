@@ -1,0 +1,50 @@
+#result-count {
+  padding-top: 0.25em;
+  width: 100%;
+}
+
+#result-preface {
+  border: 1px solid rgba(0,0,0,.125);
+  padding: 1em;
+  width: 100%;
+}
+
+#result-count > md-card-title {
+  font-family: 'Open Sans', sans-serif;
+}
+
+
+main {
+  margin-top: 1em;
+  will-change: opacity;
+}
+
+@media(min-width: 64em) {
+  section {
+    width: 50%;
+    margin: 0 auto;
+  }
+}
+
+
+@media(min-width: 40em) and (max-width:64em) {
+  section {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
+@media(min-width: 30em) and (max-width: 40em){
+  section {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+
+
+@media(max-width: 30em){
+  section {
+    width: 95%;
+    margin: 0 auto;
+  }
+}

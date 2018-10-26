@@ -1,0 +1,147 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>YouCanBenefit</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:600" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+  <app-root>
+    <style>
+      @media(min-width: 64em) {
+        #slm-loading-image {
+          width: 50vw;
+          margin: 10vh 25vw;
+        }
+      }
+
+
+      @media(min-width: 52em) and (max-width:64em) {
+        #slm-loading-image {
+          width: 55vw;
+          margin: 10vh 27.5vw;
+        }
+      }
+
+
+      @media(min-width: 40em) and (max-width: 52em) {
+        #slm-loading-image {
+          width: 65vw;
+          margin: 10vh 17.5vw
+        }
+      }
+
+
+      @media(min-width: 30em) and (max-width: 40em){
+        #slm-loading-image {
+          width: 75vw;
+          margin: 10vh 12.5vw;
+        }
+      }
+
+
+      @media(max-width: 30em){
+        #slm-loading-image {
+          width: 80vw;
+          margin: 10vh 10vw;
+        
+        }   
+      }
+
+      .slm-loaded{
+        border: 1px solid lightslategray;
+        background-color: green;
+      }
+
+      .progress-line, .progress-line:before {
+        height: 3px;
+        width: 100%;
+        margin: 0;
+      }
+
+      #slm-loading-text{
+        position: fixed;
+        margin: 0 25vw;
+        font-family: 'Open Sans', sans-serif;
+      }
+
+      .progress-line {
+        background-color: #b3d4fc;
+        display: -webkit-flex;
+        display: flex;
+      }
+      .progress-line:before {
+        background-color: #3f51b5;
+        content: '';
+        -webkit-animation: running-progress 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        animation: running-progress 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      }
+      @-webkit-keyframes running-progress {
+        0% { margin-left: 0px; margin-right: 100%; }
+        50% { margin-left: 25%; margin-right: 0%; }
+        100% { margin-left: 100%; margin-right: 0; }
+      }
+      @keyframes running-progress {
+        0% { margin-left: 0px; margin-right: 100%; }
+        50% { margin-left: 25%; margin-right: 0%; }
+        100% { margin-left: 100%; margin-right: 0; }
+      }
+
+    </style>
+    <img src="assets/logo.svg" id="slm-loading-image" class="slm-loading">
+    <div class="progress-line"></div>
+    <div id="slm-loading-text" class="slm-loading"></div>
+
+    <script>
+      // app-root is rebuilt when this event is called...
+      window.addEventListener("load", function(event) {
+        const target = document.getElementById('slm-loading-text');
+        if(target !== null){
+          target.textContent = 'Content Loaded... App Starting';
+          target.classList.add('slm-loaded');
+        }
+      });
+
+
+      (function(){
+        var text        = document.getElementById('slm-loading-text'),
+            content     = 'Please wait a few seconds while we load data from 28 government and nonprofit programs for you.',
+            val         = 0,
+            max         = 20,
+            suffixCount = 0,
+            animate     = undefined;
+
+        var loading = function(){
+          if (val >= max) clearInterval(animate);
+
+          val += 1;
+          if (text) {
+            var numPeriods = suffixCount % 5;
+            var newContent = content;
+            for(var i = 0; i < numPeriods; i++){
+              newContent = newContent + '.';
+            }
+            text.textContent = newContent;
+            suffixCount++;
+          }
+        };
+
+        animate = setInterval(function(){
+          loading();
+        }, 500)
+      })();
+    </script>
+
+    
+
+  </app-root>
+  </body>
+
+</html>

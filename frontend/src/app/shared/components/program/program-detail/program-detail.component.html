@@ -1,0 +1,39 @@
+<div class="wrapper" *ngIf="(program | async) as program; else showError">
+    <md-card>
+        <md-card-header>
+
+            <md-card-title>
+                <button md-icon-button  (click)="close()">
+                    <md-icon mdTooltip="back" mdTooltipPosition="above" class="md-24">arrow_back</md-icon>
+                </button>
+                {{ program.title }}
+            </md-card-title>
+        </md-card-header>
+
+        <md-card-content>
+            <pre>
+              {{ program.details }}
+            </pre>
+            <section class="detail-links">
+                <h3 *ngIf="allLinks > 0"> Additional Links</h3>
+                <ul>
+                    <li *ngFor="let link of allLinks">
+                        <a [href]=link target="_blank">{{link}}</a>
+                    </li>
+                </ul>
+            </section>
+        </md-card-content>
+
+
+        <md-card-actions>
+            <button md-icon-button  (click)="close()">
+                <md-icon mdTooltip="back" mdTooltipPosition="above" class="md-24">arrow_back</md-icon>
+            </button>
+        </md-card-actions>
+    </md-card>
+
+</div>
+
+<ng-template #showError>
+    {{ error }}
+</ng-template>

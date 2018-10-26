@@ -1,0 +1,40 @@
+<div class="my-wrapper" [@routeAnimation]>
+  <app-screener-toolbar> </app-screener-toolbar>
+
+  <div id="screener-content">
+    
+    <app-question-list 
+        id="constant-question-list"
+        [questions]="constantQuestions$ | async"
+        [form]="form$ | async"
+        [type]="constant_type"
+
+        (questionSelect)="handleSelect($event)"
+        (questionUnselect)="handleUnselect($event)"
+        (addQuestion)="handleAddQuestion($event)">
+    </app-question-list>
+
+    <app-question-list
+        *ngIf="(isExpandable$ | async) === true"
+        [@expandFromConstants]
+        id="conditional-question-list"
+        [questions]="conditionalQuestions$$ | async"
+        [form]="form$ | async"
+        [type]="conditional_type"
+
+        [host_id]="selectedConstantID$ | async"
+        (questionSelect)="handleSelect($event)"
+        (questionUnselect)="handleUnselect($event)"
+        (addQuestion)="handleAddQuestion($event)">
+    </app-question-list>
+
+
+    <div id="question-content" 
+        *ngIf="(selectedConstantID$ | async) !== undefined" 
+        [@questionEdit]="questionEdit">
+      <app-question-edit (delete)="handleDelete($event)"></app-question-edit>
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,5 @@
+<div *ngFor="let tag of tags">
+    <md-chip routerLinkActive="active">
+        <a routerLink="/browse-programs/{{tag}}"> {{tag}} </a>
+    </md-chip>
+</div>

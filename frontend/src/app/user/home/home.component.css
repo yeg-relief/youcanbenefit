@@ -1,0 +1,245 @@
+.home {
+    width: 100%;
+    overflow-x: hidden;
+    position: relative;
+    height: 95vh;
+}
+
+section.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background-color:darkorange;
+}
+
+.ribbon {
+    background-color: darkorange;
+    overflow: hidden;
+    box-shadow: 0 0 10px #888;
+    width: 60vw;
+    margin: 0 auto;
+    border-radius: 5px;
+
+}
+.ribbon span {
+    color: #fff;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0.5rem;
+}
+
+.ribbon > span > a {
+    color: white
+}
+
+section.link-container {
+    overflow-x: hidden;
+    margin: 2em auto;
+    justify-content: space-around;
+}
+
+.logo-image {
+    margin-top: 2vh;
+}
+
+p {
+    text-align: left;
+    font-size: larger;
+    font-weight: bold;
+}
+
+section.feature-description {
+    border: solid darkorange 2px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (min-width: 89em) {
+    section.link-container {
+        display: flex;
+        width: 70vw;
+    }
+
+    section.feature-description:nth-child(2) {
+        margin: 0 2em;
+    }
+
+    .logo-image {
+        margin-top: 5vh;
+        width: 60vw;
+        margin-left: 20vw;
+    }
+
+    section.link-container > section.feature-description {
+        padding: 0.5em;
+        height: 18vh;
+        position: relative;
+        display: block !important;
+    }
+
+    section.link-container > section.feature-description > a > button {
+        position: absolute;
+        bottom: 5px;
+        left: 30%;
+    }
+}
+
+
+@media screen and (min-width: 69em) and (max-width: 89em){
+    section.link-container {
+        display: flex;
+        width: 70vw;
+    }
+
+    section.feature-description:nth-child(2) {
+        margin: 0 2em;
+    }
+
+    .logo-image {
+        margin-top: 5vh;
+        width: 60vw;
+        margin-left: 20vw;
+    }
+
+    section.link-container > section.feature-description {
+        padding: 0.5em;
+        height: 20vh;
+        position: relative;
+        display: block !important;
+    }
+
+    section.link-container > section.feature-description > a > button {
+        position: absolute;
+        bottom: 5px;
+        left: 30%;
+    }
+}
+/*
+@media screen and (min-width: 37em) and (max-width: 65em) {
+    section.link-container {
+        width: 50vw !important;
+    }
+}*/
+
+@media screen and (min-width: 37em) and (max-width: 69em) {
+    section.link-container {
+        display: flex;
+        flex-direction: column;
+        width: 60vw;
+        margin: 2em auto;
+        justify-content: space-around;
+    }
+
+    section.feature-description:nth-child(2) {
+        margin: 2em 0;
+    }
+
+    .logo-image {
+        width: 80vw;
+        margin-left: 10vw;
+    }
+
+    section.link-container > section.feature-description {
+        padding: 1em;
+        height: 15vh;
+        display: flex;
+        flex-direction: row !important;
+    }
+
+
+    section > a {
+        width: 30%;
+    }
+
+    p {
+        width: 50% !important;
+    }
+
+    a > button {
+        width: 75%;
+    }
+}
+
+@media screen and (min-width: 21em) and (max-width: 37em) {
+    section.link-container {
+        display: flex;
+        flex-direction: column;
+        width: 90vw;
+        margin: 2em auto;
+        justify-content: space-around;
+    }
+
+    section.feature-description:nth-child(2) {
+        margin: 2em 0;
+    }
+
+    .logo-image {
+        width: 80vw;
+        margin-left: 10vw;
+    }
+
+    section.link-container > section.feature-description {
+        padding: 0.5em;
+        height: 24vh;
+    }
+
+    .ribbon {
+        width: 80vw !important;
+    }
+}
+
+@media screen and (max-width: 21em) {
+    section.link-container {
+        display: flex;
+        flex-direction: column;
+        width: 90vw;
+        margin: 2em auto;
+        justify-content: space-around;
+    }
+
+    section.feature-description:nth-child(2) {
+        margin: 2em 0;
+    }
+
+    .logo-image {
+        width: 90vw;
+        margin-left: 10vw;
+    }
+
+    section.link-container > section.feature-description {
+        padding: 0.25em;
+        height: 32vh;
+    }
+
+    .ribbon {
+        width: 90vw !important;
+    }
+}
+
+
+
+section.link-container > section.feature-description {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(248,248,255, 1);
+    justify-content: space-around;
+    align-items: center;
+    overflow: hidden;
+}
+
+section.link-container > section.feature-description > a > button {
+    background-color: darkorange;
+    color: white;
+}
+
+.feature-description > p {
+    width: 70%;
+    margin: 0 auto 0.3em auto;
+}
+
+
+

@@ -1,0 +1,1 @@
+Some of the naming for `classes` is strange, ie `ProgramQueryClass` because the application already has a `ProgramQuery` interface. Something should probably be done about this.
