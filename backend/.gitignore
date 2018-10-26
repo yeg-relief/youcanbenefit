@@ -1,0 +1,26 @@
+# dependencies
+/node_modules
+
+# IDE
+/.idea
+/.awcache
+#/.vscode
+/integrationTests/seed/.idea/
+
+# misc
+npm-debug.log
+
+# example
+/quick-start
+
+# tests
+/test
+/coverage
+/.nyc_output
+
+# dist
+/dist
+
+# devel logs
+/src/modules/log/logs/youcanbenefit/form_submission/*.json
+/src/modules/log/logs/youcanbenefit/form_results/*.json
