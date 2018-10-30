@@ -1,0 +1,28 @@
+<main [formGroup]="form">
+
+  <button 
+    md-button
+    routerLink="/admin/programs/edit/new"
+    [attr.disabled]="deleteInitiated? true : null"
+    title="new program">
+    <i class="material-icons">add_box</i>
+  </button>
+
+  <div>
+    
+    <md-select formControlName="type" id="programFilter">
+      <md-option [value]="'none'"> <i class="material-icons filter_inactive select-option">search</i> disabled </md-option>
+      <md-option [value]="'tag'"> <i class="material-icons select-option">search</i> tag </md-option>
+      <md-option [value]="'title'"> <i class="material-icons select-option">search</i> title </md-option>
+    </md-select>
+
+    <section [@fadeinAndOut]>
+      <md-icon [ngClass]="styleIcon$ | async">search</md-icon>
+      <md-input-container > 
+        <input mdInput placeholder="filter" formControlName="value" (keyup)="blurOnEnter($event)">
+      </md-input-container>
+    </section>
+  </div>
+
+</main>
+

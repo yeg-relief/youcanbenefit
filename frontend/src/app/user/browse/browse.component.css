@@ -1,0 +1,67 @@
+button[md-button].active {
+    background-color: darkorange;
+}
+
+#category-select {
+    background: darkorange;
+    color: white;
+    position: relative;
+}
+
+select > option{
+    background: darkorange;
+    color: white;
+    padding-bottom: 0.1em;
+}
+
+.tag-padding-container {
+    padding-top: 2em;
+}
+
+.tag-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 80vw;
+    margin: 0 auto;
+    background-color: transparent;
+    border-radius: 3px;
+    padding: 0.5rem 0.5rem;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(0,0,0,.125);
+    margin-bottom: 1em;
+}
+
+.tag-select {
+    margin: 0 10% 1em 10%;
+    width: 80%;
+}
+
+option {
+    padding: 0.25rem 0;
+}
+
+.category {
+    font-family: 'Open Sans', sans-serif;
+    display: inline-block;
+}
+
+select > option {
+    font-family: 'Open Sans', sans-serif;
+}
+
+select {
+    font-family: 'Open Sans', sans-serif;
+    padding-bottom: 4px;
+}
+
+button[md-button]:not(.active):hover {
+    background-color: pink;
+    color: black;
+}
+
+button[md-button] {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 110%;
+}

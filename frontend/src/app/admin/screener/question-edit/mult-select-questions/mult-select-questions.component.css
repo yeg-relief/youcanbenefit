@@ -1,0 +1,16 @@
+:host {
+    border: solid 1px lightgray;
+}
+
+main {
+    display: flex;
+    justify-content: space-between;
+}
+
+.key {
+    align-self: flex-end;
+}
+
+button {
+    align-self: flex-end;
+}

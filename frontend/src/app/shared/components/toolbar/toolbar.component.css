@@ -1,0 +1,58 @@
+:host {
+    display: flex;
+    height: 5vh;
+    width: 100%;
+    background-color: darkorange;
+    align-items: center;
+}
+
+.form-group-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.link-container {
+    margin: 0 auto;
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.link-container > .navigation-links > a {
+    margin: 0 0.5em;
+}
+
+.admin-links {
+    justify-self: flex-end;
+}
+
+select {
+    width: 66.66667%;
+    background-color: darkorange;
+    color: white;
+    padding-bottom: 0.1em;
+}
+
+@media screen and (max-width: 460px){
+    :host {
+        height: 12vh !important;
+    }
+}
+
+
+a {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    font-size: 125%;
+    color: white;
+    overflow: hidden;
+    text-decoration: none;
+    margin: 0 0.5em;
+}
+
+
+.active {
+    color: black;
+}

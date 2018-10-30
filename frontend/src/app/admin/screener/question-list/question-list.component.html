@@ -1,0 +1,45 @@
+<md-list [attr.id]="'type' + '-question-list'">
+
+  <div class="flex flex-justify flex-center header"
+      draggable="true"
+      (dragstart)="dragStart(type + '-container', $event)"
+      (dragenter)="dragEnter(type + '-container', $event)"
+      (dragover)="dragOver(type + '-container', $event)"
+      (dragleave)="dragLeave(type + '-container')"
+      (drop)="drop(type + '-container', $event)" 
+      [attr.id]="type === constant_type ? 'constant_container' : 'conditional_container'"
+      [ngClass]="containerClasses">
+    <h3 md-subheader *ngIf="type === constant_type">Screener Questions</h3>
+    <h3 md-subheader *ngIf="type === conditional_type">Conditional Questions</h3>
+    <button class="col-2" md-mini-fab (click)="handleAddQuestion()"> 
+      <i class="material-icons">add</i>
+    </button>
+  </div>
+
+  <md-divider></md-divider>
+  <div *ngFor="let id of questions" class="question-item" [ngClass]="classes[id]" 
+      [attr.id]="type === constant_type ? id + '-constant-list-item' : id + '-conditional-list-item'"
+      draggable="true"
+      (dragstart)="dragStart(id, $event)"
+      (dragenter)="dragEnter(id, $event)"
+      (dragover)="dragOver(id, $event)"
+      (dragleave)="dragLeave(id)"
+      (drop)="drop(id, $event)"
+      (dragend)="dragEnd($event)">
+    <md-list-item class="col-12"
+        *ngIf="form.get(id) !== null" 
+        [formGroup]="form.get(id)"
+        (click)="handleSelect(form.get([id, 'id'])?.value)">
+      <md-icon md-list-avatar *ngIf="form.get([id, 'expandable'])?.value && type === constant_type" [style.width]="'1em'">content_copy</md-icon>
+      <md-icon md-list-avatar *ngIf="!form.get([id, 'expandable'])?.value && type === constant_type" [style.width]="'1em'"></md-icon>
+      
+      
+      <h4 md-line>{{ form.get([id, 'key'])?.value?.name }}</h4>
+      <h4 md-line>{{ form.get([id, 'controlType'])?.value }}</h4>
+      <p md-line *ngIf="form.get([id, 'expandable'])?.value && type === constant_type"> 
+        [+] {{ form.get([id, 'conditionalQuestions'])?.value.length }} hidden question(s) 
+      </p>
+    </md-list-item>
+    <md-divider></md-divider>
+  </div>
+</md-list>

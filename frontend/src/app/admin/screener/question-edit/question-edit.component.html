@@ -1,0 +1,62 @@
+<main [formGroup]="form" *ngIf="form$ | async as form">
+    <div id="errors-container">
+        <div *ngIf="form.errors !== null" id="errors">
+            <app-question-edit-error *ngFor="let error of transformErrors( form )" [error]="error">
+            </app-question-edit-error>
+        </div>
+    </div>
+    <form novalidate id="question-container" *ngIf="fadeState === 'in'" [formGroup]="form" [@fadeinAndOut]="fadeState">
+
+        <button type="button" md-mini-fab color="warn" (click)="deleteQuestion()">
+            <md-icon>clear</md-icon>
+        </button>
+
+        <md-input-container >
+            <input mdInput placeholder="Question Label" formControlName="label">
+        </md-input-container>
+
+        <div formGroupName="key" *ngIf="controlType !== 'Multiselect'">
+            <select placeholder="Key" formControlName="name">
+                <option selected disabled [value]="form.get(['key', 'name'])?.value">
+                    <pre> {{ form.get(['key', 'name']).value }} : {{ form.get(['key', 'type']).value }} </pre>
+                </option>
+                <option *ngFor="let unusedKey of unusedKeys" [value]="unusedKey.name">
+                    <pre>{{ unusedKey.name }} : {{ unusedKey.type }}</pre>
+                </option>
+            </select>
+        </div>
+
+        <div class="checkbox-container" *ngIf="controlType !== 'Multiselect'">
+            <md-checkbox formControlName="expandable">
+                Expandable
+            </md-checkbox>
+        </div>
+
+        <md-select placeholder="Input Type" formControlName="controlType">
+            <md-option *ngFor="let control of CONTROL_TYPE_VALUES" [value]="control.value"> {{ control.display }} </md-option>
+        </md-select>
+
+        <section [formGroup]="optionForm" *ngIf="controlType === 'NumberSelect'">
+            <div class="col-12 flex" >
+                <md-input-container class="col-9">
+                    <input mdInput placeholder="option value" formControlName="optionValue">
+                </md-input-container>
+                <button class="col-2" id="option-add-button" md-raised-button color="primary" [disabled]="!optionForm.valid ? true : null" (click)="addOption()"> ADD </button>
+            </div>
+
+            <div class="flex" id="option-chip-container">
+                <md-chip-list>
+                    <md-chip *ngFor="let option of options" (click)="spliceOption(option)">{{ option }}</md-chip>
+                </md-chip-list>
+            </div>
+        </section>
+
+        <app-mult-select-questions *ngIf="controlType === 'Multiselect'" [options]="multiQuestions" (update)="updateMultiSelect($event)"></app-mult-select-questions>
+    </form>
+</main>
+
+
+
+
+
+

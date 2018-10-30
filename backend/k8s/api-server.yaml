@@ -1,0 +1,34 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: youcanbenefit-api
+  namespace: youcanbenefit
+  labels:
+    app: youcanbenefit-api
+    technology: nodejs
+    tier: backend
+    product: youcanbenefit
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: youcanbenefit-api
+      technology: nodejs
+      tier: backend
+      product: youcanbenefit
+  template:
+    metadata:
+      labels:
+        app: youcanbenefit-api
+        technology: nodejs
+        tier: backend
+        product: youcanbenefit
+    spec:
+      containers:
+      - name: youcanbenefit-api
+        image: cityofedmonton/youcanbenefit-api:0.0.7
+        ports:
+        - containerPort: 3000
+        env:
+        - name: ELASTICSEARCH_URL
+          value: "http://elasticsearch-1-elasticsearch-svc:9200"

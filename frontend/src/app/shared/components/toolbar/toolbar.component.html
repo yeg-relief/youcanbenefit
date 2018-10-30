@@ -1,0 +1,24 @@
+<div class="link-container">
+    <div class="navigation-links" >
+        <a
+            [@flyin]
+            *ngFor="let route of routes"
+            [routerLink]="route[1]"
+            [ngClass]="activeMap[route[0]]">
+            {{route[0] | uppercase }}
+        </a>
+    </div>
+
+    <div class="admin-links">
+        <a
+                [style.color]="'blue'"
+                [@flyin]
+                *ngFor="let route of adminRoutes"
+                [routerLink]="route[1]">
+            <span *ngIf="showAdminRoutes">{{route[0] | uppercase }} </span>
+        </a>
+        <a [routerLink]="'/admin/screener/edit'" [style.color]="'orange'" *ngIf="!showAdminRoutes">
+            <md-icon>lock_open</md-icon>
+        </a>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+/* for some reason :host isn't working so i have to wrap component */
+.my-wrapper {
+    width: 95vw;
+    min-height: 90vh;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-around;
+    padding: 0.5em 0;
+    overflow: auto;
+}
+
+#screener-content {
+    min-height: 55vh;
+    width: 100%;
+    display: flex;
+}
+
+#screener-content > * {
+    height: 100%;
+}
+
+app-question-list {
+    width: 15vw
+}
+
+#question-content {
+    width: 60vw
+}
+
+@media screen and (max-width: 1000px) {
+    app-question-list {
+        width: 20vw
+    }
+
+    #question-content {
+        width: 53vw;
+    }
+}
+
+#constant-question-list {
+    z-index: 999;
+}
+
+#conditional-question-list {
+    position: relative;
+    will-change: transformX;
+    z-index: 999;
+}

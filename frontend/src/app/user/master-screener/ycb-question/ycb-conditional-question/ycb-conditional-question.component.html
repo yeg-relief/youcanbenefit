@@ -1,0 +1,29 @@
+<section class="rounded border">
+  <form novalidate [formGroup]="form">
+    <div [ngSwitch]="question.controlType">
+      
+      <div *ngSwitchCase="'NumberInput'">
+        <md-card-title id="question-label"> {{ question.label }} </md-card-title>
+          <div class="py1"></div>
+        <md-input-container>
+          <input mdInput [formControlName]="question.key" placeholder="input here">
+        </md-input-container>  
+      </div>
+
+      <div *ngSwitchCase="'CheckBox'">
+        <md-card-title> <md-checkbox [formControlName]="question.key"> {{ question.label }} </md-checkbox> </md-card-title>
+      </div>
+
+
+      <div *ngSwitchCase="'NumberSelect'">
+        <md-card-title id="question-label"> {{ question.label }} </md-card-title>
+        <select style="height: 3em; min-width: 50%;" [formControlName]="question.key">
+          <option selected> select an option </option>
+          <option *ngFor="let option of question.options"> {{ option }} </option>
+        </select>
+      </div>
+      <div *ngSwitchDefault> <strong> {{ question.controlType }} is invalid </strong> </div>
+      
+    </div>
+  </form>
+</section>

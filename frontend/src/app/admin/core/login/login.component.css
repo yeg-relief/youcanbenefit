@@ -1,0 +1,16 @@
+md-card {
+  font-family: 'Open Sans', sans-serif;
+}
+
+button[md-raised-button]:not([disabled]):hover {
+  background-color: pink;
+  color: black;
+}
+
+input {
+  width: 30vw;
+}
+
+md-input-container{
+  margin-left: 25%;
+}

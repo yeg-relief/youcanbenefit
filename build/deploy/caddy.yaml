@@ -1,0 +1,48 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: youcanbenefit-caddy
+  namespace: youcanbenefit
+  labels:
+    app: youcanbenefit-caddy
+    technology: go
+    tier: frontend
+    product: youcanbenefit
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: youcanbenefit-caddy
+      technology: go
+      tier: frontend
+      product: youcanbenefit
+  template:
+    metadata:
+      labels:
+        app: youcanbenefit-caddy
+        technology: go
+        tier: frontend
+        product: youcanbenefit
+    spec:
+      containers:
+      - name: youcanbenefit-caddy
+        image: cityofedmonton/youcanbenefit-caddy:0.0.5
+        ports:
+        - containerPort: 80
+        env:
+        - name: API_PORT
+          value: "3000"
+        - name: DATA_PORT
+          value: "3000"
+        - name: PROTECTED_PORT
+          value: "3000"
+        - name: ADMIN_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: admin-credentials
+              key: ADMIN_USERNAME
+        - name: ADMIN_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: admin-credentials
+              key: ADMIN_PASSWORD

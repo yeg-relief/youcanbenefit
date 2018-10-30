@@ -1,0 +1,28 @@
+<div *ngIf="!errorMsg">
+
+  <!-- categories display for screens >= medium -->
+  <div class="lg-show tag-padding-container">
+    <div class="tag-container">
+      <button md-button color="primary" routerLink="/browse-programs/{{ category }}" routerLinkActive="active" *ngFor="let category of (categories | async)">
+             {{ category }}
+          </button>
+      <button md-button color="primary" routerLink="/browse-programs/all" routerLinkActive="active">
+              all
+      </button>
+    </div>
+  </div>
+
+  <!-- categories display for screens <= small -->
+  <div class="lg-hide tag-padding-container">
+    <select name="category" id="category-select" (change)="selectChange($event)" class="tag-select">
+          <option [value]="'all'">all</option> 
+          <option 
+            *ngFor="let category of ( categories | async )"
+            [value]="category"
+            [selected]="category === currentCategory">{{category}}</option>
+        </select>
+  </div>
+  
+</div>
+
+<router-outlet></router-outlet>

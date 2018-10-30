@@ -1,0 +1,47 @@
+app-condition-edit-v3 {
+  margin: 1em 0;
+}
+
+#header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+
+#header > button {
+  margin-left: 10px;
+}
+
+#header > *:last-child {
+  margin-right: 10px;
+}
+
+#header > p {
+  width: 30%;
+  overflow: hidden; 
+  text-overflow: ellipsis;
+}
+
+#conditions {
+  display: flex;
+  flex-direction: column;
+  border-top: lightgrey 1px solid;
+}
+
+main {
+  border: dashed 1px darkorange;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  padding: 3em;
+}
+
+h3 {
+  margin-left: 1em;
+}
+
+.ng-invalid {
+  color: red;
+  border: 1px solid red;
+}

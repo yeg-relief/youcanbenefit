@@ -1,0 +1,60 @@
+{
+  "name": "nest-typescript-starter",
+  "version": "1.0.0",
+  "description": "Nest TypeScript starter repository",
+  "license": "MIT",
+  "scripts": {
+    "start": "NODE_ENV=development nodemon",
+    "start:watch": "NODE_ENV=development nodemon",
+    "prestart:prod": "NODE_ENV=production tsc",
+    "start:prod": "NODE_ENV=production node dist/server.js",
+    "unit-test": "NODE_ENV=test jest \"(/__tests__/.*|\\.(test))\\.(ts|tsx|js)$\"",
+    "integration-test": "jest \"(/__tests__/.*|\\.(spec))\\.(ts|tsx|js)$\" --forceExit",
+    "integration-test-update": "jest \"(/__tests__/.*|\\.(spec))\\.(ts|tsx|js)$\" -u --forceExit"
+  },
+  "dependencies": {
+    "@nestjs/common": "^4.4.0",
+    "@nestjs/core": "^4.4.0",
+    "@nestjs/microservices": "^4.4.0",
+    "@nestjs/testing": "^4.4.0",
+    "@nestjs/websockets": "^4.4.0",
+    "@types/ramda": "^0.25.9",
+    "body-parser": "^1.18.2",
+    "elasticsearch": "^14.0.0",
+    "jest-html-reporter": "^0.5.7",
+    "lodash.get": "^4.4.2",
+    "lodash.uniqby": "^4.7.0",
+    "ramda": "^0.25.0",
+    "redis": "^2.7.1",
+    "reflect-metadata": "^0.1.10",
+    "rxjs": "^5.4.0",
+    "typescript": "^2.5.2",
+    "uuid": "^3.2.1",
+    "winston": "^2.4.0"
+  },
+  "devDependencies": {
+    "@types/elasticsearch": "^5.0.18",
+    "@types/jasmine": "^2.8.2",
+    "@types/jest": "^21.1.8",
+    "@types/node": "^8.5.1",
+    "@types/winston": "^2.3.7",
+    "jest": "^21.2.1",
+    "nodemon": "^1.12.1",
+    "supertest": "^3.0.0",
+    "ts-jest": "^21.2.3",
+    "ts-node": "^3.3.0"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "json"
+    ],
+    "testResultsProcessor": "./node_modules/jest-html-reporter"
+  }
+}

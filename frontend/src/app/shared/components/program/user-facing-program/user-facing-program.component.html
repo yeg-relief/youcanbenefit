@@ -1,0 +1,29 @@
+<md-card class="program-width">
+
+    <div class="program-title-row" mdTooltip="program details" mdTooltipPosition="left">
+      <md-icon>content_copy</md-icon>
+      <a [routerLink]="['./details' + '/' + program.guid]">
+        <md-card-title class="title"> {{program?.title}} </md-card-title>
+      </a>
+    </div>
+
+  <md-card-content>
+      <p>{{ program?.description }} </p>
+      <div>
+        <p> <a [routerLink]="['./details' + '/' + program.guid]"> details </a>
+      </div>
+  </md-card-content>
+  <a 
+    *ngIf="program.externalLink?.length"
+    mdTooltip="{{ program.externalLink }}" 
+    href="http://{{ program.externalLink }}" 
+    target="_blank">
+    more information
+  </a>
+  <md-card-actions>
+    <button md-button 
+      *ngFor="let tag of program?.tags" 
+      routerLink="/browse-programs/{{tag}}"
+      routerLinkActive="active"> {{tag}} </button>
+  </md-card-actions>
+</md-card>

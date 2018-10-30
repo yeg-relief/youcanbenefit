@@ -1,0 +1,1 @@
+Contains the index/type pairs used in the building of the database.

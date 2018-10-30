@@ -1,0 +1,26 @@
+section {
+  min-height: 5vh;
+  padding: 0.5em;
+}
+
+@media(min-width: 40em) {
+  section {
+    width: 90%;
+    margin: 5px auto;
+  }
+}
+
+@media(min-width: 30em) and (max-width: 40em){
+  section {
+    width: 95%;
+    margin: 3px auto;
+  }
+}
+
+
+@media(max-width: 30em){
+  section {
+    width: 88%;
+    margin-top: 1px;
+  }
+}

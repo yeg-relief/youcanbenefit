@@ -1,0 +1,18 @@
+:host {
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 0.5em;
+}
+
+div{
+    margin-left: 1em;
+}
+
+md-chip {
+    padding: 0.5em;
+    border-radius: 5px;
+}
+
+.active {
+    background-color: darkorange;
+}

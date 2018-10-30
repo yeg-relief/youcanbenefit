@@ -1,0 +1,11 @@
+md-list-item {
+    border: solid 1px lightgray;
+}
+
+.controls {
+    display: flex;
+}
+
+.controls > * {
+    margin-right: 2em;
+}

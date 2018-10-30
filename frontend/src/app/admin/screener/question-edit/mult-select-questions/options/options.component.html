@@ -1,0 +1,10 @@
+<md-list>
+    <md-list-item *ngFor="let option of options">
+        <p md-line>text: {{ option.text }}</p>
+        <p md-line>key name: {{ option.key.name }}</p>
+        <div md-line class="controls">
+            <button md-raised-button color="warn" (click)="delete.emit(option.key.name)">delete</button>
+            <button md-raised-button color="accent" (click)="edit.emit(option.key.name)" >edit</button>
+        </div>
+    </md-list-item>
+</md-list>

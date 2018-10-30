@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": false,
+    "noImplicitAny": false,
+    "removeComments": true,
+    "noLib": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "ESNext",
+    "sourceMap": true,
+    "allowJs": true,
+    "outDir": "./dist",
+    "types": [
+      "node",
+      "jest",
+      "elasticsearch"
+    ]
+  },
+  "include": [
+    "src/**/*",
+    "integrationTests/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

@@ -1,0 +1,14 @@
+<main [formGroup]="form">
+    <md-input-container>
+        <textarea cols="30" rows="2" mdInput placeholder="question text" formControlName="text"></textarea>
+    </md-input-container>
+    <div class="key" formGroupName="key">
+        <md-select placeholder="key" formControlName="name" >
+            <md-option *ngFor="let key of unusedKeys" [value]="key.name">
+                <pre>{{ key.name }} : {{ key.type }}</pre>
+            </md-option>
+        </md-select>
+    </div>
+    <button md-button [style.background-color]="'darkorange'" (click)="commit()">Add</button>
+</main>
+<app-options [options]="options" (delete)="handleDelete($event)" (edit)="handleEdit($event)"></app-options>

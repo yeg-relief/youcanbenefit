@@ -1,0 +1,1 @@
+export { QueryModule } from "./query.module"

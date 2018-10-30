@@ -1,0 +1,79 @@
+<md-sidenav-container class="small-to-medium-view" *ngIf="smallView | async">
+    <md-sidenav #sidenav>
+        <md-nav-list>
+            <h3>Documentation</h3>
+            <a *ngFor="let item of fragments.documentation"
+                md-list-item
+                routerLink="/quick-links"
+                [fragment]="item.fragment">
+                {{item.subtitle}}
+            </a>
+            <md-divider></md-divider>
+            <h3>Resources</h3>
+            <a *ngFor="let item of fragments.supports"
+                md-list-item
+                routerLink="/quick-links"
+                [fragment]="item.fragment">
+                {{item.subtitle}}
+            </a>
+        </md-nav-list>
+    </md-sidenav>
+
+    <div class="sidenav-content">
+        <button md-raised-button (click)="sidenav.open()" id="menu-button" [style.background-color]="'darkorange'">
+            <md-icon>menu</md-icon>
+        </button>
+        <div class="content-container">
+            <h1>Documentation</h1>
+            <p>In order to apply for benefits you will be asked to provide certain documents to confirm eligibility.
+                Here is a list of some common documents you may be asked for.
+            </p>
+            <md-divider></md-divider>
+            <app-quick-links-content [fragments]="fragments.documentation"></app-quick-links-content>
+            <h1>Resources</h1>
+            <p>In Alberta there are multiple available income supports available for individuals and families who do
+                not have a stable source of income.
+            </p>
+            <md-divider></md-divider>
+            <app-quick-links-content [fragments]="fragments.supports"></app-quick-links-content>
+        </div>
+    </div>
+</md-sidenav-container>
+
+
+<main class="medium-to-large-view">
+    <md-nav-list>
+        <h3>Documentation</h3>
+        <a *ngFor="let item of fragments.documentation"
+           md-list-item
+           routerLink="/quick-links"
+           [fragment]="item.fragment">
+            {{item.subtitle}}
+        </a>
+        <md-divider></md-divider>
+        <h3>Resources</h3>
+        <a *ngFor="let item of fragments.supports"
+           md-list-item
+           routerLink="/quick-links"
+           [fragment]="item.fragment">
+            {{item.subtitle}}
+
+        </a>
+    </md-nav-list>
+
+    <div class="medium-to-large-view-content">
+        <h1>Documentation</h1>
+        <p>In order to apply for benefits you will be asked to provide certain documents to confirm eligibility.
+            Here is a list of some common documents you may be asked for.
+        </p>
+        <md-divider></md-divider>
+        <app-quick-links-content [fragments]="fragments.documentation"></app-quick-links-content>
+        <h1>Resources</h1>
+        <p>In Alberta there are multiple available income supports available for individuals and families who do
+            not have a stable source of income.
+        </p>
+        <md-divider></md-divider>
+        <app-quick-links-content [fragments]="fragments.supports"></app-quick-links-content>
+    </div>
+
+</main>

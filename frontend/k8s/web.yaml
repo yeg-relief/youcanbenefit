@@ -1,0 +1,31 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: youcanbenefit-web
+  namespace: youcanbenefit
+  labels:
+    app: youcanbenefit-web
+    technology: angular
+    tier: frontend
+    product: youcanbenefit
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: youcanbenefit-web
+      technology: angular
+      tier: frontend
+      product: youcanbenefit
+  template:
+    metadata:
+      labels:
+        app: youcanbenefit-web
+        technology: angular
+        tier: frontend
+        product: youcanbenefit
+    spec:
+      containers:
+      - name: youcanbenefit-web
+        image: cityofedmonton/youcanbenefit-web:0.0.1
+        ports:
+        - containerPort: 80

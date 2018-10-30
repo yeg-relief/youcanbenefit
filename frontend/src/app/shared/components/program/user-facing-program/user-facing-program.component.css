@@ -1,0 +1,85 @@
+md-card {
+    font-family: 'Open Sans', sans-serif;
+    display: inline-block;
+    background-color: rgba(248, 248, 255, 1.0);
+    padding-top: 2em;
+    padding-bottom: 2em;
+    min-height: 25vh;
+}
+
+a > .program-title-row {
+    text-decoration: none;
+}
+
+md-card > * {
+    margin-left: 2.5%;
+}
+
+md-card-content {
+    height: calc(25vh - 13vh);
+    overflow-y: hidden;
+    overflow-x: hidden;
+    width: 90%;
+    margin-right: calc(100% - 90% - 2.5%);
+    font-weight: bold;
+    font-size: larger;
+    background-color: whitesmoke;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px dotted lightgray;
+    border-radius: 6px;
+}
+
+button {
+    background-color:white;
+}
+
+button.active {
+    transition-property: background-color, color;
+    transition-duration: 1s;
+    transition-timing-function: ease-out;
+    background-color: darkorange;
+    color:black;
+}
+
+app-program-row > span {
+    margin-left: 5em;
+}
+
+.program-title-row {
+    width: 100%;
+    display: flex;
+    align-content: center;
+    font-size: x-large;
+    font-weight: bolder;
+    padding: 0.5em;
+}
+
+.program-title-row > md-card-title {
+    margin-left: 1rem;
+}
+
+.program-title-row:hover {
+    color: darkorange;
+    cursor: pointer;
+}
+
+@media(min-width: 60em) {
+    .program-width {
+        width: 50vw;
+    }
+}
+
+@media(min-width: 30em) and (max-width: 60em){
+    .program-width {
+        width: 75vw;
+    }
+}
+
+@media(max-width: 30em){
+    .program-width {
+        width: 90vw;
+    }
+}

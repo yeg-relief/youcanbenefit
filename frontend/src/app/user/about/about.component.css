@@ -1,0 +1,61 @@
+
+
+:host {
+    width: 100%;
+    margin-top: 2em;
+
+}
+main {
+    background-color: lightgoldenrodyellow;
+    width: 90%;
+}
+
+section {
+    margin: 0 auto;
+}
+
+.detail-section {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
+.detail-section > img {
+    width: 200px;
+    align-self: flex-start;
+    margin-bottom: 0.5em;
+}
+
+#cybera-logo {
+    background-color: #70707f;
+    padding: 0.5em;
+    border-radius: 10px;
+}
+
+@media(min-width: 52em) {
+    section {
+        width: 50%;
+    }
+
+    hr {
+        width: 50%;
+    }
+}
+
+
+@media(min-width: 40em) and (max-width: 52em) {
+    section {
+        width: 70%;
+    }
+
+    hr {
+        width: 75%;
+    }
+}
+
+@media(max-width: 40em){
+
+    section {
+        width: 90%;
+    }
+}

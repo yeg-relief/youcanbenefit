@@ -1,0 +1,115 @@
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow-x: hidden;
+    padding-bottom: 2em;
+}
+
+.questions {
+    width: 100%;
+    position: relative;
+}
+
+#submit-button {
+    width: 80%;
+    margin: 0 auto 0 auto;
+    background-color: #335fab;
+    color: white;
+    font-size: 150%;
+    font-weight: bold;
+    margin-top: 1em;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+}
+
+#preface {
+    margin: 1em auto 1em auto;
+    background-color: transparent;
+    border-radius: 10px;
+    text-align: center;
+    border: solid 1px lightgrey;
+}
+
+@media(min-width: 64em) {
+    .questions {
+        width: 60%;
+        margin: 0 auto;
+    }
+
+    #preface {
+        width: 60%;
+    }
+
+    #submit-button {
+        width: 60%;
+    }
+
+
+}
+
+@media(min-width: 52em) and (max-width:64em) {
+    .questions {
+        width: 70%;
+        margin: 0 auto;
+    }
+
+    #preface {
+        width: 70%;
+    }
+
+    #submit-button {
+        width: 65%;
+    }
+
+}
+
+@media(min-width: 40em) and (max-width: 52em) {
+    .questions {
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    #preface {
+        width: 80%;
+    }
+
+    #submit-button {
+        width: 75%;
+    }
+
+}
+
+@media(min-width: 30em) and (max-width: 40em){
+    .questions {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    #preface {
+        width: 90%;
+    }
+
+    #submit-button {
+        width: 85%;
+    }
+
+}
+
+@media(max-width: 30em){
+    .questions {
+        width: 92.5%;
+        margin: 0 auto;
+    }
+
+    #preface {
+        width: 92.5%;
+    }
+
+    #submit-button {
+        width: 90%;
+        margin-bottom: 1em;
+    }
+
+}

@@ -1,0 +1,96 @@
+main {
+  display: flex;
+  justify-content: space-between;
+  background-color: whitesmoke;
+  padding: 1em 0.5em 0.5em 1em;
+  border-radius: 10px; 
+  border: solid lightgrey 0.1em;
+  height: 100%;
+}
+
+#errors-container {
+  width: 15%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+#errors {
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  width: 100%
+}
+
+#errors > app-question-edit-error {
+  margin-bottom: 0.25em;
+}
+
+#question-container {
+  width: 85%;
+  justify-content: space-around; 
+  display: flex;
+  flex-direction: column;
+}
+
+section {
+  height: 10vh;
+  width: 95%; 
+  margin: 1vh auto;
+  padding: 0.5em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#question-container > *:not(button):not([formGroupName="key"]) {
+  padding: 1em;
+  width: 70%;
+  margin: 0 auto;
+}
+
+ 
+div[formGroupName="key"] {
+  width: 30%;
+  margin-left: 15%;
+}
+
+div[formGroupName="key"] > select {
+  width: 100%;
+  position: relative;
+  background: darkorange;
+}
+
+#question-container > button {
+  margin-left: 90%; 
+}
+
+#option-chip-container{
+  width: 80%;
+  margin-left: 5vw;
+  margin-right: 5vw;
+}
+
+option {
+  height: 3em; 
+  overflow: hidden;
+}
+
+select {
+  height: 3em;
+}
+
+#option-add-button {
+  margin-left: 1em;
+}
+
+md-chip {
+  cursor: pointer;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
+
+.checkbox-container {
+  margin-top: 1em; 
+  margin-bottom: 1em;
+  width: 100%;
+}

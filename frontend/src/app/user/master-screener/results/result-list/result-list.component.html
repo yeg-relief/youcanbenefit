@@ -1,0 +1,17 @@
+<main>
+  <div *ngIf="errorMessage"> <strong> {{ errorMessage }} </strong> </div>
+  <div *ngIf="results.length === 0 && !errorMessage" class="p3 center">
+    <p>Sorry, no results found. You can <a routerLink="/browse-programs/all">browse programs</a>.</p>
+  </div>
+
+  <section *ngIf="results.length > 0 && !errorMessage">
+
+    <md-card-title id="result-count">
+      Showing {{ results.length }} result(s) of {{ results.length }} total results.
+    </md-card-title>
+
+    <div [@fadeinAndOut]>
+      <app-program-list [programs]="results"></app-program-list>
+    </div>
+  </section>
+</main>

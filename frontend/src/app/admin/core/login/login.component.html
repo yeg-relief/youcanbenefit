@@ -1,0 +1,28 @@
+<div class="p2"></div>
+
+    <md-card class="bg-silver" style="width: 75%; margin: 0 auto">
+      <md-card-title class="center">LOGIN </md-card-title>
+      <md-card-subtitle *ngIf="invalidLogin"> invalid login </md-card-subtitle>
+      <md-card-content>
+        <div class="p1"></div>
+          <md-input-container>
+            <input mdInput 
+              placeholder="username" [(ngModel)]="credentials.username">
+          </md-input-container>
+        <div class="p1"></div>
+          <md-input-container>
+            <input mdInput 
+                placeholder="password" type="password" [(ngModel)]="credentials.password">
+          </md-input-container>
+        <div class="p1"></div>
+      </md-card-content>
+      <div *ngIf="credentials.username.length === 0 || credentials.password.length === 0">
+        <button style="margin-left:25%; margin-right:25%;" disabled md-raised-button color="primary">LOGIN</button>
+      </div>
+      <div *ngIf="credentials.username.length > 0 && credentials.password.length > 0">
+        <button style="margin-left:25%; margin-right:25%;"  md-raised-button color="primary" (click)="login()">LOGIN</button>
+      </div>   
+      <div class="p3"></div>
+      <md-progress-bar *ngIf="active" mode="indeterminate" color="accent"></md-progress-bar>
+    </md-card>
+    

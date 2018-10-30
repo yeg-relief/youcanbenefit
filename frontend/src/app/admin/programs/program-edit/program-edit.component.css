@@ -1,0 +1,73 @@
+@media screen and (max-width: 1400px){
+  main{
+    width: 90%;
+    margin: 2vh auto;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
+@media screen and (max-width: 2000px) and (min-width: 1400px) {
+  main{
+    width: 60%;
+    margin: 2vh auto;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
+
+
+#editable-area {
+  margin-top: 2em;
+  flex-grow: 2;
+  background-color: ghostwhite;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border: dashed darkorange 3px;
+  padding: 3em;
+}
+
+md-card-header {
+  position: relative;
+  width: 100%;
+}
+
+md-icon#delete-program {
+  position: absolute;
+  right: 1em;
+  cursor: pointer;
+}
+
+md-icon#save-program {
+  position: absolute;
+  right: 5em;
+  cursor: pointer;
+}
+
+md-icon#edit-queries {
+  position: absolute;
+  right: 9em;
+  cursor: pointer;
+}
+
+md-icon:hover {
+  color: darkorange;
+}
+
+md-card-actions {
+  height: 35px;
+}
+
+md-input-container {
+  padding: 2px;
+}
+
+#program-details {
+  border: solid 1px lightslategray;
+}

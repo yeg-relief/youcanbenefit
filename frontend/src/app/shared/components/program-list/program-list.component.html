@@ -1,0 +1,20 @@
+<md-list>
+    <div
+        ga-on="click"
+        ga-event-category="Program"
+        ga-event-action="detail"
+        [attr.ga-event-label]="encodeURIComponent(program.title)"
+        class="program-item"
+        *ngFor="let program of programs"
+        (click)="navigateToDetails(program.guid)">
+
+        <md-list-item>
+            <h3 mdLine> {{program.title}} </h3>
+            <p mdLine><span> {{program.description}} </span></p>
+            <a mdLine [routerLink]="['./details' + '/' + program.guid]">details</a>
+        </md-list-item>
+        <app-list-tag-container [tags]="program.tags"></app-list-tag-container>
+        <md-divider></md-divider>
+
+    </div>
+</md-list>
