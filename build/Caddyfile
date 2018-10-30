@@ -1,0 +1,59 @@
+localhost:443,
+localhost:80,
+0.0.0.0:{$CADDY_PORT} {
+  tls off #internal service
+
+  git {
+    repo https://github.com/yeg-relief/screenerClient
+    branch {$CLIENT_BRANCH}
+    path /usr/client
+  }
+  root /usr/client/dist
+
+  proxy /api web:{$API_PORT}
+  proxy /protected web:{$PROTECTED_PORT}
+  proxy /data web:{$DATA_PORT}
+  proxy /elastic elasticsearch:{$ELASTICSEARCH_PORT} {
+    without /elastic
+  }
+
+  basicauth /protected {$ADMIN_USERNAME} {$ADMIN_PASSWORD}
+  basicauth /data {$ADMIN_USERNAME} {$ADMIN_PASSWORD}
+  basicauth /elastic {$ELASTIC_USERNAME} {$ELASTIC_PASSWORD}
+
+  rewrite /home to /index.html
+
+  rewrite /browse-programs {
+    r  (\w+)
+    to /index.html?path=browse-programs&subPath={1}
+  }
+
+  rewrite /about {
+    to /index.html?path=about
+  }
+
+  rewrite /master-screener/questions {
+    to /index.html?path=master-screener&subPath=questions
+  }
+
+  rewrite /master-screener/results/details {
+    r  (\w+)
+    to /index.html?path=master-screener&subPath=results&detail={1}
+  }
+
+  rewrite /master-screener/results {
+    to /index.html?path=master-screener&subPath=results
+  }
+
+  rewrite /quick-links {
+    to /index.html?path=quick-links
+  }
+
+  rewrite /admin {
+    to /index.html?path=admin
+  }
+
+  errors {
+    404 /index.html
+  }
+}
