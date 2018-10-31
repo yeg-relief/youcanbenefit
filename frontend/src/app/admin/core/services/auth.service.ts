@@ -20,7 +20,7 @@ export class AuthService {
         headers.append("Authorization", "Basic " + auth);
         const options = new RequestOptions({ headers: headers });
 
-        return this.http.get('/protected/login/', options)
+        return this.http.get(`${environment.api}/protected/login/`, options)
             .map(res => res.json().created)
             .do(success => this.isLoggedIn = success)
             .do(success => {

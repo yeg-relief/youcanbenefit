@@ -3,11 +3,12 @@ import { Http, } from '@angular/http';
 import { Actions, Effect } from '@ngrx/effects';
 import { Observable } from 'rxjs/Observable';
 import { ScreenerActionTypes } from './screener-actions';
+import { environment } from '../../../../environments/environment'
 import 'rxjs/add/operator/retry';
 import 'rxjs/add/operator/timeout';
 
 const TIMEOUT = 20000;
-const URL = '/protected/screener';
+const URL = `${environment.api}/protected/screener`;
 
 @Injectable()
 export class ScreenerEffects {

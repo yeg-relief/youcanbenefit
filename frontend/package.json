@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "NODE_ENV=development ng serve --proxy-config proxy.conf.json",
+    "start": "NODE_ENV=development ng serve",
     "start-prod": "NODE_ENV=development ng serve --prod --proxy-config proxy.conf.json",
     "test": "ng test",
     "lint": "ng lint",

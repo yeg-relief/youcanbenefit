@@ -7,6 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Program } from './program.class';
 import { FormBuilder } from '@angular/forms';
+import { environment } from '../../../../environments/environment'
 import 'rxjs/add/operator/take';
 import 'rxjs/add/observable/fromPromise';
 import 'rxjs/add/observable/zip';
@@ -71,7 +72,7 @@ export class ProgramModelService {
         const creds = this.getCredentials();
         creds.headers.append('Content-Type', 'application/json' );
 
-        return this.http.put('/protected/program-description/', program, creds)
+        return this.http.put(`${environment.api}/protected/program-description/`, program, creds)
             .map( res => res.json() )
             .flatMap( res => Observable.fromPromise(this._updateUserProgramInCache(program, res)))
     }
@@ -103,7 +104,7 @@ export class ProgramModelService {
 
     private _loadPrograms(): Observable<ApplicationFacingProgram[]> {
         const creds = this.getCredentials();
-        return this.http.get('/protected/program/', creds)
+        return this.http.get(`${environment.api}/protected/program/`, creds)
             .map( res => res.json())
             .catch(this.loadError)
     }
@@ -112,7 +113,7 @@ export class ProgramModelService {
         const creds = this.getCredentials();
         creds.headers.append('Content-Type', 'application/json' );
         const body = JSON.stringify({ data: program });
-        return this.http.put('/protected/program/', body, creds)
+        return this.http.put(`${environment.api}/protected/program/`, body, creds)
             .map(res => res.json().created)
             .catch(this.loadError)
     }
@@ -121,14 +122,14 @@ export class ProgramModelService {
         const creds = this.getCredentials();
         creds.headers.append('Content-Type', 'application/json' );
         const body = JSON.stringify({ data: program });
-        return this.http.post('/protected/program/', body, creds)
+        return this.http.post(`${environment.api}/protected/program/`, body, creds)
             .map(res => res.json().response)
             .catch(this.loadError)
     }
 
     private _deleteProgram(guid: string) {
         const creds = this.getCredentials();
-        return this.http.delete(`/protected/program/${guid}`, creds)
+        return this.http.delete(`${environment.api}/protected/program/${guid}`, creds)
             .map(res => res.json())
             // object is an es response, the array is the remaining programs
             .map( (res: [boolean, object, Array<ApplicationFacingProgram>]) => res[0])
@@ -137,7 +138,7 @@ export class ProgramModelService {
 
     private _getKeys() {
         const creds = this.getCredentials();
-        return this.http.get('/protected/key/', creds)
+        return this.http.get(`${environment.api}/protected/key/`, creds)
             .map(res => res.json())
             .catch(this.loadError);
     }
