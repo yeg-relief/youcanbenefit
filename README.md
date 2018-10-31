@@ -39,3 +39,5 @@ Keep in mind, this will lose all the info when it's restarted.
 #### Next Steps
 You should now be able to hit the API, have the API talk to Elasticsearch and to be able to view the app. Lets load some data into it. Navigate to `localhost:4200/data` and click the initialize button and wait a moment. Next, navigate to `localhost:4200/data/upload` and upload this JSON file. This is an example of the City of Edmonton's YouCanBenefit setup. It should give an indication it was successful after a couple of seconds. Navigate to `http://localhost:4200/browse-programs/all` to confirm it was successful.
 
+### Debugging
+We use VS Code primarily, so it's easiest to get set up using that. For the front end, simply running the "Launch You Can Benefit frontend" debug task should pop up a debuggable instance of the Angular frontend. For the backend, ensure you have auto-attach turned on in VS Code. Run `npm start` from inside the `/backend` folder in VS Code's integrated terminal. This should automatically detect the running app and attach to it.
