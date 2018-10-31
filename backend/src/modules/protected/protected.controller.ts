@@ -10,6 +10,8 @@ import "rxjs/add/operator/map"
 import "rxjs/add/observable/zip"
 import "rxjs/add/operator/mergeMap"
 import "rxjs/add/observable/throw"
+import "rxjs/add/observable/of"
+import "rxjs/add/operator/catch"
 import {KeyService} from "../key/key.service";
 import {KeyDto} from "../key/key.dto";
 import {ScreenerDto} from "../screener/screener.dto";
