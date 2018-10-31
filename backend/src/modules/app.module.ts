@@ -1,4 +1,5 @@
-import { Module } from '@nestjs/common';
+import { Module, MiddlewareConsumer, RequestMethod } from '@nestjs/common';
+import { CorsMiddleware } from '../middleware/cors.middleware'
 import { AppController } from './app.controller';
 import { ProgramModule } from "./Program"
 import { QueryModule } from "./query"
@@ -21,4 +22,11 @@ import { LogModule } from './log/log.module'
   controllers: [AppController],
   components: [],
 })
-export class ApplicationModule {}
+export class ApplicationModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(CorsMiddleware).forRoutes({
+      path: '*',
+      method: RequestMethod.ALL
+    })
+  }
+}

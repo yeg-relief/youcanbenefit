@@ -13,12 +13,12 @@
     "integration-test-update": "jest \"(/__tests__/.*|\\.(spec))\\.(ts|tsx|js)$\" -u --forceExit"
   },
   "dependencies": {
-    "@nest-middlewares/cors": "^5.1.1",
     "@nestjs/common": "^5.4.0",
     "@nestjs/core": "^5.4.0",
     "@nestjs/testing": "^5.4.0",
     "@types/ramda": "^0.25.40",
     "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
     "elasticsearch": "^14.2.2",
     "jest-html-reporter": "^0.5.8",
     "lodash.get": "^4.4.2",
