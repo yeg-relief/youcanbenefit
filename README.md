@@ -4,6 +4,9 @@ YouCanBenefit is a web application that makes it easy to find out what benefits 
 ## Contributing
 We love contributors! Here are some tips for getting started.
 
+### Slack
+Join us in our Slack workspace! Get an invite [here](https://communityinviter.com/apps/youcanbenefit/you-can-benefit).
+
 ### Setting up the development environment
 ###### This was tested on Mac OS. It should work on most Linux distros that support Node.js. Windows users should try using Linux Subsystem for now.
 
