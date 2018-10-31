@@ -7,6 +7,10 @@ We love contributors! Here are some tips for getting started.
 ### Setting up the development environment
 ###### This was tested on Mac OS. It should work on most Linux distros that support Node.js. Windows users should try using Linux Subsystem for now.
 
+| Angular  | NestJS | Elasticsearch |
+| ------------- | ------------- | ------------ |
+| <img src="https://angular.io/assets/images/logos/angular/angular.svg" height="150"/>  | <img src="https://docs.nestjs.com/assets/logo_text.svg" height="150"/>  | <img src="https://www.elastic.co/assets/blt244a845f141977c3/elastic-logo.svg" height="150"/> |
+
 To get started, fork this repo to your GitHub account. Clone the fork to your dev machine. Ensure you have [Node.js v11](https://nodejs.org/en/download/) and [Docker](https://docs.docker.com/install/) installed.
 
 There are 3 components required to run YCB.
