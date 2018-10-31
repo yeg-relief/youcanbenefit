@@ -1,5 +1,7 @@
-# YouCanBenefit
-YouCanBenefit is a web application that makes it easy to find out what benefits and programs citizens qualify for.
+![home_page](https://i.imgur.com/JQpKLqy.png)
+[try it live](https://youcanbenefit.edmonton.ca)
+
+`YouCanBenefit` is a web application that increases social benefit program discoverability for people of lesser means and their allies. There are similiar projects, but where I think `YouCanBenefit` differs in at least some cases, is that it takes what the user likely knows -- their demographic information -- and compares against what the user likely has trouble finding -- the available social programs. It does not save user data.
 
 ## Contributing
 We love contributors! Here are some tips for getting started.
