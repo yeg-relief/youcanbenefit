@@ -37,7 +37,9 @@ Run `npm start` to start the backend of the app up. You should see the routes at
 #### Elasticsearch
 This provides the application its search and indexing abilities. You can set this up however you like, but I find using Docker is the easiest way. From [their documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html):
 
-`docker run -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:6.4.2`
+```
+docker run -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:6.4.2
+```
 
 Keep in mind, this will lose all the info when it's restarted.
 
