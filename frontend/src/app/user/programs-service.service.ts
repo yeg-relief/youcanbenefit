@@ -5,6 +5,7 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/take';
 import 'rxjs/add/operator/map';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class ProgramsServiceService {
@@ -37,6 +38,6 @@ export class ProgramsServiceService {
     }
 
     private fetchProgram(guid: string) {
-        return this.httpClient.get(`api/program/${guid}`)
+        return this.httpClient.get(`${environment.api}/api/program/${guid}`)
     }
 }

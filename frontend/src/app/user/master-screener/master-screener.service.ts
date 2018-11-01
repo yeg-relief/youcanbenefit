@@ -7,6 +7,7 @@ import { Question } from '../../shared';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { FormGroup } from "@angular/forms";
 import { ProgramsServiceService } from "../programs-service.service";
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class MasterScreenerService {
@@ -14,7 +15,7 @@ export class MasterScreenerService {
     constructor(private http: Http, private programService: ProgramsServiceService) { }
 
     loadQuestions(): Observable<Question[]> {
-        return this.http.get('/api/screener/')
+        return this.http.get(`${environment.api}/api/screener/`)
             .map(res => res.json())
             .catch(e => MasterScreenerService.handleError(e));
     }
@@ -25,7 +26,7 @@ export class MasterScreenerService {
         const headers = new Headers({ 'Content-Type': 'application/json' });
         const options = new RequestOptions({ headers: headers });
         const body = JSON.stringify({ ...transformedFormValues });
-        return this.http.post('/api/notification/', body, options)
+        return this.http.post(`${environment.api}/api/notification/`, body, options)
             .map(res => res.json())
             .do(programs => this.programService.addPrograms(programs))
             .catch(MasterScreenerService.loadError)

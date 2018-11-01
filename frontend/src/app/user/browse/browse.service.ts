@@ -11,13 +11,14 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 import { ProgramsServiceService } from '../programs-service.service';
+import { environment } from '../../../environments/environment'
 
 @Injectable()
 export class BrowseService {
     programs$;
 
     constructor(private http: Http, private programService: ProgramsServiceService) {
-        this.programs$ =  this.http.get('/api/program')
+        this.programs$ =  this.http.get(`${environment.api}/api/program`)
             .map(res => res.json())
             .do(programs => this.programService.addPrograms(programs))
             .multicast( new ReplaySubject(1) ).refCount()

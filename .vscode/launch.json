@@ -1,0 +1,29 @@
+{
+    "version": "0.2.0",
+    "configurations": [{
+            "type": "node",
+            "request": "launch",
+            "name": "Launch backend",
+            "sourceMaps": true,
+            "stopOnEntry": true,
+            "console": "internalConsole",
+            "cwd": "${workspaceRoot}",
+            "program": "${workspaceRoot}/backend/src/server.ts",
+            "outFiles": ["${workspaceRoot}/backend/dist/src/*.js"]
+        },
+        {
+            "type": "node",
+            "request": "attach",
+            "name": "Attach to backend",
+            "port": 5858,
+            "outFiles": []
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Launch YouCanBenefits Frontend",
+            "url": "http://localhost:4200",
+            "webRoot": "${workspaceFolder}/frontend"
+          }
+    ]
+}

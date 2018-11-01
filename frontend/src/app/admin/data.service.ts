@@ -3,6 +3,7 @@ import { Key } from './models/key';
 import { Observable } from 'rxjs/Observable';
 import { Http, Response, RequestOptions } from '@angular/http';
 import { AuthService } from './core/services/auth.service'
+import { environment } from '../../environments/environment'
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/reduce';
@@ -20,7 +21,7 @@ export class DataService {
 
     getKeys() {
         const creds = this.getCredentials();
-        return this.keys$ = this.http.get('/protected/key/', creds)
+        return this.keys$ = this.http.get(`${environment.api}/protected/key/`, creds)
             .map(res => res.json())
             .catch(this.loadError);
     }
@@ -44,7 +45,7 @@ export class DataService {
         const creds = this.getCredentials();
         creds.headers.append('Content-Type', 'application/json' );
         const body = JSON.stringify({ key: key });
-        return this.http.post(`/protected/key/`, body, creds)
+        return this.http.post(`${environment.api}/protected/key/`, body, creds)
             .map(res => res.json().update)
             .catch(this.loadError)
     }
