@@ -2,6 +2,10 @@ sudo: required
 language: node_js
 services:
   - docker
+addons:
+  apt:
+    packages:
+      - docker-ce
 branches:
   only:
     - master
