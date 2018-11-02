@@ -6,7 +6,6 @@ WORKDIR /usr/app
 RUN npm install
 RUN npm run build
 
-
 FROM nginx:1.15.3
 COPY --from=builder /usr/app/dist /usr/app
 COPY --from=builder /usr/app/nginx.conf /etc/nginx/conf.d/default.conf
