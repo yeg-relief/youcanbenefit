@@ -9,6 +9,6 @@
             </md-option>
         </md-select>
     </div>
-    <button md-button [style.background-color]="'darkorange'" (click)="commit()">Add</button>
+    <button md-button [style.background-color]="'darkorange'" (click)="commit()">Save</button>
 </main>
 <app-options [options]="options" (delete)="handleDelete($event)" (edit)="handleEdit($event)"></app-options>
