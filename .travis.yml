@@ -6,6 +6,7 @@ branches:
   only:
     - master
 before_install:
+  - docker --version
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 script:
   - ./build/build.sh frontend backend --push
