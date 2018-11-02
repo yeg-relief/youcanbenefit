@@ -6,6 +6,8 @@ addons:
   apt:
     packages:
       - docker-ce
+notifications:
+    slack: youcanbenefit:${SLACK_CHANNEL1}
 branches:
   only:
     - master
