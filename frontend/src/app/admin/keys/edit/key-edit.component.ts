@@ -38,7 +38,7 @@ export class KeyEditComponent implements OnInit, OnDestroy {
     Validators.compose(
       [
         Validators.required,
-        Validators.pattern('[a-z]+_?[a-z]+?')
+        Validators.pattern('[a-zA-Z]+_?[a-zA-Z]+?')
       ]
     )
   );
