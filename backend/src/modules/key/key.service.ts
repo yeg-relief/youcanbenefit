@@ -26,7 +26,7 @@ export class KeyService {
             body: {
                 properties: {
                     [key.name]: {
-                        type: key['type'] === "number" ? "integer" : "boolean"
+                        type: key['type']
                     }
                 }
             }
