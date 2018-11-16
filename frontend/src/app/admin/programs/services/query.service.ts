@@ -52,7 +52,7 @@ export class QueryService {
     deleteQuery(query_id: string) {
         const creds = this.getCredentials();
         creds.headers.append( 'Content-Type', 'application/json' );
-        return this.http.delete(`/protected/query/${query_id}`, creds)
+        return this.http.delete(`${environment.api}/protected/query/${query_id}`, creds)
             .map(res => res.json())
             .map(res => res.found && res.deleted);
     }
