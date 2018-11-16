@@ -3,7 +3,7 @@ main {
     flex-direction: column;
     justify-content: space-between;
     overflow-x: hidden;
-    padding-bottom: 2em;
+    padding-bottom: 20em;
 }
 
 .questions {
