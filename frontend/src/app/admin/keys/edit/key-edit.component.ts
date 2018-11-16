@@ -28,7 +28,7 @@ export class KeyEditComponent implements OnInit, OnDestroy {
   keys$: Observable<Key[]>;
   destroy$ = new Subject();
   typeOptions = [
-    'number',
+    'integer',
     'boolean'
   ];
   uniqueKeyName = false;
