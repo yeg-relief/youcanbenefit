@@ -33,7 +33,7 @@ export class QuestionsComponent implements OnInit, OnDestroy {
     ngOnInit() {
         const data = this.route.snapshot.data['questions'];
         if (data.error !== undefined) {
-            this.errorMessage = 'unable to load data from server, please try later.';
+            this.errorMessage = 'Unable to load data from server, data may not be initialized.';
         }
         this.questions = data.questions || [];
         this.conditionalQuestions = data.conditionalQuestions || [];
@@ -41,7 +41,7 @@ export class QuestionsComponent implements OnInit, OnDestroy {
             this.form = this.questionControlService.toFormGroup(this.questions);
         } catch (error) {
             console.error(error);
-            this.errorMessage = 'internal program error, please contact admin.';
+            this.errorMessage = 'Internal program error, please contact admin.';
         }
     }
 
