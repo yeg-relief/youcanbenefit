@@ -1,16 +1,23 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { Key, Screener, Question, Question_2 } from '../../models';
+import { Key, Question, Question_2 } from '../../models';
 import { AuthService } from '../../core/services/auth.service';
 import * as fromRoot from '../../reducer';
 import * as actions  from '../store/screener-actions';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/observable/merge';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/multicast';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { Observable, ReplaySubject } from 'rxjs';
+import {
+  map,
+  withLatestFrom,
+  tap,
+  startWith,
+  multicast,
+  refCount,
+  filter, 
+  take,
+  mergeMap,
+  reduce
+} from 'rxjs/operators'
 import { KeyFilterService } from '../services/key-filter.service';
 
 @Component({
@@ -23,7 +30,7 @@ export class ScreenerToolbarComponent implements OnInit {
   adminControls: FormGroup;
   allKeys$: Observable<Key[]>;
   form$: Observable<FormGroup>;
-  created$: Observable<number>;
+  created$: Observable<any>;
   disabled = false;
   errors: any =  { error: '' };
 
@@ -39,16 +46,26 @@ export class ScreenerToolbarComponent implements OnInit {
     
     this.allKeys$ = 
       this.adminControls.get('keyFilter').valueChanges
-        .map( (filterItem) => filterItem.name !== undefined ? filterItem.name : filterItem )
-        .withLatestFrom(this.store.let(fromRoot.getScreenerKeys))
-        .map( ([filterInput, _, ]) => [_, new RegExp(<string>filterInput, 'gi')])
-        .map( ([keys, filterRegex]) => (<Key[]>keys).filter(key => (<RegExp>filterRegex).test(key.name)) )
-        .do ( keys => this.keyFilter.setValue(keys.map(k => k.name)))
-        .startWith(this.adminControls.get('keyFilter').value)
+        .pipe(
+          map( (filterItem) => filterItem.name !== undefined ? filterItem.name : filterItem ),
+          withLatestFrom(this.store.pipe(fromRoot.getScreenerKeys)),
+          map( ([filterInput, _, ]) => [_, new RegExp(<string>filterInput, 'gi')]),
+          map( ([keys, filterRegex]) => (<Key[]>keys).filter(key => (<RegExp>filterRegex).test(key.name)) ),
+          tap ( keys => this.keyFilter.setValue(keys.map(k => k.name))),
+          startWith(this.adminControls.get('keyFilter').value)
+        )
 
-    this.form$ = this.store.let(fromRoot.getForm).multicast( new ReplaySubject(1)).refCount();
-    this.count$ = this.store.let(fromRoot.getConstantQuestions).map(questions => questions.length);
-    this.created$ = this.store.select('screener', 'created');
+        
+
+    this.form$ = this.store.pipe(
+      fromRoot.getForm,
+      multicast( new ReplaySubject(1)),
+      refCount()
+    );
+    
+    this.count$ = this.store.pipe(fromRoot.getConstantQuestions, map( (questions: any[]) => questions.length))
+
+    this.created$ = this.store.pipe(map(state => state.screener.created));
   }
 
   displayFunction(key: Key){
@@ -56,10 +73,13 @@ export class ScreenerToolbarComponent implements OnInit {
   }
 
   handleSave() {
-    this.form$.filter(form => form.valid)
-        .take(1)
-        .let(this.partitionQuestions.bind(this))
-        .let(this.flattenKeys.bind(this))
+    this.form$
+      .pipe(
+        filter(form => form.valid),
+        take(1),
+        this.partitionQuestions.bind(this),
+        this.flattenKeys.bind(this)
+      )
         .subscribe( (questions) => {
           const screener = (<any>Object).assign({}, questions, { created: -1 });
           this.store.dispatch(new actions.SaveData({screener, credentials: this.auth.getCredentials()}));
@@ -69,13 +89,13 @@ export class ScreenerToolbarComponent implements OnInit {
   private partitionQuestions(form: Observable<FormGroup>): Observable<{[key: string]: Question[]}> {
     let formValues = {};
     let capturedForm;
-    return form
-      .do( form => capturedForm = form)
-      .map(form => form.value)
-      .do( values => formValues = values )
-      .map( values => Object.keys(values))
-      .mergeMap( x => x)
-      .reduce( (accum, value) => {
+    return form.pipe(
+      tap(form => capturedForm = form),
+      map(form => form.value),
+      tap(values => formValues = values),
+      map(values => Object.keys(values)),
+      mergeMap( x => x),
+      reduce( (accum: any, value) => {
         if (this.isConditional(formValues, value)) 
           accum.conditionalQuestions = [...accum.conditionalQuestions, formValues[value]];
         else 
@@ -83,25 +103,24 @@ export class ScreenerToolbarComponent implements OnInit {
 
         return accum;
       }, {conditionalQuestions: [], questions: []})
+    )
   }
 
   private flattenKeys(input: Observable<{[key: string]: Question_2[]}>): Observable<{[key: string]: Question[] | number}> {
     const removeKeyType = (question: Question_2): Question => {
       const keyName = question.key.name;
       delete question['key'];
-
-      
       return (<any>Object).assign({}, question, {key: keyName});
     };
 
 
-    return input.map( screener => {
+    return input.pipe(map( screener => {
       return {
         questions: screener['questions'].map(removeKeyType),
         conditionalQuestions: screener['conditionalQuestions'].map(removeKeyType),
         created: -1
       }
-    })
+    }))
   }
 
   private isConditional(questionValues, questionID){
@@ -111,7 +130,6 @@ export class ScreenerToolbarComponent implements OnInit {
         return true;
       }
     }
-
     return false;
   }
 }

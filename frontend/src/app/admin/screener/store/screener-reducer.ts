@@ -1,9 +1,11 @@
 import '@ngrx/core/add/operator/select';
-import { Observable } from 'rxjs/Observable';
 import { Screener, ID, Question_2, Key } from '../../models';
 import { ScreenerActions, ScreenerActionTypes } from './screener-actions';
 import { FormGroup, AbstractControl, FormControl } from '@angular/forms';
 import { questionValidator } from '../validators';
+import { Observable } from 'rxjs';
+import { filter, map } from 'rxjs/operators'
+import { select } from '@ngrx/store'
 
 type ControlMap = { [key: string]: AbstractControl };
 
@@ -391,75 +393,89 @@ export function reducer(state = initialState, action: ScreenerActions): State {
 // following functions are used in main reducer
 
 export function getForm(state$: Observable<State>){
-    return state$.select(s => s.form);
+    return state$.pipe(select(s => s.form));
 }
 
 export function getError(state$: Observable<State>){
-    return state$.select(s => s.error);
+    return state$.pipe(select(s => s.error));
 }
 
 export function isLoading(state$: Observable<State>){
-    return state$.select(s => s.loading);
+    return state$.pipe(select(s => s.loading));
 }
 
 export function getKeys(state$: Observable<State>) {
-    return state$.select(s => s.keys)
-        .filter(keys => keys !== undefined && keys.findIndex(k => k === undefined) < 0)
+    return state$
+        .pipe(
+            select(s => s.keys),
+            filter(keys => keys !== undefined && keys.findIndex(k => k === undefined) < 0)
+        )
 }
 
 export function getUnusedKeys(state$: Observable<State>) {
-    return state$.select(s => [s.keys, s.form.value])
-        .map( ([allKeys, formValue]) => {
-            let usedKeys = [];
-            let multiKeys = [];
-            for (const id in formValue){
-                if (formValue[id].controlType === 'Multiselect' && formValue[id].multiSelectOptions) {
-                    const theseKeys = formValue[id].multiSelectOptions.map(option => option.key ? option.key : null).filter(x => x);
-                    multiKeys = [...theseKeys, ...multiKeys];
+    return state$
+        .pipe(
+            select(s => [s.keys, s.form.value]),
+            map( ([allKeys, formValue]) => {
+                let usedKeys = [];
+                let multiKeys = [];
+                for (const id in formValue){
+                    if (formValue[id].controlType === 'Multiselect' && formValue[id].multiSelectOptions) {
+                        const theseKeys = formValue[id].multiSelectOptions.map(option => option.key ? option.key : null).filter(x => x);
+                        multiKeys = [...theseKeys, ...multiKeys];
+                    }
                 }
-            }
-
-            for (const id in formValue){
-                const thisKey = (formValue[id].key && formValue[id].key.name) ? formValue[id].key : null;
-                if (thisKey) {
-                    usedKeys = usedKeys.concat(thisKey);
+    
+                for (const id in formValue){
+                    const thisKey = (formValue[id].key && formValue[id].key.name) ? formValue[id].key : null;
+                    if (thisKey) {
+                        usedKeys = usedKeys.concat(thisKey);
+                    }
                 }
-            }
-            usedKeys = usedKeys.concat(multiKeys);
-            return allKeys ? allKeys.filter(key => !usedKeys.find(k => k.name === key.name)) : []
-        })
+                usedKeys = usedKeys.concat(multiKeys);
+                return allKeys ? allKeys.filter(key => !usedKeys.find(k => k.name === key.name)) : []
+            })
+        )
 }
 
 export function getConstantQuestions(state$: Observable<State>){
-    return state$.select(s => [ s.form, s ])
-        .map( ([form, state]) => {
-            const f = <FormGroup>form;
-            const s = <State>state;
-            const keys = Object.keys(f.value);
-
-            return keys.map(k => f.value[k])
-                .filter( q => isConditionalQuestion(q.id, s) === false )
-                .sort( (a, b) => a.index - b.index);
-        })
+    return state$
+        .pipe(
+            select(s => [ s.form, s ]),
+            map( ([form, state]) => {
+                const f = <FormGroup>form;
+                const s = <State>state;
+                const keys = Object.keys(f.value);
+    
+                return keys.map(k => f.value[k])
+                    .filter( q => isConditionalQuestion(q.id, s) === false )
+                    .sort( (a, b) => a.index - b.index);
+            })
+        )
+    
 
 }
 
 export function getSelectedConstantID(state$: Observable<State>){
-    return state$.select(s => s.selectedConstantQuestion);
+    return state$.pipe(select(s => s.selectedConstantQuestion));
 }
 
 export function getSelectedConditionalID(state$: Observable<State>){
-    return state$.select(s => s.selectedConditionalQuestion);
+    return state$.pipe(select(s => s.selectedConditionalQuestion));
 }
 
 export function getConditionalQuestionIDS(state$: Observable<State>){
     let selectedConstantID: ID;
 
-    return state$.select(s => { selectedConstantID = s.selectedConstantQuestion; return  s } )
-        .filter(s => s.selectedConstantQuestion !== undefined)
-        .map( state => {
-            return state.form.value[selectedConstantID].conditionalQuestions;
-        });
+    return state$
+        .pipe(
+            select(s => { selectedConstantID = s.selectedConstantQuestion; return  s } ),
+            filter(s => s.selectedConstantQuestion !== undefined),
+            map( state => {
+                return state.form.value[selectedConstantID].conditionalQuestions;
+            })
+        )
+
 }
 
 

@@ -1,8 +1,7 @@
+
+import {throwError as observableThrowError,  Observable } from 'rxjs';
+import { map, catchError, tap, } from 'rxjs/operators'
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/throw';
-import 'rxjs/add/operator/toPromise';
-import 'rxjs/add/operator/catch';
 import { Question } from '../../shared';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { FormGroup } from "@angular/forms";
@@ -16,8 +15,10 @@ export class MasterScreenerService {
 
     loadQuestions(): Observable<Question[]> {
         return this.http.get(`${environment.api}/api/screener/`)
-            .map(res => res.json())
-            .catch(e => MasterScreenerService.handleError(e));
+            .pipe(
+                map(res => res.json()),
+                catchError(MasterScreenerService.handleError)
+            )
     }
 
     loadResults(form: FormGroup) {
@@ -27,10 +28,11 @@ export class MasterScreenerService {
         const options = new RequestOptions({ headers: headers });
         const body = JSON.stringify({ ...transformedFormValues });
         return this.http.post(`${environment.api}/api/notification/`, body, options)
-            .map(res => res.json())
-            .do(programs => this.programService.addPrograms(programs))
-            .catch(MasterScreenerService.loadError)
-            .toPromise();
+            .pipe(
+                map(res => res.json()),
+                tap(programs => this.programService.addPrograms(programs)),
+                catchError(MasterScreenerService.loadError)
+            ).toPromise()
     }
 
     static checkForInvalid(form: FormGroup): FormGroup {
@@ -78,7 +80,7 @@ export class MasterScreenerService {
         } else {
             errMsg = error.message ? error.message : error.toString();
         }
-        return Observable.throw({ error : errMsg });
+        return observableThrowError({ error : errMsg });
     }
 
 
@@ -91,6 +93,6 @@ export class MasterScreenerService {
             errMsg = error.message ? error.message : error.toString();
         }
         console.error(errMsg);
-        return Observable.throw(errMsg);
+        return observableThrowError(errMsg);
     }
 }

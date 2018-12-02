@@ -3,15 +3,10 @@ import { Store } from '@ngrx/store';
 import { Key } from '../../models/key';
 import * as keysActions from '../actions';
 import * as fromRoot from '../../reducer';
-import { Observable } from 'rxjs/Observable';
+import { Observable , merge, BehaviorSubject, of } from 'rxjs';
+import { scan, switchMap } from 'rxjs/operators'
 import { DataService } from '../../data.service';
 import { ActivatedRoute } from '@angular/router';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import 'rxjs/add/operator/switchMap';
-import 'rxjs/add/operator/scan';
-import 'rxjs/add/operator/let';
-import 'rxjs/add/observable/merge';
-
 
 @Component({
   selector: 'app-keys-overview',
@@ -32,11 +27,11 @@ export class KeysOverviewComponent implements OnInit {
       this.store.dispatch(new keysActions._LoadKeysFailure({}));
     }
 
-    this.loadedKeys$ = Observable.merge(
-      this.store.let(fromRoot.allLoadedKeys),
+    this.loadedKeys$ = merge(
+      this.store.pipe(fromRoot.allLoadedKeys),
       this.filter
-    )
-      .scan( (state: KeyFilterState, update: string | Key[]) => {
+    ).pipe(
+      scan( (state: KeyFilterState, update: string | Key[]) => {
         if (Array.isArray(update)) {
           state.keys = [...update];
         } else if ( typeof update === 'string') {
@@ -44,9 +39,9 @@ export class KeysOverviewComponent implements OnInit {
         }
 
         return state;
-      }, new KeyFilterState([], ''))
-      .let(applyFilter)
-      
+      }, new KeyFilterState([], '')),
+      applyFilter
+    );
   }
 
   handleFilter(keyName: string) {
@@ -65,8 +60,9 @@ class KeyFilterState {
 }
 
 function applyFilter(source: Observable<KeyFilterState>): Observable<Key[]> {
-  return source.switchMap( (state: KeyFilterState) => {
-    const regexp = new RegExp(state.keyName.toLowerCase().trim());
-    return Observable.of(state.keys.filter(k => regexp.test(k.name.toLowerCase().trim())))
-  })
+  return source
+    .pipe(switchMap( (state: KeyFilterState) => {
+      const regexp = new RegExp(state.keyName.toLowerCase().trim());
+      return of(state.keys.filter(k => regexp.test(k.name.toLowerCase().trim())))
+    }))
 }

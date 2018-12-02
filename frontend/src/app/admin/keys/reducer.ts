@@ -1,7 +1,8 @@
 import '@ngrx/core/add/operator/select';
 import { Key } from '../models/key';
 import { KeysActions, KeysActionsTypes } from './actions';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
+import { filter, pluck } from 'rxjs/operators'
 
 export interface State {
   loading: boolean;
@@ -53,5 +54,5 @@ export function reducer(state = initialState, action: KeysActions): State {
 }
 
 export function getLoadedKeys(state$: Observable<State>) {
-  return state$.filter(s => !s.loading).select(s => s.keys);
+  return state$.pipe(filter((s: State) => !s.loading),pluck('keys'));
 }

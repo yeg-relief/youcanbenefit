@@ -1,11 +1,8 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MdSidenav } from "@angular/material";
-import { Observable} from "rxjs/Observable";
-import 'rxjs/add/observable/fromEvent';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/startWith'
-import 'rxjs/add/operator/filter'
+import { MatSidenav } from "@angular/material";
+import { Observable, fromEvent } from "rxjs";
+import { map, startWith, filter } from 'rxjs/operators'
 
 @Component({
     selector: 'app-quick-links',
@@ -14,7 +11,7 @@ import 'rxjs/add/operator/filter'
 })
 export class QuickLinksComponent implements OnInit, AfterViewInit {
 
-    @ViewChild('sidenav') public myNav: MdSidenav;
+    @ViewChild('sidenav') public myNav: MatSidenav;
 
     smallView: Observable<boolean>;
 
@@ -151,25 +148,28 @@ export class QuickLinksComponent implements OnInit, AfterViewInit {
     ngOnInit() {
         const match = () => !(window.matchMedia("(min-width: 750px)").matches);
 
-        this.smallView = Observable.fromEvent(window, 'resize')
-            .map(match)
-            .startWith(match());
+        this.smallView = fromEvent(window, 'resize')
+            .pipe(
+                map(match),
+                startWith(match())
+            );
 
     }
 
     ngAfterViewInit() {
-        this.route.fragment.filter(f => !!f).subscribe(f => {
-            const element = document.querySelector("#" + f);
-            if (element) {
-                element.scrollIntoView(true);
-            } else {
-                console.log(`can't find element: ${f}`);
-            }
+        this.route.fragment.pipe(filter(f => !!f))
+            .subscribe(f => {
+                const element = document.querySelector("#" + f);
+                if (element) {
+                    element.scrollIntoView(true);
+                } else {
+                    console.log(`can't find element: ${f}`);
+                }
 
-            if (this.myNav && this.myNav.opened) {
-                this.myNav.close();
-            }
+                if (this.myNav && this.myNav.opened) {
+                    this.myNav.close();
+                }
 
-        })
+            })
     }
 }

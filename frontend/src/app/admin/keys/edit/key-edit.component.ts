@@ -2,18 +2,12 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Key } from '../../models/key';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import * as keysActions from '../actions';
 import * as fromRoot from '../../reducer';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/withLatestFrom';
-import 'rxjs/add/operator/takeUntil';
-import 'rxjs/add/operator/take';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/delay';
-import { Subject } from 'rxjs/Subject';
+import { Observable ,  Subject } from 'rxjs';
 import { DataService } from '../../data.service';
+import { takeUntil, withLatestFrom, map, tap, take, delay } from 'rxjs/operators'
 
 /*
  for now we will only focus on making new keys and not editing existing keys. 
@@ -56,18 +50,21 @@ export class KeyEditComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.keys$ = this.store.let(fromRoot.allLoadedKeys).takeUntil(this.destroy$.asObservable());
-    const form$ = this.form.valueChanges;
+    this.keys$ = this.store.pipe(
+      fromRoot.getKeyOverview, 
+      takeUntil(this.destroy$.asObservable())
+    );
 
-    form$
-      .withLatestFrom(this.keys$)
-      .map( ([form, keys]) => keys.filter(programKey => programKey.name === form.name))
-      // if array is empty then there are no duplicates => return true
-      .map(duplicateKeys => duplicateKeys.length === 0)
-      .takeUntil(this.destroy$.asObservable())
+    this.form.valueChanges
+      .pipe(
+        withLatestFrom(this.keys$),
+        // if array is empty then there are no duplicates => return true
+        map( ([form, keys]) => keys.filter(programKey => programKey.name === form.name).length === 0),
+        takeUntil(this.destroy$.asObservable())
+      )
       .subscribe(
-        (noDuplicate) => this.uniqueKeyName = noDuplicate,
-        (err) => console.log(err),
+        noDuplicate => this.uniqueKeyName = noDuplicate,
+        console.error,
       );
   }
 
@@ -81,14 +78,15 @@ export class KeyEditComponent implements OnInit, OnDestroy {
       type: this.form.value.type
     };
     this.data.updateKey(key)
-      .take(1)
-      .do(() => this.store.dispatch(new keysActions._UpdateKey([key])))
-      .do(() => this.saving = true)
-      .delay(500)
-      .subscribe({
-        complete: () => this.router.navigateByUrl('/admin/keys/overview')
-      })
-    
+      .pipe(
+        take(1),
+        tap(() => {
+          this.store.dispatch(new keysActions._UpdateKey([key]))
+          this.saving = true
+        }),
+        delay(500)
+      )
+      .subscribe(() => this.router.navigateByUrl('/admin/keys/overview'));
   }
 
   handleCancel() {

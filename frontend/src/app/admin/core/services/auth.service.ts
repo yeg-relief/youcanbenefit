@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import {Http, Headers, RequestOptions} from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import { Http, Headers, RequestOptions} from '@angular/http';
+import { Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators'
 import { environment } from '../../../../environments/environment';
 
 declare const btoa;
@@ -21,13 +22,15 @@ export class AuthService {
         const options = new RequestOptions({ headers: headers });
 
         return this.http.get(`${environment.api}/protected/login/`, options)
-            .map(res => res.json().created)
-            .do(success => this.isLoggedIn = success)
-            .do(success => {
-                if(success) {
-                    this.credentials = auth;
-                }
-            })
+            .pipe(
+                map(res => res.json().created),
+                tap(success => {
+                    this.isLoggedIn = success;
+                    if (this.isLoggedIn) {
+                        this.credentials = auth;
+                    }
+                })
+            )    
     }
 
     logout(): void {

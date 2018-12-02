@@ -1,16 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BrowseService } from './browse.service';
-import { Subscription } from 'rxjs/Subscription';
-import { Observable } from "rxjs/Observable";
-import 'rxjs/add/operator/switchMap';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/concatMap';
-import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/toArray';
-import 'rxjs/add/operator/multicast';
-import 'rxjs/add/operator/let';
-import 'rxjs/add/operator/take';
+import { Subscription ,  Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({

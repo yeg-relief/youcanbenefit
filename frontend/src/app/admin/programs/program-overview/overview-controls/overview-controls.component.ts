@@ -2,13 +2,8 @@ import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Animations } from '../../../../shared/animations';
 import { FilterService } from '../services/filter.service';
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription'
-import 'rxjs/add/operator/distinctUntilChanged';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/shareReplay';
-import 'rxjs/add/operator/let';
-import 'rxjs/add/operator/do';
+import { Observable, Subscription } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map, shareReplay, startWith } from 'rxjs/operators'
 
 @Component({
   selector: 'app-overview-controls',
@@ -31,19 +26,25 @@ export class OverviewControlsComponent implements OnInit, OnDestroy {
     this.form = this.filterService.form;
 
     const formChanges = this.form.valueChanges
-      .debounceTime(100)
-      .distinctUntilChanged()
-      .map(value => value.type !== undefined && value.type !== '' && value.type !== 'none')
-      .shareReplay()
+      .pipe(
+        debounceTime(100),
+        distinctUntilChanged(),
+        map(value => value.type !== undefined && value.type !== '' && value.type !== 'none'),
+        shareReplay(),
+      )
+
+      
 
     this.styleIcon$ = formChanges
-      .let(this.updateFilterDisplay.bind(this))
-      .startWith({
-        'filter_active': false,
-        'filter_inactive': true  
-      });
+        .pipe(
+          this.updateFilterDisplay.bind(this),
+          startWith({
+            'filter_active': false,
+            'filter_inactive': true  
+          })
+        )
 
-    this.disableInput = formChanges.subscribe(val => this.filterService.effectInput(val))
+    this.disableInput = formChanges.subscribe(this.filterService.effectInput)
   }
 
   ngOnDestroy(){
@@ -58,18 +59,11 @@ export class OverviewControlsComponent implements OnInit, OnDestroy {
   }
 
   updateFilterDisplay(input$: Observable<boolean>): Observable<any>{
-    return input$.map(showFilter => {
-      if (showFilter) 
-        return {
-          filter_active: true,
-          filter_inactive: false
-        }
-      
-      return {
-        filter_active: false,
-        filter_inactive: true
-      }
-      
-    })
+    return input$
+      .pipe(
+        map(showFilter => (
+           showFilter ? ({filter_active: true, filter_inactive: false}) : ({ filter_active: false, filter_inactive: true })          
+        ))
+      )
   }
 }

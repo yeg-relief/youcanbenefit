@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, OnDestroy, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-
+import { filter } from 'rxjs/operators'
 
 @Component({
   selector: 'app-key-overview-controls',
@@ -20,7 +20,7 @@ export class KeyOverviewControlsComponent implements OnInit, OnDestroy {
     });
 
     this.sub = this.form.valueChanges
-      .filter(_ => this.form.valid)
+      .pipe(filter(_ => this.form.valid))
       .subscribe(values => this.onFilter.emit( values.keyName ) );
   }
 

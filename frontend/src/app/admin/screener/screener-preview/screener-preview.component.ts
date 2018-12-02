@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { FormGroup } from '@angular/forms';
-import { Observable } from 'rxjs/Observable';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
 import * as fromRoot from '../../reducer';
-import * as actions  from '../store/screener-actions';
-import { Key, Screener, Question, Question_2 } from '../../models';
+import { Question, Question_2 } from '../../models';
 import { QuestionControlService } from '../../../user/master-screener/questions/question-control.service';
+import { Observable, ReplaySubject } from 'rxjs';
+import { take, tap, map, mergeMap, reduce } from 'rxjs/operators'
 
 @Component({
   selector: 'app-screener-preview',
@@ -25,40 +24,39 @@ export class ScreenerPreviewComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.store.let(fromRoot.getForm).take(1).subscribe( form => this.form.next(form));
+    this.store.pipe(fromRoot.getForm,take(1)).subscribe( (form: FormGroup) => this.form.next(form));
 
     this.store
-      .let(fromRoot.getForm)
-      .take(1)
-      .let(this.partitionQuestions.bind(this))
-      .let(this.flattenKeys)
+      .pipe(
+        fromRoot.getForm,
+        take(1),
+        this.partitionQuestions.bind(this),
+        this.flattenKeys,
+      )
       .subscribe( partitionedQuestions => {
         this.questions = partitionedQuestions['questions'];
         this.conditionalQuestions = partitionedQuestions['conditionalQuestions'];
         this.form.next( this.questionControlService.toFormGroup(this.questions) );
       });
-
-
   }
 
-  private partitionQuestions(form: Observable<FormGroup>): Observable<{[key: string]: Question[]}> {
+  private partitionQuestions(form: Observable<FormGroup>) {
     let formValues = {};
-    let capturedForm;
     return form
-      .do( form => capturedForm = form)
-      .map(form => form.value)
-      .do( values => formValues = values )
-      .map( values => Object.keys(values))
-      .mergeMap( x => x)
-      .reduce( (accum, value) => {
-        if (this.isConditional(formValues, value)) 
-          accum.conditionalQuestions = [...accum.conditionalQuestions, formValues[value]];
-        else 
-          accum.questions = [...accum.questions, formValues[value]];
-
-        return accum;
-      }, {conditionalQuestions: [], questions: []})
-      
+      .pipe(
+        map(form => form.value),
+        tap(values => formValues = values),
+        map(values => Object.keys(values)),
+        mergeMap(x => x),
+        reduce( (accum: any, value: any) => { 
+          if (this.isConditional(formValues, value)) {
+            accum.conditionalQuestions = [...accum.conditionalQuestions, formValues[value]];
+          } else {
+            accum.questions = [...accum.questions, formValues[value]];
+          } 
+          return accum;
+        }, {conditionalQuestions: [], questions: []})
+      )
   }
 
   private isConditional(questionValues, questionID){
@@ -68,26 +66,22 @@ export class ScreenerPreviewComponent implements OnInit {
         return true;
       }
     }
-
     return false;
   }
 
   private flattenKeys(input: Observable<{[key: string]: Question_2[]}>): Observable<{[key: string]: Question[] }> {
     const removeKeyType = (question: Question_2): Question => {
       const keyName = question.key.name;
-      //delete question['key'];
-
-      
       return (<any>Object).assign({}, question, {key: keyName});
     }
 
 
-    return input.map( screener => {
+    return input.pipe(map( screener => {
       return {
         questions: screener['questions'].map(removeKeyType),
         conditionalQuestions: screener['conditionalQuestions'].map(removeKeyType),
       }
-    })
+    }))
   }
 
   gatherConditionals(question) {
@@ -101,7 +95,7 @@ export class ScreenerPreviewComponent implements OnInit {
 
   addControls($event) {
     let form;
-    this.form.take(1).subscribe(f => form = f);
+    this.form.pipe(take(1)).subscribe(f => form = f);
     const conditionalQuestions = this.conditionalQuestions.filter( q => $event.find(id => q.id === id) );
     this.questionControlService.addQuestions(conditionalQuestions, form);
     this.form.next( form );
@@ -109,7 +103,7 @@ export class ScreenerPreviewComponent implements OnInit {
 
   removeControls($event) {
     let form;
-    this.form.take(1).subscribe(f => form = f);
+    this.form.pipe(take(1)).subscribe(f => form = f);
     const conditionalQuestions = this.conditionalQuestions.filter( q => $event.find(id => q.id === id) ).sort( (a, b) => a.index - b.index);
     this.questionControlService.removeQuestions(conditionalQuestions, form);
     this.form.next( form );

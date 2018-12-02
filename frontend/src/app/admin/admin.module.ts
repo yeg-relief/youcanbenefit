@@ -5,7 +5,6 @@ import { routing } from './admin.routes';
 import { StoreModule } from '@ngrx/store';
 import { reducer } from './reducer';
 import { EffectsModule } from '@ngrx/effects';
-import { MaterialModule } from '@angular/material';
 import { DataService } from './data.service';
 import { AdminCoreModule } from './core/admin-core.module';
 import { KeyResolverService } from './keys/overview/key-resolver.service';
@@ -34,9 +33,8 @@ import { DataManagementService } from "./data/data-management.service";
     imports: [
         CommonModule,
         routing,
-        MaterialModule,
-        StoreModule.provideStore(reducer),
-        EffectsModule.run(ScreenerEffects),
+        StoreModule.forRoot(reducer),
+        EffectsModule.forRoot([ScreenerEffects]),
         AdminCoreModule,
         ProgramsModule,
         KeysModule,

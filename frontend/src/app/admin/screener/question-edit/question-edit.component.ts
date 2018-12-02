@@ -1,14 +1,23 @@
 import { Component, OnInit, OnDestroy, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { ID, Key, ControlType } from '../../models';
-import { Observable } from 'rxjs/Observable';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
-import { Subject } from 'rxjs/Subject';
+import { Observable, ReplaySubject, Subject, combineLatest } from 'rxjs';
+import { 
+    map, 
+    filter, 
+    multicast, 
+    refCount, 
+    takeUntil, 
+    withLatestFrom, 
+    startWith, 
+    tap,
+    throttleTime,
+    delay,
+    switchMap,
+    debounceTime
+} from 'rxjs/operators'
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../../reducer';
-import 'rxjs/add/operator/pairwise';
-import 'rxjs/add/operator/combineLatest';
-import 'rxjs/add/operator/throttleTime';
 import { Animations } from '../../../shared/animations'
 
 @Component({
@@ -28,7 +37,7 @@ export class QuestionEditComponent implements OnInit, OnDestroy {
         { value: 'Multiselect', display: 'multiselect'}
     ].sort( (a, b) => a.display.trim().localeCompare(b.display.trim()));
 
-    selectedQuestionID$: Observable<ID>;
+    selectedQuestionID$;
     form$: Observable<AbstractControl>;
     unusedKeys: Key[] = [];
     optionForm: FormGroup;
@@ -47,11 +56,10 @@ export class QuestionEditComponent implements OnInit, OnDestroy {
     ngOnInit() {
 
         // data sources
-        this.selectedQuestionID$ = Observable.combineLatest(
-            this.store.let(fromRoot.getSelectedConstantID),
-            this.store.let(fromRoot.getSelectedConditionalID)
-        )
-            .map( ([constant, conditional]) => {
+        this.selectedQuestionID$ = combineLatest(
+            this.store.pipe(fromRoot.getSelectedConstantID),
+            this.store.pipe(fromRoot.getSelectedConditionalID),
+            map( ([constant, conditional]) => {
                 if (constant === undefined) {
                     return 'unselect all the questions';
                 }
@@ -64,38 +72,44 @@ export class QuestionEditComponent implements OnInit, OnDestroy {
                     return conditional;
                 }
 
-            })
-            .filter(id => id !== undefined)
-            .multicast( new ReplaySubject(1)).refCount();
+            }),
+            filter(Boolean),
+            multicast( new ReplaySubject(1)),
+            refCount()
+        )
+
 
         this.form$ = this.selectedQuestionID$
-            .withLatestFrom(this.store.let(fromRoot.getForm))
-            .filter( ([questionID, form]) => form.get(questionID) !== null)
-            .map( ([questionID, form]) => form.get(questionID))
-            .startWith(this.fb.group({
-                label: [''], key: [''], controlType: [''], expandable: [false], options: []
-            }))
-            .do( form => this.controlType = form.get('controlType').value)
-            .do( form => {
-                const val = form.value;
+            .pipe(
+                withLatestFrom(this.store.pipe(fromRoot.getForm)),
+                filter( ([questionID, form]) => form.get(questionID) !== null),
+                map( ([questionID, form]) => form.get(questionID)),
+                startWith(this.fb.group({
+                    label: [''], key: [''], controlType: [''], expandable: [false], options: []
+                })),
+                tap( (form: any) => {
+                    this.controlType = form.get('controlType').value
+                    const val = form.value;
 
-                if (val.controlType && val.controlType === 'Multiselect' && val.multiSelectOptions) {
-                    this.multiQuestions = [...val.multiSelectOptions];
-                }
-            })
-            .multicast( new ReplaySubject(1)).refCount();
+                    if (val.controlType && val.controlType === 'Multiselect' && val.multiSelectOptions) {
+                        this.multiQuestions = [...val.multiSelectOptions];
+                    }
+                }),
+                multicast( new ReplaySubject(1)),
+                refCount()
+            )
 
-        this.store.let(fromRoot.getUnusedScreenerKeys)
-            .takeUntil(this.destroySubs$.asObservable())
-            .subscribe( keys => this.unusedKeys = [...keys]);
+        this.store.pipe(fromRoot.getUnusedScreenerKeys, takeUntil(this.destroySubs$.asObservable()))
+            .subscribe( (keys: any[]) => this.unusedKeys = [...keys]);
 
         this.form$
-            .takeUntil(this.destroySubs$.asObservable())
-            .throttleTime(400)
-            .do(_ => this.fadeState = 'out')
-            .delay(300)
-            .do(_ => this.fadeState = 'in')
-            .subscribe();
+            .pipe(
+                takeUntil(this.destroySubs$.asObservable()),
+                throttleTime(400),
+                tap(_ => this.fadeState = 'out'),
+                delay(300),
+                tap(_ => this.fadeState = 'in'),
+            ).subscribe();    
         // local form(s)
 
         const digit_pattern = '^\\d+$';
@@ -106,15 +120,18 @@ export class QuestionEditComponent implements OnInit, OnDestroy {
 
         // effects
         this.form$
-            .filter( form => form !== null)
-            .map( form => form.get('key'))
-            .filter( key => key !== null)
-            .switchMap( key => key.valueChanges.startWith(key.value).pairwise() )
-            .debounceTime(100)
-            .takeUntil(this.destroySubs$.asObservable())
-            .withLatestFrom(this.form$)
-            .subscribe( ([[prevKey, currKey], form]) => {
-
+            .pipe(
+                filter(Boolean),
+                map( form => form.get('key')),
+                filter(Boolean),
+                switchMap( key => key.valueChanges.startWith(key.value).pairwise() ),
+                debounceTime(100),
+                takeUntil(this.destroySubs$.asObservable()),
+                withLatestFrom(this.form$),
+            )
+            .subscribe( ([ keys, form]) => {
+                const prevKey = keys[0];
+                const currKey = keys[1];  
                 const type = this.unusedKeys.find(k => k.name === currKey.name) ?
                     this.unusedKeys.find(k => k.name === currKey.name).type : null;
                 form.get(['key', 'type']).setValue(type);
@@ -130,16 +147,15 @@ export class QuestionEditComponent implements OnInit, OnDestroy {
             });
 
         this.form$
-            .filter(form => form !== null)
-            .switchMap( form => form.get('controlType').valueChanges )
-            .let(this.updateInternalControlType.bind(this))
-            .withLatestFrom(this.form$)
-            .let(this.updateOptions.bind(this))
-            .let(this.updateMultiOptions.bind(this))
-            .takeUntil(this.destroySubs$.asObservable())
-            .subscribe();
-
-
+            .pipe(
+                filter(Boolean),
+                switchMap( form => form.get('controlType').valueChanges ),
+                this.updateInternalControlType.bind(this),
+                withLatestFrom(this.form$),
+                this.updateOptions.bind(this),
+                this.updateMultiOptions.bind(this),
+                takeUntil(this.destroySubs$.asObservable()),
+            ).subscribe();
     }
 
 

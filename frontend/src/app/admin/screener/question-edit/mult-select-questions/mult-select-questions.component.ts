@@ -1,12 +1,10 @@
-import {Component, OnInit, OnDestroy, Input, Output, EventEmitter} from '@angular/core';
-import { Subject } from 'rxjs/Subject';
-import {FormGroup, FormBuilder, Validators, FormControl} from '@angular/forms';
+import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
+import { Subject, combineLatest } from 'rxjs';
+import { takeUntil, take } from 'rxjs/operators'
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Key } from '../../../models';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../../../reducer';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/takeUntil';
-import 'rxjs/add/operator/combineLatest';
 
 @Component({
     selector: 'app-mult-select-questions',
@@ -21,13 +19,15 @@ export class MultSelectQuestionsComponent implements OnInit, OnDestroy {
     destroySubs$ = new Subject();
     form: FormGroup;
 
-
     constructor(private store: Store<fromRoot.State>, private fb: FormBuilder) {}
 
     ngOnInit() {
-        this.store.let(fromRoot.getUnusedScreenerKeys)
-            .takeUntil(this.destroySubs$.asObservable())
-            .subscribe( keys => this.unusedKeys = [...keys].filter(key => key.type === 'boolean').sort((a, b) => a.name.localeCompare(b.name)));
+        this.store
+            .pipe(
+                fromRoot.getUnusedScreenerKeys,
+                takeUntil(this.destroySubs$.asObservable())
+            )
+            .subscribe( (keys: any[]) => this.unusedKeys = [...keys].filter(key => key.type === 'boolean').sort((a, b) => a.name.localeCompare(b.name)));
 
         this.form = this.fb.group({
             'key': new FormGroup({
@@ -37,15 +37,16 @@ export class MultSelectQuestionsComponent implements OnInit, OnDestroy {
             'text': ['', Validators.required]
         });
 
-        this.form.get('key').get('name').valueChanges
-            .combineLatest(this.store.let(fromRoot.getScreenerKeys))
-            .takeUntil(this.destroySubs$.asObservable())
-            .subscribe(([keyName, allKeys]) => {
-                const key = allKeys.find(k => k.name === keyName);
-                if (key) {
-                    this.form.get(['key', 'type']).setValue(key.type);
-                }
-            });
+        combineLatest(
+            this.form.get('key').get('name').valueChanges,
+            this.store.pipe(fromRoot.getScreenerKeys)
+        ).pipe(takeUntil(this.destroySubs$.asObservable()))
+        .subscribe(([keyName, allKeys]) => {
+            const key = (<any[]> allKeys).find(k => k.name === keyName);
+            if (key) {
+                this.form.get(['key', 'type']).setValue(key.type);
+            }
+        });
 
         if (!this.options) {
             this.options = [];
@@ -79,9 +80,8 @@ export class MultSelectQuestionsComponent implements OnInit, OnDestroy {
             this.committedKeys.filter(k => k.name !== releasedKey.name);
             this.unusedKeys = [releasedKey, ...this.unusedKeys];
         } else {
-            this.store.let(fromRoot.getScreenerKeys)
-                .take(1)
-                .subscribe(keys => {
+            this.store.pipe(fromRoot.getScreenerKeys, take(1))
+                .subscribe( (keys: any[]) => {
                     const deletedKey = keys.find(k => k.name === keyName);
                     if (deletedKey) {
                         this.unusedKeys = [deletedKey, ...this.unusedKeys];
@@ -95,14 +95,12 @@ export class MultSelectQuestionsComponent implements OnInit, OnDestroy {
     handleEdit(keyName) {
         const option = this.options.find(opt => opt.key.name === keyName);
         if (option) {
-            debugger;
             this.form.get('text').setValue(option.text);
 
             this.form.get('key').get('name').setValue(option.key.name);
             this.form.get('key').get('type').setValue(option.key.type);
-            this.store.let(fromRoot.getScreenerKeys)
-                .take(1)
-                .subscribe(keys => {
+            this.store.pipe(fromRoot.getScreenerKeys, take(1))
+                .subscribe( (keys: any[]) => {
                     const deletedKey = keys.find(k => k.name === keyName);
                     if (deletedKey) {
                         this.unusedKeys = [deletedKey, ...this.unusedKeys];

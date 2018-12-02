@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { UserFacingProgram } from '../shared/models';
 import { HttpClient } from "@angular/common/http";
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/toPromise';
-import 'rxjs/add/operator/take';
-import 'rxjs/add/operator/map';
+
+
+
+
 import { environment } from '../../environments/environment';
 
 @Injectable()

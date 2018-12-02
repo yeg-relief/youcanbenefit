@@ -1,5 +1,5 @@
-import { Observable } from 'rxjs/Observable';
-import { combineReducers } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { combineReducers, select } from '@ngrx/store';
 import * as fromKeyOverview from './keys/reducer';
 import * as fromScreener from './screener/store/screener-reducer';
 import { createSelector } from 'reselect';
@@ -22,11 +22,11 @@ export function reducer(state: any, action: any) {
 }
 
 export function getScreenerState(state$: Observable<State>) {
-  return state$.select(state => state.screener);
+  return state$.pipe(select('screener'));
 }
 
 export function getKeyOverview(state$: Observable<State>) {
-  return state$.select(state => state.keyOverview);
+  return state$.pipe(select('keyOverview'));
 }
 
 

@@ -1,9 +1,5 @@
 import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import {Router, NavigationEnd } from '@angular/router';
-import 'rxjs/add/operator/withLatestFrom';
-import 'rxjs/add/operator/startWith';
-import 'rxjs/add/operator/do';
-
 import {
     trigger,
     state,
@@ -12,7 +8,7 @@ import {
     transition,
 } from '@angular/animations'
 import {AuthService} from "../../../admin/core/services/auth.service";
-
+import { filter, map, tap } from 'rxjs/operators';
 
 @Component({
     selector: 'app-toolbar',
@@ -85,15 +81,15 @@ export class ToolbarComponent implements OnInit {
         this.routes = [...this.userRoutes];
         this.buildActiveMap(window.location.pathname);
 
-        const navigationStart = this.router.events.filter(e => e instanceof NavigationEnd).map( e => e['url']);
+        const navigationStart = this.router.events.pipe(filter(e => e instanceof NavigationEnd), map( e => e['url']));
 
 
         navigationStart
-            .do(url => {
-                this.buildActiveMap(url);
-            })
-            .map(url => url.split('/').indexOf('admin') > -1)
-            .subscribe(val => {
+            .pipe(
+                tap(this.buildActiveMap),
+                map(url => url.split('/').indexOf('admin') > -1)
+            )
+            .subscribe(() => {
                 this.showAdminRoutes = this.authService.isLoggedIn;
                 this.cd.markForCheck();
             });
