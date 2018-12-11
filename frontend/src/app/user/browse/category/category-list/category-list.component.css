@@ -7,7 +7,7 @@ section {
     background: transparent;
 }
 
-md-progress-spinner {
+mat-progress-spinner {
     margin: 10% auto 0 auto;
 }
 

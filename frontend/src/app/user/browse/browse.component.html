@@ -3,10 +3,10 @@
   <!-- categories display for screens >= medium -->
   <div class="lg-show tag-padding-container">
     <div class="tag-container">
-      <button md-button color="primary" routerLink="/browse-programs/{{ category }}" routerLinkActive="active" *ngFor="let category of (categories | async)">
+      <button mat-button color="primary" routerLink="/browse-programs/{{ category }}" routerLinkActive="active" *ngFor="let category of (categories | async)">
              {{ category }}
           </button>
-      <button md-button color="primary" routerLink="/browse-programs/all" routerLinkActive="active">
+      <button mat-button color="primary" routerLink="/browse-programs/all" routerLinkActive="active">
               all
       </button>
     </div>

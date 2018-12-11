@@ -1,16 +1,16 @@
 <div class="wrapper" *ngIf="(program | async) as program; else showError">
-    <md-card>
-        <md-card-header>
+    <mat-card>
+        <mat-card-header>
 
-            <md-card-title>
-                <button md-icon-button  (click)="close()">
-                    <md-icon mdTooltip="back" mdTooltipPosition="above" class="md-24">arrow_back</md-icon>
+            <mat-card-title>
+                <button mat-icon-button  (click)="close()">
+                    <mat-icon matTooltip="back" matTooltipPosition="above" class="mat-24">arrow_back</mat-icon>
                 </button>
                 {{ program.title }}
-            </md-card-title>
-        </md-card-header>
+            </mat-card-title>
+        </mat-card-header>
 
-        <md-card-content>
+        <mat-card-content>
             <pre>
               {{ program.details }}
             </pre>
@@ -22,15 +22,15 @@
                     </li>
                 </ul>
             </section>
-        </md-card-content>
+        </mat-card-content>
 
 
-        <md-card-actions>
-            <button md-icon-button  (click)="close()">
-                <md-icon mdTooltip="back" mdTooltipPosition="above" class="md-24">arrow_back</md-icon>
+        <mat-card-actions>
+            <button mat-icon-button  (click)="close()">
+                <mat-icon matTooltip="back" matTooltipPosition="above" class="mat-24">arrow_back</mat-icon>
             </button>
-        </md-card-actions>
-    </md-card>
+        </mat-card-actions>
+    </mat-card>
 
 </div>
 

@@ -1,22 +1,22 @@
-<section class="rounded border">
+<!-- <section class="rounded border">
   <form novalidate [formGroup]="form">
     <div [ngSwitch]="question.controlType">
       
       <div *ngSwitchCase="'NumberInput'">
-        <md-card-title id="question-label"> {{ question.label }} </md-card-title>
+        <mat-card-title id="question-label"> {{ question.label }} </mat-card-title>
           <div class="py1"></div>
-        <md-input-container>
-          <input mdInput [formControlName]="question.key" placeholder="input here">
-        </md-input-container>  
+        <mat-input-container>
+          <input matInput [formControlName]="question.key" placeholder="input here">
+        </mat-input-container>
       </div>
 
       <div *ngSwitchCase="'CheckBox'">
-        <md-card-title> <md-checkbox [formControlName]="question.key"> {{ question.label }} </md-checkbox> </md-card-title>
+        <mat-card-title> <mat-checkbox [formControlName]="question.key"> {{ question.label }} </mat-checkbox> </mat-card-title>
       </div>
 
 
       <div *ngSwitchCase="'NumberSelect'">
-        <md-card-title id="question-label"> {{ question.label }} </md-card-title>
+        <mat-card-title id="question-label"> {{ question.label }} </mat-card-title>
         <select style="height: 3em; min-width: 50%;" [formControlName]="question.key">
           <option selected> select an option </option>
           <option *ngFor="let option of question.options"> {{ option }} </option>
@@ -27,3 +27,5 @@
     </div>
   </form>
 </section>
+-->
+<h1>COMPONENT DEPPRECATED</h1>

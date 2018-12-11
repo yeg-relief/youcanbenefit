@@ -17,7 +17,7 @@
 /***************************************************************************************************
  * BROWSER POLYFILLS
  */
-
+(window as any).global = window;
 if (!Array.prototype.includes) {
     Object.defineProperty(Array.prototype, 'includes', {
         value: function(searchElement, fromIndex) {
@@ -99,20 +99,6 @@ import 'core-js/es7/reflect';
  * Zone JS is required by Angular itself.
  */
 import 'zone.js/dist/zone';  // Included with Angular CLI.
-
-
-
-
-
-/***************************************************************************************************
- * APPLICATION IMPORTS
- */
-
-/**
- * Date, currency, decimal and percent pipes.
- * Needed for: All but Chrome, Firefox, Edge, IE11 and Safari 10
- */
-import 'intl';  // Run `npm install --save intl`.
 
 /*
 Some components (md-slide-toggle, md-slider, mdTooltip) rely on HammerJS for gestures. 

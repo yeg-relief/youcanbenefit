@@ -77,7 +77,7 @@ describe('Questions Component single question', () => {
   });
 
   it('should update the UI to show a constant and conditional question', done => {
-    const expand = de.query(By.css('md-checkbox'))
+    const expand = de.query(By.css('mat-checkbox'))
     const input = expand.query(By.css('input'))
     input.nativeElement.click();
     input.nativeElement.checked = true;;

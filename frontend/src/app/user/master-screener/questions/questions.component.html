@@ -21,12 +21,12 @@
 
         <button
             id="submit-button"
-            md-raised-button
+            mat-raised-button
             type="submit"
-            mdTooltip="Click to submit your information."
+            matTooltip="Click to submit your information."
         >
             <span>SUBMIT</span>
-            <md-icon>send</md-icon>
+            <mat-icon>send</mat-icon>
         </button>
 
 
@@ -35,5 +35,5 @@
 </main>
 
 <div *ngIf="loading">
-    <md-progress-spinner style="margin: 10vh auto 0 auto" *ngIf="loading" color="primary" mode="indeterminate"></md-progress-spinner>
+    <mat-progress-spinner style="margin: 10vh auto 0 auto" *ngIf="loading" color="primary" mode="indeterminate"></mat-progress-spinner>
 </div>

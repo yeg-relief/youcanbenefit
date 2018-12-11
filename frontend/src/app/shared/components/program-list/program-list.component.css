@@ -2,7 +2,7 @@
     background-color: transparent;
 }
 
-md-list {
+mat-list {
     border-left: solid lightgrey 1px;
     border-right: solid lightgrey 1px;
 }

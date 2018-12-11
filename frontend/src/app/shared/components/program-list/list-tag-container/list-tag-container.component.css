@@ -8,7 +8,7 @@ div{
     margin-left: 1em;
 }
 
-md-chip {
+mat-chip {
     padding: 0.5em;
     border-radius: 5px;
 }

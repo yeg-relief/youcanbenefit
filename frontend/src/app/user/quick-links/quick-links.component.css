@@ -1,10 +1,10 @@
-md-sidenav-container {
+mat-sidenav-container {
     height: 100%;
     width: 100%;
     background-color: lightgoldenrodyellow;
 }
 
-md-sidenav {
+mat-sidenav {
     background-color: lightgoldenrodyellow;
 }
 
@@ -16,7 +16,7 @@ app-quick-links-content {
     width: 100%;
 }
 
-button[md-raised-button] {
+button[mat-raised-button] {
     position: sticky;
     top: 5px;
     left: 2px;
@@ -39,7 +39,7 @@ button[md-raised-button] {
         max-width: 1000px;
     }
 
-    .medium-to-large-view > md-nav-list {
+    .medium-to-large-view > mat-nav-list {
         height: 100%;
         max-width: 300px;
         flex-shrink: 0;
@@ -52,7 +52,7 @@ button[md-raised-button] {
         margin-left: 300px
     }
 
-    md-nav-list {
+    mat-nav-list {
         position: fixed;
     }
 }
