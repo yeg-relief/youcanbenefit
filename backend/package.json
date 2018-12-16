@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "NODE_ENV=development nodemon",
-    "start:watch": "NODE_ENV=development nodemon",
+    "start:watch": "cross-env NODE_ENV=development nodemon",
     "prestart:prod": "NODE_ENV=production tsc",
     "start:prod": "NODE_ENV=production node dist/server.js",
     "unit-test": "NODE_ENV=test jest \"(/__tests__/.*|\\.(test))\\.(ts|tsx|js)$\"",

@@ -1,7 +1,7 @@
-<md-input-container>
-    <input mdInput [formControl]="linkInput" placeholder="tag"/>
-</md-input-container>
-<button md-button [attr.disabled]="!linkInput.valid">
+<mat-input-container>
+    <input matInput [formControl]="linkInput" placeholder="tag"/>
+</mat-input-container>
+<button mat-button [attr.disabled]="!linkInput.valid">
     <md-icon
         (click)="addTag()"
         mdTooltip="add tag"

@@ -7,11 +7,11 @@ main {
   width: 100%;
 }
 
-md-icon {
+mat-icon {
   flex: 10% 0 0;
 }
 
-md-button-toggle-group {
+mat-button-toggle-group {
   flex: 100% 1 0;
   align-items: flex-start;
 }

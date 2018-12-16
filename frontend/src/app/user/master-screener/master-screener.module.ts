@@ -17,7 +17,8 @@ import {
     MatButtonToggleModule,
     MatSelectModule,
     MatCheckboxModule,
-    MatListModule
+    MatListModule,
+    MatButtonModule
  } from '@angular/material';
 import { YcbQuestionComponent } from './ycb-question/ycb-question.component';
 import { YcbConditionalQuestionComponent } from './ycb-question/ycb-conditional-question/ycb-conditional-question.component';
@@ -40,7 +41,8 @@ import { ResultListComponent } from './results/result-list/result-list.component
         MatButtonToggleModule,
         MatSelectModule,
         MatCheckboxModule,
-        MatListModule
+        MatListModule,
+        MatButtonModule
     ],
     declarations: [
         QuestionsComponent,

@@ -1,6 +1,6 @@
 <mat-card class="program-width">
 
-    <div class="program-title-row" mdTooltip="program details" mdTooltipPosition="left">
+    <div class="program-title-row" matTooltip="program details" matTooltipPosition="left">
       <mat-icon>content_copy</mat-icon>
       <a [routerLink]="['./details' + '/' + program.guid]">
         <mat-card-title class="title"> {{program?.title}} </mat-card-title>
@@ -21,7 +21,7 @@
     more information
   </a>
   <mat-card-actions>
-    <button md-button 
+    <button mat-button
       *ngFor="let tag of program?.tags" 
       routerLink="/browse-programs/{{tag}}"
       routerLinkActive="active"> {{tag}} </button>

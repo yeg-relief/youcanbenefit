@@ -1,9 +1,9 @@
 <main class="wrapper">
-    <md-list class="side-bar">
-        <md-list-item [ngClass]="states.BACKUP" (click)="select('BACKUP')">Backup</md-list-item>
-        <md-list-item [ngClass]="states.INIT" (click)="select('INIT')">Init</md-list-item>
-        <md-list-item [ngClass]="states.UPLOAD" (click)="select('UPLOAD')">Upload</md-list-item>
-    </md-list>
+    <mat-list class="side-bar">
+        <mat-list-item [ngClass]="states.BACKUP" (click)="select('BACKUP')">Backup</mat-list-item>
+        <mat-list-item [ngClass]="states.INIT" (click)="select('INIT')">Init</mat-list-item>
+        <mat-list-item [ngClass]="states.UPLOAD" (click)="select('UPLOAD')">Upload</mat-list-item>
+    </mat-list>
 
     <div class="main-content">
 
@@ -15,7 +15,7 @@
             <p [style.backgroundColor]="'green'">{{success}}</p>
 
             <button
-                md-raised-button
+                mat-raised-button
                 color="primary"
                 (click)="downloadData()"
             >
@@ -29,17 +29,17 @@
             <p>The search engine will need to be initialized before programs and questions can be created.</p>
 
             <div *ngIf="hasBeenInitialized" [style.display]="'flex'">
-                <md-icon [style.color]="'green'">done</md-icon>
+                <mat-icon [style.color]="'green'">done</mat-icon>
                 <div>The search engine has been initialized</div>
             </div>
 
             <div *ngIf="!hasBeenInitialized" [style.display]="'flex'">
-                <md-icon [style.color]="'red'">cancel</md-icon>
+                <mat-icon [style.color]="'red'">cancel</mat-icon>
                 <div>The search engine has not been initialized</div>
             </div>
 
 
-            <md-checkbox [value]="force" (change)="force = $event.checked">Force the update (will reset search engine)</md-checkbox>
+            <mat-checkbox [value]="force" (change)="force = $event.checked">Force the update (will reset search engine)</mat-checkbox>
 
             <p [style.backgroundColor]="'red'">{{error}}</p>
             <p [style.backgroundColor]="'green'">{{success}}</p>
@@ -47,7 +47,7 @@
             <br><br>
 
             <button
-                md-raised-button
+                mat-raised-button
                 color="primary"
                 (click)="initSearchEngine()"
             >

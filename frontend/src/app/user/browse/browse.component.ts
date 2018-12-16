@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BrowseService } from './browse.service';
 import { Subscription ,  Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
+import { take, map } from 'rxjs/operators'
 
 @Component({
     selector: 'app-browse',
@@ -26,8 +27,11 @@ export class BrowseComponent implements OnInit, OnDestroy {
 
         this.categories = this.browseService
             .getCategories()
-            .take(1)
-            .map(categories => categories.sort( (a, b) => a.localeCompare(b)) );
+            .pipe(
+                take(1),
+                map( (categories: string[]) => categories.sort( (a, b) => a.localeCompare(b)) )
+            )
+            
 
 
         this.subscriptions.push(

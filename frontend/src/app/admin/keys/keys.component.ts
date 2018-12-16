@@ -3,12 +3,12 @@ import { Component } from '@angular/core';
 @Component({
   template:
   `
-    <md-card class="col-10 flex flex-column overview-wrapper">
+    <mat-card class="col-10 flex flex-column overview-wrapper">
       <router-outlet></router-outlet>
-    </md-card>
+    </mat-card>
   `,
   styles: [`
-    md-card {
+    mat-card {
       height: 60vh;
       overflow-x: hidden;
       overflow-y: scroll;

@@ -6,8 +6,8 @@ import {
     style,
     animate,
     transition,
-} from '@angular/animations'
-import {AuthService} from "../../../admin/core/services/auth.service";
+} from '@angular/animations';
+import {AuthService} from '../../../admin/core/services/auth.service';
 import { filter, map, tap } from 'rxjs/operators';
 
 @Component({
@@ -52,24 +52,8 @@ export class ToolbarComponent implements OnInit {
     ].sort((a,b) => a[0].localeCompare(b[0]));
 
     showAdminRoutes = false;
-
-    activeMap = {
-        "home": {
-            active: true
-        },
-        "links": {
-            active: false
-        },
-        "about": {
-            active: false
-        },
-        "questions": {
-            active: false
-        },
-        "browse": {
-            active: false
-        }
-    };
+    activeMap: Object;
+    
 
     constructor(
         private router: Router,
@@ -77,6 +61,24 @@ export class ToolbarComponent implements OnInit {
         private authService: AuthService) {}
 
     ngOnInit() {
+        this.activeMap = {
+            "home": {
+                active: true
+            },
+            "links": {
+                active: false
+            },
+            "about": {
+                active: false
+            },
+            "questions": {
+                active: false
+            },
+            "browse": {
+                active: false
+            }
+        };
+
         this.showAdminRoutes = this.authService.isLoggedIn;
         this.routes = [...this.userRoutes];
         this.buildActiveMap(window.location.pathname);
@@ -86,7 +88,7 @@ export class ToolbarComponent implements OnInit {
 
         navigationStart
             .pipe(
-                tap(this.buildActiveMap),
+                tap(this.buildActiveMap.bind(this)),
                 map(url => url.split('/').indexOf('admin') > -1)
             )
             .subscribe(() => {
@@ -96,24 +98,26 @@ export class ToolbarComponent implements OnInit {
     }
 
     buildActiveMap(url) {
-
-        Object.keys(this.activeMap).forEach(key => {
-            this.activeMap[key]['active'] = false;
-        });
-
-        if (url.indexOf('browse-programs') > -1) {
-            this.setActive(this.activeMap['browse'])
-        } else if (url.indexOf('home') > -1) {
-            this.setActive(this.activeMap['home'])
-        } else if (url.indexOf('links') > -1) {
-            this.setActive(this.activeMap['links'])
-        } else if (url.indexOf('about') > -1) {
-            this.setActive(this.activeMap['about'])
-        } else if (url.indexOf('master-screener/questions') > -1) {
-            this.setActive(this.activeMap['questions'])
-        }
-
-        this.cd.markForCheck();
+        try {
+            Object.keys(this.activeMap).forEach(key => {
+                this.activeMap[key]['active'] = false;
+            });
+    
+            if (url.indexOf('browse-programs') > -1) {
+                this.setActive(this.activeMap['browse'])
+            } else if (url.indexOf('home') > -1) {
+                this.setActive(this.activeMap['home'])
+            } else if (url.indexOf('links') > -1) {
+                this.setActive(this.activeMap['links'])
+            } else if (url.indexOf('about') > -1) {
+                this.setActive(this.activeMap['about'])
+            } else if (url.indexOf('master-screener/questions') > -1) {
+                this.setActive(this.activeMap['questions'])
+            }
+    
+            this.cd.markForCheck();
+        } catch (e) { console.error(e)}
+        
     }
 
     setActive(obj: any) {
