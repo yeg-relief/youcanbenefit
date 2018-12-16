@@ -1,10 +1,12 @@
 <mat-sidenav-container class="small-to-medium-view" *ngIf="smallView | async">
     <mat-sidenav #sidenav>
             <h3>Documentation</h3>
-            <a  mat-menu-item
+            <a  
+                *ngFor="let item of fragments.documentation"
+                mat-menu-item
                 routerLink="/quick-links"
-                [fragment]="item.fragment">
-                {{item.subtitle}}
+                [fragment]="item?.fragment">
+                {{item?.subtitle}}
             </a>
  
             <mat-divider></mat-divider>
@@ -13,8 +15,8 @@
             <a *ngFor="let item of fragments.supports"
                 mat-menu-item
                 routerLink="/quick-links"
-                [fragment]="item.fragment">
-                {{item.subtitle}}
+                [fragment]="item?.fragment">
+                {{item?.subtitle}}
             </a>
     </mat-sidenav>
 
@@ -41,24 +43,24 @@
 
 
 <main class="medium-to-large-view">
-    <mat-sidenav>
-            <h3>Documentation</h3>
-            <a *ngFor="let item of fragments.documentation"
-            mat-menu-item
-            routerLink="/quick-links"
-            [fragment]="item.fragment">
-                {{item.subtitle}}
-            </a>
-            <mat-divider></mat-divider>
-            <h3>Resources</h3>
-            <a *ngFor="let item of fragments.supports"
-            mat-menu-item
-            routerLink="/quick-links"
-            [fragment]="item.fragment">
-                {{item.subtitle}}
+    <div class="nav-list">
+        <h3>Documentation</h3>
+        <a *ngFor="let item of fragments.documentation"
+        mat-menu-item
+        routerLink="/quick-links"
+        [fragment]="item.fragment">
+            {{item.subtitle}}
+        </a>
+        <mat-divider></mat-divider>
+        <h3>Resources</h3>
+        <a *ngFor="let item of fragments.supports"
+        mat-menu-item
+        routerLink="/quick-links"
+        [fragment]="item.fragment">
+            {{item.subtitle}}
 
-            </a>
-    </mat-sidenav>
+        </a>
+    </div>
 
     <div class="medium-to-large-view-content">
         <h1>Documentation</h1>

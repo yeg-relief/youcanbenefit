@@ -159,15 +159,16 @@ export class QuickLinksComponent implements OnInit, AfterViewInit {
     ngAfterViewInit() {
         this.route.fragment.pipe(filter(f => !!f))
             .subscribe(f => {
-                const element = document.querySelector("#" + f);
-                if (element) {
-                    element.scrollIntoView(true);
-                } else {
-                    console.log(`can't find element: ${f}`);
-                }
-
                 if (this.myNav && this.myNav.opened) {
                     this.myNav.close();
+                    const element = document.getElementById(f);
+                    if (element) {
+                    
+                    } else {
+                        console.log(`can't find element: ${f}`);
+                    }
+                    element.scrollIntoView(true);
+                    element.scrollIntoView();
                 }
 
             })

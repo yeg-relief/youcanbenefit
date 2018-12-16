@@ -17,9 +17,9 @@ app-quick-links-content {
 }
 
 button[mat-raised-button] {
-    position: sticky;
-    top: 5px;
-    left: 2px;
+    position: fixed;
+    top: 12.5vh;
+    right: 2px;
     background-color: ghostwhite;
 }
 
@@ -27,10 +27,12 @@ button[mat-raised-button] {
     margin-bottom: 10px;
 }
 
+.sidenav-content  {
+    position: relative;
+}
 
 
 @media screen and (min-width: 750px) {
-
     .medium-to-large-view {
         display: flex;
     }
@@ -39,21 +41,27 @@ button[mat-raised-button] {
         max-width: 1000px;
     }
 
-    .medium-to-large-view > mat-nav-list {
-        height: 100%;
-        max-width: 300px;
+    .medium-to-large-view > .nav-list {
+        position: fixed;
+        height: 100vh;
+        width: 200px;
         flex-shrink: 0;
-        border-right: 1px solid lightgrey;
-        border-bottom: 1px solid lightgrey;
+        border: 1px solid lightgrey;
+    }
+
+    .medium-to-large-view  .mat-menu-item {
+        line-height: 2.5rem;
+        font-size: large;
+        text-decoration: underline solid blue;
+    }
+
+    .medium-to-large-view  .mat-menu-item:hover {
+        color: blue;
     }
 
     .medium-to-large-view-content {
         padding-left: 3em;
-        margin-left: 300px
-    }
-
-    mat-nav-list {
-        position: fixed;
+        margin-left: 200px
     }
 }
 
