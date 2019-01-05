@@ -4,14 +4,14 @@
   </section>
 
   <main>
-    <md-icon routerLink="../../edit/{{data.guid}}" [replaceUrl]="true" mdTooltip="Edit description">create</md-icon>
+    <mat-icon routerLink="../../edit/{{data.guid}}" [replaceUrl]="true" matTooltip="Edit description">create</mat-icon>
     <header id="program-details">
       
       <h1>{{ (program | async)?.user.data?.title }} query details </h1>
       <p>{{ (program | async)?.application.length }} queries local.</p>
       <div class="actions">
-        <button md-raised-button (click)="newQuery()" color="primary" title="new query">new query</button>
-        <button md-raised-button disabled title="[future] new query from template">from template</button>
+        <button mat-raised-button (click)="newQuery()" color="primary" title="new query">new query</button>
+        <button mat-raised-button disabled title="[future] new query from template">from template</button>
       </div>
     </header>
 

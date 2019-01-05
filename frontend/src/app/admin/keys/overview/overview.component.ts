@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
 import { Key } from '../../models/key';
-import * as keysActions from '../actions';
-import * as fromRoot from '../../reducer';
 import { Observable , merge, BehaviorSubject, of } from 'rxjs';
-import { scan, switchMap } from 'rxjs/operators'
-import { DataService } from '../../data.service';
+import { scan, switchMap, } from 'rxjs/operators'
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -16,19 +12,13 @@ import { ActivatedRoute } from '@angular/router';
 export class KeysOverviewComponent implements OnInit {
   loadedKeys$: Observable<Key[]>;
   private filter = new BehaviorSubject<string>('');
-  constructor(private store: Store<fromRoot.State>, private data: DataService, private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
     const keys = this.route.snapshot.data['keys'];
-    this.store.dispatch(new keysActions._LoadKeys({}));
-    if (keys !== undefined) {
-      this.store.dispatch(new keysActions._LoadKeysSuccess(keys));
-    } else {
-      this.store.dispatch(new keysActions._LoadKeysFailure({}));
-    }
 
     this.loadedKeys$ = merge(
-      this.store.pipe(fromRoot.allLoadedKeys),
+      of(keys),
       this.filter
     ).pipe(
       scan( (state: KeyFilterState, update: string | Key[]) => {

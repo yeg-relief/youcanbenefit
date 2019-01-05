@@ -9,7 +9,7 @@ import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core
         align-items: center;
       }
 
-      .edit-row-section > md-icon {
+      .edit-row-section > mat-icon {
         width: 10%;
       }
   `
@@ -17,7 +17,7 @@ import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core
   ],
   template: `
     <section class="edit-row-section">
-      <md-icon [mdTooltip]="tooltip">{{icon}}</md-icon>
+      <mat-icon [matTooltip]="tooltip">{{icon}}</mat-icon>
       <ng-content class="flex-grow"></ng-content>
     </section>
   `,

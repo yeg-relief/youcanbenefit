@@ -33,38 +33,38 @@
   padding: 3em;
 }
 
-md-card-header {
+mat-card-header {
   position: relative;
   width: 100%;
 }
 
-md-icon#delete-program {
+mat-icon#delete-program {
   position: absolute;
   right: 1em;
   cursor: pointer;
 }
 
-md-icon#save-program {
+mat-icon#save-program {
   position: absolute;
   right: 5em;
   cursor: pointer;
 }
 
-md-icon#edit-queries {
+mat-icon#edit-queries {
   position: absolute;
   right: 9em;
   cursor: pointer;
 }
 
-md-icon:hover {
+mat-icon:hover {
   color: darkorange;
 }
 
-md-card-actions {
+mat-card-actions {
   height: 35px;
 }
 
-md-input-container {
+mat-form-field {
   padding: 2px;
 }
 

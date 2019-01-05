@@ -23,27 +23,29 @@ export class ApplicationEditComponent implements OnInit {
   update = new Subject<Program>();
 
   constructor(
-    private modelService: ProgramModelService, 
+    private modelService: ProgramModelService,
     private queryService: QueryService,
     private route: ActivatedRoute,
     public snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
-    merge(
+    this.program = merge(
       this.modelService.findProgram(this.route.snapshot.params['guid']),
       this.update.asObservable().pipe(filter(Boolean))
     ).pipe(
         tap( ({data}) => this.data = data),
         multicast(new ReplaySubject<Program>(1)),
         refCount()
-    )
+    );
+
+
 
     this.form = this.program.pipe(
       pluck('form'),
       multicast(new ReplaySubject<FormGroup>(1)),
       refCount()
-    )
+    );
   }
 
   selectQuery(query: ProgramQueryClass) {

@@ -33,7 +33,7 @@ export class ConditionEditV3Component implements OnInit, OnDestroy {
   constructor(private ps: ProgramModelService) { }
 
   ngOnInit() {
-    this.keys = this.ps.keys.asObservable().pipe(map(keys => keys.sort( (a, b) => a.name.localeCompare(b.name)) ));
+    this.keys = this.ps.keys.pipe(map((keys: any[]) => keys.sort( (a, b) => a.name.localeCompare(b.name)) ));
   }
 
   ngOnDestroy() {

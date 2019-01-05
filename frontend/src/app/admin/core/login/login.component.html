@@ -5,15 +5,13 @@
       <mat-card-subtitle *ngIf="invalidLogin"> invalid login </mat-card-subtitle>
       <mat-card-content>
         <div class="p1"></div>
-          <mat-input-container>
-            <input matInput
-              placeholder="username" [(ngModel)]="credentials.username">
-          </mat-input-container>
+          <mat-form-field>
+            <input matInput placeholder="username" [(ngModel)]="credentials.username">
+          </mat-form-field>
         <div class="p1"></div>
-          <mat-input-container>
-            <input matInput
-                placeholder="password" type="password" [(ngModel)]="credentials.password">
-          </mat-input-container>
+          <mat-form-field>
+            <input matInput placeholder="password" type="password" [(ngModel)]="credentials.password">
+          </mat-form-field>
         <div class="p1"></div>
       </mat-card-content>
       <div *ngIf="credentials.username.length === 0 || credentials.password.length === 0">

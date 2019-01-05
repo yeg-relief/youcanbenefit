@@ -7,6 +7,7 @@ import { ProgramQueryClass } from './program-query.class';
 import { AuthService } from '../../core/services/auth.service'
 import { QueryEvent } from './index';
 import {ProgramConditionClass} from "./program-condition.class";
+import { environment } from '../../../../environments/environment'
 
 @Injectable()
 export class QueryService {
@@ -32,7 +33,7 @@ export class QueryService {
             guid: program_guid
         };
 
-        return this.http.post('/protected/query/', data, creds)
+        return this.http.post(`${environment.api}/protected/query/`, data, creds)
             .pipe(
                 map(res => res.json()),
                 tap( res => {
@@ -52,7 +53,7 @@ export class QueryService {
     deleteQuery(query_id: string) {
         const creds = this.getCredentials();
         creds.headers.append( 'Content-Type', 'application/json' );
-        return this.http.delete(`/protected/query/${query_id}`, creds)
+        return this.http.delete(`${environment.api}/protected/query/${query_id}`, creds)
             .pipe(map(res => {
                 const json = res.json()
                 return json.found && json.deleted
@@ -86,7 +87,7 @@ export class QueryService {
             } else if (typeof val === 'string') {
                 c.form.get('value').setValue(Number.parseInt(val, 10));
             } else if (typeof val === 'number') {
-                c.form.get('value').setValue(Number.parseInt( val.toString(10), 10));
+                c.form.get('value').setValue(val);
             }
         }
 

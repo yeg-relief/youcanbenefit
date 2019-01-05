@@ -145,8 +145,9 @@ export class ProtectedController {
             .map(res => res.deleted ? {found: true, deleted: true } : { found: null, deleted: false} )
     }
 
-    @Post('/query')
+    @Post('/query/')
     updateOrCreateQuery(@Body("query") query, @Body("guid") guid): Promise<any> {
+        console.log("hi hi hi")
         return this.queryService.index({
             ...query,
             guid
@@ -156,5 +157,10 @@ export class ProtectedController {
     @Put('/program-description/')
     updateUserFacingProgram(@Body() data): Promise<any> {
         return this.programService.index(data)
+    }
+
+    @Get()
+    pending(){
+        return { msg: "hi" }
     }
 }

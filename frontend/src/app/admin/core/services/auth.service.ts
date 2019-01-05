@@ -39,8 +39,15 @@ export class AuthService {
     }
 
     getCredentials(): RequestOptions {
-        const headers = new Headers();
-        headers.append("Authorization", "Basic " + this.credentials);
-        return new RequestOptions({ headers: headers });
+        try {
+            const headers = new Headers();
+            headers.append("Authorization", "Basic " + this.credentials);
+            return new RequestOptions({ headers: headers });
+        } catch (e) {
+
+            console.log("HERE HER EHER")
+            throw (e)
+        }
+        
     }
 }

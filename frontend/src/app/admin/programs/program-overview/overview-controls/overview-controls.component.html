@@ -1,7 +1,7 @@
 <main [formGroup]="form">
 
   <button 
-    md-button
+    mat-button
     routerLink="/admin/programs/edit/new"
     [attr.disabled]="deleteInitiated? true : null"
     title="new program">
@@ -10,17 +10,17 @@
 
   <div>
     
-    <md-select formControlName="type" id="programFilter">
-      <md-option [value]="'none'"> <i class="material-icons filter_inactive select-option">search</i> disabled </md-option>
-      <md-option [value]="'tag'"> <i class="material-icons select-option">search</i> tag </md-option>
-      <md-option [value]="'title'"> <i class="material-icons select-option">search</i> title </md-option>
-    </md-select>
+    <mat-select formControlName="type" id="programFilter">
+      <mat-option [value]="'none'"> <i class="material-icons filter_inactive select-option">search</i> disabled </mat-option>
+      <mat-option [value]="'tag'"> <i class="material-icons select-option">search</i> tag </mat-option>
+      <mat-option [value]="'title'"> <i class="material-icons select-option">search</i> title </mat-option>
+    </mat-select>
 
     <section [@fadeinAndOut]>
-      <md-icon [ngClass]="styleIcon$ | async">search</md-icon>
-      <md-input-container > 
-        <input mdInput placeholder="filter" formControlName="value" (keyup)="blurOnEnter($event)">
-      </md-input-container>
+      <mat-icon [ngClass]="styleIcon$ | async">search</mat-icon>
+      <mat-form-field >
+        <input matInput placeholder="filter" formControlName="value" (keyup)="blurOnEnter($event)">
+      </mat-form-field>
     </section>
   </div>
 

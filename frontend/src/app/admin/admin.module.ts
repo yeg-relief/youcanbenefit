@@ -28,12 +28,35 @@ import { OptionsComponent } from './screener/question-edit/mult-select-questions
 import { UserFacingProgramModule } from '../shared/modules/user-facing-program.module';
 import { DataComponent } from './data/data.component';
 import { DataManagementService } from "./data/data-management.service";
+import {
+    MatCardModule,
+    MatAutocompleteModule,
+    MatInputModule,
+    MatDividerModule,
+    MatListModule,
+    MatIconModule,
+    MatCheckboxModule,
+    MatSelectModule,
+    MatChipsModule,
+    MatButtonModule
+} from "@angular/material"
+
 
 @NgModule({
     imports: [
+        MatCardModule,
+        MatAutocompleteModule,
+        MatInputModule,
+        MatDividerModule,
+        MatListModule,
+        MatIconModule,
+        MatCheckboxModule,
+        MatSelectModule,
+        MatChipsModule,
+        MatButtonModule,
         CommonModule,
         routing,
-        StoreModule.forRoot(reducer),
+        StoreModule.forRoot({root: reducer}),
         EffectsModule.forRoot([ScreenerEffects]),
         AdminCoreModule,
         ProgramsModule,

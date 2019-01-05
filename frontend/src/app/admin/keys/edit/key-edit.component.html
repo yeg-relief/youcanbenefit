@@ -5,9 +5,9 @@
 <section class="key-edit-container">
   <div class="flex flex-center">
     <div class="col-2"></div>
-    <mat-input-container class="col-4">
+    <mat-form-field class="col-4">
       <input matInput placeholder="key name" [formControl]="nameControl">
-    </mat-input-container>
+    </mat-form-field>
     <div class="col-2"></div>
     <mat-button-toggle-group [formControl]="typeControl">
       <mat-button-toggle *ngFor="let option of typeOptions" [value]="option">

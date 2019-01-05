@@ -2,8 +2,8 @@ import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angu
 import { FormGroup } from '@angular/forms';
 import { ID, QuestionType, QUESTION_TYPE_CONDITIONAL, QUESTION_TYPE_CONSTANT } from '../../models';
 import { Subject, Subscription, combineLatest } from 'rxjs';
-import { takeUntil, map, filter } from 'rxjs/operators'
-import { Store } from '@ngrx/store';
+import { takeUntil, map, filter, tap } from 'rxjs/operators'
+import { Store, select } from '@ngrx/store';
 import * as fromRoot from '../../reducer';
 import { KeyFilterService } from '../services/key-filter.service';
 import { DragDropManagerService, DragDatum } from './drag-drop-manager.service';
@@ -30,7 +30,7 @@ export class QuestionListComponent implements OnInit, OnDestroy {
   constant_type: QuestionType = QUESTION_TYPE_CONSTANT;
   conditional_type: QuestionType = QUESTION_TYPE_CONDITIONAL;
 
-  selectedQuestionID: Subscription;
+  selectedQuestionID: any;
   destroySubs$ = new Subject();
   
   containerClasses = {
@@ -86,12 +86,14 @@ export class QuestionListComponent implements OnInit, OnDestroy {
   }
   
   ngOnInit(){
+    //this.store.pipe(tap(()=>console.log("zzzz")), select('root'), tap(console.dir), tap(()=>console.log("zzzz"))).subscribe()
     this.selectedQuestionID = combineLatest(
       this.store.pipe(fromRoot.getSelectedConstantID),
       this.store.pipe(fromRoot.getSelectedConditionalID)
     )
     .pipe(takeUntil(this.destroySubs$.asObservable()))
     .subscribe( ([constantID, conditionalID]) => { 
+      alert("HI  HI HI")
       const presentConstant = this.questions.find(qid => qid === constantID);
       const presentConditional = this.questions.find(qid => qid === conditionalID);
 
@@ -109,9 +111,7 @@ export class QuestionListComponent implements OnInit, OnDestroy {
         takeUntil(this.destroySubs$.asObservable()),
         map( (update: any) => update.keyNames),
         filter( keys => keys !== undefined && keys !== null && Array.isArray(keys)),
-      )
-
-      
+      ) 
       .subscribe( (keys) => {
 
         if(Object.keys(this.form.value).length > keys.length){

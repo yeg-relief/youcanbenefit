@@ -1,12 +1,12 @@
-<mat-input-container>
+<mat-form-field>
     <input matInput [formControl]="linkInput" placeholder="tag"/>
-</mat-input-container>
+</mat-form-field>
 <button mat-button [attr.disabled]="!linkInput.valid">
-    <md-icon
+    <mat-icon
         (click)="addTag()"
-        mdTooltip="add tag"
-        [style.color]="!linkInput.valid ? 'red' : 'green'">done</md-icon>
+        matTooltip="add tag"
+        [style.color]="!linkInput.valid ? 'red' : 'green'">done</mat-icon>
 </button>
-<md-chip-list class="flex-grow">
-    <md-chip (click)="removeTagAt(i)" *ngFor="let tag of tags.value; let i = index">{{ tag }}</md-chip>
-</md-chip-list>
+<mat-chip-list class="flex-grow">
+    <mat-chip (click)="removeTagAt(i)" *ngFor="let tag of tags.value; let i = index">{{ tag }}</mat-chip>
+</mat-chip-list>

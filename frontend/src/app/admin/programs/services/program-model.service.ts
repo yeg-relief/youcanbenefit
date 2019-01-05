@@ -1,6 +1,6 @@
 
-import { throwError as observableThrowError, Observable , ReplaySubject } from 'rxjs';
-import { map, flatMap, take, zip, catchError, tap } from 'rxjs/operators'
+import { throwError as observableThrowError, Observable , ReplaySubject, of } from 'rxjs';
+import { map, flatMap, take, zip, catchError, tap, refCount, multicast } from 'rxjs/operators'
 import { Injectable } from '@angular/core';
 import { Http, RequestOptions} from '@angular/http';
 import { ApplicationFacingProgram, ProgramQuery, Key } from '../../models'
@@ -12,26 +12,23 @@ import { environment } from '../../../../environments/environment'
 
 @Injectable()
 export class ProgramModelService {
-    private _cache: ReplaySubject<ApplicationFacingProgram[]>;
-    keys: ReplaySubject<Key[]>;
+    private _cache: Observable<ApplicationFacingProgram[]>;
+    keys: Observable<Key[]>;
     constructor(
         private http: Http,
         private authService: AuthService,
         private fb: FormBuilder
     ) {
-        this._cache = new ReplaySubject();
-        this.keys = new ReplaySubject();
-        this._loadPrograms().pipe(take(1))
-            .subscribe(
-                this._cache.next,
-                console.error
-            );
+        const withSharing = obs => typeof obs === "function" && (
+            obs().pipe(
+                take(1),
+                multicast(new ReplaySubject),
+                refCount()
+            )
+        )
 
-        this._getKeys().pipe(take(1))
-            .subscribe(
-                this.keys.next,
-                console.error
-            );
+        this.keys = withSharing(this._getKeys)
+        this._cache = withSharing(this._loadPrograms)
     }
 
     private _findProgram(guid: string) {
@@ -39,7 +36,7 @@ export class ProgramModelService {
     }
 
     findProgram(guid: string): Observable<Program> {
-        return this._cache.asObservable()
+        return this._cache
             .pipe(map(programs => {
                 const program = programs.find(this._findProgram(guid))
                 return program ? new Program(program, this.fb) : new Program(undefined, this.fb)
@@ -47,19 +44,22 @@ export class ProgramModelService {
     }
 
     getPrograms(): Observable<ApplicationFacingProgram[]> {
-        return this._cache.asObservable();
+        if (this._cache) {
+            this._cache.subscribe(console.dir)
+            return this._cache
+        } 
     }
 
     private _updateUserProgramInCache(program: UserFacingProgram, resp: any) {
         if (resp.result === 'updated' || resp.result === 'created') {
-            this._cache.asObservable().pipe(take(1))
+            this._cache.pipe(take(1))
                 .subscribe(cache => {
                     const val = cache.find(p => p.guid === program.guid);
                     if (val) {
                         val.user = program;
-                        this._cache.next(cache);
+                        //this._cache.next(cache);
                     } else {
-                        this._cache.next([{guid: program.guid, application: [], user: program},  ...cache]);
+                        //this._cache.next([{guid: program.guid, application: [], user: program},  ...cache]);
                     }
             })
         }
@@ -80,16 +80,24 @@ export class ProgramModelService {
         return this._deleteProgram(guid)
             .pipe(tap(res => {
                 if (res) {
-                    this._cache.asObservable().pipe(take(1)).subscribe(cache => this._cache.next(cache.filter(p => p.guid !== guid)))
+                    //this._cache.asObservable().pipe(take(1)).subscribe(cache => this._cache.next(cache.filter(p => p.guid !== guid)))
                 }
             }))
     }
 
     private getCredentials(): RequestOptions {
-        return this.authService.getCredentials();
+        try {
+            return this.authService.getCredentials();
+        } catch(e) {
+            console.log("************************")
+            console.error(e)
+            console.log("************************")
+            return this.authService.getCredentials();
+        }
+        
     }
 
-    private _loadPrograms(): Observable<ApplicationFacingProgram[]> {
+    private _loadPrograms = () => {
         const creds = this.getCredentials();
         return this.http.get(`${environment.api}/protected/program/`, creds)
             .pipe(map( res => res.json()), catchError(this.loadError))
@@ -105,7 +113,7 @@ export class ProgramModelService {
             )
     }
 
-    private _getKeys() {
+    private _getKeys = () => {
         const creds = this.getCredentials();
         return this.http.get(`${environment.api}/protected/key/`, creds)
             .pipe(map( res => res.json()), catchError(this.loadError))

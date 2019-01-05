@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { MatCardModule, MatInputModule, MatProgressBarModule } from '@angular/material';
+import { MatCardModule, MatInputModule, MatProgressBarModule, MatFormFieldModule } from '@angular/material';
 import { LoginComponent } from './login/login.component';
 import { BreadCrumbComponent } from './bread-crumb/bread-crumb.component';
 
@@ -13,7 +13,8 @@ import { BreadCrumbComponent } from './bread-crumb/bread-crumb.component';
     RouterModule,
     MatCardModule,
     MatInputModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatFormFieldModule
   ],
   declarations: [
     LoginComponent,

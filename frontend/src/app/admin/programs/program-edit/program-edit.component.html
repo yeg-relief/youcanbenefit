@@ -1,39 +1,39 @@
 <main *ngIf="program | async; else loadingScreen; let program">
-    <md-card id="overview">
-        <md-card-header>
-            <md-card-title> <h3>{{ program.data.title }} </h3></md-card-title>
-            <md-card-subtitle>last updated: {{ ( program.data.created | date ) }} </md-card-subtitle>
-            <md-icon
-                    mdTooltip="delete program"
+    <mat-card id="overview">
+        <mat-card-header>
+            <mat-card-title> <h3>{{ program.data.title }} </h3></mat-card-title>
+            <mat-card-subtitle>last updated: {{ ( program.data.created | date ) }} </mat-card-subtitle>
+            <mat-icon
+                    matTooltip="delete program"
                     id="delete-program"
-                    (click)="handleDeleteClick()"> clear </md-icon>
-            <md-icon
+                    (click)="handleDeleteClick()"> clear </mat-icon>
+            <mat-icon
                     id="save-program"
-                    mdTooltip="save program queries"
-                    (click)="handlSaveClick()">save</md-icon>
-            <md-icon
+                    matTooltip="save program queries"
+                    (click)="handlSaveClick()">save</mat-icon>
+            <mat-icon
                     id="edit-queries"
-                    mdTooltip="edit program queries"
-                    (click)="handleQueryClick()">content_copy</md-icon>
-        </md-card-header>
-    </md-card>
+                    matTooltip="edit program queries"
+                    (click)="handleQueryClick()">content_copy</mat-icon>
+        </mat-card-header>
+    </mat-card>
 
     <form novalidate id="editable-area" [formGroup]="program._form">
 
         <app-edit-row [icon]="'public'" [tooltip]="'Give the program an appropriate title'">
-            <md-input-container>
-                <input mdInput formControlName="title" placeholder="program title"/>
-            </md-input-container>
+            <mat-form-field>
+                <input matInput formControlName="title" placeholder="program title"/>
+            </mat-form-field>
         </app-edit-row>
 
         <app-edit-row [icon]="'subject'" [tooltip]="'Write a one line description.'">
-            <md-input-container [style.width]="'100%'">
-                <input mdInput formControlName="description" placeholder="program description"/>
-            </md-input-container>
+            <mat-form-field [style.width]="'100%'">
+                <input matInput formControlName="description" placeholder="program description"/>
+            </mat-form-field>
         </app-edit-row>
 
         <app-edit-row [icon]="'create'" [tooltip]="'Write a more detailed overview.'">
-            <textarea id="program-details" rows="10" cols="50" name="details"  mdInput formControlName="details">
+            <textarea id="program-details" rows="10" cols="50" name="details"  matInput formControlName="details">
                 {{program.data.details }}
             </textarea>
         </app-edit-row>
@@ -44,10 +44,10 @@
 
 
         <app-edit-row [icon]="'link'" [tooltip]="'Every program can have an external link'">
-            <md-input-container id="link">
-                <span mdPrefix> http:// </span>
-                <input mdInput placeholder="www.link.ca" prefix formControlName="externalLink"/>
-            </md-input-container>
+            <mat-form-field id="link">
+                <span matPrefix> http:// </span>
+                <input matInput placeholder="www.link.ca" prefix formControlName="externalLink"/>
+            </mat-form-field>
         </app-edit-row>
 
         <app-edit-row [icon]="'label'" [tooltip]="'tag the program with a category'">

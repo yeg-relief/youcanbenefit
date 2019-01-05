@@ -1,31 +1,30 @@
-<md-card style="height: 25vh;">
-   <md-card-title> Screener Edit </md-card-title>
-  <div class="flex flex-justify" [formGroup]="form$ | async" *ngIf="(form$ | async) !== undefined">
+<mat-card style="height: 25vh;" *ngIf="form$ | async; let form">
+   <mat-card-title> Screener Edit </mat-card-title>
+  <div class="flex flex-justify">
     <section>
-      <md-card-subtitle> latest server update: {{ ( created$ | async ) | date }} </md-card-subtitle>
-      <md-card-subtitle> this screener has {{ count$ | async }} questions </md-card-subtitle>
+      <mat-card-subtitle> latest server update: {{ form.created | date }} </mat-card-subtitle>
     </section>
     
     <section class="flex flex-column flex-justify flex-stretch">
 
-      <button [attr.disabled]="(form$ | async)?.invalid  ? true : null" style="width: 10vw; height: 5vh" (click)="handleSave()" md-raised-button color="primary"> SAVE </button>
+      <button [disabled]="form.form.invalid" style="width: 10vw; height: 5vh" (click)="handleSave()" mat-raised-button color="primary"> SAVE </button>
       
-      <button [attr.disabled]="(form$ | async)?.invalid ? true : null" 
+      <button [attr.disabled]="form.form.invalid" 
               style="width: 10vw; height: 5vh; margin-top: 1em;" 
               routerLink= "/admin/screener/preview"
-              md-raised-button color="primary"> PREVIEW </button>
+              mat-raised-button color="primary"> PREVIEW </button>
 
     </section>
     
   </div>
   <div [formGroup]="adminControls" style="width: 40vw">
-    <md-input-container style="width: 70%">
-      <input type="text" mdInput formControlName="keyFilter" placeholder="filter by key name" [mdAutocomplete]="auto">
-    </md-input-container>
-    <md-autocomplete #auto="mdAutocomplete" [displayWith]="displayFunction" style="width: 70%">
-      <md-option *ngFor="let key of (allKeys$ | async)" [value]="key" >
+    <mat-form-field style="width: 70%">
+      <input type="text" matInput formControlName="keyFilter" placeholder="filter by key name" [matAutocomplete]="auto">
+    </mat-form-field>
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFunction" style="width: 70%">
+      <mat-option *ngFor="let key of (allKeys$ | async)" [value]="key" >
           {{ key?.name }}
-      </md-option>
-    </md-autocomplete>
+      </mat-option>
+    </mat-autocomplete>
   </div>
-</md-card>
+</mat-card>

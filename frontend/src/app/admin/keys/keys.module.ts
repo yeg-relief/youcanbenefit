@@ -3,7 +3,14 @@ import { CommonModule } from '@angular/common';
 import { KeysComponent } from './keys.component';
 import { KeysOverviewComponent } from './overview/overview.component';
 import { RouterModule } from '@angular/router';
-import { MatCardModule, MatButtonModule, MatCheckboxModule, MatInputModule } from '@angular/material';
+import { 
+  MatCardModule, 
+  MatButtonModule, 
+  MatCheckboxModule, 
+  MatInputModule, 
+  MatProgressBarModule,
+  MatButtonToggleModule 
+} from '@angular/material';
 import { KeyEditComponent } from './edit/key-edit.component';
 import { KeyOverviewControlsComponent } from './overview/key-overview-controls/key-overview-controls.component';
 import { AdminCoreModule } from '../core/admin-core.module';
@@ -18,7 +25,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatCardModule,
     MatButtonModule,
     MatCheckboxModule,
-    MatInputModule
+    MatInputModule,
+    MatProgressBarModule,
+    MatButtonToggleModule
   ],
   declarations: [
     KeysComponent,

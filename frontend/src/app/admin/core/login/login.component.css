@@ -11,6 +11,6 @@ input {
   width: 30vw;
 }
 
-mat-input-container{
+mat-form-field{
   margin-left: 25%;
 }

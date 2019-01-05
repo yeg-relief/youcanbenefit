@@ -3,12 +3,12 @@ import { ApplicationFacingProgram } from '../../models/program';
 import { Animations } from '../../../shared/animations';
 import { FilterService } from './services';
 import  * as helpers from './helpers';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { ProgramModelService } from '../services/program-model.service';
 import { MatSnackBar } from '@angular/material';
 import { DetailModalComponent } from '../../../shared/components/program/detail-modal/detail-modal.component';
 import { Observable, merge } from 'rxjs';
-import { distinctUntilChanged, map, pluck, shareReplay, take } from 'rxjs/operators'
+import { distinctUntilChanged, map, pluck, shareReplay, take, tap } from 'rxjs/operators'
 
 @Component({
     selector: 'app-program-overview',
@@ -32,18 +32,20 @@ export class ProgramOverviewComponent implements OnInit {
         private model: ProgramModelService) { }
 
     ngOnInit() {
-
+        console.log("HERE1")
         this.programs = merge(
             this.model.getPrograms(),
             this.filterService.form.valueChanges.pipe(distinctUntilChanged(), map(update => new helpers.FilterMessage(update))),
             this.programUpdate$
         )
         .pipe(
+            tap(console.log),
             helpers.updateState,
             helpers.applyFilter,
             pluck('programs'),
             shareReplay()
         )
+        console.log("HERE2")
     }
 
     handleDetailInspection(guid: string) {

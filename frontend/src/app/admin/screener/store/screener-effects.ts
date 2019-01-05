@@ -24,7 +24,6 @@ export class ScreenerEffects {
           return this.http.get(URL, requestOptions)
               .pipe(
                 map(res => ({ type: ScreenerActionTypes.LOAD_DATA_SUCCESS, payload: res.json() })),
-                tap(console.log),
                 retry(2),
                 timeout(TIMEOUT),
                 catchError(() => of({ type: ScreenerActionTypes.LOAD_DATA_FAILURE }))

@@ -9,19 +9,19 @@
   margin-left: 1em;
 }
 
-md-icon {
+mat-icon {
   cursor: pointer;
 }
 
-md-chip {
+mat-chip {
   cursor: pointer;
 }
 
-md-input {
+mat-input {
   width: 25%;
 }
 
-md-chip-list {
+mat-chip-list {
   padding: 1em;
   border: 1px solid lightslategray;
   width: 300px;

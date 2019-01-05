@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "NODE_ENV=development nodemon",
-    "start:watch": "cross-env NODE_ENV=development nodemon",
+    "start:watch": "NODE_ENV=development nodemon",
     "prestart:prod": "NODE_ENV=production tsc",
     "start:prod": "NODE_ENV=production node dist/server.js",
     "unit-test": "NODE_ENV=test jest \"(/__tests__/.*|\\.(test))\\.(ts|tsx|js)$\"",
@@ -39,7 +39,7 @@
     "@types/node": "^8.10.36",
     "@types/winston": "^2.4.4",
     "jest": "^21.2.1",
-    "nodemon": "^1.18.5",
+    "nodemon": "^1.18.9",
     "supertest": "^3.3.0",
     "ts-jest": "^21.2.4",
     "ts-node": "^3.3.0"

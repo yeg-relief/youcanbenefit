@@ -3,7 +3,18 @@ import { CommonModule } from '@angular/common';
 import { ProgramsComponent } from './programs.component';
 import { ProgramOverviewComponent } from './program-overview/program-overview.component';
 import { RouterModule } from '@angular/router';
-import { MatSnackBarModule } from '@angular/material';
+import { 
+  MatSnackBarModule, 
+  MatProgressSpinnerModule, 
+  MatCardModule, 
+  MatIconModule,
+  MatSelectModule,
+  MatButtonToggleModule,
+  MatChipsModule,
+  MatTooltipModule, 
+  MatInputModule,
+  MatButtonModule
+} from '@angular/material';
 import { AdminCoreModule } from '../core/admin-core.module';
 import { ProgramDetailComponent } from './program-overview/program-detail/program-detail.component';
 import { OverviewControlsComponent } from './program-overview/overview-controls/overview-controls.component';
@@ -24,6 +35,15 @@ import { DetailsLinksComponent } from './program-edit/details-links/details-link
     CommonModule,
     RouterModule,
     MatSnackBarModule,
+    MatProgressSpinnerModule,
+    MatCardModule,
+    MatIconModule,
+    MatSelectModule,
+    MatButtonToggleModule,
+    MatChipsModule,
+    MatTooltipModule,
+    MatInputModule,
+    MatButtonModule,
     ReactiveFormsModule,
     AdminCoreModule
   ],
