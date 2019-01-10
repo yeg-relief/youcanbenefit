@@ -8,8 +8,10 @@ import { ProtectedModule } from "./protected"
 import { ApiModule } from "./api"
 import { DataModule } from './data/data.module';
 import { LogModule } from './log/log.module'
+import { ConfigModule } from './config.module'
 
 @Module({
+  imports: [ConfigModule],
   modules: [
       ProgramModule,
       QueryModule,
