@@ -1,16 +1,14 @@
-import { Component } from '@nestjs/common';
 import { Client } from "elasticsearch"
 import { ConstantsReadonly } from "../constants.readonly"
+import { Injectable } from '@nestjs/common'
 
-@Component()
+@Injectable()
 export class ClientService {
     private _client: Client;
-    private constants: ConstantsReadonly;
 
-    constructor(){
-        this.constants = new ConstantsReadonly();
-        const log = this.constants.logLevel;
-        const host = this.constants.host;
+    constructor(constants: ConstantsReadonly){
+        const log = constants.logLevel;
+        const host = constants.host;
 
         this._client = new Client({ host, log });
     }

@@ -1,11 +1,13 @@
 import { Test } from '@nestjs/testing';
 import { ClientService } from './client.service';
+import { ConfigModule } from '../config.module'
 
 describe('ClientService', () => {
     let clientService: ClientService;
 
     beforeEach(async () => {
         const module = await Test.createTestingModule({
+            imports: [ConfigModule],
             controllers: [],
             components: [ClientService],
         }).compile();

@@ -1,3 +1,6 @@
+import { Injectable } from "@nestjs/common";
+
+@Injectable()
 export class ConstantsReadonly {
     readonly host: string = determineHost();
     readonly logLevel: string = determineLogLevel();

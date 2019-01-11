@@ -1,13 +1,13 @@
 import { Module } from '@nestjs/common';
-import { ConfigService } from './config.service';
+import { ConstantsReadonly } from './constants.readonly'
 
 @Module({
   providers: [
     {
-      provide: ConfigService,
-      useValue: new ConfigService(),
+      provide: ConstantsReadonly,
+      useValue: new ConstantsReadonly(),
     },
   ],
-  exports: [ConfigService],
+  exports: [ConstantsReadonly],
 })
 export class ConfigModule {}
