@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { QueryEvent } from './index';
 import {ProgramConditionClass} from "./program-condition.class";
+import { environment } from '../../../../environments/environment'
 
 @Injectable()
 export class QueryService {
@@ -33,7 +34,7 @@ export class QueryService {
             guid: program_guid
         };
 
-        return this.http.post('/protected/query/', data, creds)
+        return this.http.post(`${environment.api}/protected/query/`, data, creds)
             .map(res => res.json())
             .do( res => {
                 if (res.created === true || res.result === 'updated') {
@@ -51,7 +52,7 @@ export class QueryService {
     deleteQuery(query_id: string) {
         const creds = this.getCredentials();
         creds.headers.append( 'Content-Type', 'application/json' );
-        return this.http.delete(`/protected/query/${query_id}`, creds)
+        return this.http.delete(`${environment.api}/protected/query/${query_id}`, creds)
             .map(res => res.json())
             .map(res => res.found && res.deleted);
     }
