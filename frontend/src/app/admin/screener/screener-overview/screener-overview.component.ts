@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import * as fromRoot from '../../reducer';
 import * as actions  from '../store/screener-actions';
 import { 
@@ -27,7 +27,9 @@ import {
   map,
   mergeMap,
   switchMap,
-  take
+  take,
+  tap,
+  pluck
 } from 'rxjs/operators';
 import { DragDropManagerService } from '../question-list/drag-drop-manager.service';
 import { KeyFilterService } from '../services/key-filter.service';
@@ -71,118 +73,129 @@ export class ScreenerOverviewComponent  {
     private dragManager: DragDropManagerService
   ) {}
 
-  // ngOnInit() {
-  //   const dispatchSwap = (lifted, target) => this.store.dispatch(new actions.SwapQuestions({lifted, target }));
+  ngOnInit() {
+    const dispatchSwap = (lifted, target) => this.store.dispatch(new actions.SwapQuestions({lifted, target }));
 
-  //   const dispatchDrop = (questionID, containerType) => this.store.dispatch(new actions.DropQuestion({questionID, containerType}));
+    const dispatchDrop = (questionID, containerType) => this.store.dispatch(new actions.DropQuestion({questionID, containerType}));
 
-  //   this.dragManager.dragState.pipe(takeUntil(this.destroySubs$.asObservable()))
-  //     .subscribe(val => {
-  //       if (val.target === 'constant_container' || val.target === 'conditional_container') {
-  //         dispatchDrop(val.lifted, val.target);
-  //         setTimeout( () => {
-  //           if (this.reloadConditionalQuestions !== undefined) this.reloadConditionalQuestions.next('');
+    this.dragManager.dragState.pipe(takeUntil(this.destroySubs$.asObservable()))
+      .subscribe(val => {
+        if (val.target === 'constant_container' || val.target === 'conditional_container') {
+          dispatchDrop(val.lifted, val.target);
+          setTimeout( () => {
+            if (this.reloadConditionalQuestions !== undefined) this.reloadConditionalQuestions.next('');
 
-  //           if (this.reloadConstantQuestions !== undefined) this.reloadConstantQuestions.next(''); 
-  //         }, 0)
-  //       } else {
-  //         dispatchSwap(val.lifted, val.target);
-  //         setTimeout( () => {
-  //           if (this.reloadConditionalQuestions !== undefined) this.reloadConditionalQuestions.next('');
+            if (this.reloadConstantQuestions !== undefined) this.reloadConstantQuestions.next(''); 
+          }, 0)
+        } else {
+          dispatchSwap(val.lifted, val.target);
+          setTimeout( () => {
+            if (this.reloadConditionalQuestions !== undefined) this.reloadConditionalQuestions.next('');
 
-  //           if (this.reloadConstantQuestions !== undefined) this.reloadConstantQuestions.next(''); 
-  //         }, 0)
-  //       }
+            if (this.reloadConstantQuestions !== undefined) this.reloadConstantQuestions.next(''); 
+          }, 0)
+        }
         
         
-  //     });
+      });
 
-  //   this.form$ = this.store.pipe(
-  //     fromRoot.getForm,
-  //     multicast( new ReplaySubject(1) ),
-  //     refCount()
-  //   );
+    this.form$ = fromRoot.getForm(this.store).pipe(
+      multicast( new ReplaySubject(1) ),
+      refCount()
+    );
 
-  //   this.constantQuestions$ = this.reloadConstantQuestions.asObservable()
-  //     .pipe(
-  //       withLatestFrom(this.form$),
-  //       filter(Boolean),
-  //       map( ([_, form]) => { 
-  //         const state = <State>{ form: form };
-  //         const ids = Object.keys(form.value);
-  //         return ids.filter(id => form.get(id) !== null)
-  //           .filter(id => isConditionalQuestion(id, state) === false )
-  //           .sort( (a, b) => form.get([a, 'index']).value - form.get([b, 'index']).value);
-  //       })
-  //     );
+    this.constantQuestions$ = this.form$
+    .pipe(
+      filter(Boolean),
+      map( ([_, form]) => { 
+        const state = <State>{ form: form };
+        const ids = Object.keys(form.value);
+        return ids.filter(id => form.get(id) !== null)
+          .filter(id => isConditionalQuestion(id, state) === false )
+          .sort( (a, b) => form.get([a, 'index']).value - form.get([b, 'index']).value);
+      })
+    );
 
-  //   this.selectedConstantID$ = this.store.pipe(
-  //     fromRoot.getSelectedConstantID,
-  //     multicast(new ReplaySubject(1)),
-  //     refCount()
-  //   );
+    this.constantQuestions$ = this.reloadConstantQuestions.asObservable()
+      .pipe(
+        withLatestFrom(this.form$),
+        filter(Boolean),
+        map( ([_, form]) => { 
+          const state = <State>{ form: form };
+          const ids = Object.keys(form.value);
+          return ids.filter(id => form.get(id) !== null)
+            .filter(id => isConditionalQuestion(id, state) === false )
+            .sort( (a, b) => form.get([a, 'index']).value - form.get([b, 'index']).value);
+        })
+      );
 
-  //   this.conditionalQuestions$ = this.selectedConstantID$
-  //     .pipe(
-  //       withLatestFrom(this.form$),
-  //       filter( ([id, form]) => Boolean(form) && form.get(id) !== null),
-  //       map( ([selectedConstantID, form]) => {
-  //         if (selectedConstantID === undefined) return [];
+    this.selectedConstantID$ = this.store.pipe(
+      fromRoot.getSelectedConstantID,
+      multicast(new ReplaySubject(1)),
+      refCount()
+    );
+
+    this.conditionalQuestions$ = this.selectedConstantID$
+      .pipe(
+        withLatestFrom(this.form$),
+        filter( ([id, form]) => Boolean(form) && form.get(id) !== null),
+        map( ([selectedConstantID, form]) => {
+          if (selectedConstantID === undefined) return [];
           
-  //         if (form.get(selectedConstantID) === null) return [];
+          if (form.get(selectedConstantID) === null) return [];
   
-  //         if (form.get([selectedConstantID, 'conditionalQuestions']) === null) return [];
+          if (form.get([selectedConstantID, 'conditionalQuestions']) === null) return [];
   
-  //         const conditionalIDS = form.get([selectedConstantID, 'conditionalQuestions']).value;
+          const conditionalIDS = form.get([selectedConstantID, 'conditionalQuestions']).value;
   
-  //         return conditionalIDS.sort( (a, b) => form.get([a, 'index']).value - form.get([b, 'index']).value )
+          return conditionalIDS.sort( (a, b) => form.get([a, 'index']).value - form.get([b, 'index']).value )
   
-  //       })
-  //     )
+        })
+      )
       
-  //   this.conditionalQuestions$$ = this.reloadConditionalQuestions.asObservable().pipe(mergeMap(_ => this.conditionalQuestions$));
+    this.conditionalQuestions$$ = this.reloadConditionalQuestions.asObservable().pipe(mergeMap(_ => this.conditionalQuestions$));
   
-  //   this.isExpandable$ = combineLatest(this.form$, this.selectedConstantID$)
-  //       .pipe(
-  //         switchMap( ([form, constantID]) => {
-  //           if (form.get(constantID) === null) return of(false);
+    this.isExpandable$ = combineLatest(this.form$, this.selectedConstantID$)
+        .pipe(
+          switchMap( ([form, constantID]) => {
+            if (form.get(constantID) === null) return of(false);
     
-  //           if (constantID === undefined) return of(false);
+            if (constantID === undefined) return of(false);
     
-  //           return merge(
-  //             form.get([constantID, 'expandable']).valueChanges, 
-  //             of(form.get([constantID, 'expandable']).value)
-  //           );
-  //         }),
-  //         multicast(new ReplaySubject(1)),
-  //         refCount()
-  //       );
+            return merge(
+              form.get([constantID, 'expandable']).valueChanges, 
+              of(form.get([constantID, 'expandable']).value)
+            );
+          }),
+          multicast(new ReplaySubject(1)),
+          refCount()
+        );
 
-  //   this.isExpandable$.pipe(takeUntil(this.destroySubs$.asObservable()))
-  //     .subscribe(isExpandable => this.questionEdit = isExpandable.toString());
+    this.isExpandable$.pipe(takeUntil(this.destroySubs$.asObservable()))
+      .subscribe(isExpandable => this.questionEdit = isExpandable.toString());
       
 
-  //   this.selectedConditionalID$ = this.store.pipe(fromRoot.getSelectedConditionalID);
+    this.selectedConditionalID$ = this.store.pipe(select('root'),select('screener'),pluck('selectedConditionalQuestion'));
 
-  //   this.loading$ = this.store.pipe(fromRoot.isScreenerLoading);
+    this.loading$ = fromRoot.isScreenerLoading(this.store)
 
-  //   this.error$ = this.store.pipe(fromRoot.getScreenerError);
+    this.error$ = fromRoot.getScreenerError(this.store)
 
 
     
-  //   // we have to force an initial load of the constant questions.
-  //   // TODO: replace with a startWith operator on this.conditionalQuestions$$
-  //   this.loading$
-  //     .pipe(
-  //       filter(loading => loading === false),
-  //       take(1)
-  //     )
-  //     .subscribe( () => {
-  //       setTimeout( () => { 
-  //         if (this.reloadConstantQuestions !== undefined) this.reloadConstantQuestions.next(''); 
-  //       }, 0);
-  //     });
-  // }
+    // we have to force an initial load of the constant questions.
+    // TODO: replace with a startWith operator on this.conditionalQuestions$$
+    this.loading$
+      .pipe(
+        filter(loading => loading === false),
+        take(1)
+      )
+      .subscribe( () => {
+        setTimeout( () => { 
+          if (this.reloadConstantQuestions !== undefined) this.reloadConstantQuestions.next(''); 
+        }, 0);
+      });
+  }
   
   handleSelect(id: ID) { this.store.dispatch(new actions.SelectQuestion(id)) }
 

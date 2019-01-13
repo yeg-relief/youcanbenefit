@@ -86,14 +86,12 @@ export class QuestionListComponent implements OnInit, OnDestroy {
   }
   
   ngOnInit(){
-    //this.store.pipe(tap(()=>console.log("zzzz")), select('root'), tap(console.dir), tap(()=>console.log("zzzz"))).subscribe()
     this.selectedQuestionID = combineLatest(
-      this.store.pipe(fromRoot.getSelectedConstantID),
-      this.store.pipe(fromRoot.getSelectedConditionalID)
+      fromRoot.getSelectedConstantID(this.store),
+      fromRoot.getSelectedConditionalID(this.store)
     )
     .pipe(takeUntil(this.destroySubs$.asObservable()))
-    .subscribe( ([constantID, conditionalID]) => { 
-      alert("HI  HI HI")
+    .subscribe( ([constantID, conditionalID]: any[]) => { 
       const presentConstant = this.questions.find(qid => qid === constantID);
       const presentConditional = this.questions.find(qid => qid === conditionalID);
 

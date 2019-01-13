@@ -1,25 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Http, } from '@angular/http';
 import { Store } from '@ngrx/store';
 import { Key, Question, Question_2 } from '../../models';
 import { AuthService } from '../../core/services/auth.service';
 import * as fromRoot from '../../reducer';
-import * as actions  from '../store/screener-actions';
 import { select } from '@ngrx/store'
-import { Observable, ReplaySubject } from 'rxjs';
+import { Observable, pipe, combineLatest } from 'rxjs';
 import {
   map,
   withLatestFrom,
   tap,
   startWith,
-  multicast,
-  refCount,
   filter, 
   take,
-  mergeMap,
-  reduce,
+  pluck
 } from 'rxjs/operators'
 import { KeyFilterService } from '../services/key-filter.service';
+import { environment } from '../../../../environments/environment'
 
 @Component({
   selector: 'app-screener-toolbar',
@@ -38,11 +36,12 @@ export class ScreenerToolbarComponent implements OnInit {
   constructor(
     private store: Store<fromRoot.State>, 
     private keyFilter: KeyFilterService, 
-    private auth: AuthService
+    private auth: AuthService,
+    private http: Http,
   ) {}
 
   ngOnInit() {
-    this.form$ = this.store.pipe(select('root'), select('screener'), tap(console.dir))
+    this.form$ = this.store.pipe(select('root'), select('screener'))
     const group = { keyFilter: new FormControl('') };
     this.adminControls = new FormGroup(group);
 
@@ -62,62 +61,84 @@ export class ScreenerToolbarComponent implements OnInit {
     return key ? key.name : key;
   }
 
+  isConditional(id: string, questions: any[]): boolean {
+    const conditionals = questions.reduce( (accum, question) => ([...accum, ...question['conditionalQuestions']]), [])
+    return conditionals.some(q => q === id)
+  }
+
+  toArray(screener) {
+    return Object.keys(screener).map(id => screener[id])
+  }
+
   handleSave() {
-    this.form$
-      .pipe(
-        filter(form => form.valid),
-        take(1),
-        this.partitionQuestions.bind(this),
-        this.flattenKeys.bind(this)
-      )
-        .subscribe( (questions) => {
-          const screener = (<any>Object).assign({}, questions, { created: -1 });
-          this.store.dispatch(new actions.SaveData({screener, credentials: this.auth.getCredentials()}));
-        })
-  }
-
-  private partitionQuestions(form: Observable<FormGroup>): Observable<{[key: string]: Question[]}> {
-    let formValues = {};
-    return form.pipe(
-      map(form => form.value),
-      tap(values => formValues = values),
-      map(values => Object.keys(values)),
-      mergeMap( x => x),
-      reduce( (accum: any, value) => {
-        if (this.isConditional(formValues, value)) 
-          accum.conditionalQuestions = [...accum.conditionalQuestions, formValues[value]];
-        else 
-          accum.questions = [...accum.questions, formValues[value]];
-
-        return accum;
-      }, {conditionalQuestions: [], questions: []})
+    const partitionQuestions = pipe(
+      map(form => {
+        const screener = form['value']
+        const array = this.toArray(screener)
+        return {
+          conditionalQuestions: array.filter(question => this.isConditional(question.id, array)),
+          questions: array.filter(question => !this.isConditional(question.id, array))
+        }
+      })
     )
+
+    const questions = this.form$.pipe(
+      pluck('form'),
+      filter(form => form['valid']),
+      partitionQuestions,
+      map(this.removeKeyType),
+    )
+
+    const unusedKeys = this.form$.pipe(
+      map(screener => {
+        const questionData = screener['form'].value
+        const extractKeys = id => {
+          const question = questionData[id]
+          return question.controlType === "Multiselect" ? question.multiSelectOptions.map(q => q.key) : [question.key]
+        }
+
+        const keys = Object.keys(questionData).map(extractKeys).reduce((accum, keys) => [...keys, ...accum], [])
+        const unusedKeys = screener['keys'].filter(key => keys.every(screenerKey => screenerKey.name !== key.name))
+        return unusedKeys
+      })
+    )
+    
+    const keys = this.form$.pipe(
+      map(screener => {
+        const questionData = screener['form'].value
+        const extractKeys = id => {
+          const question = questionData[id]
+          return question.controlType === "Multiselect" ? question.multiSelectOptions.map(q => q.key) : [question.key]
+        }
+
+        const keys = Object.keys(questionData).map(extractKeys).reduce((accum, keys) => [...keys, ...accum], [])
+        const unusedKeys = screener['keys'].filter(key => keys.some(screenerKey => screenerKey.name === key.name))
+        return unusedKeys
+      })
+    )
+
+    combineLatest(
+      questions,
+      keys,
+      unusedKeys,
+      (questions, keys, unusedKeys) => ({...questions, keys, unusedKeys})
+    ).pipe(take(1))
+      .subscribe(screener => {
+        return this.http.post(`${environment.api}/protected/screener`, screener, this.auth.getCredentials()).toPromise().then(console.log).catch(console.error)
+      })
   }
 
-  private flattenKeys(input: Observable<{[key: string]: Question_2[]}>): Observable<{[key: string]: Question[] | number}> {
-    const removeKeyType = (question: Question_2): Question => {
+  private removeKeyType(screener: {[key: string]: Question_2[]}) {
+    const _removeKeyType = (question: Question_2): Question => {
       const keyName = question.key.name;
-      delete question['key'];
       return (<any>Object).assign({}, question, {key: keyName});
     };
 
-
-    return input.pipe(map( screener => {
-      return {
-        questions: screener['questions'].map(removeKeyType),
-        conditionalQuestions: screener['conditionalQuestions'].map(removeKeyType),
-        created: -1
-      }
-    }))
-  }
-
-  private isConditional(questionValues, questionID){
-    for (const key in questionValues) {
-      const q: Question_2 = questionValues[key];
-      if (Array.isArray(q.conditionalQuestions) && q.conditionalQuestions.find(cq_id => cq_id === questionID) !== undefined) {
-        return true;
-      }
+    return {
+      questions: screener['questions'].map(_removeKeyType),
+      conditionalQuestions: screener['conditionalQuestions'].map(_removeKeyType),
+      created: -1
     }
-    return false;
   }
+
 }
