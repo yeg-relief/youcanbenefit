@@ -5,13 +5,12 @@ import { ScreenerModule } from "../screener";
 import { PercolateModule } from "../percolate/percolate.module";
 
 @Module({
-    modules: [
+    imports: [
         ProgramModule,
         ScreenerModule,
         PercolateModule
     ],
-    controllers: [ ApiController ],
-    components: [ ApiController ],
-    exports: [ ]
+    providers: [ ApiController ],
+    components: [ ApiController ]
 })
 export class ApiModule {}

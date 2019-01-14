@@ -15,7 +15,7 @@ describe('DataController', () => {
   beforeEach(async () => {
     try {
       const module = await Test.createTestingModule({
-          modules: [DbElasticsearchModule],
+          imports: [DbElasticsearchModule],
           controllers: [DataController],
           providers: [InitService, UploadService, BackupService],
         }).compile();

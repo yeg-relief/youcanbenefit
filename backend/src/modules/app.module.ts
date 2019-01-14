@@ -21,8 +21,7 @@ import { ConfigModule } from './config.module'
       DataModule,
       LogModule
   ],
-  controllers: [AppController],
-  components: [],
+  controllers: [AppController]
 })
 export class ApplicationModule {
   configure(consumer: MiddlewareConsumer) {

@@ -5,9 +5,8 @@ import { ProgramModule } from "../Program/Program.module";
 import { LogModule } from "../log/log.module";
 
 @Module({
-    modules: [ DbElasticsearchModule, ProgramModule, LogModule ],
-    controllers: [ ],
-    components: [ PercolateService ],
+    imports: [ DbElasticsearchModule, ProgramModule, LogModule ],
+    providers: [ PercolateService ],
     exports: [ PercolateService ]
 })
 export class PercolateModule {}
