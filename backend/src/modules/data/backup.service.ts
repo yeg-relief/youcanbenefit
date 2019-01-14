@@ -1,6 +1,6 @@
 import {Component} from '@nestjs/common';
 import {ClientService} from '../db.elasticsearch/client.service';
-import { Client } from "elasticsearch"
+import {Client} from 'elasticsearch'
 import {Schema} from './Schema';
 
 @Component()
@@ -9,7 +9,7 @@ export class BackupService {
     private readonly PAGE_SIZE = 10000;
 
     constructor(private clientService: ClientService){
-        this.client = this.clientService.client
+        this.client = this.clientService.client.getClient()
     }
 
     async execute(): Promise<Object> {

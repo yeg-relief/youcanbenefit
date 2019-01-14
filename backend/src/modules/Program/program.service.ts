@@ -21,7 +21,7 @@ export class ProgramService {
     constructor(
         private readonly clientService: ClientService
     ) {
-        this.client = this.clientService.client;
+        this.client = this.clientService.client.getClient();
     }
 
     create(program: ProgramDto): Promise<any> {
