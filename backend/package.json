@@ -15,6 +15,7 @@
   "dependencies": {
     "@nestjs/common": "^5.4.0",
     "@nestjs/core": "^5.4.0",
+    "@nestjs/elasticsearch": "^0.2.0",
     "@nestjs/testing": "^5.4.0",
     "@types/ramda": "^0.25.40",
     "body-parser": "^1.18.3",

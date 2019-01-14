@@ -1,20 +1,17 @@
-import { Client } from "elasticsearch"
-import { ConstantsReadonly } from "../constants.readonly"
 import { Injectable } from '@nestjs/common'
+import { ElasticsearchService } from "@nestjs/elasticsearch";
 
 @Injectable()
 export class ClientService {
-    private _client: Client;
+    private _client: ElasticsearchService;
 
-    constructor(constants: ConstantsReadonly){
-        const log = constants.logLevel;
-        const host = constants.host;
-
-        this._client = new Client({ host, log });
+    constructor(esService: ElasticsearchService){
+        this._client = esService;
     }
 
     public ping(): Promise<any> {
-        return this._client.ping({});
+        let test = this._client.ping({});
+        return this._client.ping({}).toPromise();
     }
 
     get client() {
@@ -30,17 +27,18 @@ export class ClientService {
     }
 
     create(body: any, index: string, type: string, id?: string): Promise<any> {
-        return this.client.create({
+        return this._client.create({
             index: index,
             type: type,
             id: id || null,
             body
         })
-            .catch(err => {
-                console.log(err);
-                throw err;
-            })
-            .then(() => ({ created: true}) )
+        .toPromise()
+        .catch(err => {
+            console.log(err);
+            throw err;
+        })
+        .then(() => ({ created: true}) )
     }
 
     index(body: any, index: string, type: string, id?: string): Promise<any> {
@@ -50,13 +48,14 @@ export class ClientService {
             id: id || null,
             body
         })
-            .catch(err => {
-                console.log(err);
-                return err
-            })
-            .then((res: any) => {
-                return { created: res.created || null, result: res.result}
-            } )
+        .toPromise()
+        .catch(err => {
+            console.log(err);
+            return err
+        })
+        .then((res: any) => {
+            return { created: res.created || null, result: res.result}
+        })
     }
 
     delete(index: string, type: string, id?: string): Promise<any> {
@@ -65,11 +64,12 @@ export class ClientService {
             type,
             id: id || null,
         })
-            .catch(err => {
-                console.log(err);
-                return err
-            })
-            .then(() => ({ deleted: true}) )
+        .toPromise()
+        .catch(err => {
+            console.log(err);
+            return err
+        })
+        .then(() => ({ deleted: true}) )
     }
 
     async findAll(baseParams): Promise<any[]> {
@@ -79,8 +79,7 @@ export class ClientService {
             ...this.maxSize
         };
 
-        const rawResponse = await this.client.search(params);
-
+        const rawResponse = await this.client.search(params).toPromise();
         return (
             <any[]>rawResponse.hits.hits.map(r => r._source).map(source => source)
         );
@@ -94,7 +93,7 @@ export class ClientService {
             }
         };
 
-        const rawResponse = await this.client.get(params);
+        const rawResponse = await this.client.get(params).toPromise();
         return rawResponse ? rawResponse._source : null;
     }
 
@@ -112,7 +111,7 @@ export class ClientService {
 
         };
 
-        const rawResponse = await this.client.search(params);
+        const rawResponse = await this.client.search(params).toPromise();
 
         return (
             <any[]>rawResponse.hits.hits.map(r => r._source).map(source => source)
