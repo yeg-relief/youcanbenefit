@@ -11,15 +11,15 @@ import { LogModule } from './log/log.module'
 import { ConfigModule } from './config.module'
 
 @Module({
-  imports: [ConfigModule],
-  modules: [
-      ProgramModule,
-      QueryModule,
-      KeyModule,
-      ProtectedModule,
-      ApiModule,
-      DataModule,
-      LogModule
+  imports: [
+    ConfigModule,
+    ProgramModule,
+    QueryModule,
+    KeyModule,
+    ProtectedModule,
+    ApiModule,
+    DataModule,
+    LogModule
   ],
   controllers: [AppController]
 })
