@@ -1,1 +1,54 @@
-{"master_screener":{"mappings":{"queries":{"properties":{"age":{"type":"integer"},"aish":{"type":"boolean"},"albertaworks":{"type":"boolean"},"childcare":{"type":"boolean"},"childdisability":{"type":"boolean"},"children":{"type":"boolean"},"cppcontributions":{"type":"boolean"},"disability":{"type":"boolean"},"empoyment":{"type":"boolean"},"grossincome":{"type":"integer"},"grosspersonal":{"type":"integer"},"kincare":{"type":"boolean"},"meta":{"properties":{"id":{"type":"text","fields":{"keyword":{"type":"keyword","ignore_above":256}}},"program_guid":{"type":"text","fields":{"keyword":{"type":"keyword","ignore_above":256}}}}},"moreschool":{"type":"boolean"},"needincome":{"type":"boolean"},"needs":{"type":"integer"},"netincome":{"type":"integer"},"number":{"type":"integer"},"numberchildren":{"type":"integer"},"oas":{"type":"boolean"},"otherincome":{"type":"boolean"},"pregnant":{"type":"boolean"},"query":{"type":"percolator"},"recreation":{"type":"boolean"},"spouse":{"type":"boolean"},"stayathome":{"type":"boolean"},"test":{"type":"boolean"},"victim":{"type":"boolean"},"youngestchild":{"type":"integer"}}}}}}
+{
+  "master_screener": {
+    "mappings": {
+      "queries": {
+        "properties": {
+          "age": { "type": "integer" },
+          "aish": { "type": "boolean" },
+          "albertaworks": { "type": "boolean" },
+          "childcare": { "type": "boolean" },
+          "childdisability": { "type": "boolean" },
+          "children": { "type": "boolean" },
+          "cppcontributions": { "type": "boolean" },
+          "disability": { "type": "boolean" },
+          "empoyment": { "type": "boolean" },
+          "grossincome": { "type": "integer" },
+          "grosspersonal": { "type": "integer" },
+          "kincare": { "type": "boolean" },
+          "meta": {
+            "properties": {
+              "id": {
+                "type": "text",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "program_guid": {
+                "type": "text",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              }
+            }
+          },
+          "moreschool": { "type": "boolean" },
+          "needincome": { "type": "boolean" },
+          "needs": { "type": "integer" },
+          "netincome": { "type": "integer" },
+          "number": { "type": "integer" },
+          "numberchildren": { "type": "integer" },
+          "oas": { "type": "boolean" },
+          "otherincome": { "type": "boolean" },
+          "pregnant": { "type": "boolean" },
+          "query": { "type": "percolator" },
+          "recreation": { "type": "boolean" },
+          "spouse": { "type": "boolean" },
+          "stayathome": { "type": "boolean" },
+          "test": { "type": "boolean" },
+          "victim": { "type": "boolean" },
+          "youngestchild": { "type": "integer" }
+        }
+      }
+    }
+  }
+}
