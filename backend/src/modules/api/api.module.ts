@@ -10,7 +10,6 @@ import { PercolateModule } from "../percolate/percolate.module";
         ScreenerModule,
         PercolateModule
     ],
-    providers: [ ApiController ],
-    components: [ ApiController ]
+    controllers: [ ApiController ]
 })
 export class ApiModule {}
