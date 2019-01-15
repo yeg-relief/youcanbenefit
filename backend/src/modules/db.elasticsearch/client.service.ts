@@ -15,7 +15,7 @@ export class ClientService {
     }
 
     get client() {
-        return this._client;
+        return this._client.getClient();
     }
 
     get matchAll() {
@@ -48,7 +48,6 @@ export class ClientService {
             id: id || null,
             body
         })
-        .toPromise()
         .catch(err => {
             console.log(err);
             return err
@@ -64,7 +63,6 @@ export class ClientService {
             type,
             id: id || null,
         })
-        .toPromise()
         .catch(err => {
             console.log(err);
             return err
@@ -79,7 +77,7 @@ export class ClientService {
             ...this.maxSize
         };
 
-        const rawResponse = await this.client.search(params).toPromise();
+        const rawResponse = await this.client.search(params);
         return (
             <any[]>rawResponse.hits.hits.map(r => r._source).map(source => source)
         );
@@ -93,7 +91,7 @@ export class ClientService {
             }
         };
 
-        const rawResponse = await this.client.get(params).toPromise();
+        const rawResponse = await this.client.get(params);
         return rawResponse ? rawResponse._source : null;
     }
 
@@ -111,7 +109,7 @@ export class ClientService {
 
         };
 
-        const rawResponse = await this.client.search(params).toPromise();
+        const rawResponse = await this.client.search(params);
 
         return (
             <any[]>rawResponse.hits.hits.map(r => r._source).map(source => source)
