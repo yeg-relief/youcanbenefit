@@ -36,7 +36,6 @@
   },
   "devDependencies": {
     "@types/elasticsearch": "^5.0.28",
-    "@types/jasmine": "^2.8.9",
     "@types/jest": "^21.1.10",
     "@types/node": "^8.10.36",
     "@types/winston": "^2.4.4",
