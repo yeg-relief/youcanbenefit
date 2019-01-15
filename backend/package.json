@@ -10,8 +10,8 @@
     "start:prod": "NODE_ENV=production node dist/server.js",
     "unit-test": "NODE_ENV=test jest \".(test)\\.(ts|tsx|js)$\"",
     "generate-coverage": "NODE_ENV=test jest --coverage",
-    "integration-test": "jest \"(/__tests__/.*|\\.(spec))\\.(ts|tsx|js)$\" --forceExit",
-    "integration-test-update": "jest \"(/__tests__/.*|\\.(spec))\\.(ts|tsx|js)$\" -u --forceExit"
+    "integration-test": "jest \"integrationTests/(/__tests__/.*|\\.(spec))\\.(ts|tsx|js)$\" --forceExit",
+    "integration-test-update": "jest \"integrationTests/(/__tests__/.*|\\.(spec))\\.(ts|tsx|js)$\" -u --forceExit"
   },
   "dependencies": {
     "@nestjs/common": "^5.4.0",
