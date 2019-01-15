@@ -10,7 +10,6 @@ export class ClientService {
     }
 
     public ping(): Promise<any> {
-        let test = this._client.ping({});
         return this._client.ping({}).toPromise();
     }
 
