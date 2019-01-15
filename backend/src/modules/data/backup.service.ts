@@ -9,7 +9,7 @@ export class BackupService {
     private readonly PAGE_SIZE = 10000;
 
     constructor(private clientService: ClientService){
-        this.client = this.clientService.client.getClient()
+        this.client = this.clientService.client;
     }
 
     async execute(): Promise<Object> {

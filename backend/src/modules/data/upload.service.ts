@@ -8,7 +8,7 @@ export class UploadService {
     private client: Client;
 
     constructor(private clientService: ClientService){
-        this.client = this.clientService.client.getClient();
+        this.client = this.clientService.client;
     }
 
     async execute(data) {

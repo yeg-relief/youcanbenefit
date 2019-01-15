@@ -9,7 +9,6 @@ import "rxjs/add/operator/map"
 
 @Component()
 export class ScreenerService {
-    private readonly client: Client;
     private readonly constants = new ConstantsReadonly();
 
     readonly INDEX = 'questions';
@@ -17,9 +16,7 @@ export class ScreenerService {
 
     constructor(
         private readonly clientService: ClientService,
-    ) {
-        this.client = this.clientService.client;
-    }
+    ) { }
 
     update(data: ScreenerDto, id?: string): Observable<{[key: string]: boolean}> {
         data.created = Date.now();
