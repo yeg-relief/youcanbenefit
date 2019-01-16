@@ -43,6 +43,7 @@ else
     npm run integration-test
 fi
 
+echo "Attempting to kill Elasticsearch"
 docker kill $ID
 docker rm $DOCKER_NAME
 
