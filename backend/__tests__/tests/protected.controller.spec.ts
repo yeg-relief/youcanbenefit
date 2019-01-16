@@ -27,7 +27,7 @@ describe('/protected', () => {
   });
 
   describe('/program -- CRUD with program datastructures', () => {
-    it(' GET /program will return all programs and their queries', () => {
+    it('GET /program will return all programs and their queries', () => {
       return request(app.getHttpServer())
         .get('/protected/program/')
         .expect(200)
@@ -36,6 +36,23 @@ describe('/protected', () => {
             extractedProperties.sort( (a, b) => a.localeCompare(b));
 
             expect(extractedProperties).toMatchSnapshot();
+        })
+    });
+
+    it('GET /program/:guid will return a single program and its queries', () => {
+      return request(app.getHttpServer())
+        .get('/protected/program/hp5mupqcVY8ZMiKg7Q91Uoi4Wf')
+        .expect(200)
+        .expect(response => {
+          const applicationProgramDto = response.body;
+          const extractedProperties = {
+              guid: applicationProgramDto.guid,
+              user: applicationProgramDto.user,
+              queryIDs: applicationProgramDto.application.map(query => query.id)
+          };
+          delete extractedProperties.user.created;
+          extractedProperties.queryIDs.sort( (a, b) => a.localeCompare(b));
+          expect(extractedProperties).toMatchSnapshot();
         })
     });
   });
