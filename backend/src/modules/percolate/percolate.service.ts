@@ -10,7 +10,6 @@ import "rxjs/add/observable/fromPromise"
 import "rxjs/add/operator/map"
 import "rxjs/add/operator/mergeMap"
 import "rxjs/add/operator/do"
-import {LogService} from "../log/log.service";
 
 @Component()
 export class PercolateService {
@@ -23,8 +22,7 @@ export class PercolateService {
 
     constructor(
         private readonly clientService: ClientService,
-        private readonly programService: ProgramService,
-        private readonly logService: LogService
+        private readonly programService: ProgramService
     ) {
         this.client = this.clientService.client;
     }
@@ -52,23 +50,9 @@ export class PercolateService {
     precolate(data): Observable<ProgramDto[]> {
         const params = this.percolateParams(data);
 
-        try {
-            this.logService.logFormSubmission(data)
-        } catch(error) {
-            console.error(error);
-        }
-
         return Observable.fromPromise( this.client.search (params) )
             .map( res => uniqBy(res.hits.hits, "_source.meta.program_guid") )
             .map( res => res.map(searchHit => get(searchHit, "_source.meta.program_guid")) )
-            .mergeMap( guids => this.programService.mGetByGuid(guids))
-            .do( programs => {
-                try {
-                    this.logService.logProgramResults(programs)
-                }catch (error) {
-                    console.error(error)
-                }
-            })
+            .mergeMap( guids => this.programService.mGetByGuid(guids));
     }
-
 }
