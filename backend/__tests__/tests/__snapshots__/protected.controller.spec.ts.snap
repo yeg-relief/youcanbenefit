@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`/protected /program -- CRUD with program datastructures  GET /program will return all programs and their queries 1`] = `
+Array [
+  "1iXreywnofiF2jKKknlbKRXAtX",
+  "1lKYPN8nNaAMldGufGZNEwfjIK",
+  "5b1J8A2fhE9cwVo9W5MfbLmuNr",
+  "7Vo9xE20WJJJ1ZORDlog1odyzo",
+  "8Lqu2z4WCAP9w5sjhcAeOKuHN5",
+  "8U2rl4Ha5GXBVqjNStudvzHIch",
+  "9dHBCUXa0z8tEZg6QcYMBJVXjf",
+  "9rRXexrA3JzmXbFdKCmjtTj57l",
+  "BcKJhMTErAsHfXq1jzealos8kp",
+  "bzf4ryrVVsKkqpsEA5dBZd2kP5",
+  "EY1QV5T6AyB4Ykl2Lt1Nt9kf9g",
+  "GiufEa3ziFwfBEgkjI2gIlfNkk",
+  "HiGYI2bhBoQ6n82R9ptoNZ0oaQ",
+  "hp5mupqcVY8ZMiKg7Q91Uoi4Wf",
+  "iHPbkwKFsck9ZLnMePKSj5e5mz",
+  "IO2YsSRkLCIZwIcYGjO6rNkxUE",
+  "JIcpL1cap5Eg0ikPk2tecp6JG7",
+  "K08iJHYVRGL5pBOomOvwa2zwX2",
+  "kc0ov01FtBgr88C5P6EE6lnC8s",
+  "NMh2Fu1IG5XnpOf5b6zu2t1Hh6",
+  "nQXxT1OMhPGbkqkPHc2QTpofRv",
+  "NTVwRTvMb82TIB5VLbf3v36tZN",
+  "OGR28icdrofstoYETvIGg19XAv",
+  "oZ68OrZFpvkMMGHqV3CFELhuVY",
+  "sgKMX0336kgepHbPeObRLOvcFL",
+  "tWucjcIELoF0O1Z0DksuXWDGY7",
+  "UbdhHxTUe3N5zm5BxR6WQ2i6vf",
+  "Y5KEzulkwxviOuzB4Ny5QTzMGD",
+  "ZPNzWEr5XfUq5aYdy2bSYIKO5T",
+  "zXRcJxGzIrwhmk5LTbE4jdwBMh",
+]
+`;
