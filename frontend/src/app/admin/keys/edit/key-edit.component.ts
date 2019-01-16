@@ -22,7 +22,7 @@ export class KeyEditComponent implements OnInit, OnDestroy {
   keys$: Observable<Key[]>;
   destroy$ = new Subject();
   typeOptions = [
-    'number',
+    'integer',
     'boolean'
   ];
   uniqueKeyName = false;
@@ -32,7 +32,7 @@ export class KeyEditComponent implements OnInit, OnDestroy {
     Validators.compose(
       [
         Validators.required,
-        Validators.pattern('[a-z]+_?[a-z]+?')
+        Validators.pattern('[a-zA-Z]+_?[a-zA-Z]+?')
       ]
     )
   );

@@ -3,12 +3,12 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "cross-env NODE_ENV=development ng serve",
-    "start-prod": "cross-env NODE_ENV=development ng serve --prod --proxy-config proxy.conf.json",
+    "start": "NODE_ENV=development ng serve",
+    "start-prod": "NODE_ENV=development ng serve --prod --proxy-config proxy.conf.json",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build": "ng build",
+    "build": "NODE_ENV=production ng build --prod --build-optimizer",
     "compress": "gzip -kr dist"
   },
   "private": true,
@@ -49,7 +49,6 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
     "codelyzer": "~4.5.0",
-    "cross-env": "^5.2.0",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~3.0.0",

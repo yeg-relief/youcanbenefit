@@ -33,9 +33,9 @@ export function getKeyOverview(state$: Observable<State>) {
 /* for screener */
 export const getForm = fromScreener.getForm
 
-export const getScreenerError = createSelector(getScreenerState, fromScreener.getError, );
+export const getScreenerError = fromScreener.getError
 
-export const isScreenerLoading = createSelector(getScreenerState, fromScreener.isLoading, );
+export const isScreenerLoading = fromScreener.isLoading
 
 export const getConstantQuestions = createSelector(getScreenerState, fromScreener.getConstantQuestions, );
 

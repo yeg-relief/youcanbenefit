@@ -37,10 +37,6 @@ export class ScreenerEffects {
         map((action: any) => [action.payload.screener, action.payload.credentials]),
         switchMap( ([payload, options]) => {
           return this.http.post(URL, payload, options)
-            .pipe(
-              timeout(TIMEOUT),
-              catchError((e) => of({ type: ScreenerActionTypes.SAVE_DATA_FAILURE, payload: e.message }))
-            )
         })
       )
       

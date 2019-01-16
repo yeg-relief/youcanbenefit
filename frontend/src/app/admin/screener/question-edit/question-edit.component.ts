@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { ID, Key, ControlType } from '../../models';
-import { Observable, ReplaySubject, Subject, combineLatest } from 'rxjs';
+import { Observable, ReplaySubject, Subject, combineLatest, of } from 'rxjs';
 import { 
     map, 
     filter, 
@@ -15,10 +15,12 @@ import {
     throttleTime,
     delay,
     switchMap,
-    debounceTime
+    debounceTime,
+    pluck
 } from 'rxjs/operators'
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import * as fromRoot from '../../reducer';
+import { getSelectedConstantID, getSelectedConditionalID } from "../store/screener-reducer"
 import { Animations } from '../../../shared/animations'
 
 @Component({
@@ -32,7 +34,7 @@ import { Animations } from '../../../shared/animations'
 })
 export class QuestionEditComponent implements OnInit, OnDestroy {
     readonly CONTROL_TYPE_VALUES = [
-        { value: 'NumberInput', display: 'type' },
+        { value: 'NumberInput', display: 'number input' },
         { value: 'NumberSelect', display: 'select' },
         { value: 'Toggle', display: 'toggle' },
         { value: 'Multiselect', display: 'multiselect'}
@@ -56,11 +58,15 @@ export class QuestionEditComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
 
+        // this.selectedQuestionID$ = of('unselect all the questions')
+
         // data sources
         this.selectedQuestionID$ = combineLatest(
-            this.store.pipe(fromRoot.getSelectedConstantID),
-            this.store.pipe(fromRoot.getSelectedConditionalID),
-            map( ([constant, conditional]) => {
+            getSelectedConstantID(this.store),
+            getSelectedConditionalID(this.store)
+        ).pipe(
+            filter(Boolean),
+            map( ([constant, conditional]: any[]) => {
                 if (constant === undefined) {
                     return 'unselect all the questions';
                 }
@@ -74,7 +80,6 @@ export class QuestionEditComponent implements OnInit, OnDestroy {
                 }
 
             }),
-            filter(Boolean),
             multicast( new ReplaySubject(1)),
             refCount()
         )
@@ -85,9 +90,7 @@ export class QuestionEditComponent implements OnInit, OnDestroy {
                 withLatestFrom(this.store.pipe(fromRoot.getForm)),
                 filter( ([questionID, form]) => form.get(questionID) !== null),
                 map( ([questionID, form]) => form.get(questionID)),
-                startWith(this.fb.group({
-                    label: [''], key: [''], controlType: [''], expandable: [false], options: []
-                })),
+                startWith(this.fb.group({ label: [''], key: this.fb.group({ name: [''], type: [''] }), controlType: [''], expandable: [false], options: [] })),
                 tap( (form: any) => {
                     this.controlType = form.get('controlType').value
                     const val = form.value;

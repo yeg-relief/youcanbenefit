@@ -394,15 +394,20 @@ export function reducer(state = initialState, action: ScreenerActions): State {
 
 // following functions are used in main reducer
 
-export const getForm = pipe(select('root'), select('screener'), select('form'))
+export function getForm(store) {
+    return store.pipe(select('root'), select('screener'), select('form') )
+} 
 
-export function getError(state$: Observable<State>){
-    return state$.pipe(select(s => s.error));
+export function getError(store){
+    return store.pipe(select('root'), select('screener'), pluck('error'));
 }
-
-export function isLoading(state$: Observable<State>){
-    return state$.pipe(select(s => s.loading));
-}
+export function isLoading(store){
+    return store.pipe(
+        select('root'),
+        select('screener'),
+        select('loading'),
+    )
+} 
 
 export function getConstantQuestions(state$: Observable<State>){
     return state$
@@ -456,25 +461,13 @@ export const getUnusedKeys = pipe(
     })
 )
 
-const getQuestionID = name => (
-    pipe(
-        selectScreener,
-        tap(() => console.log(`******${name}*******`)),
-        tap(console.dir),
-        tap(() => console.log("*************")),
-        pluck(name),
-        tap(() => console.log(`******${name}*******`)),
-        tap(console.dir),
-        tap(() => console.log("*************")),
-        filter(Boolean),
-        tap(() => console.log(`******${name}*******`)),
-        tap(console.dir),
-        tap(() => console.log("*************")),
-    )
-)
-export const getSelectedConstantID = getQuestionID('selectedConstantQuestion')
-export const getSelectedConditionalID = getQuestionID('selectedConditionalQuestion')
+export function getSelectedConstantID(store) {
+    return store.pipe(select('root'),select('screener'),pluck('selectedConstantQuestion'))
+}
 
+export function getSelectedConditionalID(store) {
+    return store.pipe(select('root'),select('screener'),pluck('selectedConditionalQuestion'))
+}
 
 export function getConditionalQuestionIDS(state$: Observable<State>){
     let selectedConstantID: ID;
