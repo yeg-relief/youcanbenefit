@@ -15,7 +15,7 @@ describe('/protected', () => {
     await app.init();
   })
 
-  it(`GET /login`, () => {
+  it(`GET /login will allow you to login, auth is handled by reverse proxy`, () => {
     return request(app.getHttpServer())
       .get('/protected/login/')
       .expect(200)
