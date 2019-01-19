@@ -1,5 +1,8 @@
-<div *ngFor="let tag of tags">
-    <mat-chip routerLinkActive="active">
-        <a routerLink="/browse-programs/{{tag}}"> {{tag}} </a>
-    </mat-chip>
-</div>
+<span [ngClass]="{'wrapper': true, 'large-list': tags.length >= 3 }" >
+    <div *ngFor="let tag of tags">
+        <mat-chip routerLinkActive="active">
+            <a routerLink="/browse-programs/{{tag}}"> {{tag}} </a>
+        </mat-chip>
+    </div>
+</span>
+

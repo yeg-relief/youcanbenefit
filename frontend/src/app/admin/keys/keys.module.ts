@@ -12,7 +12,6 @@ import {
   MatButtonToggleModule 
 } from '@angular/material';
 import { KeyEditComponent } from './edit/key-edit.component';
-import { KeyOverviewControlsComponent } from './overview/key-overview-controls/key-overview-controls.component';
 import { AdminCoreModule } from '../core/admin-core.module';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -33,7 +32,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     KeysComponent,
     KeysOverviewComponent,
     KeyEditComponent,
-    KeyOverviewControlsComponent
   ],
   providers: []
 })
