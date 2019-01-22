@@ -65,3 +65,16 @@ button[mat-button] {
     font-family: 'Open Sans', sans-serif;
     font-size: 110%;
 }
+
+
+@media screen and (max-width: 500px){
+    .lg-show {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 500px) {
+    .lg-hide {
+        display: none;
+    }
+}

@@ -1,9 +1,3 @@
-:host {
-    display: flex;
-    flex-wrap: wrap;
-    padding-bottom: 0.5em;
-}
-
 div{
     margin-left: 1em;
 }
@@ -15,4 +9,17 @@ mat-chip {
 
 .active {
     background-color: darkorange;
+}
+
+.wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    min-height: 3em;
+}
+
+@media screen and (max-width: 600px) {
+    .wrapper.large-list {
+        min-height: 4.5rem;
+    }
 }

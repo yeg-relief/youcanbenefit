@@ -56,6 +56,7 @@ section.feature-description {
     border-radius: 10px;
     display: flex;
     flex-direction: column;
+    flex-basis: 200px;
 }
 
 @media screen and (min-width: 89em) {
@@ -79,6 +80,7 @@ section.feature-description {
         height: 18vh;
         position: relative;
         display: block !important;
+        flex-basis: 200px;
     }
 
     section.link-container > section.feature-description > a > button {
@@ -110,6 +112,7 @@ section.feature-description {
         height: 20vh;
         position: relative;
         display: block !important;
+        flex-basis: 175px;
     }
 
     section.link-container > section.feature-description > a > button {
@@ -118,12 +121,6 @@ section.feature-description {
         left: 30%;
     }
 }
-/*
-@media screen and (min-width: 37em) and (max-width: 65em) {
-    section.link-container {
-        width: 50vw !important;
-    }
-}*/
 
 @media screen and (min-width: 37em) and (max-width: 69em) {
     section.link-container {
@@ -132,6 +129,7 @@ section.feature-description {
         width: 60vw;
         margin: 2em auto;
         justify-content: space-around;
+        flex-basis: 75px;
     }
 
     section.feature-description:nth-child(2) {
@@ -148,6 +146,7 @@ section.feature-description {
         height: 15vh;
         display: flex;
         flex-direction: row !important;
+        flex-basis: 75px;
     }
 
 
@@ -185,6 +184,7 @@ section.feature-description {
     section.link-container > section.feature-description {
         padding: 0.5em;
         height: 24vh;
+        flex-basis: 150px;
     }
 
     .ribbon {
@@ -213,6 +213,7 @@ section.feature-description {
     section.link-container > section.feature-description {
         padding: 0.25em;
         height: 32vh;
+        flex-basis: 125px;
     }
 
     .ribbon {
