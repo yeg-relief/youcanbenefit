@@ -77,16 +77,12 @@ section.feature-description {
 
     section.link-container > section.feature-description {
         padding: 0.5em;
-        height: 18vh;
         position: relative;
-        display: block !important;
         flex-basis: 200px;
     }
 
     section.link-container > section.feature-description > a > button {
-        position: absolute;
-        bottom: 5px;
-        left: 30%;
+        align-items: center;
     }
 }
 
@@ -109,16 +105,12 @@ section.feature-description {
 
     section.link-container > section.feature-description {
         padding: 0.5em;
-        height: 20vh;
         position: relative;
-        display: block !important;
         flex-basis: 175px;
     }
 
     section.link-container > section.feature-description > a > button {
-        position: absolute;
-        bottom: 5px;
-        left: 30%;
+        align-items: center;
     }
 }
 
