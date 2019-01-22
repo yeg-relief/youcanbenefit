@@ -4,9 +4,8 @@ import { ScreenerService } from "./screener.service"
 
 
 @Module({
-    modules: [ DbElasticsearchModule ],
-    controllers: [  ],
-    components: [ ScreenerService ],
+    imports: [ DbElasticsearchModule ],
+    providers: [ ScreenerService ],
     exports: [ ScreenerService ]
 })
 export class ScreenerModule {}

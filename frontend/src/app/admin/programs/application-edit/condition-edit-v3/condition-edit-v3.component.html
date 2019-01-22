@@ -1,5 +1,5 @@
 <main [formGroup]="condition.form">
-  <md-icon mdTooltip="delete condition" (click)="deleteCondition()" class="material-icons" [style.color]="'red'">clear</md-icon>
+  <mat-icon matTooltip="delete condition" (click)="deleteCondition()" class="material-icons" [style.color]="'red'">clear</mat-icon>
   <select (change)="handleKeyChange($event)" [ngClass]="keyNameClasses">
     <option disabled [value]="'invalid'"> invalid </option>
     <option *ngFor="let key of (keys | async)" [value]="key.name" [selected]="isKeySelected(key.name)">
@@ -8,10 +8,10 @@
   </select>
 
   <div [ngClass]="optional" *ngIf="getKeyType() === 'boolean'">
-    <md-button-toggle-group id="boolean-key-edit" formControlName="value">
-      <md-button-toggle [value]="true"> true </md-button-toggle>
-      <md-button-toggle [value]="false"> false </md-button-toggle>
-    </md-button-toggle-group>  
+    <mat-button-toggle-group id="boolean-key-edit" formControlName="value">
+      <mat-button-toggle [value]="true"> true </mat-button-toggle>
+      <mat-button-toggle [value]="false"> false </mat-button-toggle>
+    </mat-button-toggle-group>
   </div>
 
   <div [ngClass]="optional" *ngIf="getKeyType() !== 'boolean' ">
@@ -22,9 +22,9 @@
     </select>
       
       
-    <md-input-container>
-      <input mdInput formControlName="value"/>
-    </md-input-container>
+    <mat-form-field>
+      <input matInput formControlName="value"/>
+    </mat-form-field>
 
   </div>
 </main>

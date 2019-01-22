@@ -4,7 +4,7 @@ main {
   position: fixed;
 }
 
-md-card {
+mat-card {
   background-color: silver;
   font-family: 'Open Sans', sans-serif;
 }
@@ -12,7 +12,7 @@ md-card {
 
 @media(min-width: 40em) {
  
-  md-card {
+  mat-card {
     height: 50vh;
     
   }
@@ -21,7 +21,7 @@ md-card {
 
 @media(max-width: 40em){
 
-  md-card {
+  mat-card {
     height: 40vh;
     margin-top: 5%;
   }

@@ -83,7 +83,7 @@ select {
   margin-left: 1em;
 }
 
-md-chip {
+mat-chip {
   cursor: pointer;
   margin-left: 0.5em;
   margin-right: 0.5em;

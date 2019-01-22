@@ -88,7 +88,7 @@ describe('ScreenerToolbarComponent', () => {
   });
 
   it('should conform to this display TODO: think of better description', () => {
-    const meta = fixture.debugElement.queryAll(By.css('md-card-subtitle'));
+    const meta = fixture.debugElement.queryAll(By.css('mat-card-subtitle'));
     expect(meta).not.toBeNull();
     expect(meta.length).toEqual(2);
     expect(meta[0].nativeElement.innerText).toEqual('latest server update: Dec 31, 1969');
@@ -103,7 +103,7 @@ describe('ScreenerToolbarComponent', () => {
   });
 
   it('should show two keys in the key filter', () => {
-    const autocomplete = fixture.debugElement.query(By.css('md-autocomplete'));
+    const autocomplete = fixture.debugElement.query(By.css('mat-autocomplete'));
     expect(autocomplete).not.toBeNull();
   });
 });

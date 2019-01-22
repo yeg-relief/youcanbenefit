@@ -1,14 +1,14 @@
-import {Component} from '@nestjs/common';
+import {Injectable} from '@nestjs/common';
 import { Client } from "elasticsearch"
 import {ClientService} from '../db.elasticsearch/client.service';
 import {Schema} from './Schema';
 
-@Component()
+@Injectable()
 export class UploadService {
     private client: Client;
 
     constructor(private clientService: ClientService){
-        this.client = this.clientService.client
+        this.client = this.clientService.client;
     }
 
     async execute(data) {

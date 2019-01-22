@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { Observable } from 'rxjs/Observable';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
-import 'rxjs/add/operator/multicast';
+import { Observable, ReplaySubject } from 'rxjs';
+import { startWith, multicast, refCount } from 'rxjs/operators'
 
 @Injectable()
 export class KeyFilterService {
@@ -13,9 +12,12 @@ export class KeyFilterService {
     this.filter = new FormGroup({keyNames: new FormControl([])});
 
     this.filteredKey$ = this.filter.valueChanges
-                            .startWith(this.filter.get('keyNames').value)
-                            .multicast( new ReplaySubject(1)).refCount();
-
+      .pipe(
+        startWith(this.filter.get('keyNames').value),
+        multicast(new ReplaySubject(1)),
+        refCount()
+      )
+                          
     this.filteredKey$.subscribe();
   }
 

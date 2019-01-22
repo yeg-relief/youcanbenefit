@@ -1,7 +1,7 @@
 import { Test } from '@nestjs/testing';
 import { ProgramService } from "./program.service";
 import { ProgramDto } from "./program.dto";
-import { ClientService } from "../db.elasticsearch/client.service"
+import { DbElasticsearchModule } from '../db.elasticsearch/db.elasticsearch.module';
 
 describe('ProgramService', () => {
     let programService: ProgramService;
@@ -18,8 +18,8 @@ describe('ProgramService', () => {
 
     beforeEach(async () => {
         const module = await Test.createTestingModule({
-            controllers: [],
-            components: [ProgramService, ClientService],
+            imports: [DbElasticsearchModule],
+            providers: [ProgramService],
         }).compile();
         programService = module.get<ProgramService>(ProgramService);
     });

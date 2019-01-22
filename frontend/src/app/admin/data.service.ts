@@ -1,13 +1,14 @@
+import { map, catchError  } from 'rxjs/operators'
+import {throwError as observableThrowError,  Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Key } from './models/key';
-import { Observable } from 'rxjs/Observable';
 import { Http, Response, RequestOptions } from '@angular/http';
 import { AuthService } from './core/services/auth.service'
 import { environment } from '../../environments/environment'
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/reduce';
-import 'rxjs/add/operator/mergeMap'
+
+
+
+
 
 @Injectable()
 export class DataService {
@@ -22,8 +23,10 @@ export class DataService {
     getKeys() {
         const creds = this.getCredentials();
         return this.keys$ = this.http.get(`${environment.api}/protected/key/`, creds)
-            .map(res => res.json())
-            .catch(this.loadError);
+        .pipe(
+            map(res => res.json()),
+            catchError(this.loadError)
+        );
     }
 
 
@@ -37,7 +40,7 @@ export class DataService {
             errMsg = error.message ? error.message : error.toString();
         }
         console.error(errMsg);
-        return Observable.throw(errMsg);
+        return observableThrowError(errMsg);
     }
 
     // updateKey is really more like createKey
@@ -46,7 +49,9 @@ export class DataService {
         creds.headers.append('Content-Type', 'application/json' );
         const body = JSON.stringify({ key: key });
         return this.http.post(`${environment.api}/protected/key/`, body, creds)
-            .map(res => res.json().update)
-            .catch(this.loadError)
+        .pipe(
+            map(res => res.json().update),
+            catchError(this.loadError)
+        );
     }
 }

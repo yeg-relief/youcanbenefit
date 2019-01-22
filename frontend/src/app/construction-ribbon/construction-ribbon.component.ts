@@ -1,16 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition,
-} from '@angular/animations';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/switchMap';
-import 'rxjs/add/operator/delay';
 import { Animations } from '../shared/animations';
+import { of } from 'rxjs';
+import { map, filter, debounceTime, tap, switchMap, delay } from 'rxjs/operators'
 
 @Component({
   selector: 'app-construction-ribbon',
@@ -29,23 +21,30 @@ export class ConstructionRibbonComponent implements OnInit {
 
   ngOnInit(){
     const isAdminChange = this.router.events
-      .map(event => event instanceof NavigationEnd ? this.router.url : "don't care")
-      .filter(url => url !== "don't care")
-      .debounceTime(60)
-      .map( url => url.substring(0, 7) === '/admin/' );
-
-
-    const notAdminRoute = isAdminChange.filter(val => val === false )
-      .do( _ => this.fade = "in")
-      .delay(1000)
-      .switchMap(val => Observable.of(val))
-      .do( _ => this.fade = "out")
+      .pipe(
+        map(event => event instanceof NavigationEnd ? this.router.url : "don't care"),
+        filter(url => url !== "don't care"),
+        debounceTime(60),
+        map( url => url.substring(0, 7) === '/admin/' )
+      )
+      
+    const notAdminRoute = isAdminChange
+      .pipe(
+        filter(val => val === false),
+        tap( _ => this.fade = "in"),
+        delay(1000),
+        switchMap(val => of(val)),
+        tap( _ => this.fade = "out")
+      )
       .subscribe();
 
 
 
-    const adminRoute = isAdminChange.filter(val => val === true )
-      .do( _ => this.fade = "out")
+    const adminRoute = isAdminChange
+      .pipe(
+        filter(val => val === true ),
+        tap( _ => this.fade = "out")
+      )
       .subscribe();
   }
 }

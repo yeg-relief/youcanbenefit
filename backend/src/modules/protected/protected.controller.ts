@@ -104,14 +104,12 @@ export class ProtectedController {
     createProgramWithQueries(
         @Body("user") user,
         @Body("application") application,
-        @Body("guid") guid,
-        @Req() req
     ): any {
         return Observable.zip(
             this.programService.create(user),
             Observable.from(application)
                 .mergeMap( (query: ApplicationQueryDto) => this.queryService.create(query))
-                .catch(error => Observable.throw(false))
+                .catch(() => Observable.throw(false))
         )
             .map( ([{created}, queriesCreated]) => {
                 return created === true && queriesCreated === true ? { created: true} : { created: false }
@@ -145,7 +143,7 @@ export class ProtectedController {
             .map(res => res.deleted ? {found: true, deleted: true } : { found: null, deleted: false} )
     }
 
-    @Post('/query')
+    @Post('/query/')
     updateOrCreateQuery(@Body("query") query, @Body("guid") guid): Promise<any> {
         return this.queryService.index({
             ...query,

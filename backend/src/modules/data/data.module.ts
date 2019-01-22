@@ -6,13 +6,13 @@ import {BackupService} from './backup.service';
 import {UploadService} from './upload.service';
 
 @Module({
-    modules: [
+    imports: [
         DbElasticsearchModule,
     ],
     controllers: [
         DataController
     ],
-    components: [
+    providers: [
         InitService,
         BackupService,
         UploadService

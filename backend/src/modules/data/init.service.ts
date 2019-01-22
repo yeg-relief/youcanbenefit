@@ -1,13 +1,13 @@
-import { Component } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { Client } from "elasticsearch"
 import { ClientService } from '../db.elasticsearch/client.service';
 
-@Component()
+@Injectable()
 export class InitService {
     private client: Client;
 
     constructor(private clientService: ClientService){
-        this.client = this.clientService.client
+        this.client = this.clientService.client;
     }
 
     async hasBeenInitialized(): Promise<boolean> {

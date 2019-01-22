@@ -8,7 +8,7 @@ option {
   padding-bottom: 0.5em;
 }
 
-md-select{
+mat-select{
   padding-bottom: 0.2em;
   width: 30%;
 }
@@ -48,7 +48,7 @@ main > div > * {
   margin-right: 0.5em;
 }
 
-md-icon {
+mat-icon {
   font-size: 36px;
   padding-bottom: 2px;
 }
@@ -77,7 +77,7 @@ section {
   display: flex;
 }
 
-section > md-icon {
+section > mat-icon {
   padding-top: 0.25em;
 }
 
@@ -86,17 +86,17 @@ section > *:not(:first-child) {
   align-items: center;
 }
 
-md-icon.filter_active {
+mat-icon.filter_active {
   color: darkorange;
   opacity: 1;
 }
 
-md-icon.filter_inactive {
+mat-icon.filter_inactive {
   color: black;
   opacity: 0.6;
 }
 
-md-option {
+mat-option {
   display: flex;
   align-items: center;
 }

@@ -1,13 +1,9 @@
 import { Injectable } from '@angular/core';
-import { MdDialog, MdDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig } from '@angular/material';
 import { ActivatedRoute, Router } from "@angular/router";
 import { DetailModalComponent } from './program/detail-modal/detail-modal.component';
-import { Observable } from "rxjs/Observable";
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/let';
-import 'rxjs/add/operator/take';
+import { Observable, of } from "rxjs";
+import { map, tap, filter, take,  } from 'rxjs/operators'
 
 @Injectable()
 export class ProgramModalService {
@@ -27,10 +23,12 @@ export class ProgramModalService {
         }
     };
 
-    constructor(public dialog: MdDialog, private route: ActivatedRoute, private router: Router) {
+    constructor(public dialog: MatDialog, private route: ActivatedRoute, private router: Router) {
         this.route.queryParamMap
-            .map(paramMap => paramMap['params'] ? paramMap['params']['program'] : null)
-            .let(this.findProgram.bind(this))
+            .pipe(
+                map(paramMap => paramMap['params'] ? paramMap['params']['program'] : null),
+                this.findProgram.bind(this)
+            )
             .subscribe(program => {
                 if (program) {
                     this.openModal(program)
@@ -43,13 +41,15 @@ export class ProgramModalService {
             return this.programs = [...input$];
         }
 
-        return input$.do(programs => this.programs = [...programs]);
+        return input$.pipe(tap(programs => this.programs = [...programs]));
     }
 
     private findProgram(input$: Observable<string>): Observable<any> {
         return input$
-            .map(title => this.programs.find(p => p.title === title ))
-            .filter(item => !!item);
+            .pipe(
+                map(title => this.programs.find(p => p.title === title )),
+                filter(Boolean)
+            )
     }
 
 
@@ -76,7 +76,7 @@ export class ProgramModalService {
             detailLinks: program.detailLinks || []
         };
 
-        const config: MdDialogConfig = {
+        const config: MatDialogConfig = {
             data,
             width: screenDimensions['width'],
             height: screenDimensions['height']
@@ -84,7 +84,7 @@ export class ProgramModalService {
         const ref = this.dialog.open(DetailModalComponent, config);
         const category = this.getCategory();
 
-        ref.afterClosed().take(1).subscribe( _ => this.router.navigate([`${category}`],  {relativeTo: this.route}))
+        of(ref.afterClosed()).pipe(take(1)).subscribe( _ => this.router.navigate([`${category}`],  {relativeTo: this.route}))
     }
 
 

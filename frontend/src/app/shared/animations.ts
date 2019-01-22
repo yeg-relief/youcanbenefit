@@ -1,4 +1,4 @@
-import {AnimationEntryMetadata } from '@angular/core';
+import { AnimationTriggerMetadata } from '@angular/animations';
 import {
   trigger,
   state,
@@ -7,7 +7,7 @@ import {
   transition,
 } from '@angular/animations';
 
-export const Animations: {[key: string]: AnimationEntryMetadata} = {
+export const Animations: {[key: string]: AnimationTriggerMetadata} = {
   flyinHalf: trigger('flyinHalf', [
     state('in', style({ transform: 'translateX(0)' })),
     transition('void => *', [

@@ -1,3 +1,6 @@
+import { Injectable } from "@nestjs/common";
+
+@Injectable()
 export class ConstantsReadonly {
     readonly host: string = determineHost();
     readonly logLevel: string = determineLogLevel();
@@ -10,7 +13,7 @@ function determineHost() {
 
     if (process.env.COMPOSER_ENV === "true") return `elasticsearch:${process.env.ELASTICSEARCH_PORT}`;
 
-    if (process.env.NODE_ENV === "INTEGRATION_TEST") return "http://localhost:9400";
+    if (process.env.NODE_ENV === "INTEGRATION_TEST" || process.env.NODE_ENV === "test") return "http://localhost:9400";
 
     return "http://localhost:9200"
 }

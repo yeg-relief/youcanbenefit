@@ -8,19 +8,20 @@ import { ProtectedModule } from "./protected"
 import { ApiModule } from "./api"
 import { DataModule } from './data/data.module';
 import { LogModule } from './log/log.module'
+import { ConfigModule } from './config.module'
 
 @Module({
-  modules: [
-      ProgramModule,
-      QueryModule,
-      KeyModule,
-      ProtectedModule,
-      ApiModule,
-      DataModule,
-      LogModule
+  imports: [
+    ConfigModule,
+    ProgramModule,
+    QueryModule,
+    KeyModule,
+    ProtectedModule,
+    ApiModule,
+    DataModule,
+    LogModule
   ],
-  controllers: [AppController],
-  components: [],
+  controllers: [AppController]
 })
 export class ApplicationModule {
   configure(consumer: MiddlewareConsumer) {

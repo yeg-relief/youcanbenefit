@@ -8,13 +8,15 @@
     "start:watch": "NODE_ENV=development nodemon",
     "prestart:prod": "NODE_ENV=production tsc",
     "start:prod": "NODE_ENV=production node dist/server.js",
-    "unit-test": "NODE_ENV=test jest \"(/__tests__/.*|\\.(test))\\.(ts|tsx|js)$\"",
-    "integration-test": "jest \"(/__tests__/.*|\\.(spec))\\.(ts|tsx|js)$\" --forceExit",
-    "integration-test-update": "jest \"(/__tests__/.*|\\.(spec))\\.(ts|tsx|js)$\" -u --forceExit"
+    "unit-test": "NODE_ENV=test jest \".(test)\\.(ts|tsx|js)$\"",
+    "generate-coverage": "NODE_ENV=test jest --coverage",
+    "integration-test": "jest \"./__tests__/.*.(spec)\\.(ts|tsx|js)$\" --forceExit",
+    "integration-test-update": "jest \"./__tests__/.*.(spec)\\.(ts|tsx|js)$\" -u --forceExit"
   },
   "dependencies": {
     "@nestjs/common": "^5.4.0",
     "@nestjs/core": "^5.4.0",
+    "@nestjs/elasticsearch": "^0.2.0",
     "@nestjs/testing": "^5.4.0",
     "@types/ramda": "^0.25.40",
     "body-parser": "^1.18.3",
@@ -34,12 +36,11 @@
   },
   "devDependencies": {
     "@types/elasticsearch": "^5.0.28",
-    "@types/jasmine": "^2.8.9",
     "@types/jest": "^21.1.10",
     "@types/node": "^8.10.36",
     "@types/winston": "^2.4.4",
     "jest": "^21.2.1",
-    "nodemon": "^1.18.5",
+    "nodemon": "^1.18.9",
     "supertest": "^3.3.0",
     "ts-jest": "^21.2.4",
     "ts-node": "^3.3.0"

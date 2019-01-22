@@ -1,12 +1,8 @@
 import { Component, OnInit, Input, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { Subscription } from 'rxjs/Subscription';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
-import { Observable } from 'rxjs/Observable';
+import { Subscription, ReplaySubject, merge } from 'rxjs';
+import { filter, map, multicast, refCount, tap } from 'rxjs/operators';
 import { QuestionControlService } from '../questions/question-control.service';
-import 'rxjs/add/observable/merge';
-import 'rxjs/add/operator/multicast';
-import 'rxjs/add/operator/mapTo';
 import {
     trigger,
     state,
@@ -62,24 +58,31 @@ export class YcbQuestionComponent implements OnInit, OnDestroy {
     ngOnInit() {
 
         if (this.isExpandableQuestion()) {
-            // this.onExpand.emit(this.question.conditionalQuestions);
-
             const change = this.form.get(this.question.key).valueChanges
-                .filter(value => typeof value === 'string' && (value === 'true' || value === 'false'))
-                .map(val => val === 'true')
-                .multicast(new ReplaySubject<boolean>(1)).refCount();
+                .pipe(
+                    filter(value => typeof value === 'string' && (value === 'true' || value === 'false')),
+                    map(val => val === 'true'),
+                    multicast(new ReplaySubject<boolean>(1)),
+                    refCount()
+                )
+                
 
 
-            const expand = change.filter(value => value === true)
-                .do(_ => this.onExpand.emit({id: this.question.id, conditionals: this.question.conditionalQuestions}))
-                .do(_ => this.expand !== 'expanded' ? this.expand = 'expanded' : null);
+            const expand = change.pipe(
+                filter(value => value === true),
+                tap(_ => this.onExpand.emit({id: this.question.id, conditionals: this.question.conditionalQuestions})),
+                tap(_ => this.expand !== 'expanded' ? this.expand = 'expanded' : null)
+            );
+                
 
-            const hide = change.filter(val => val === false)
-                .do(_ => this.onHide.emit({id: this.question.id, conditionals: this.question.conditionalQuestions}))
-                .do(_ => this.expand !== 'collapsed' ? this.expand = 'collapsed' : null);
+            const hide = change.pipe(
+                filter(val => val === false),
+                tap(_ => this.onHide.emit({id: this.question.id, conditionals: this.question.conditionalQuestions})),
+                tap(_ => this.expand !== 'collapsed' ? this.expand = 'collapsed' : null)
+            );
 
 
-            const merged = Observable.merge(expand, hide)
+            const merged = merge(expand, hide)
                 .subscribe(hide => hide === true ? this.showQuestions = hide : null);
 
 
@@ -95,10 +98,6 @@ export class YcbQuestionComponent implements OnInit, OnDestroy {
                 }
             });
         }
-        /* TODO: consult with stakeholders on default value of false.
-        else if (this.question.controlType === 'Toggle') {
-            this.form.get(this.question.key).setValue(false);
-        }*/
     }
 
     ngOnDestroy() {

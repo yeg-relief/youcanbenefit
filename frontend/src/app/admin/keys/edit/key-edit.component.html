@@ -1,26 +1,26 @@
 <app-bread-crumb>
 </app-bread-crumb>
 
-<md-progress-bar mode="indeterminate" color="warn" *ngIf="saving"></md-progress-bar>
+<mat-progress-bar mode="indeterminate" color="warn" *ngIf="saving"></mat-progress-bar>
 <section class="key-edit-container">
   <div class="flex flex-center">
     <div class="col-2"></div>
-    <md-input-container class="col-4"> 
-      <input mdInput placeholder="key name" [formControl]="nameControl">
-    </md-input-container>
+    <mat-form-field class="col-4">
+      <input matInput placeholder="key name" [formControl]="nameControl">
+    </mat-form-field>
     <div class="col-2"></div>
-    <md-button-toggle-group [formControl]="typeControl">
-      <md-button-toggle *ngFor="let option of typeOptions" [value]="option">
+    <mat-button-toggle-group [formControl]="typeControl">
+      <mat-button-toggle *ngFor="let option of typeOptions" [value]="option">
           {{ option }}
-      </md-button-toggle>
-    </md-button-toggle-group>
+      </mat-button-toggle>
+    </mat-button-toggle-group>
   </div>
 </section>
 <div class="py2"></div>
 <div class="flex flex-center col-12">
   <div class="col-2"></div>
   <button class="col-4"
-    md-raised-button color="primary" 
+    mat-raised-button color="primary"
     [disabled]="!(form.valid && uniqueKeyName) ? true : null"
     (click)="dispatchKeyUpdate()">
     SAVE
@@ -30,7 +30,7 @@
   </div>
   <div class="col-1"></div>
   <button class="col-4"
-    md-raised-button color="warn" 
+    mat-raised-button color="warn"
     (click)="handleCancel()">
     CANCEL
   </button>

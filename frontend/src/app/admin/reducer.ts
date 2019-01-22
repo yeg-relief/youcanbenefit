@@ -1,5 +1,5 @@
-import { Observable } from 'rxjs/Observable';
-import { combineReducers } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { combineReducers, select } from '@ngrx/store';
 import * as fromKeyOverview from './keys/reducer';
 import * as fromScreener from './screener/store/screener-reducer';
 import { createSelector } from 'reselect';
@@ -22,30 +22,30 @@ export function reducer(state: any, action: any) {
 }
 
 export function getScreenerState(state$: Observable<State>) {
-  return state$.select(state => state.screener);
+  return state$.pipe(select('screener'));
 }
 
 export function getKeyOverview(state$: Observable<State>) {
-  return state$.select(state => state.keyOverview);
+  return state$.pipe(select('keyOverview'));
 }
 
 
 /* for screener */
-export const getForm = createSelector(getScreenerState, fromScreener.getForm, );
+export const getForm = fromScreener.getForm
 
-export const getScreenerError = createSelector(getScreenerState, fromScreener.getError, );
+export const getScreenerError = fromScreener.getError
 
-export const isScreenerLoading = createSelector(getScreenerState, fromScreener.isLoading, );
+export const isScreenerLoading = fromScreener.isLoading
 
 export const getConstantQuestions = createSelector(getScreenerState, fromScreener.getConstantQuestions, );
 
-export const getSelectedConstantID = createSelector( getScreenerState, fromScreener.getSelectedConstantID);
+export const getSelectedConstantID = fromScreener.getSelectedConstantID
 
-export const getSelectedConditionalID = createSelector( getScreenerState, fromScreener.getSelectedConditionalID,);
+export const getSelectedConditionalID = fromScreener.getSelectedConditionalID
 
-export const getScreenerKeys = createSelector(getScreenerState, fromScreener.getKeys);
+export const getScreenerKeys =  fromScreener.getKeys
 
-export const getUnusedScreenerKeys = createSelector( getScreenerState, fromScreener.getUnusedKeys,);
+export const getUnusedScreenerKeys = fromScreener.getUnusedKeys
 
 
 /* for keys **key/overview etc** */

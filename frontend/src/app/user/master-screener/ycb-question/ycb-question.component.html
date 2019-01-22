@@ -1,23 +1,23 @@
-<md-card style="background-color: lightyellow;">
+<mat-card style="background-color: lightyellow;">
     <form novalidate [formGroup]="form">
 
         <section [ngSwitch]="question.controlType">
 
             <div *ngSwitchCase="'NumberInput'">
 
-                <md-card-title> {{ question.label }} </md-card-title>
+                <mat-card-title> {{ question.label }} </mat-card-title>
 
                 <div class="py1"></div>
-                <md-input-container>
+                <mat-form-field>
                     <input
                         type="number"
-                        mdInput
+                        matInput
                         (input)="handleInput($event.target.value)"
                         [formControlName]="question.key"
                         placeholder="answer"
                         (keypress)="checkEnter($event)"
                     />
-                </md-input-container>
+                </mat-form-field>
 
                 <div class="error-container" [@error]="errorInDOM">
                     Please, answer using only a number with no spaces, commas, decimals or negaives.
@@ -25,34 +25,34 @@
             </div>
 
             <div *ngSwitchCase="'Toggle'">
-                <md-card-title> {{ question.label }} </md-card-title>
-                <md-button-toggle-group [formControlName]="question.key">
-                    <md-button-toggle value="true">
+                <mat-card-title> {{ question.label }} </mat-card-title>
+                <mat-button-toggle-group [formControlName]="question.key">
+                    <mat-button-toggle value="true">
                         yes
-                    </md-button-toggle>
-                    <md-button-toggle value="false">
+                    </mat-button-toggle>
+                    <mat-button-toggle value="false">
                         no
-                    </md-button-toggle>
-                </md-button-toggle-group>
+                    </mat-button-toggle>
+                </mat-button-toggle-group>
             </div>
 
 
             <div *ngSwitchCase="'NumberSelect'" placeholder="select an option">
-                <md-card-title> {{ question.label }} </md-card-title>
-                <md-select [formControlName]="question.key" placeholder="select an option">
-                   <!-- <md-option selected disabled [value]="null"> Select an option </md-option> -->
-                    <md-option *ngFor="let option of question.options" [value]="option"> {{ option }} </md-option>
-                </md-select>
+                <mat-card-title> {{ question.label }} </mat-card-title>
+                <mat-select [formControlName]="question.key" placeholder="select an option">
+                   <!-- <mat-option selected disabled [value]="null"> Select an option </mat-option> -->
+                    <mat-option *ngFor="let option of question.options" [value]="option"> {{ option }} </mat-option>
+                </mat-select>
             </div>
 
             <div *ngSwitchCase="'Multiselect'" class="multi-select">
-                <md-card-title> {{ question.label }} </md-card-title>
-                <md-list>
-                    <md-list-item class="multi-select-option" *ngFor="let q of question.multiSelectOptions">
-                        <md-checkbox class="multi-select-checkbox" [formControlName]="q.key.name"></md-checkbox>
+                <mat-card-title> {{ question.label }} </mat-card-title>
+                <mat-list>
+                    <mat-list-item class="multi-select-option" *ngFor="let q of question.multiSelectOptions">
+                        <mat-checkbox class="multi-select-checkbox" [formControlName]="q.key.name"></mat-checkbox>
                         {{ q.text }}
-                    </md-list-item>
-                </md-list>
+                    </mat-list-item>
+                </mat-list>
             </div>
 
             <div *ngSwitchDefault> <strong> {{ question.controlType }} is invalid </strong> </div>
@@ -73,4 +73,4 @@
 
 
     <div class="py1"></div>
-</md-card>
+</mat-card>

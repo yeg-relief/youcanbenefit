@@ -1,8 +1,7 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 import { UserFacingProgram } from '../../../models';
-import { MdDialog, MdDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig } from '@angular/material';
 import { DetailModalComponent } from '../detail-modal/detail-modal.component';
-import { Router, ActivatedRoute} from "@angular/router";
 
 @Component({
     selector: 'app-user-facing-program',
@@ -28,7 +27,7 @@ export class UserFacingProgramComponent implements OnInit {
         }
     };
 
-    constructor(public dialog: MdDialog, private router: Router, private route: ActivatedRoute) { }
+    constructor(public dialog: MatDialog) { }
 
     ngOnInit() {
         this.program.tags.sort( (a, b) => a.localeCompare(b));
@@ -51,7 +50,7 @@ export class UserFacingProgramComponent implements OnInit {
             detailLinks: this.program.detailLinks || []
         };
 
-        const config: MdDialogConfig = {
+        const config: MatDialogConfig = {
             data,
             width: screenDimensions.width,
             height: screenDimensions.height

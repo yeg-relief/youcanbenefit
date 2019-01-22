@@ -1,8 +1,8 @@
-md-card {
+mat-card {
   font-family: 'Open Sans', sans-serif;
 }
 
-button[md-raised-button]:not([disabled]):hover {
+button[mat-raised-button]:not([disabled]):hover {
   background-color: pink;
   color: black;
 }
@@ -11,6 +11,6 @@ input {
   width: 30vw;
 }
 
-md-input-container{
+mat-form-field{
   margin-left: 25%;
 }

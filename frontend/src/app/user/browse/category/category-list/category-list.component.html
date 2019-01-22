@@ -1,7 +1,6 @@
 <section *ngIf="!loading">
-  <div class="flex flex-column flex-center" [@fadeinAndOut]="fade" (@fadeinAndOut.done)="handleFadeDone($event)">
-    <app-program-list [programs]="filteredPrograms"> </app-program-list>
-  </div>
+  <app-program-list id="program-list" [programs]="filteredPrograms"> </app-program-list>
+
 
   <div *ngIf="filteredPrograms.length === 0" class="center">
     <p> sorry, <strong> no </strong> programs were found
@@ -9,5 +8,5 @@
 </section>
 
 <section class="loading-section" *ngIf="loading">
-  <md-progress-spinner color="primary" mode="indeterminate"></md-progress-spinner>
+  <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
 </section>

@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <main class="wrapper">
-    <h2 md-dialog-title> {{ data.title }} </h2>
-    <button md-button class="close-button">
-        <md-icon [style.color]="'white'" (click)="close()">cancel</md-icon>
+    <h2 mat-dialog-title> {{ data.title }} </h2>
+    <button mat-button class="close-button">
+        <mat-icon [style.color]="'white'" (click)="close()">cancel</mat-icon>
     </button>
 
 
-    <md-dialog-content>
+    <mat-dialog-content>
         <textarea disabled>
           {{ data.details }}
         </textarea>
-    </md-dialog-content>
+    </mat-dialog-content>
 
     <section class="detail-links">
         <h3 *ngIf="data.detailLinks.length > 0">  Additional Links</h3>
@@ -21,5 +21,5 @@
         </ul>
     </section>
 
-    <button md-button md-dialog-close>Close</button>
+    <button mat-button mat-dialog-close>Close</button>
 </main>

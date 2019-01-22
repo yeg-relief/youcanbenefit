@@ -3,9 +3,8 @@ import { DbElasticsearchModule } from "../db.elasticsearch/db.elasticsearch.modu
 import { KeyService } from "./key.service"
 
 @Module({
-    modules: [ DbElasticsearchModule ],
-    controllers: [  ],
-    components: [ KeyService ],
+    imports: [ DbElasticsearchModule ],
+    providers: [ KeyService ],
     exports: [ KeyService ]
 })
 export class KeyModule {}

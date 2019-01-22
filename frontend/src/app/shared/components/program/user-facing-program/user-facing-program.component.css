@@ -1,4 +1,4 @@
-md-card {
+mat-card {
     font-family: 'Open Sans', sans-serif;
     display: inline-block;
     background-color: rgba(248, 248, 255, 1.0);
@@ -11,11 +11,11 @@ a > .program-title-row {
     text-decoration: none;
 }
 
-md-card > * {
+mat-card > * {
     margin-left: 2.5%;
 }
 
-md-card-content {
+mat-card-content {
     height: calc(25vh - 13vh);
     overflow-y: hidden;
     overflow-x: hidden;
@@ -57,7 +57,7 @@ app-program-row > span {
     padding: 0.5em;
 }
 
-.program-title-row > md-card-title {
+.program-title-row > mat-card-title {
     margin-left: 1rem;
 }
 

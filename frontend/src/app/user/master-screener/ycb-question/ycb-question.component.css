@@ -14,7 +14,7 @@
     padding: 0.25em 0 0.25em 0.25em;
 }
 
-md-select {
+mat-select {
     height: 3em;
     width: 50%;
 }
@@ -25,7 +25,7 @@ md-select {
 
 
 @media(max-width: 30em){
-    md-card {
+    mat-card {
         width: 90%;
     }
 

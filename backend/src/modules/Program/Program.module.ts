@@ -3,9 +3,8 @@ import { ProgramService } from "./program.service";
 import { DbElasticsearchModule } from "../db.elasticsearch/db.elasticsearch.module"
 
 @Module({
-    modules: [ DbElasticsearchModule ],
-    controllers: [],
-    components: [ ProgramService ],
+    imports: [ DbElasticsearchModule ],
+    providers: [ ProgramService ],
     exports: [ ProgramService ]
 })
 export class ProgramModule {}

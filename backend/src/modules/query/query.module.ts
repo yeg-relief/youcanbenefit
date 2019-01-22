@@ -4,9 +4,8 @@ import { ApplicationQueryService } from "./ApplicationQuery.service";
 import { EsQueryService } from "./EsQuery.service"
 
 @Module({
-    modules: [ DbElasticsearchModule ],
-    controllers: [  ],
-    components: [ ApplicationQueryService, EsQueryService ],
+    imports: [ DbElasticsearchModule ],
+    providers: [ ApplicationQueryService, EsQueryService ],
     exports: [ ApplicationQueryService, EsQueryService ]
 })
 export class QueryModule {}

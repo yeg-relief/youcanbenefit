@@ -5,7 +5,6 @@ import { routing } from './admin.routes';
 import { StoreModule } from '@ngrx/store';
 import { reducer } from './reducer';
 import { EffectsModule } from '@ngrx/effects';
-import { MaterialModule } from '@angular/material';
 import { DataService } from './data.service';
 import { AdminCoreModule } from './core/admin-core.module';
 import { KeyResolverService } from './keys/overview/key-resolver.service';
@@ -29,14 +28,36 @@ import { OptionsComponent } from './screener/question-edit/mult-select-questions
 import { UserFacingProgramModule } from '../shared/modules/user-facing-program.module';
 import { DataComponent } from './data/data.component';
 import { DataManagementService } from "./data/data-management.service";
+import {
+    MatCardModule,
+    MatAutocompleteModule,
+    MatInputModule,
+    MatDividerModule,
+    MatListModule,
+    MatIconModule,
+    MatCheckboxModule,
+    MatSelectModule,
+    MatChipsModule,
+    MatButtonModule
+} from "@angular/material"
+
 
 @NgModule({
     imports: [
+        MatCardModule,
+        MatAutocompleteModule,
+        MatInputModule,
+        MatDividerModule,
+        MatListModule,
+        MatIconModule,
+        MatCheckboxModule,
+        MatSelectModule,
+        MatChipsModule,
+        MatButtonModule,
         CommonModule,
         routing,
-        MaterialModule,
-        StoreModule.provideStore(reducer),
-        EffectsModule.run(ScreenerEffects),
+        StoreModule.forRoot({root: reducer}),
+        EffectsModule.forRoot([ScreenerEffects]),
         AdminCoreModule,
         ProgramsModule,
         KeysModule,

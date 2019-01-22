@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router, NavigationEnd } from '@angular/router';
-import 'rxjs/add/operator/debounceTime';
 import { InitialRedirectService } from "./initial-redirect.service";
-
+import { map, filter, debounceTime } from 'rxjs/operators'
 
 @Component({
     selector: 'app-root',
@@ -74,10 +73,12 @@ export class AppComponent implements OnInit {
 
 
         this.router.events
-            .map(event => event instanceof NavigationEnd ? this.router.url : undefined)
-            .filter(url => !!url)
-            .debounceTime(60)
-            .map( url => [isAdminRoute(url), url] )
+            .pipe(
+                map(event => event instanceof NavigationEnd ? this.router.url : undefined),
+                filter(url => !!url),
+                debounceTime(60),
+                map( url => [isAdminRoute(url), url] )
+            )
             .subscribe( ([val, url]) => {
                 if (this.isIE) {
                     this.backgroundClass.background = false;

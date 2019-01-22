@@ -1,4 +1,4 @@
-import { Component } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { ScreenerDto } from './screener.dto';
 import { Client } from "elasticsearch";
 import { ClientService } from "../db.elasticsearch/client.service"
@@ -7,9 +7,8 @@ import { ConstantsReadonly } from "../constants.readonly"
 import "rxjs/add/observable/fromPromise"
 import "rxjs/add/operator/map"
 
-@Component()
+@Injectable()
 export class ScreenerService {
-    private readonly client: Client;
     private readonly constants = new ConstantsReadonly();
 
     readonly INDEX = 'questions';
@@ -17,9 +16,7 @@ export class ScreenerService {
 
     constructor(
         private readonly clientService: ClientService,
-    ) {
-        this.client = this.clientService.client;
-    }
+    ) { }
 
     update(data: ScreenerDto, id?: string): Observable<{[key: string]: boolean}> {
         data.created = Date.now();
