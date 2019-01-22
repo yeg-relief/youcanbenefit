@@ -1,9 +1,9 @@
-import {Component} from '@nestjs/common';
+import {Injectable} from '@nestjs/common';
 import {ClientService} from '../db.elasticsearch/client.service';
 import {Client} from 'elasticsearch'
 import {Schema} from './Schema';
 
-@Component()
+@Injectable()
 export class BackupService {
     private client: Client;
     private readonly PAGE_SIZE = 10000;

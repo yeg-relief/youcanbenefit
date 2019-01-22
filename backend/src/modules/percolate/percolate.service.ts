@@ -1,4 +1,4 @@
-import { Component } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { Client, SearchParams } from "elasticsearch";
 import { ClientService } from "../db.elasticsearch/client.service"
 import { Observable } from "rxjs/Observable";
@@ -11,7 +11,7 @@ import "rxjs/add/operator/map"
 import "rxjs/add/operator/mergeMap"
 import "rxjs/add/operator/do"
 
-@Component()
+@Injectable()
 export class PercolateService {
     private readonly client: Client;
     static readonly index = 'master_screener';

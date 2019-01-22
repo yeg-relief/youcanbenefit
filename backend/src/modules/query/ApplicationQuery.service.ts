@@ -1,4 +1,4 @@
-import { Component } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { EsQueryDto } from "./EsQuery.dto";
 import { EsQueryModel } from "./EsQuery.model";
 import { ApplicationQueryModel } from "./ApplicationQuery.model";
@@ -11,7 +11,7 @@ import "rxjs/add/operator/mergeMap"
 import "rxjs/add/operator/toArray"
 import "rxjs/add/operator/let"
 
-@Component()
+@Injectable()
 export class ApplicationQueryService {
     constructor(private queryService: EsQueryService) {}
 
