@@ -21,13 +21,15 @@ while test $# -gt 0; do
       ;;
     frontend)
       echo "Building frontend Docker image"
-      docker build --tag "cityofedmonton/youcanbenefit-web:$hash" --file "$root/build/frontend.Dockerfile" "$root/frontend"
+      cd "$root/frontend"
+      docker build --tag "cityofedmonton/youcanbenefit-web:$hash" .
       images+=("cityofedmonton/youcanbenefit-web:$hash")
       shift
       ;;
     backend)
       echo "Building backend Docker image"
-      docker build --tag "cityofedmonton/youcanbenefit-api:$hash" --file "$root/build/backend.Dockerfile" "$root/backend"
+      cd "$root/backend"
+      docker build --tag "cityofedmonton/youcanbenefit-api:$hash" .
       images+=("cityofedmonton/youcanbenefit-api:$hash")
       shift
       ;;
