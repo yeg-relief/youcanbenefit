@@ -1,7 +1,11 @@
 {
-  "name": "nest-typescript-starter",
+  "name": "youcanbenefit-api",
   "version": "1.0.0",
-  "description": "Nest TypeScript starter repository",
+  "description": "YouCanBenefit backend API.",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/yeg-relief/youcanbenefit"
+  },
   "license": "MIT",
   "scripts": {
     "start": "NODE_ENV=development nodemon",
