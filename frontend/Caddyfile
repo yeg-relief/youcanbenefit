@@ -1,20 +1,14 @@
 :443,
 :80,
-0.0.0.0:{$CADDY_PORT} {
+0.0.0.0:80 {
   tls off #internal service
 
-  proxy / youcanbenefit-web-service:80
-  
-  proxy /api youcanbenefit-api-service:{$API_PORT}
-  proxy /protected youcanbenefit-api-service:{$PROTECTED_PORT}
-  proxy /data youcanbenefit-api-service:{$DATA_PORT}
-  proxy /elastic elasticsearch-1-elasticsearch-svc:{$ELASTICSEARCH_PORT} {
-    without /elastic
-  }
+  proxy /api {$API_SERVICE}:{$API_PORT}
+  proxy /protected {$API_SERVICE}:{$API_PORT}
+  proxy /data {$API_SERVICE}:{$API_PORT}
 
   basicauth /protected {$ADMIN_USERNAME} {$ADMIN_PASSWORD}
   basicauth /data {$ADMIN_USERNAME} {$ADMIN_PASSWORD}
-  basicauth /elastic {$ELASTIC_USERNAME} {$ELASTIC_PASSWORD}
 
   rewrite /home to /index.html
 
