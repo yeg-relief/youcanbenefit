@@ -37,7 +37,7 @@ export class QueryService {
             .pipe(
                 map(res => res.json()),
                 tap( res => {
-                    if (res.created === true || res.result === 'updated') {
+                    if (res.result === 'created' || res.result === 'updated') {
                         query.conditions = query.conditions.sort( (a, b) => a.data.key.name.localeCompare(b.data.key.name));
                         this.broadcast.next({
                             id: query.data.id,

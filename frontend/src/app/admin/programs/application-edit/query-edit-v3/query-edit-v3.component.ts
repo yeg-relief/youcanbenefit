@@ -40,7 +40,7 @@ export class QueryEditV3Component implements OnInit, OnDestroy {
                 .pipe(take(1))
                 .subscribe(
                     val => {
-                        if(val.created === true || val.result === 'updated') {
+                        if(val.result === 'created' || val.result === 'updated') {
                             this.snackBar.open('query saved.', '', { duration: 2000 })
                         }else{
                             this.snackBar.open('error: query not saved.', '', { duration: 2000 })
