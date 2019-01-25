@@ -4,13 +4,15 @@ import { ProgramService } from "../Program/program.service";
 import { ScreenerService } from "../screener/screener.service"
 import { ProgramDto } from "../Program/program.dto";
 import { PercolateService } from "../percolate/percolate.service";
+import { DocumentService } from "../document/document.service"
 
 @Controller('api')
 export class ApiController {
     constructor(
         private programService: ProgramService,
         private screenerService: ScreenerService,
-        private percolateService: PercolateService
+        private percolateService: PercolateService,
+        private documentService: DocumentService
     ) {}
 
     @Get('screener')
@@ -26,6 +28,11 @@ export class ApiController {
     @Get('program/:guid')
     getProgramByGuid(@Param() params): Promise<ProgramDto> {
         return this.programService.getByGuid(params.guid);
+    }
+
+    @Post('document')
+    createDocument(@Body() body): Promise<any>{
+        return this.documentService.create(body);
     }
 
     @Post('notification')
