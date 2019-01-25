@@ -134,8 +134,8 @@ export class QuickLinksComponent implements OnInit, AfterViewInit {
                 <p>
                     You can use this calculator to see what child and family benefits you may be able to get and how much your payments may be. 
                     Check out the calculator at 
-                    <a target="_blank" href="http://www.cra-arc.gc.ca/benefits-calculator/index.html">
-                        www.cra-arc.gc.ca/benefits-calculator/index.html
+                    <a target="_blank" href="https://www.canada.ca/en/revenue-agency/services/child-family-benefits/child-family-benefits-calculator.html">
+                    https://www.canada.ca/en/revenue-agency/services/child-family-benefits/child-family-benefits-calculator.html
                     </a>
                 </p>
                 `
