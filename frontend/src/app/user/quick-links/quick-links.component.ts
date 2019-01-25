@@ -139,6 +139,19 @@ export class QuickLinksComponent implements OnInit, AfterViewInit {
                     </a>
                 </p>
                 `
+            },
+            {
+                subtitle: 'Canadian Retirement Income Calculator',
+                title: 'Canadian Retirement Income Calculator',
+                fragment: 'retirement-calculator',
+                content: `
+                <p>
+                    You can use this calculator to determine what your estimated annual retirement income will be.
+                    <a target="_blank" href="https://srv111.services.gc.ca/GeneralInformation/Index">
+                    https://srv111.services.gc.ca/GeneralInformation/Index
+                    </a>
+                </p>
+                `
             }
         ].sort((a, b) => a.title.localeCompare(b.title))
     };
