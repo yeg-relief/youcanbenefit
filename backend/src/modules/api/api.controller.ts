@@ -28,6 +28,11 @@ export class ApiController {
         return this.programService.getByGuid(params.guid);
     }
 
+    @Post('document')
+    createDocument(@Body() body): Observable<any>{
+        return Observable.from(Promise.resolve('hello'));
+    }
+
     @Post('notification')
     getProgramsFromForm(@Body() body): Observable<ProgramDto[]> {
         return this.percolateService.precolate(body);
