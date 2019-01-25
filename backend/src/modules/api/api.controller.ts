@@ -4,13 +4,15 @@ import { ProgramService } from "../Program/program.service";
 import { ScreenerService } from "../screener/screener.service"
 import { ProgramDto } from "../Program/program.dto";
 import { PercolateService } from "../percolate/percolate.service";
+import { DocumentService } from "../document/document.service"
 
 @Controller('api')
 export class ApiController {
     constructor(
         private programService: ProgramService,
         private screenerService: ScreenerService,
-        private percolateService: PercolateService
+        private percolateService: PercolateService,
+        private documentService: DocumentService
     ) {}
 
     @Get('screener')
@@ -29,8 +31,8 @@ export class ApiController {
     }
 
     @Post('document')
-    createDocument(@Body() body): Observable<any>{
-        return Observable.from(Promise.resolve('hello'));
+    createDocument(@Body() body): Promise<any>{
+        return this.documentService.create(body);
     }
 
     @Post('notification')
