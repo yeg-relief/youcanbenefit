@@ -3,6 +3,11 @@
     <h3 > Eligibility Screener </h3>
 </div>
 
+
+<div id="statement">
+    <p>YouCanBenefit can be used to find out what benefits you are eligible for right now. It can also be used to plan ahead by finding out what benefits you might be able to get in the future if your life changes. Feel free to submit this questionnaire as many times as you like to explore different possibilities.</p>
+</div>
+
 <main *ngIf="!loading" [@flyinHalf]>
     <div *ngIf="errorMessage" class="center"> <strong>{{errorMessage}} </strong></div>
     <form novalidate (ngSubmit)="onSubmit()" [formGroup]="form" *ngIf="errorMessage.length === 0 && questions.length > 0">

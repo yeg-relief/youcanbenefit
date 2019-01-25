@@ -32,6 +32,14 @@ main {
     border: solid 1px lightgrey;
 }
 
+#statement {
+    margin: 1em auto 1em auto;
+    background-color: transparent;
+    border-radius: 10px;
+    text-align: center;
+    border: solid 1px lightgrey;
+}
+
 @media(min-width: 64em) {
     .questions {
         width: 60%;
@@ -39,6 +47,10 @@ main {
     }
 
     #preface {
+        width: 60%;
+    }
+
+    #statement {
         width: 60%;
     }
 
@@ -59,6 +71,10 @@ main {
         width: 70%;
     }
 
+    #statement {
+        width: 70%;
+    }
+
     #submit-button {
         width: 65%;
     }
@@ -72,6 +88,10 @@ main {
     }
 
     #preface {
+        width: 80%;
+    }
+
+    #statement {
         width: 80%;
     }
 
@@ -91,6 +111,10 @@ main {
         width: 90%;
     }
 
+    #statement {
+        width: 90%;
+    }
+
     #submit-button {
         width: 85%;
     }
@@ -104,6 +128,10 @@ main {
     }
 
     #preface {
+        width: 92.5%;
+    }
+
+    #statement {
         width: 92.5%;
     }
 
