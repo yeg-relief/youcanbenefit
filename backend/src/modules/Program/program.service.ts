@@ -1,4 +1,4 @@
-import { Component } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { ProgramDto } from './program.dto';
 import { Client } from "elasticsearch";
 import { ClientService } from "../db.elasticsearch/client.service"
@@ -8,7 +8,7 @@ import "rxjs/add/operator/map"
 import "rxjs/add/operator/do"
 const uuidv4 = require("uuid/v4");
 
-@Component()
+@Injectable()
 export class ProgramService {
     private readonly INDEX = "programs";
     private readonly TYPE = "user_facing";

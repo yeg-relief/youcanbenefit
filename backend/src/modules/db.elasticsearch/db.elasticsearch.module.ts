@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { ClientService } from "./client.service";
+import { SearchModule } from './search.module'
 
 @Module({
-    modules: [  ],
-    controllers: [ ],
-    components: [ ClientService ],
+    imports: [ SearchModule ],
+    providers: [ ClientService ],
     exports: [ ClientService ]
 })
 export class DbElasticsearchModule {}

@@ -1,7 +1,7 @@
 import { ApplicationFacingProgram } from '../../../models/program';
 import { FilterMessage } from './index';
-import { Observable } from 'rxjs/Observable';
-
+import { Observable } from 'rxjs';
+import { scan } from 'rxjs/operators'
 
 export class ProgramState {
   filter: FilterMessage;
@@ -17,33 +17,31 @@ export class ProgramState {
 }
 
 
-export function updateState(input$: Observable<FilterMessage | ApplicationFacingProgram[] | ApplicationFacingProgram>)
-  : Observable<ProgramState> {
+export function updateState(input$: Observable<FilterMessage | ApplicationFacingProgram[] | ApplicationFacingProgram>) : Observable<ProgramState> {
   
-  const INITIAL_STATE =
-  new ProgramState(
-    [],
-    new FilterMessage({ type: '', value: 'none' }),
-  );
+  const INITIAL_STATE = new ProgramState([], new FilterMessage({ type: '', value: 'none' }));
   
-  return input$.scan((state: ProgramState, update: FilterMessage | ApplicationFacingProgram[] | ApplicationFacingProgram) => {
-    if (update instanceof FilterMessage) {
-      state.filter = update;
-      return state;
-    } else if (Array.isArray(update)) {
-      state.programs = [...update].filter(program => program.guid !== undefined && program.guid !== null).sort(programComparator);
-      return state;
-    } else if (typeof update === 'object' && update.guid !== undefined) {
-      const index = state.programs.findIndex(p => p.guid === update.guid)
-
-      if (index >= 0) {
-        state.programs[index] = update;
-      }
-      return state;
-    }
-
-    return INITIAL_STATE;
-  }, INITIAL_STATE)
+  return input$
+    .pipe(
+      scan((state: ProgramState, update: FilterMessage | ApplicationFacingProgram[] | ApplicationFacingProgram) => {
+        if (update instanceof FilterMessage) {
+          state.filter = update;
+          return state;
+        } else if (Array.isArray(update)) {
+          state.programs = [...update].filter(program => program.guid !== undefined && program.guid !== null).sort(programComparator);
+          return state;
+        } else if (typeof update === 'object' && update.guid !== undefined) {
+          const index = state.programs.findIndex(p => p.guid === update.guid)
+    
+          if (index >= 0) {
+            state.programs[index] = update;
+          }
+          return state;
+        }
+    
+        return INITIAL_STATE;
+      }, INITIAL_STATE)
+    )
 }
 
 

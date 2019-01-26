@@ -3,7 +3,15 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { UserFacingProgramComponent } from
     '../components/program/user-facing-program/user-facing-program.component';
-import { MaterialModule } from '@angular/material';
+import {
+  MatDialogModule,
+  MatButtonModule,
+  MatIconModule,
+  MatCardModule,
+  MatChipsModule,
+  MatListModule,
+  MatTooltipModule,
+} from '@angular/material';
 import { ProgramRowComponent } from
     '../components/program/user-facing-program/program-row/program-row.component'
 import { DetailModalComponent } from '../components/program/detail-modal/detail-modal.component';
@@ -15,7 +23,14 @@ import { ListTagContainerComponent } from "../components/program-list/list-tag-c
 @NgModule({
     imports: [
         CommonModule,
-        MaterialModule,
+        MatDialogModule, 
+        MatButtonModule, 
+        MatIconModule, 
+        MatCardModule, 
+        MatChipsModule, 
+        MatListModule,
+        MatTooltipModule,
+        MatIconModule,
         RouterModule,
     ],
     declarations: [

@@ -1,4 +1,4 @@
-button[md-button].active {
+button[mat-button].active {
     background-color: darkorange;
 }
 
@@ -56,12 +56,25 @@ select {
     padding-bottom: 4px;
 }
 
-button[md-button]:not(.active):hover {
+button[mat-button]:not(.active):hover {
     background-color: pink;
     color: black;
 }
 
-button[md-button] {
+button[mat-button] {
     font-family: 'Open Sans', sans-serif;
     font-size: 110%;
+}
+
+
+@media screen and (max-width: 500px){
+    .lg-show {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 500px) {
+    .lg-hide {
+        display: none;
+    }
 }

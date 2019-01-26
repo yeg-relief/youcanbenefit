@@ -8,7 +8,7 @@
 }
 
 
-#result-count > md-card-title {
+#result-count > mat-card-title {
     font-family: 'Open Sans', sans-serif;
 }
 

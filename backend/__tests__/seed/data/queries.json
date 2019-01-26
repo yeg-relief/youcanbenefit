@@ -1,0 +1,1330 @@
+[
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "spouse": false } },
+          { "term": { "children": false } },
+          { "range": { "grossincome": { "lte": 31186 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "NMh2Fu1IG5XnpOf5b6zu2t1Hh6",
+      "id": "FYOK6fk2sF4OZ1fx7I2G7W88uA"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "children": true } },
+          { "term": { "childcare": true } },
+          { "range": { "youngestchild": { "lte": 12 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "K08iJHYVRGL5pBOomOvwa2zwX2",
+      "id": "e655VOQ1qhGw494xqv1wkbgFqZ"
+    }
+  },
+  {
+    "query": { "bool": { "must": [{ "term": { "victim": true } }] } },
+    "meta": {
+      "program_guid": "bzf4ryrVVsKkqpsEA5dBZd2kP5",
+      "id": "0LOEWEuGIcrIUKfQOScJGgzeuw"
+    }
+  },
+  {
+    "query": { "bool": { "must": [{ "term": { "aish": true } }] } },
+    "meta": {
+      "program_guid": "7Vo9xE20WJJJ1ZORDlog1odyzo",
+      "id": "BNevTmioTDgu769J6L5D5a8cIN"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "age": { "gte": 65 } } },
+          { "term": { "spouse": true } },
+          { "range": { "grossincome": { "lte": 63350 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "1iXreywnofiF2jKKknlbKRXAtX",
+      "id": "2wUl4V609svowjB7bDKaxFlQD9"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "age": { "lte": 65 } } },
+          { "term": { "disability": true } },
+          { "term": { "needincome": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "1lKYPN8nNaAMldGufGZNEwfjIK",
+      "id": "KEneBGtYLDQJ6yMk2cg34EBZdO"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "children": true } },
+          { "term": { "childdisability": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "BcKJhMTErAsHfXq1jzealos8kp",
+      "id": "Jso58WDyBO6jduPMGMHjSUw8Ce"
+    }
+  },
+  {
+    "query": { "bool": { "must": [{ "term": { "albertaworks": true } }] } },
+    "meta": {
+      "program_guid": "HiGYI2bhBoQ6n82R9ptoNZ0oaQ",
+      "id": "wPdqol6u5o7rN5oIy4mQgcyxX1"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "grossincome": { "lte": 31237 } } },
+          { "term": { "spouse": true } },
+          { "term": { "numberchildren": 1 } },
+          { "term": { "children": true } },
+          { "term": { "albertaworks": false } },
+          { "term": { "aish": false } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "nQXxT1OMhPGbkqkPHc2QTpofRv",
+      "id": "XsVRvsZeLOLgQhqZLwiLXaHFQk"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "grossincome": { "lte": 36325 } } },
+          { "term": { "numberchildren": 2 } },
+          { "term": { "children": true } },
+          { "term": { "spouse": false } },
+          { "term": { "albertaworks": false } },
+          { "term": { "aish": false } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "nQXxT1OMhPGbkqkPHc2QTpofRv",
+      "id": "m6b1jkRrVWGTxqr33nmh5gExfD"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "children": true } },
+          { "range": { "grossincome": { "lte": 63640 } } },
+          { "term": { "numberchildren": 6 } },
+          { "range": { "youngestchild": { "lte": 14 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "8U2rl4Ha5GXBVqjNStudvzHIch",
+      "id": "2ORqn8lb2oORRSvf7Jt5G60gDt"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "children": true } },
+          { "range": { "grossincome": { "lte": 57724 } } },
+          { "term": { "numberchildren": 5 } },
+          { "range": { "youngestchild": { "lte": 14 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "8U2rl4Ha5GXBVqjNStudvzHIch",
+      "id": "A8Bm3s4wNR2FRLbtXOpAeyk7iQ"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "grossincome": { "lte": 52583 } } },
+          { "term": { "numberchildren": 3 } },
+          { "term": { "children": true } },
+          { "term": { "spouse": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "7Vo9xE20WJJJ1ZORDlog1odyzo",
+      "id": "lzOm0j1ruUfKkjhd6fCObXRW5Q"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "grossincome": { "lte": 46362 } } },
+          { "term": { "children": true } },
+          { "term": { "numberchildren": 2 } },
+          { "term": { "spouse": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "7Vo9xE20WJJJ1ZORDlog1odyzo",
+      "id": "VnLsYRBt92CR8eyCETK4G3aPPM"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "youngestchild": { "gte": 4 } } },
+          { "term": { "children": true } },
+          { "term": { "recreation": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "NTVwRTvMb82TIB5VLbf3v36tZN",
+      "id": "B6TW605ZCeb85od9e6sfZB6gQd"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "spouse": false } },
+          { "term": { "children": true } },
+          { "term": { "numberchildren": 5 } },
+          { "range": { "grossincome": { "lte": 59304 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "7Vo9xE20WJJJ1ZORDlog1odyzo",
+      "id": "8e3wTuBPIwuyvCfJSL6qRDQpbe"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "albertaworks": true } },
+          { "term": { "recreation": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "EY1QV5T6AyB4Ykl2Lt1Nt9kf9g",
+      "id": "gBMSAb1SMSQ4PWyC45EnRgUdjD"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "spouse": true } },
+          { "term": { "numberchildren": 4 } },
+          { "range": { "grossincome": { "lte": 46932 } } },
+          { "term": { "children": true } },
+          { "term": { "albertaworks": false } },
+          { "term": { "aish": false } },
+          { "range": { "age": { "lt": 65 } } },
+          { "term": { "pregnant": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "hp5mupqcVY8ZMiKg7Q91Uoi4Wf",
+      "id": "vM0Rtnrpx4aDVWy4eFO8vAUuTf"
+    }
+  },
+  {
+    "query": { "bool": { "must": [{ "term": { "childdisability": true } }] } },
+    "meta": {
+      "program_guid": "UbdhHxTUe3N5zm5BxR6WQ2i6vf",
+      "id": "vPVPzD4NDaVzbGaennIMcZkVSU"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "empoyment": true } },
+          { "term": { "children": true } },
+          { "term": { "numberchildren": 2 } },
+          { "range": { "grossincome": { "lte": 78676 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "OGR28icdrofstoYETvIGg19XAv",
+      "id": "3Kx0FTsyx9Hqw4sg7wh0sFIKKS"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "children": true } },
+          { "term": { "stayathome": true } },
+          { "range": { "youngestchild": { "lte": 6 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "9dHBCUXa0z8tEZg6QcYMBJVXjf",
+      "id": "Sf1WxcGf3y2SPDbMFoVBj7KVHD"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "age": { "gte": 65 } } },
+          { "term": { "spouse": true } },
+          { "range": { "grossincome": { "lte": 44335 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "JIcpL1cap5Eg0ikPk2tecp6JG7",
+      "id": "keYjE3IbT8ApFlLq5KZrBSWqFt"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "childcare": true } },
+          { "range": { "youngestchild": { "lte": 0 } } },
+          { "term": { "children": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "K08iJHYVRGL5pBOomOvwa2zwX2",
+      "id": "Y81057maOOdbLbev0IhuVrV4P2"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "grossincome": { "lte": 26023 } } },
+          { "term": { "numberchildren": 1 } },
+          { "term": { "children": true } },
+          { "term": { "spouse": false } },
+          { "term": { "albertaworks": false } },
+          { "term": { "aish": false } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "nQXxT1OMhPGbkqkPHc2QTpofRv",
+      "id": "kzak7zAzlYMGU6Ybo8aq8vNBLB"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "grossincome": { "lte": 45916 } } },
+          { "range": { "numberchildren": { "lte": 3 } } },
+          { "term": { "children": true } },
+          { "range": { "youngestchild": { "lte": 14 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "8U2rl4Ha5GXBVqjNStudvzHIch",
+      "id": "RMpreSSoH5aSclD5M0vqHmSJfA"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "grossincome": { "lte": 38826 } } },
+          { "term": { "numberchildren": 1 } },
+          { "term": { "children": true } },
+          { "term": { "spouse": false } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "NMh2Fu1IG5XnpOf5b6zu2t1Hh6",
+      "id": "ewnzVrqgkpAm5mQU5O5ayiO1DW"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "grossincome": { "lte": 47731 } } },
+          { "term": { "numberchildren": 2 } },
+          { "term": { "children": true } },
+          { "term": { "spouse": false } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "NMh2Fu1IG5XnpOf5b6zu2t1Hh6",
+      "id": "hqyCT9IOzYcN2LH29YapIPdJnU"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "grossincome": { "lte": 38185 } } },
+          { "term": { "numberchildren": 2 } },
+          { "term": { "children": true } },
+          { "term": { "spouse": false } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "7Vo9xE20WJJJ1ZORDlog1odyzo",
+      "id": "xsLvcq5mCBdFNiKdf48jYBsOW4"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "age": { "gte": 65 } } },
+          { "range": { "grossincome": { "lte": 121314 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "zXRcJxGzIrwhmk5LTbE4jdwBMh",
+      "id": "yAModAKLjobHGmre56bNBxJSt6"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "spouse": false } },
+          { "term": { "children": true } },
+          { "range": { "grossincome": { "lte": 66027 } } },
+          { "range": { "numberchildren": { "gte": 6 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "7Vo9xE20WJJJ1ZORDlog1odyzo",
+      "id": "fUs7Bb1KjWJ75sFdUOJgrwg1iQ"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "numberchildren": { "gte": 5 } } },
+          { "term": { "children": true } },
+          { "term": { "spouse": true } },
+          { "range": { "grossincome": { "lte": 82534 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "NMh2Fu1IG5XnpOf5b6zu2t1Hh6",
+      "id": "Vwk9WOw50b1WYpVMFcsC7ab6yD"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "age": { "gte": 19 } } },
+          { "term": { "children": true } },
+          { "term": { "empoyment": true } },
+          { "range": { "grossincome": { "lte": 27905 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "IO2YsSRkLCIZwIcYGjO6rNkxUE",
+      "id": "N14KVQlJdNI4rwotwESm2eYPkZ"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "numberchildren": 5 } },
+          { "term": { "children": true } },
+          { "term": { "spouse": false } },
+          { "range": { "grossincome": { "lte": 74139 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "NMh2Fu1IG5XnpOf5b6zu2t1Hh6",
+      "id": "KcFpnE0cPNwfaIMp1U2hjyyZHn"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "grossincome": { "lte": 57953 } } },
+          { "term": { "numberchildren": 2 } },
+          { "term": { "children": true } },
+          { "term": { "spouse": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "NMh2Fu1IG5XnpOf5b6zu2t1Hh6",
+      "id": "YPHpXVQNmCI3Ej6moXdx6lOziU"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "age": { "gte": 19 } } },
+          { "term": { "children": false } },
+          { "range": { "grossincome": { "lte": 19717 } } },
+          { "term": { "spouse": false } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "IO2YsSRkLCIZwIcYGjO6rNkxUE",
+      "id": "ClUhqtlSDOhzQTc7dlKvVwiWqI"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "aish": true } },
+          { "term": { "recreation": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "EY1QV5T6AyB4Ykl2Lt1Nt9kf9g",
+      "id": "pQJWgFucOYJm8smzYYXUACu9pW"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "age": { "lt": 65 } } },
+          { "term": { "aish": false } },
+          { "term": { "albertaworks": false } },
+          { "term": { "spouse": false } },
+          { "term": { "children": true } },
+          { "term": { "numberchildren": 1 } },
+          { "range": { "grossincome": { "lte": 26023 } } },
+          { "term": { "pregnant": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "hp5mupqcVY8ZMiKg7Q91Uoi4Wf",
+      "id": "d5NswIlUvzxY0AJ1hGm4eKQtS4"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "pregnant": true } },
+          { "range": { "age": { "lt": 65 } } },
+          { "term": { "aish": false } },
+          { "term": { "albertaworks": false } },
+          { "term": { "spouse": false } },
+          { "term": { "children": false } },
+          { "range": { "grossincome": { "lte": 16580 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "hp5mupqcVY8ZMiKg7Q91Uoi4Wf",
+      "id": "JeXk8cOZnqJMepmHpxDqpsEXNE"
+    }
+  },
+  {
+    "query": {
+      "bool": { "must": [{ "range": { "grossincome": { "lte": 25000 } } }] }
+    },
+    "meta": {
+      "program_guid": "5b1J8A2fhE9cwVo9W5MfbLmuNr",
+      "id": "GRIQnmw3f7DVtK9KX9muH9qsa7"
+    }
+  },
+  {
+    "query": { "bool": { "must": [{ "term": { "disability": true } }] } },
+    "meta": {
+      "program_guid": "UbdhHxTUe3N5zm5BxR6WQ2i6vf",
+      "id": "mvvP8SJMN1KPtHvvlEJNNEV9lf"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "spouse": false } },
+          { "term": { "children": false } },
+          { "range": { "grossincome": { "lte": 24949 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "7Vo9xE20WJJJ1ZORDlog1odyzo",
+      "id": "NmzSeyPmMuu7BT6c5dkI0vZVtl"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "disability": true } },
+          { "range": { "age": { "lt": 65 } } },
+          { "term": { "cppcontributions": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "8Lqu2z4WCAP9w5sjhcAeOKuHN5",
+      "id": "cVyxm1ILkVg9fwxK53rvzvjorG"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "spouse": true } },
+          { "term": { "children": false } },
+          { "range": { "grossincome": { "lte": 31061 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "7Vo9xE20WJJJ1ZORDlog1odyzo",
+      "id": "vvH1AgRrWHwp2T4ikuaZeBCYVx"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "age": { "gte": 65 } } },
+          { "term": { "spouse": false } },
+          { "range": { "grossincome": { "lte": 31675 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "1iXreywnofiF2jKKknlbKRXAtX",
+      "id": "sQGVNLcz9eYoJmi6Bg9jsCwCka"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "age": { "gte": 65 } } },
+          { "range": { "grossincome": { "lte": 17544 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "Y5KEzulkwxviOuzB4Ny5QTzMGD",
+      "id": "ONzlceqOoECeHkELmgoFS6xC88"
+    }
+  },
+  {
+    "query": {
+      "bool": { "must": [{ "range": { "grossincome": { "gte": 0 } } }] }
+    },
+    "meta": {
+      "program_guid": "GiufEa3ziFwfBEgkjI2gIlfNkk",
+      "id": "I0yNLlwkGykQneDL9RkfuTLSnL"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "grossincome": { "lte": 36634 } } },
+          { "term": { "spouse": true } },
+          { "term": { "numberchildren": 2 } },
+          { "term": { "children": true } },
+          { "term": { "albertaworks": false } },
+          { "term": { "aish": false } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "nQXxT1OMhPGbkqkPHc2QTpofRv",
+      "id": "u8PLVx8TZjhCxSHy3ZIWXimoQT"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "children": true } },
+          { "range": { "grossincome": { "lte": 51809 } } },
+          { "term": { "numberchildren": 4 } },
+          { "range": { "youngestchild": { "lte": 14 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "8U2rl4Ha5GXBVqjNStudvzHIch",
+      "id": "hAL9r2zsn6sYTXafeK6DeJiTFh"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "spouse": true } },
+          { "term": { "children": true } },
+          { "term": { "numberchildren": 4 } },
+          { "range": { "grossincome": { "lte": 59304 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "7Vo9xE20WJJJ1ZORDlog1odyzo",
+      "id": "aHeSXel9akciqC9rQtNFfNXpQv"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "grossincome": { "lte": 31061 } } },
+          { "term": { "numberchildren": 1 } },
+          { "term": { "children": true } },
+          { "term": { "spouse": false } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "7Vo9xE20WJJJ1ZORDlog1odyzo",
+      "id": "waqDZ58bQNWuWCZWpySSmwbr0d"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "oas": true } },
+          { "range": { "age": { "gte": 65 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "kc0ov01FtBgr88C5P6EE6lnC8s",
+      "id": "tgoJkviY6uoWeOMVnmovIClZb2"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "grossincome": { "lte": 57953 } } },
+          { "term": { "numberchildren": 3 } },
+          { "term": { "children": true } },
+          { "term": { "spouse": false } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "NMh2Fu1IG5XnpOf5b6zu2t1Hh6",
+      "id": "JpYoW075fsJP8bYdniAFGY1LcD"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "grossincome": { "lte": 65729 } } },
+          { "term": { "numberchildren": 3 } },
+          { "term": { "children": true } },
+          { "term": { "spouse": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "NMh2Fu1IG5XnpOf5b6zu2t1Hh6",
+      "id": "4C6L9xqwkLAzFQRC6aLHdCVa7E"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "children": true } },
+          { "term": { "numberchildren": 4 } },
+          { "term": { "spouse": true } },
+          { "range": { "grossincome": { "lte": 74139 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "NMh2Fu1IG5XnpOf5b6zu2t1Hh6",
+      "id": "z3cGFHydqj3RQXjgjLx2D4F0kG"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "age": { "gte": 19 } } },
+          { "term": { "children": false } },
+          { "range": { "grossincome": { "lte": 27905 } } },
+          { "term": { "spouse": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "IO2YsSRkLCIZwIcYGjO6rNkxUE",
+      "id": "bYq0aS7uVHSkSuop8nWMJ02iRf"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "grossincome": { "lte": 23212 } } },
+          { "term": { "albertaworks": false } },
+          { "term": { "children": false } },
+          { "term": { "spouse": true } },
+          { "term": { "aish": false } },
+          { "range": { "age": { "lt": 65 } } },
+          { "term": { "pregnant": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "hp5mupqcVY8ZMiKg7Q91Uoi4Wf",
+      "id": "jzMQkEK41gnhmwWyxAuWF3eZ4d"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "aish": false } },
+          { "term": { "albertaworks": false } },
+          { "term": { "children": true } },
+          { "term": { "numberchildren": 2 } },
+          { "term": { "spouse": true } },
+          { "range": { "age": { "lt": 65 } } },
+          { "range": { "grossincome": { "lte": 36634 } } },
+          { "term": { "pregnant": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "hp5mupqcVY8ZMiKg7Q91Uoi4Wf",
+      "id": "wgLgrNpNO6WYMjMSbiGiI4ABLt"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "aish": false } },
+          { "term": { "albertaworks": false } },
+          { "term": { "children": true } },
+          { "term": { "numberchildren": 4 } },
+          { "term": { "spouse": false } },
+          { "range": { "age": { "lt": 65 } } },
+          { "range": { "grossincome": { "lte": 41957 } } },
+          { "term": { "pregnant": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "hp5mupqcVY8ZMiKg7Q91Uoi4Wf",
+      "id": "C8NZoL1Nf7VEgEC4VMFI9GlebN"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "spouse": false } },
+          { "term": { "numberchildren": 3 } },
+          { "term": { "children": true } },
+          { "range": { "grossincome": { "lt": 36325 } } },
+          { "term": { "albertaworks": false } },
+          { "term": { "aish": false } },
+          { "range": { "age": { "lt": 65 } } },
+          { "term": { "pregnant": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "hp5mupqcVY8ZMiKg7Q91Uoi4Wf",
+      "id": "fMwdx1jiAZUt09ALDer98GardT"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "empoyment": true } },
+          { "term": { "children": true } },
+          { "range": { "numberchildren": { "gte": 4 } } },
+          { "range": { "grossincome": { "lte": 92736 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "OGR28icdrofstoYETvIGg19XAv",
+      "id": "tDghoolWAZcv4JXuckwCb6KA3k"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "children": true } },
+          { "term": { "empoyment": true } },
+          { "term": { "numberchildren": 3 } },
+          { "range": { "grossincome": { "lte": 89236 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "OGR28icdrofstoYETvIGg19XAv",
+      "id": "KrdE0bdpq7J8vXJiy4Q8SllQFo"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "spouse": true } },
+          { "term": { "children": false } },
+          { "range": { "grossincome": { "lte": 38826 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "NMh2Fu1IG5XnpOf5b6zu2t1Hh6",
+      "id": "oNTsBxrOAIWlqoXKxjxO0pD0Mb"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "age": { "gte": 65 } } },
+          { "term": { "spouse": false } },
+          { "range": { "grossincome": { "lte": 27300 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "JIcpL1cap5Eg0ikPk2tecp6JG7",
+      "id": "y5tht3PDqR4H7ybpsjJIrJIMS5"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "children": true } },
+          { "range": { "youngestchild": { "lte": 16 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "oZ68OrZFpvkMMGHqV3CFELhuVY",
+      "id": "4JVTBXbPLXvh1pYGfcKQxh0F6q"
+    }
+  },
+  {
+    "query": { "bool": { "must": [{ "range": { "age": { "gte": 65 } } }] } },
+    "meta": {
+      "program_guid": "9rRXexrA3JzmXbFdKCmjtTj57l",
+      "id": "jUFsXz7O53LBU8ciTV0LvFC67g"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "grossincome": { "lte": 41594 } } },
+          { "term": { "spouse": true } },
+          { "term": { "numberchildren": 3 } },
+          { "term": { "children": true } },
+          { "term": { "albertaworks": false } },
+          { "term": { "aish": false } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "nQXxT1OMhPGbkqkPHc2QTpofRv",
+      "id": "QgvZnzvcvmLHXva5317ItGGiVL"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "grossincome": { "lte": 36325 } } },
+          { "term": { "numberchildren": 3 } },
+          { "term": { "children": true } },
+          { "term": { "spouse": false } },
+          { "term": { "albertaworks": false } },
+          { "term": { "aish": false } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "nQXxT1OMhPGbkqkPHc2QTpofRv",
+      "id": "EJnCRCVLxUZOw4QnkO1Psd9B5y"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "children": true } },
+          { "range": { "grossincome": { "lte": 69556 } } },
+          { "range": { "numberchildren": { "gte": 7 } } },
+          { "range": { "youngestchild": { "lte": 14 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "8U2rl4Ha5GXBVqjNStudvzHIch",
+      "id": "bkZsB751Q3CEmmjL9SrtLoggH0"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "numberchildren": { "gte": 6 } } },
+          { "term": { "children": true } },
+          { "term": { "spouse": false } },
+          { "range": { "grossincome": { "lte": 82534 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "NMh2Fu1IG5XnpOf5b6zu2t1Hh6",
+      "id": "ExJfXb7YoU0bcmTijLMmOZ3n9o"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "spouse": false } },
+          { "range": { "grossincome": { "lte": 52583 } } },
+          { "term": { "children": true } },
+          { "term": { "numberchildren": 4 } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "7Vo9xE20WJJJ1ZORDlog1odyzo",
+      "id": "P9jw5D6wgObpCsETxjjsGIVXzI"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "numberchildren": 4 } },
+          { "term": { "spouse": false } },
+          { "term": { "children": true } },
+          { "range": { "grossincome": { "lte": 65729 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "NMh2Fu1IG5XnpOf5b6zu2t1Hh6",
+      "id": "ZQ2IG6q3zc643SxnrG9kwumNoV"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "spouse": true } },
+          { "term": { "children": true } },
+          { "range": { "grossincome": { "lte": 66027 } } },
+          { "range": { "numberchildren": { "gte": 5 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "7Vo9xE20WJJJ1ZORDlog1odyzo",
+      "id": "K2J94CYV9o5kMy2XI0jayCvkwX"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "numberchildren": 2 } },
+          { "range": { "grossincome": { "lte": 31010 } } },
+          { "term": { "children": true } },
+          { "term": { "albertaworks": false } },
+          { "term": { "aish": false } },
+          { "range": { "age": { "lt": 65 } } },
+          { "term": { "spouse": false } },
+          { "term": { "pregnant": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "hp5mupqcVY8ZMiKg7Q91Uoi4Wf",
+      "id": "jI1HlTlpbULsSVUmHnYi3ZlVJ7"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "aish": false } },
+          { "term": { "albertaworks": false } },
+          { "term": { "children": true } },
+          { "term": { "numberchildren": 1 } },
+          { "term": { "spouse": true } },
+          { "range": { "age": { "lt": 65 } } },
+          { "range": { "grossincome": { "lte": 31237 } } },
+          { "term": { "pregnant": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "hp5mupqcVY8ZMiKg7Q91Uoi4Wf",
+      "id": "qZyokzKnpIw3Ue6mdTi8je3knK"
+    }
+  },
+  {
+    "query": { "bool": { "must": [{ "term": { "children": true } }] } },
+    "meta": {
+      "program_guid": "ZPNzWEr5XfUq5aYdy2bSYIKO5T",
+      "id": "a53Yp7GXjvBX7dM7rDOH1Cr5Vp"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "empoyment": true } },
+          { "term": { "children": true } },
+          { "term": { "numberchildren": 1 } },
+          { "range": { "grossincome": { "lte": 61111 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "OGR28icdrofstoYETvIGg19XAv",
+      "id": "hproSPJEPervrwFwHnMOUWsdYi"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "children": true } },
+          { "range": { "youngestchild": { "lt": 12 } } },
+          { "term": { "kincare": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "iHPbkwKFsck9ZLnMePKSj5e5mz",
+      "id": "ByilvC7F37RdSm1aTcw3xa1gYm"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "disability": true } },
+          { "range": { "age": { "lt": 60 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "BcKJhMTErAsHfXq1jzealos8kp",
+      "id": "oPJF9HPPCmFY09o4IpmiDsjVJx"
+    }
+  },
+  {
+    "query": { "bool": { "must": [{ "term": { "albertaworks": true } }] } },
+    "meta": {
+      "program_guid": "sgKMX0336kgepHbPeObRLOvcFL",
+      "id": "oJZN5FvcBDDv8T8l8cexXws48r"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "grossincome": { "lte": 46362 } } },
+          { "term": { "numberchildren": 3 } },
+          { "term": { "children": true } },
+          { "term": { "spouse": false } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "7Vo9xE20WJJJ1ZORDlog1odyzo",
+      "id": "cRSgT8mgQDBcbwHuVuu47CV2EC"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "grossincome": { "lte": 38185 } } },
+          { "term": { "numberchildren": 1 } },
+          { "term": { "children": true } },
+          { "term": { "spouse": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "7Vo9xE20WJJJ1ZORDlog1odyzo",
+      "id": "ZdLhg2PImCJcTQJJGszhUBE2es"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "grossincome": { "lte": 47731 } } },
+          { "term": { "numberchildren": 1 } },
+          { "term": { "children": true } },
+          { "term": { "spouse": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "NMh2Fu1IG5XnpOf5b6zu2t1Hh6",
+      "id": "slIx1MImf1Io9c0sxkgT5wTBu9"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "age": { "lt": 65 } } },
+          { "term": { "aish": false } },
+          { "term": { "albertaworks": false } },
+          { "term": { "children": true } },
+          { "range": { "grossincome": { "lte": 41957 } } },
+          { "term": { "numberchildren": 4 } },
+          { "term": { "spouse": false } },
+          { "term": { "pregnant": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "hp5mupqcVY8ZMiKg7Q91Uoi4Wf",
+      "id": "NOyR66aE30dJYXgdHJ2CvGLpnx"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "albertaworks": false } },
+          { "term": { "aish": false } },
+          { "term": { "children": true } },
+          { "term": { "numberchildren": 3 } },
+          { "term": { "spouse": true } },
+          { "range": { "age": { "lt": 65 } } },
+          { "range": { "grossincome": { "lte": 41594 } } },
+          { "term": { "pregnant": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "hp5mupqcVY8ZMiKg7Q91Uoi4Wf",
+      "id": "vCYJSMCl8vxwkYKpU74Gcy1BVg"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "disability": true } },
+          { "term": { "children": false } },
+          { "term": { "spouse": false } },
+          { "range": { "grossincome": { "lte": 36900 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "tWucjcIELoF0O1Z0DksuXWDGY7",
+      "id": "X4yslFLYfBswm1k3yor6JkqNq8"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "childdisability": true } },
+          { "term": { "children": true } },
+          { "term": { "numberchildren": 2 } },
+          { "term": { "spouse": true } },
+          { "range": { "grossincome": { "lte": 72831 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "tWucjcIELoF0O1Z0DksuXWDGY7",
+      "id": "618CegwDyWX6WJ68XMhq6fSTQa"
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "needincome": true } },
+          { "range": { "age": { "lt": 65 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "5b1J8A2fhE9cwVo9W5MfbLmuNr",
+      "id": "qxMUO1178ntx3Y5AhOTDcxWAjy"
+    }
+  }
+]

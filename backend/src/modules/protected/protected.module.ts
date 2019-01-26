@@ -6,14 +6,13 @@ import { KeyModule } from "../key";
 import { ScreenerModule } from "../screener";
 
 @Module({
-    modules: [
+    imports: [
         ProgramModule,
         QueryModule,
         KeyModule,
         ScreenerModule
     ],
     controllers: [ ProtectedController ],
-    components: [ ProtectedController ],
-    exports: [ ]
+    providers: [ ProtectedController ]
 })
 export class ProtectedModule {}

@@ -5,9 +5,11 @@ section {
 
 .loading-section {
     background: transparent;
+    height: 100vh;
+    overflow: hidden;
 }
 
-md-progress-spinner {
+mat-progress-spinner {
     margin: 10% auto 0 auto;
 }
 
@@ -21,9 +23,4 @@ app-user-facing-program {
 
 app-user-facing-program:first-child {
     margin-top: 0.5em;
-}
-
-app-program-list {
-    width: 81vw;
-    margin-right: 2vw;
 }

@@ -1,32 +1,32 @@
-md-card {
+mat-card {
   font-family: 'Open Sans', sans-serif;
   height: 35vh;
 }
 
-md-card-title {
+mat-card-title {
   display: flex;
   justify-content: space-between;
 }
 
-md-card-title > span > md-icon {
+mat-card-title > span > mat-icon {
   cursor: pointer;
 }
 
-md-card-title > span > md-icon:hover {
+mat-card-title > span > mat-icon:hover {
   color: darkorange;
 }
 
-md-card-actions {
+mat-card-actions {
   position: relative;
   width: 100%;
   border-bottom: dashed 1px darkorange;
 }
 
-md-card-actions > button[md-button]:hover {
+mat-card-actions > button[mat-button]:hover {
   color: darkorange;
 }
 
-md-card-content {
+mat-card-content {
   width: 100%;
   height: 5vh;
   overflow-y: hidden;

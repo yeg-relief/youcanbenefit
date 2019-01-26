@@ -2,9 +2,8 @@ import { Component, OnInit, Input, Output, EventEmitter, OnDestroy} from '@angul
 import { Key } from '../../../models/key'
 import { ProgramConditionClass } from '../../services/program-condition.class';
 import { ProgramModelService } from '../../services/program-model.service'
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
-import "rxjs/add/operator/do"
+import { Observable, Subscription } from 'rxjs';
+import { map, take } from 'rxjs/operators'
 
 @Component({
   selector: 'app-condition-edit-v3',
@@ -17,38 +16,24 @@ export class ConditionEditV3Component implements OnInit, OnDestroy {
   valueWatcherNumber: Subscription;
   valueWatcherBoolean: Subscription;
   keys: Observable<Key[]>;
-  keyNameClasses = {
-    'ng-invalid': false
-  };
+  keyNameClasses = { 'ng-invalid': false };
   optional = {
     boolean: false,
     number: false,
   };
   readonly qualifiers = [
-    {
-      display: '>', value: 'greaterThan'
-    },
-    {
-      display: '>=', value: 'greaterThanOrEqual'
-    },
-    {
-      display: '=', value: 'equal'
-    },
-    {
-      display: '<=', value: 'lessThanOrEqual'
-    },
-    {
-      display: '<', value: 'lessThan'
-    },
+    { display: '>', value: 'greaterThan' },
+    { display: '>=', value: 'greaterThanOrEqual'},
+    { display: '=', value: 'equal' },
+    { display: '<=', value: 'lessThanOrEqual' },
+    { display: '<', value: 'lessThan' },
   ];
 
 
   constructor(private ps: ProgramModelService) { }
 
   ngOnInit() {
-
-
-    this.keys = this.ps.keys.asObservable().map(keys => keys.sort( (a, b) => a.name.localeCompare(b.name)) );
+    this.keys = this.ps.keys.pipe(map((keys: any[]) => keys.sort( (a, b) => a.name.localeCompare(b.name)) ));
   }
 
   ngOnDestroy() {
@@ -81,25 +66,27 @@ export class ConditionEditV3Component implements OnInit, OnDestroy {
     };
 
     const name = $event.target.value;
-    this.keys.take(1).map(keys => keys.find(k => k.name === name)).subscribe(key => {
-      if (key){
-        this.condition.form.get('key').setValue(key);
-        this.condition.form.get('type').setValue(key.type);
+    this.keys
+      .pipe(take(1), map(keys => keys.find(k => k.name === name)))
+      .subscribe(key => {
+        if (key){
+          this.condition.form.get('key').setValue(key);
+          this.condition.form.get('type').setValue(key.type);
 
-        if (key.type === 'boolean')
-          booleanValueStrategy(this.condition.form);
-        else 
-          numberValueStrategy(this.condition.form);
+          if (key.type === 'boolean')
+            booleanValueStrategy(this.condition.form);
+          else 
+            numberValueStrategy(this.condition.form);
 
-        setTimeout(() => {
-          if (this.condition.form.getError('invalid_key') !== null) {
-            this.keyNameClasses['ng-invalid'] = true;
-          } else {
-            this.keyNameClasses['ng-invalid'] = false;
-          }
-        }, 10);
-      }
-    });
+          setTimeout(() => {
+            if (this.condition.form.getError('invalid_key') !== null) {
+              this.keyNameClasses['ng-invalid'] = true;
+            } else {
+              this.keyNameClasses['ng-invalid'] = false;
+            }
+          }, 0);
+        }
+      });
   }
 
   getKeyType(): string {
@@ -107,8 +94,7 @@ export class ConditionEditV3Component implements OnInit, OnDestroy {
   }
 
   isQualifierSelected(qualifierValue: string) {
-    return this.getKeyType() !== 'boolean' &&
-        this.condition.form.get('qualifier').value === qualifierValue;
+    return this.getKeyType() !== 'boolean' && this.condition.form.get('qualifier').value === qualifierValue;
   }
 
   deleteCondition() {

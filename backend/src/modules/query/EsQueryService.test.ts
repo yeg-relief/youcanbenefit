@@ -1,7 +1,7 @@
 import { Test } from '@nestjs/testing';
 import { EsQueryService} from "./EsQuery.service";
-import { ClientService } from "../db.elasticsearch/client.service"
 import { EsQueryDto } from "./EsQuery.dto";
+import { DbElasticsearchModule } from '../db.elasticsearch/db.elasticsearch.module'
 
 describe('EsQueryService', () => {
     let queryService: EsQueryService;
@@ -54,8 +54,9 @@ describe('EsQueryService', () => {
 
     beforeEach(async () => {
         const module = await Test.createTestingModule({
+            imports: [DbElasticsearchModule],
             controllers: [],
-            components: [EsQueryService, ClientService],
+            providers: [EsQueryService],
         }).compile();
         queryService = module.get<EsQueryService>(EsQueryService);
     });

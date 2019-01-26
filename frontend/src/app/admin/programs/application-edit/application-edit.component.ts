@@ -6,12 +6,9 @@ import { ProgramQueryClass } from '../services/program-query.class';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup } from '@angular/forms'
 import { ApplicationFacingProgram } from '../../models/program';
-import { Observable } from 'rxjs/Observable';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
-import { Subject } from 'rxjs/Subject';
-import { MdSnackBar } from '@angular/material';
-import 'rxjs/add/operator/multicast';
-import 'rxjs/add/operator/merge';
+import { Observable, ReplaySubject, Subject, merge, combineLatest, of } from 'rxjs';
+import { filter, tap, multicast, refCount, pluck, take, catchError } from 'rxjs/operators'
+import { MatSnackBar } from '@angular/material'
 
 @Component({
   selector: 'app-application-edit',
@@ -26,21 +23,29 @@ export class ApplicationEditComponent implements OnInit {
   update = new Subject<Program>();
 
   constructor(
-    private modelService: ProgramModelService, 
+    private modelService: ProgramModelService,
     private queryService: QueryService,
     private route: ActivatedRoute,
-    public snackBar: MdSnackBar
+    public snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
-    this.program = this.modelService
-      .findProgram(this.route.snapshot.params['guid'])
-      .merge(this.update.asObservable().filter(u => u !== undefined))
-      .do( p => this.data = p.data)
-      .multicast(new ReplaySubject<Program>(1)).refCount();
+    this.program = merge(
+      this.modelService.findProgram(this.route.snapshot.params['guid']),
+      this.update.asObservable().pipe(filter(Boolean))
+    ).pipe(
+        tap( ({data}) => this.data = data),
+        multicast(new ReplaySubject<Program>(1)),
+        refCount()
+    );
 
-    this.form = this.program.map(p => p.form).multicast(new ReplaySubject<FormGroup>(1)).refCount();
 
+
+    this.form = this.program.pipe(
+      pluck('form'),
+      multicast(new ReplaySubject<FormGroup>(1)),
+      refCount()
+    );
   }
 
   selectQuery(query: ProgramQueryClass) {
@@ -48,9 +53,9 @@ export class ApplicationEditComponent implements OnInit {
   }
 
   handleDelete(query_id: string){
-    Observable.combineLatest(
+    combineLatest(
       this.program.take(1),
-      this.queryService.deleteQuery(query_id).take(1).catch( err => Observable.of(err)),
+      this.queryService.deleteQuery(query_id).pipe(take(1), catchError(of)),
     ).subscribe(
       ([program, wasDeleted ]) => {
 
@@ -58,7 +63,7 @@ export class ApplicationEditComponent implements OnInit {
         if (wasDeleted && index >= 0) {
           program.application.splice(index, 1);
           
-          this.snackBar.open('query deleted','',{
+          this.snackBar.open('query deleted','', {
             duration: 2000
           })
         }
@@ -68,12 +73,12 @@ export class ApplicationEditComponent implements OnInit {
             })
         }
       },
-      err => console.error(err)
+      console.error
     );
   }
 
   newQuery(){
-    this.program.take(1)
+    this.program.pipe(take(1))
         .subscribe( program => {
           const query = this.modelService.getBlankQuery(program.data.guid);
           program._addQuery(query)

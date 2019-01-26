@@ -1,8 +1,7 @@
-import { BrowserModule,  } from '@angular/platform-browser';
-import { NgModule,  } from '@angular/core';
-import { routing }  from './app.routes';
+import { BrowserModule  } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { routing } from './app.routes';
 import { AppComponent } from './app.component';
-import { MaterialModule } from '@angular/material';
 import { ToolbarComponent } from './shared/components/toolbar/toolbar.component';
 import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
 import { AboutComponent } from './user/about/about.component';
@@ -20,8 +19,16 @@ import { ConstructionRibbonComponent } from './construction-ribbon/construction-
 import { IeSucksComponent } from './user/home/ie-sucks/ie-sucks.component';
 import { ProgramsServiceService } from './user/programs-service.service';
 import { QuickLinksContentComponent } from './user/quick-links/quick-links-content/quick-links-content.component';
-import { InitialRedirectService } from "./initial-redirect.service";
-import { HttpClientModule}  from '@angular/common/http'
+import { InitialRedirectService } from './initial-redirect.service';
+import { HttpClientModule} from '@angular/common/http';
+import { 
+    MatIconModule, 
+    MatCardModule, 
+    MatDividerModule, 
+    MatSidenavModule, 
+    MatMenuModule, 
+    MatButtonModule 
+} from '@angular/material';
 
 @NgModule({
     declarations: [
@@ -41,9 +48,14 @@ import { HttpClientModule}  from '@angular/common/http'
         MasterScreenerModule,
         BrowseModule,
         routing,
-        MaterialModule,
         ReactiveFormsModule,
-        HttpClientModule
+        HttpClientModule,
+        MatIconModule,
+        MatCardModule,
+        MatDividerModule,
+        MatSidenavModule,
+        MatMenuModule,
+        MatButtonModule
     ],
     providers: [
         MasterScreenerService,

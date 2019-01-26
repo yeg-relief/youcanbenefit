@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { ID } from '../../models';
-import { Observable } from 'rxjs/Observable';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
-
+import { Observable, ReplaySubject } from 'rxjs';
+import { startWith, filter, multicast, refCount } from 'rxjs/operators'
 
 export interface DragDatum {
   lifted: ID;
@@ -25,9 +24,12 @@ export class DragDropManagerService {
     });
 
     this.dragState = this.state.valueChanges
-      .startWith(this.state.value)
-      .filter( _ => this.state.valid)
-      .multicast( new ReplaySubject(1) ).refCount();
+      .pipe(
+        startWith(this.state.value),
+        filter( _ => this.state.valid),
+        multicast( new ReplaySubject(1) ),
+        refCount()
+      )
 
     this.dragState.subscribe();
   }

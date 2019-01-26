@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { Question, QuestionType, ID, Screener } from '../../models';
+import { ID, Screener } from '../../models';
 import { RequestOptions } from '@angular/http';
 
 export const ScreenerActionTypes = {
@@ -60,7 +60,9 @@ export class LoadDataSuccess implements Action {
 export class SaveData implements Action {
   type = ScreenerActionTypes.SAVE_DATA;
 
-  constructor(public payload: { [key: string]: Screener | RequestOptions }) { }
+  constructor(public payload: { [key: string]: Screener | RequestOptions }) { 
+    console.log(payload)
+  }
 }
 
 export class SaveDataFailure implements Action {

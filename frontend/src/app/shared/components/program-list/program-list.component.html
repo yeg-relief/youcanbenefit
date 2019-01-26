@@ -1,4 +1,4 @@
-<md-list>
+<mat-list>
     <div
         ga-on="click"
         ga-event-category="Program"
@@ -8,13 +8,13 @@
         *ngFor="let program of programs"
         (click)="navigateToDetails(program.guid)">
 
-        <md-list-item>
-            <h3 mdLine> {{program.title}} </h3>
-            <p mdLine><span> {{program.description}} </span></p>
-            <a mdLine [routerLink]="['./details' + '/' + program.guid]">details</a>
-        </md-list-item>
+        <mat-list-item>
+            <h3 matLine> {{program.title}} </h3>
+            <p matLine><span> {{program.description}} </span></p>
+            <a matLine [routerLink]="['./details' + '/' + program.guid]">details</a>
+        </mat-list-item>
         <app-list-tag-container [tags]="program.tags"></app-list-tag-container>
-        <md-divider></md-divider>
+        <mat-divider></mat-divider>
 
     </div>
-</md-list>
+</mat-list>

@@ -1,4 +1,4 @@
-import { Component } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { EsQueryDto } from './EsQuery.dto';
 import { ClientService } from "../db.elasticsearch/client.service"
 import { Observable } from "rxjs/Observable";
@@ -6,7 +6,7 @@ import "rxjs/add/observable/fromPromise"
 import "rxjs/add/operator/reduce"
 import {SearchParams} from "elasticsearch";
 
-@Component()
+@Injectable()
 export class EsQueryService {
     private readonly INDEX = "master_screener";
     private readonly TYPE = "queries";

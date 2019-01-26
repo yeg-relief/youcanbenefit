@@ -2,9 +2,11 @@
     background-color: transparent;
 }
 
-md-list {
+mat-list {
     border-left: solid lightgrey 1px;
     border-right: solid lightgrey 1px;
+    width: 80vw;
+    margin: 0 auto;
 }
 
 @media screen and (min-width: 75em) {
@@ -22,6 +24,10 @@ md-list {
 @media screen and (max-width: 37.5em) {
     h3 {
         font-size: large !important;
+    }
+
+    mat-list {
+        width: 98vw;
     }
 }
 

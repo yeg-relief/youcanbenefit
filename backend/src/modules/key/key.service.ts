@@ -1,4 +1,4 @@
-import { Component } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { KeyDto } from './key.dto';
 import { Client } from "elasticsearch";
 import { ClientService } from "../db.elasticsearch/client.service"
@@ -8,7 +8,7 @@ import "rxjs/add/operator/pluck";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/reduce";
 
-@Component()
+@Injectable()
 export class KeyService {
     private client: Client;
     private readonly baseParams = {

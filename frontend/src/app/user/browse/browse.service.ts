@@ -1,17 +1,10 @@
+
+import { ReplaySubject } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 import { Http, Response } from '@angular/http';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
-import 'rxjs/add/observable/throw';
-import 'rxjs/add/operator/switchMap';
-import 'rxjs/add/operator/pluck';
-import 'rxjs/add/operator/reduce';
-import 'rxjs/add/operator/multicast';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/do';
 import { ProgramsServiceService } from '../programs-service.service';
-import { environment } from '../../../environments/environment'
+import { environment } from '../../../environments/environment';
+import { map, tap, multicast, refCount, switchMap, pluck, reduce } from 'rxjs/operators'
 
 @Injectable()
 export class BrowseService {
@@ -19,26 +12,28 @@ export class BrowseService {
 
     constructor(private http: Http, private programService: ProgramsServiceService) {
         this.programs$ =  this.http.get(`${environment.api}/api/program`)
-            .map(res => res.json())
-            .do(programs => this.programService.addPrograms(programs))
-            .multicast( new ReplaySubject(1) ).refCount()
-            .catch(this.loadError);
+            .pipe(
+                map(res => res.json()),
+                tap(programs => this.programService.addPrograms(programs)),
+                multicast( new ReplaySubject(1) ),
+                refCount(),
+            )
     }
 
     getCategories() {
         return this.programs$
-        // flatten programs
-            .switchMap(x => x)
-            .pluck('tags')
-            .reduce( (allTags, programTags) => {
-                programTags.forEach(tag => {
-                    if (allTags.indexOf(tag) < 0) {
-                        allTags.push(tag);
-                    }
-                });
-                return allTags;
-            }, [])
-            .catch( Observable.throw('error getting categories'));
+            .pipe(
+                switchMap( (x: any) => x),
+                pluck('tags'),
+                reduce( (allTags, programTags) => {
+                    programTags.forEach(tag => {
+                        if (allTags.indexOf(tag) < 0) {
+                            allTags.push(tag);
+                        }
+                    });
+                    return allTags;
+                }, []),
+            )            
     }
 
     getAllPrograms()  {
@@ -54,6 +49,6 @@ export class BrowseService {
             errMsg = error.message ? error.message : error.toString();
         }
         console.error(errMsg);
-        return Observable.throw(errMsg);
+        return new Error(errMsg);
     }
 }

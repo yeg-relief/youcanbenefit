@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`/protected /program -- CRUD with program datastructures GET /program will return all programs and their queries 1`] = `
+Array [
+  "1iXreywnofiF2jKKknlbKRXAtX",
+  "1lKYPN8nNaAMldGufGZNEwfjIK",
+  "5b1J8A2fhE9cwVo9W5MfbLmuNr",
+  "7Vo9xE20WJJJ1ZORDlog1odyzo",
+  "8Lqu2z4WCAP9w5sjhcAeOKuHN5",
+  "8U2rl4Ha5GXBVqjNStudvzHIch",
+  "9dHBCUXa0z8tEZg6QcYMBJVXjf",
+  "9rRXexrA3JzmXbFdKCmjtTj57l",
+  "BcKJhMTErAsHfXq1jzealos8kp",
+  "bzf4ryrVVsKkqpsEA5dBZd2kP5",
+  "EY1QV5T6AyB4Ykl2Lt1Nt9kf9g",
+  "GiufEa3ziFwfBEgkjI2gIlfNkk",
+  "HiGYI2bhBoQ6n82R9ptoNZ0oaQ",
+  "hp5mupqcVY8ZMiKg7Q91Uoi4Wf",
+  "iHPbkwKFsck9ZLnMePKSj5e5mz",
+  "IO2YsSRkLCIZwIcYGjO6rNkxUE",
+  "JIcpL1cap5Eg0ikPk2tecp6JG7",
+  "K08iJHYVRGL5pBOomOvwa2zwX2",
+  "kc0ov01FtBgr88C5P6EE6lnC8s",
+  "NMh2Fu1IG5XnpOf5b6zu2t1Hh6",
+  "nQXxT1OMhPGbkqkPHc2QTpofRv",
+  "NTVwRTvMb82TIB5VLbf3v36tZN",
+  "OGR28icdrofstoYETvIGg19XAv",
+  "oZ68OrZFpvkMMGHqV3CFELhuVY",
+  "sgKMX0336kgepHbPeObRLOvcFL",
+  "tWucjcIELoF0O1Z0DksuXWDGY7",
+  "UbdhHxTUe3N5zm5BxR6WQ2i6vf",
+  "Y5KEzulkwxviOuzB4Ny5QTzMGD",
+  "ZPNzWEr5XfUq5aYdy2bSYIKO5T",
+  "zXRcJxGzIrwhmk5LTbE4jdwBMh",
+]
+`;
+
+exports[`/protected /program -- CRUD with program datastructures GET /program/:guid will return a single program and its queries 1`] = `
+Object {
+  "guid": "hp5mupqcVY8ZMiKg7Q91Uoi4Wf",
+  "queryIDs": Array [
+    "C8NZoL1Nf7VEgEC4VMFI9GlebN",
+    "d5NswIlUvzxY0AJ1hGm4eKQtS4",
+    "JeXk8cOZnqJMepmHpxDqpsEXNE",
+    "jI1HlTlpbULsSVUmHnYi3ZlVJ7",
+    "jzMQkEK41gnhmwWyxAuWF3eZ4d",
+    "NOyR66aE30dJYXgdHJ2CvGLpnx",
+    "qZyokzKnpIw3Ue6mdTi8je3knK",
+    "vCYJSMCl8vxwkYKpU74Gcy1BVg",
+    "vM0Rtnrpx4aDVWy4eFO8vAUuTf",
+    "wgLgrNpNO6WYMjMSbiGiI4ABLt",
+  ],
+  "user": Object {
+    "description": "Extended health coverage for adults with low incomes",
+    "detailLinks": Array [],
+    "details": "What is it?
+The Alberta Adult Health Benefit (AAHB) program supports Albertans with limited incomes by covering the cost of prescription drugs, dental services, optical services, emergency ambulance, and diabetic supplies. The AAHB pays for supplies that are not available through standard Alberta health coverage.
+
+Who is eligable?
+Residents of Alberta are eligible for the AAHB if they meet the income criteria as well as one of the following conditions:
+- Leaving Alberta Works Income Support or Assured Income for the Severely Handicapped (AISH) and has income from employment, self-employment, or the Canada Pension Plan Disability program
+- High ongoing prescription drug needs
+- Pregnant
+
+An individual or family is NOT eligible for AAHB if they are receiving extended health benefits from other government programs including: 
+- Income Support/AISH
+- Child and Youth Supports (Child Health Benefit)
+- Government Funded Indigenous Health Programs
+- Sponsored Immigrants or Refugees
+- Seniors (65+) Health Programs
+
+What do I need to apply?
+- SIN numbers for all family members
+- Alberta Personal Health Number
+- Completed your taxes so that Alberta Health Services can check your income
+
+For more information and to find the application follow the link below",
+    "externalLink": "www.alberta.ca/alberta-adult-health-benefit.aspx",
+    "guid": "hp5mupqcVY8ZMiKg7Q91Uoi4Wf",
+    "tags": Array [
+      "Health",
+      "Alberta",
+      "Adult",
+    ],
+    "title": "Adult Health Benefit",
+  },
+}
+`;

@@ -7,13 +7,13 @@
     </div>
     <form novalidate id="question-container" *ngIf="fadeState === 'in'" [formGroup]="form" [@fadeinAndOut]="fadeState">
 
-        <button type="button" md-mini-fab color="warn" (click)="deleteQuestion()">
-            <md-icon>clear</md-icon>
+        <button type="button" mat-mini-fab color="warn" (click)="deleteQuestion()">
+            <mat-icon>clear</mat-icon>
         </button>
 
-        <md-input-container >
-            <input mdInput placeholder="Question Label" formControlName="label">
-        </md-input-container>
+        <mat-form-field >
+            <input matInput placeholder="Question Label" formControlName="label">
+        </mat-form-field>
 
         <div formGroupName="key" *ngIf="controlType !== 'Multiselect'">
             <select placeholder="Key" formControlName="name">
@@ -27,27 +27,27 @@
         </div>
 
         <div class="checkbox-container" *ngIf="controlType !== 'Multiselect'">
-            <md-checkbox formControlName="expandable">
+            <mat-checkbox formControlName="expandable">
                 Expandable
-            </md-checkbox>
+            </mat-checkbox>
         </div>
 
-        <md-select placeholder="Input Type" formControlName="controlType">
-            <md-option *ngFor="let control of CONTROL_TYPE_VALUES" [value]="control.value"> {{ control.display }} </md-option>
-        </md-select>
+        <mat-select placeholder="Input Type" formControlName="controlType">
+            <mat-option *ngFor="let control of CONTROL_TYPE_VALUES" [value]="control.value"> {{ control.display }} </mat-option>
+        </mat-select>
 
         <section [formGroup]="optionForm" *ngIf="controlType === 'NumberSelect'">
             <div class="col-12 flex" >
-                <md-input-container class="col-9">
-                    <input mdInput placeholder="option value" formControlName="optionValue">
-                </md-input-container>
-                <button class="col-2" id="option-add-button" md-raised-button color="primary" [disabled]="!optionForm.valid ? true : null" (click)="addOption()"> ADD </button>
+                <mat-form-field class="col-9">
+                    <input matInput placeholder="option value" formControlName="optionValue">
+                </mat-form-field>
+                <button class="col-2" id="option-add-button" mat-raised-button color="primary" [disabled]="!optionForm.valid ? true : null" (click)="addOption()"> ADD </button>
             </div>
 
             <div class="flex" id="option-chip-container">
-                <md-chip-list>
-                    <md-chip *ngFor="let option of options" (click)="spliceOption(option)">{{ option }}</md-chip>
-                </md-chip-list>
+                <mat-chip-list>
+                    <mat-chip *ngFor="let option of options" (click)="spliceOption(option)">{{ option }}</mat-chip>
+                </mat-chip-list>
             </div>
         </section>
 

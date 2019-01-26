@@ -7,9 +7,7 @@ import { QuickLinksComponent } from './user/quick-links/quick-links.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
-  {
-    path: 'admin', loadChildren: 'app/admin/admin.module#AdminModule'
-  },
+  { path: 'admin', loadChildren: './admin/admin.module#AdminModule' },
   { path: 'about', component: AboutComponent},
   { path: 'quick-links', component: QuickLinksComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },

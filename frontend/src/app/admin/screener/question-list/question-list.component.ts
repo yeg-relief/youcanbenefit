@@ -1,12 +1,9 @@
 import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ID, QuestionType, QUESTION_TYPE_CONDITIONAL, QUESTION_TYPE_CONSTANT } from '../../models';
-
-import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
-import { Subscription } from 'rxjs/Subscription';
-import 'rxjs/add/observable/fromEvent';
-import { Store } from '@ngrx/store';
+import { Subject, Subscription, combineLatest } from 'rxjs';
+import { takeUntil, map, filter, tap } from 'rxjs/operators'
+import { Store, select } from '@ngrx/store';
 import * as fromRoot from '../../reducer';
 import { KeyFilterService } from '../services/key-filter.service';
 import { DragDropManagerService, DragDatum } from './drag-drop-manager.service';
@@ -33,7 +30,7 @@ export class QuestionListComponent implements OnInit, OnDestroy {
   constant_type: QuestionType = QUESTION_TYPE_CONSTANT;
   conditional_type: QuestionType = QUESTION_TYPE_CONDITIONAL;
 
-  selectedQuestionID: Subscription;
+  selectedQuestionID: any;
   destroySubs$ = new Subject();
   
   containerClasses = {
@@ -89,12 +86,12 @@ export class QuestionListComponent implements OnInit, OnDestroy {
   }
   
   ngOnInit(){
-    this.selectedQuestionID = Observable.combineLatest(
-      this.store.let(fromRoot.getSelectedConstantID),
-      this.store.let(fromRoot.getSelectedConditionalID)
+    this.selectedQuestionID = combineLatest(
+      fromRoot.getSelectedConstantID(this.store),
+      fromRoot.getSelectedConditionalID(this.store)
     )
-    .takeUntil(this.destroySubs$.asObservable())
-    .subscribe( ([constantID, conditionalID]) => { 
+    .pipe(takeUntil(this.destroySubs$.asObservable()))
+    .subscribe( ([constantID, conditionalID]: any[]) => { 
       const presentConstant = this.questions.find(qid => qid === constantID);
       const presentConditional = this.questions.find(qid => qid === conditionalID);
 
@@ -108,9 +105,11 @@ export class QuestionListComponent implements OnInit, OnDestroy {
     });
 
     this.keyFilter.filteredKey$
-      .takeUntil(this.destroySubs$.asObservable())
-      .map( (update: any) => update.keyNames)
-      .filter( keys => keys !== undefined && keys !== null && Array.isArray(keys))
+      .pipe(
+        takeUntil(this.destroySubs$.asObservable()),
+        map( (update: any) => update.keyNames),
+        filter( keys => keys !== undefined && keys !== null && Array.isArray(keys)),
+      ) 
       .subscribe( (keys) => {
 
         if(Object.keys(this.form.value).length > keys.length){
@@ -217,9 +216,6 @@ export class QuestionListComponent implements OnInit, OnDestroy {
         container_over: true
       }
     }
-
-
-
 
     if (this.classes[id]) {
       this.classes[id] = (<any>Object).assign({}, this.classes[id], { dragOver: true})

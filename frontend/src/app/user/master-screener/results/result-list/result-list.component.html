@@ -6,9 +6,9 @@
 
   <section *ngIf="results.length > 0 && !errorMessage">
 
-    <md-card-title id="result-count">
+    <mat-card-title id="result-count">
       Showing {{ results.length }} result(s) of {{ results.length }} total results.
-    </md-card-title>
+    </mat-card-title>
 
     <div [@fadeinAndOut]>
       <app-program-list [programs]="results"></app-program-list>

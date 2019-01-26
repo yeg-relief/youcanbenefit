@@ -47,7 +47,7 @@ app-overview-controls {
 
 
 
-md-progress-spinner {
+mat-progress-spinner {
   margin: 2em auto 0 auto;
   width: 33%;
 }

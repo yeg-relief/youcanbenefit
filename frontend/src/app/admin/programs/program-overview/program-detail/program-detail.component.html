@@ -1,25 +1,25 @@
-<md-card>
-  <md-card-actions>
-    <button md-button routerLink="/admin/programs/application-edit/{{program.guid}}" mdTooltip="edit queries"><i class="material-icons">content_copy</i></button>
-    <button md-button routerLink="/admin/programs/edit/{{program.guid}}" mdTooltip="edit details"><i class="material-icons">create</i></button>
-    <button class="delete-program-button" md-button (click)="delete.emit(program.guid)" mdTooltip="delete program"><i class="material-icons">clear</i></button>
-  </md-card-actions>
+<mat-card>
+  <mat-card-actions>
+    <button mat-button routerLink="/admin/programs/application-edit/{{program.guid}}" matTooltip="edit queries"><i class="material-icons">content_copy</i></button>
+    <button mat-button routerLink="/admin/programs/edit/{{program.guid}}" matTooltip="edit details"><i class="material-icons">create</i></button>
+    <button class="delete-program-button" mat-button (click)="delete.emit(program.guid)" matTooltip="delete program"><i class="material-icons">clear</i></button>
+  </mat-card-actions>
 
-    <md-card-title>
+    <mat-card-title>
        <span>{{program.user.title}}</span>
-       <span mdTooltip="program details" (click)="detailView(program.guid)"><md-icon>import_contacts</md-icon></span>  
-    </md-card-title>
-    <md-card-subtitle> uploaded on: {{ program.user.created | date}}</md-card-subtitle>
-    <md-card-content>{{ program.user.description }}</md-card-content>
-    <md-card-subtitle>
+       <span matTooltip="program details" (click)="detailView(program.guid)"><mat-icon>import_contacts</mat-icon></span>
+    </mat-card-title>
+    <mat-card-subtitle> uploaded on: {{ program.user.created | date}}</mat-card-subtitle>
+    <mat-card-content>{{ program.user.description }}</mat-card-content>
+    <mat-card-subtitle>
       link: {{ program.user.externalLink }}
-    </md-card-subtitle>
+    </mat-card-subtitle>
     <div class="p1"></div>
     <div class="clearfix flex">
       <div 
-        class="col-2 border bg-silver black center rounded mr1 md-show" 
+        class="col-2 border bg-silver black center rounded mr1 mat-show"
         *ngFor="let tag of program.user.tags">
         {{tag}}
       </div>
     </div>
-</md-card>
+</mat-card>

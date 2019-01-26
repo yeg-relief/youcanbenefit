@@ -23,14 +23,14 @@ There are 3 components required to run YCB.
 #### Frontend
 This is built using Angular (the new one). Navigate to the folder `frontend` inside the project root in your favorite cli. 
 
-Run `npm install` to install the dependencies.
+Run `npm ci` to install the dependencies.
 
 Run `npm start` to start the frontend of the app up. You should see the app at `localhost:4200`.
 
 #### Backend
 This is built using a Node.js framework called [Nest](https://github.com/nestjs/nest). Navigate to the folder `backend` inside the project root in your favorite cli.
 
-Run `npm install` to install the dependencies.
+Run `npm ci` to install the dependencies.
 
 Run `npm start` to start the backend of the app up. You should see the routes at `localhost:3000`. To confirm it's working, sending a GET to `localhost:3000` should yield Hello World!.
 
