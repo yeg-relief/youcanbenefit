@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnDestroy} from '@angular/core';
-import { Key } from '../../../models/key'
+import { Key } from '../../../models'
 import { ProgramConditionClass } from '../../services/program-condition.class';
 import { ProgramModelService } from '../../services/program-model.service'
 import { Observable, Subscription } from 'rxjs';

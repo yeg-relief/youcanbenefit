@@ -35,6 +35,8 @@ export class ProgramQueryClass {
     this.conditions = [condition, ...this.conditions]; 
   }
 
+
+
   removeCondition(condition: ProgramConditionClass) {
     const foundCondition = this.conditions
       .findIndex(c => this.hashCondition(c) === this.hashCondition(condition));

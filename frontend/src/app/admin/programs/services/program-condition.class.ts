@@ -6,29 +6,37 @@ export class ProgramConditionClass {
     form: FormGroup;
 
     constructor(fb: FormBuilder, opts?){
-
-        this.data = opts ? opts : {
+        if(opts instanceof ProgramConditionClass) {
+          this.data = { ...opts.data }
+        } else {
+          this.data = opts ? opts : {
             key: {
-                name: 'invalid',
-                type: 'invalid'
+              name: 'invalid',
+              type: 'invalid'
             },
             value: 'invalid',
             type: 'invalid',
             qualifier: 'invalid'
-        };
+          };
+        }
         this._initForm(fb);
     }
 
     private _initForm(fb: FormBuilder) {
+      try {
         this.form = fb.group({
-            key: fb.group({
-                name: new FormControl(this.data.key.name, Validators.required),
-                type: new FormControl(this.data.key.type, Validators.required)
-            }),
-            value: new FormControl(this.data.value, Validators.required),
-            type: new FormControl(this.data.type),
-            qualifier: new FormControl(this.data.qualifier)
+          key: fb.group({
+            name: new FormControl(this.data.key.name, Validators.required),
+            type: new FormControl(this.data.key.type, Validators.required)
+          }),
+          value: new FormControl(this.data.value, Validators.required),
+          type: new FormControl(this.data.type),
+          qualifier: new FormControl(this.data.qualifier)
         }, {validator: this.validator})
+      } catch(e){
+        console.warn("ProgramConditionClass#_initForm")
+      }
+
     }
 
     validator(condition: AbstractControl): {[key: string]: any} {

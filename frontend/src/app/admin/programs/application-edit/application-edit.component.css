@@ -40,6 +40,13 @@ mat-icon {
   cursor: pointer;
 }
 
-main > #query-edit {
+#query-edit {
   margin-top: 3vh;
+}
+
+#query-list {
+  max-height: 90vh;
+  width: 420px;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
