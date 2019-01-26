@@ -6,19 +6,15 @@ export class ProgramConditionClass {
     form: FormGroup;
 
     constructor(fb: FormBuilder, opts?){
-        if(opts instanceof ProgramConditionClass) {
-          this.data = { ...opts.data }
-        } else {
-          this.data = opts ? opts : {
-            key: {
-              name: 'invalid',
-              type: 'invalid'
-            },
-            value: 'invalid',
-            type: 'invalid',
-            qualifier: 'invalid'
-          };
-        }
+        this.data = opts ? opts : {
+          key: {
+            name: 'invalid',
+            type: 'invalid'
+          },
+          value: 'invalid',
+          type: 'invalid',
+          qualifier: 'invalid'
+        };
         this._initForm(fb);
     }
 

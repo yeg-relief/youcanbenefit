@@ -17,7 +17,7 @@ export class ProgramModelService {
     constructor(
         private http: Http,
         private authService: AuthService,
-        public fb: FormBuilder
+        private fb: FormBuilder
     ) {
         const withSharing = obs => typeof obs === "function" && (
             obs().pipe(

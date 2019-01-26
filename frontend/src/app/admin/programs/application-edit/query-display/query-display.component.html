@@ -34,7 +34,7 @@
     <button mat-button color="warn" (click)="handleDelete(query.id)">
       <i class="material-icons">clear</i>
     </button>
-    <button mat-button color="primary" (click)="handleCopy(query.id)">
+    <button *ngIf="query.conditions.length" mat-button color="primary" (click)="handleCopy(query.id)">
       <i class="material-icons">content_copy</i>
     </button>
   </div>
