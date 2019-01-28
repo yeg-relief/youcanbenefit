@@ -128,9 +128,14 @@ export class ScreenerToolbarComponent implements OnInit {
       })
   }
 
+  private createKeyName(question: Question_2): String {
+    return question.label.replace(/[\s\?\!\.\,\'\"\:\-\[\]\(\)\/]/g, '').toLowerCase().substring(0, 15);
+  }
+
   private removeKeyType(screener: {[key: string]: Question_2[]}) {
     const _removeKeyType = (question: Question_2): Question => {
-      const keyName = question.key.name;
+      // const keyName = this.createKeyName(question);
+      const keyName = question.label.replace(/[\s\?\!\.\,\'\"\:\-\[\]\(\)\/]/g, '').toLowerCase().substring(0, 15);
       return (<any>Object).assign({}, question, {key: keyName});
     };
 
