@@ -18,6 +18,8 @@ import {
 } from 'rxjs/operators'
 import { KeyFilterService } from '../services/key-filter.service';
 import { environment } from '../../../../environments/environment'
+import { DataService } from '../../data.service';
+import * as keysActions from '../../keys/actions';
 
 @Component({
   selector: 'app-screener-toolbar',
@@ -38,6 +40,7 @@ export class ScreenerToolbarComponent implements OnInit {
     private keyFilter: KeyFilterService, 
     private auth: AuthService,
     private http: Http,
+    private dataService: DataService,
   ) {}
 
   ngOnInit() {
@@ -82,6 +85,7 @@ export class ScreenerToolbarComponent implements OnInit {
       })
     )
 
+
     const questions = this.form$.pipe(
       pluck('form'),
       filter(form => form['valid']),
@@ -89,9 +93,14 @@ export class ScreenerToolbarComponent implements OnInit {
       map(this.removeKeyType),
     )
 
+    // questions.forEach(q => {
+    //   console.log(q);
+    // })
+
     const unusedKeys = this.form$.pipe(
       map(screener => {
         const questionData = screener['form'].value
+        console.log(questionData)
         const extractKeys = id => {
           const question = questionData[id]
           return question.controlType === "Multiselect" ? question.multiSelectOptions.map(q => q.key) : [question.key]
@@ -99,6 +108,9 @@ export class ScreenerToolbarComponent implements OnInit {
 
         const keys = Object.keys(questionData).map(extractKeys).reduce((accum, keys) => [...keys, ...accum], [])
         const unusedKeys = screener['keys'].filter(key => keys.every(screenerKey => screenerKey.name !== key.name))
+        // unusedKeys.forEach(key => {
+        //     console.log(key);
+        //   });
         return unusedKeys
       })
     )
@@ -113,6 +125,11 @@ export class ScreenerToolbarComponent implements OnInit {
 
         const keys = Object.keys(questionData).map(extractKeys).reduce((accum, keys) => [...keys, ...accum], [])
         const unusedKeys = screener['keys'].filter(key => keys.some(screenerKey => screenerKey.name === key.name))
+
+        unusedKeys.forEach(key => {
+          console.log(key);
+          // this.dispatchKeyUpdate(key);
+        });
         return unusedKeys
       })
     )
@@ -128,14 +145,28 @@ export class ScreenerToolbarComponent implements OnInit {
       })
   }
 
+  dispatchKeyUpdate(key: Key) {
+    // const key: Key = {
+    //   name: "HELLOKEY",
+    //   type: 'integer'
+    // };
+    this.dataService.updateKey(key)
+      .pipe(
+        take(1),
+        tap(() => {
+          this.store.dispatch(new keysActions._UpdateKey([key]))
+        }),
+      ).subscribe();
+  }
+
   private createKeyName(question: Question_2): String {
-    return question.label.replace(/[\s\?\!\.\,\'\"\:\-\[\]\(\)\/]/g, '').toLowerCase().substring(0, 15);
+    return question.label.replace(/[\s\?\!\.\,\'\"\:\;\-\[\]\(\)\/]/g, '').toLowerCase().substring(0, 20);
   }
 
   private removeKeyType(screener: {[key: string]: Question_2[]}) {
     const _removeKeyType = (question: Question_2): Question => {
       // const keyName = this.createKeyName(question);
-      const keyName = question.label.replace(/[\s\?\!\.\,\'\"\:\-\[\]\(\)\/]/g, '').toLowerCase().substring(0, 15);
+      const keyName = question.label.replace(/[\s\?\!\.\,\'\"\:\;\-\[\]\(\)\/]/g, '').toLowerCase().substring(0, 20);
       return (<any>Object).assign({}, question, {key: keyName});
     };
 
