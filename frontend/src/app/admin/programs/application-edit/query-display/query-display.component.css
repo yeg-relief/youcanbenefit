@@ -1,12 +1,16 @@
 .query {
   position: relative;
   display: flex;
-  border: solid 2px transparent;
+  border: solid 2px black;
   width: 95%;
   margin: 0 auto;
   background-color: rgba(0,0,0,.125);
   margin-top: 0.5em;
   cursor: pointer;
+}
+
+.query.selected {
+  border-color: darkorange;
 }
 
 .query-actions{
@@ -17,6 +21,4 @@
   flex-direction: column;
 }
 
-.selected {
-  border-color: darkorange;
-}
+
