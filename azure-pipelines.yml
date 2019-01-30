@@ -4,15 +4,19 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
 trigger:
-- master
+  branches:
+    include:
+    - master
+    - releases/*
+  paths:
+    include:
+    - frontend/*
 
 pool:
   vmImage: 'Ubuntu-16.04'
 
 steps:
-- bash: |
-    [ -z "$(docker.username)" ] && echo "Empty"
-    echo $(docker.password) | docker login -u $(docker.username) --password-stdin
+- bash: echo $(docker.password) | docker login -u $(docker.username) --password-stdin
   displayName: 'docker login'
 - script: ./build.sh frontend --push
   displayName: 'docker build and push'
