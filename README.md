@@ -48,3 +48,6 @@ You should now be able to hit the API, have the API talk to Elasticsearch and to
 
 ### Debugging
 We use VS Code primarily, so it's easiest to get set up using that. For the front end, simply running the "Launch You Can Benefit frontend" debug task should pop up a debuggable instance of the Angular frontend. For the backend, ensure you have auto-attach turned on in VS Code. Run `npm start` from inside the `/backend` folder in VS Code's integrated terminal. This should automatically detect the running app and attach to it.
+
+## Security Concerns
+In the event that you find a vulnerability in YouCanBenefit, please email jared.rewerts@edmonton.ca.
