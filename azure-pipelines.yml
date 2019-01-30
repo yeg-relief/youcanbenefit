@@ -13,5 +13,7 @@ variables:
   imageName: 'cityofedmonton/youcanbenefit-web:$(build.buildId)'
 
 steps:
-- script: ./build.sh frontend
-  displayName: 'docker build'
+- bash: docker login -u $(registryLogin) -p $(registryPassword)
+  displayName: 'docker login'
+- script: ./build.sh frontend --push
+  displayName: 'docker build and push'
