@@ -9,11 +9,8 @@ trigger:
 pool:
   vmImage: 'Ubuntu-16.04'
 
-variables:
-  imageName: 'cityofedmonton/youcanbenefit-web:$(build.buildId)'
-
 steps:
-- bash: docker login -u $(registryLogin) -p $(registryPassword)
+- bash: docker login -u $(docker.username) -p $(docker.password)
   displayName: 'docker login'
 - script: ./build.sh frontend --push
   displayName: 'docker build and push'
