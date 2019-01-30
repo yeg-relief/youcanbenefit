@@ -1,0 +1,27 @@
+# Builds release candidate images for release branches. A test environment can be stood
+# up using these images.
+
+trigger:
+  branches:
+    include:
+    - release/*
+pr: none
+
+pool:
+  vmImage: 'Ubuntu-16.04'
+
+steps:
+- bash: |
+    cd backend
+    docker build --tag $(registryServerName)/youcanbenefit-api:release$(build.buildId) .
+    cd frontend
+    docker build --tag $(registryServerName)/youcanbenefit-web:release-$(build.buildId) .
+  displayName: 'docker build'
+
+- bash: echo $(docker.password) | docker login -u $(docker.username) --password-stdin
+  displayName: 'docker login'
+
+- bash: |
+    docker push $(registryServerName)/youcanbenefit-api:release-$(build.buildId)
+    docker push $(registryServerName)/youcanbenefit-web:release-$(build.buildId)
+  displayName: 'docker push'
