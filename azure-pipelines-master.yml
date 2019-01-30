@@ -10,6 +10,7 @@ trigger:
   paths:
     include:
     - $(projectName)/*
+pr: none
 
 pool:
   vmImage: 'Ubuntu-16.04'
