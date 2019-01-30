@@ -74,6 +74,26 @@ export class ScreenerToolbarComponent implements OnInit {
   }
 
   handleSave() {
+
+    var screenerData;
+
+    const screenerWithCreatedKeys = this.form$.pipe(
+      map(screener => {
+        const questionData = screener['form'].value
+        const questionDataArray = this.toArray(questionData)
+        questionDataArray.forEach(q => {
+          q.key.name = q.label.replace(/[\s\?\!\.\,\'\"\:\;\-\[\]\(\)\/]/g, '').toLowerCase().substring(0, 20);
+          if (q.controlType === "number input") {
+            q.key.type = "integer";
+          } else if (q.controlType === "Toggle") {
+            q.key.type = "boolean";
+          }
+        })
+        return questionDataArray
+      })
+    ).subscribe()
+    // ).subscribe(s => console.log(s))
+
     const partitionQuestions = pipe(
       map(form => {
         const screener = form['value']
@@ -86,6 +106,7 @@ export class ScreenerToolbarComponent implements OnInit {
     )
 
 
+
     const questions = this.form$.pipe(
       pluck('form'),
       filter(form => form['valid']),
@@ -93,27 +114,23 @@ export class ScreenerToolbarComponent implements OnInit {
       map(this.removeKeyType),
     )
 
-    // questions.forEach(q => {
-    //   console.log(q);
-    // })
 
-    const unusedKeys = this.form$.pipe(
-      map(screener => {
-        const questionData = screener['form'].value
-        console.log(questionData)
-        const extractKeys = id => {
-          const question = questionData[id]
-          return question.controlType === "Multiselect" ? question.multiSelectOptions.map(q => q.key) : [question.key]
-        }
 
-        const keys = Object.keys(questionData).map(extractKeys).reduce((accum, keys) => [...keys, ...accum], [])
-        const unusedKeys = screener['keys'].filter(key => keys.every(screenerKey => screenerKey.name !== key.name))
-        // unusedKeys.forEach(key => {
-        //     console.log(key);
-        //   });
-        return unusedKeys
-      })
-    )
+    // const unusedKeys = this.form$.pipe(
+    //   map(screener => {
+    //     const questionData = screener['form'].value
+    //     console.log(questionData)
+    //     const extractKeys = id => {
+    //       const question = questionData[id]
+    //       return question.controlType === "Multiselect" ? question.multiSelectOptions.map(q => q.key) : [question.key]
+    //     }
+
+    //     const keys = Object.keys(questionData).map(extractKeys).reduce((accum, keys) => [...keys, ...accum], [])
+    //     const unusedKeys = screener['keys'].filter(key => keys.every(screenerKey => screenerKey.name !== key.name))
+    //     return unusedKeys
+    //   })
+    // )
+
     
     const keys = this.form$.pipe(
       map(screener => {
@@ -122,14 +139,8 @@ export class ScreenerToolbarComponent implements OnInit {
           const question = questionData[id]
           return question.controlType === "Multiselect" ? question.multiSelectOptions.map(q => q.key) : [question.key]
         }
-
         const keys = Object.keys(questionData).map(extractKeys).reduce((accum, keys) => [...keys, ...accum], [])
         const unusedKeys = screener['keys'].filter(key => keys.some(screenerKey => screenerKey.name === key.name))
-
-        unusedKeys.forEach(key => {
-          console.log(key);
-          // this.dispatchKeyUpdate(key);
-        });
         return unusedKeys
       })
     )
@@ -137,12 +148,34 @@ export class ScreenerToolbarComponent implements OnInit {
     combineLatest(
       questions,
       keys,
-      unusedKeys,
       (questions, keys, unusedKeys) => ({...questions, keys, unusedKeys})
     ).pipe(take(1))
       .subscribe(screener => {
         return this.http.post(`${environment.api}/protected/screener`, screener, this.auth.getCredentials()).toPromise().then(console.log).catch(console.error)
       })
+  }
+
+  handleUpdateKeys() {
+    const keys = this.form$.pipe(
+      map( screener => {
+        const questionData = screener['form'].value
+        const questionDataArray = this.toArray(questionData)
+        questionDataArray.forEach(q => {
+          q.key.name = q.label.replace(/[\s\?\!\.\,\'\"\:\;\-\[\]\(\)\/]/g, '').toLowerCase().substring(0, 20);
+          if (q.controlType === "NumberInput") {
+            q.key.type = "integer";
+          } else if (q.controlType === "Toggle") {
+            q.key.type = "boolean";
+          }
+        })
+        return questionDataArray
+      })
+    ).subscribe(array => {
+      array.forEach(q=> {
+        console.log(q.key)
+        this.dispatchKeyUpdate(q.key)
+      })
+    })
   }
 
   dispatchKeyUpdate(key: Key) {
