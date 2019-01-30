@@ -10,7 +10,7 @@ pool:
   vmImage: 'Ubuntu-16.04'
 
 steps:
-- bash: docker login -u $(docker.username) -p $(docker.password)
+- bash: echo $(docker.password) | docker login -u $(docker.username) --password-stdin
   displayName: 'docker login'
 - script: ./build.sh frontend --push
   displayName: 'docker build and push'
