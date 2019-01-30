@@ -13,5 +13,5 @@ variables:
   imageName: 'cityofedmonton/youcanbenefit-web:$(build.buildId)'
 
 steps:
-- script: ./build.sh frontend backend
+- script: ./build.sh frontend
   displayName: 'docker build'
