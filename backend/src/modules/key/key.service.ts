@@ -86,17 +86,25 @@ export class KeyService {
         const mapping = []
 
         keys.forEach( key => {
-            mapping.push({
-                [key.name] : {type: [key.type]}
-            })
+            mapping.push({[key.name] : {type: key.type}})
         })
         console.log(mapping)
+
+        const normalizedMapping = mapping.reduce( (result, item) => {
+            var key = Object.keys(item)[0]
+            result[key] = item[key]
+            return result
+        }, {});
+
+        console.log(normalizedMapping);
+
+
 
         await this.client.indices.create({ index: 'master_screener'});
         const masterScreenerPutMapping = await this.client.indices.putMapping({
             index: Schema.queries.index,
             type: Schema.queries.type,
-            body: { properties: { ...mapping } }
+            body: { properties: { ...normalizedMapping } }
         });
 
         const queryRes = await this.uploadQueries(queries)
