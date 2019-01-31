@@ -139,37 +139,34 @@ export class ScreenerToolbarComponent implements OnInit {
       map( screener => {
         const questionData = screener['form'].value
         const questionDataArray = this.toArray(questionData)
+        const keyArray = [];
+        console.log(questionData)
         questionDataArray.forEach(q => {
-          q.key.name = q.label.replace(/[\s\?\!\.\,\'\"\:\;\-\[\]\(\)\/]/g, '').toLowerCase().substring(0, 20);
-          if (q.controlType === "NumberInput") {
-            q.key.type = "integer";
+          let keyType;
+          if (q.controlType === "Multiselect") {
+            q.multiSelectOptions.forEach(multiQuestion => {
+              keyArray.push({name: this.createKeyName(multiQuestion.text), type: "boolean"})
+            });
+          } else if (q.controlType === "NumberInput") {
+            keyType = "integer";
           } else if (q.controlType === "Toggle") {
-            q.key.type = "boolean";
+            keyType = "boolean";
+          }
+          if (keyType) {
+            keyArray.push({name: this.createKeyName(q.label), type: keyType})
           }
         })
-        return questionDataArray
+        return keyArray
       })
     ).pipe(take(1))
       .subscribe(array => {
-      array.forEach(q => {
-        console.log(q.key)
-        this.dispatchKeyUpdate(q.key)
+        console.log(array)
+        return this.http.post(`${environment.api}/protected/updatekeys`, array, this.auth.getCredentials()).toPromise().then(console.log).catch(console.error)
       })
-    })
   }
 
-  dispatchKeyUpdate(key: Key) {
-    this.dataService.updateKey(key)
-      .pipe(
-        take(1),
-        tap(() => {
-          this.store.dispatch(new keysActions._UpdateKey([key]))
-        }),
-      ).subscribe();
-  }
-
-  private createKeyName(question: Question_2): String {
-    return question.label.replace(/[\s\?\!\.\,\'\"\:\;\-\[\]\(\)\/]/g, '').toLowerCase().substring(0, 20);
+  private createKeyName(questionName: String): String {
+    return questionName.replace(/[\s\?\!\.\,\'\"\:\;\-\[\]\(\)\/]/g, '').toLowerCase().substring(0, 20);
   }
 
   private removeKeyType(screener: {[key: string]: Question_2[]}) {
