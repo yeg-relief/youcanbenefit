@@ -75,25 +75,6 @@ export class ScreenerToolbarComponent implements OnInit {
 
   handleSave() {
 
-    var screenerData;
-
-    const screenerWithCreatedKeys = this.form$.pipe(
-      map(screener => {
-        const questionData = screener['form'].value
-        const questionDataArray = this.toArray(questionData)
-        questionDataArray.forEach(q => {
-          q.key.name = q.label.replace(/[\s\?\!\.\,\'\"\:\;\-\[\]\(\)\/]/g, '').toLowerCase().substring(0, 20);
-          if (q.controlType === "number input") {
-            q.key.type = "integer";
-          } else if (q.controlType === "Toggle") {
-            q.key.type = "boolean";
-          }
-        })
-        return questionDataArray
-      })
-    ).subscribe()
-    // ).subscribe(s => console.log(s))
-
     const partitionQuestions = pipe(
       map(form => {
         const screener = form['value']
@@ -104,8 +85,6 @@ export class ScreenerToolbarComponent implements OnInit {
         }
       })
     )
-
-
 
     const questions = this.form$.pipe(
       pluck('form'),
@@ -170,8 +149,9 @@ export class ScreenerToolbarComponent implements OnInit {
         })
         return questionDataArray
       })
-    ).subscribe(array => {
-      array.forEach(q=> {
+    ).pipe(take(1))
+      .subscribe(array => {
+      array.forEach(q => {
         console.log(q.key)
         this.dispatchKeyUpdate(q.key)
       })
@@ -179,10 +159,6 @@ export class ScreenerToolbarComponent implements OnInit {
   }
 
   dispatchKeyUpdate(key: Key) {
-    // const key: Key = {
-    //   name: "HELLOKEY",
-    //   type: 'integer'
-    // };
     this.dataService.updateKey(key)
       .pipe(
         take(1),

@@ -46,6 +46,11 @@ export class ProtectedController {
             .map(update => ({ update }) )
     }
 
+    @Post('/keys')
+    updateAllKeys() {
+        return Observable.fromPromise( this.keyService.updateAll())
+    }
+
     @Get('/screener/')
     getScreenerWithKeys(): Observable<any> {
         return Observable.zip(
