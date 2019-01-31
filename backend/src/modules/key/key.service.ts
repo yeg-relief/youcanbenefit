@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { KeyDto } from './key.dto';
-import { KeysDto } from './keys.dto';
 import { Client } from "elasticsearch";
 import { ClientService } from "../db.elasticsearch/client.service"
 import { Observable } from "rxjs/Observable";
@@ -68,7 +67,7 @@ export class KeyService {
     }
 
 
-    async updateAll() : Promise<any> {
+    async updateAll(keys: KeyDto[]) : Promise<any> {
         const indexExists = await this.client.indices.exists({ index:'master_screener' });
 
         const queriesRequest = await this.client.search({
@@ -78,33 +77,32 @@ export class KeyService {
             body: { query: { match_all: {} } }
         })
 
-        // console.log(queriesRequest)
-
         const queries = queriesRequest.hits.hits.map(h => h._source)
-
-        console.log(queries)
 
         if (indexExists) {
             await this.client.indices.delete({ index:'master_screener' })
         }
 
-        const normalizedMapping = {
-            age: {type:'integer'}
-        }
+        const mapping = []
+
+        keys.forEach( key => {
+            mapping.push({
+                [key.name] : {type: [key.type]}
+            })
+        })
+        console.log(mapping)
 
         await this.client.indices.create({ index: 'master_screener'});
         const masterScreenerPutMapping = await this.client.indices.putMapping({
             index: Schema.queries.index,
             type: Schema.queries.type,
-            body: { properties: { ...normalizedMapping } }
+            body: { properties: { ...mapping } }
         });
-
-        
 
         const queryRes = await this.uploadQueries(queries)
 
 
-        return masterScreenerPutMapping
+        return {masterScreenerPutMapping, queryRes}
     }
 
     findAll(): Observable<any> {

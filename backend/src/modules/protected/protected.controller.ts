@@ -46,9 +46,9 @@ export class ProtectedController {
             .map(update => ({ update }) )
     }
 
-    @Post('/keys')
-    updateAllKeys() {
-        return Observable.fromPromise( this.keyService.updateAll())
+    @Post('/updatekeys')
+    updateAllKeys(@Body() data) {
+        return Observable.fromPromise( this.keyService.updateAll(data))
     }
 
     @Get('/screener/')
