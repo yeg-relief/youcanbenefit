@@ -13,7 +13,7 @@ pool:
 steps:
 - bash: |
     cd backend
-    docker build --tag $(registryServerName)/youcanbenefit-api:release$(build.buildId) .
+    docker build --tag $(registryServerName)/youcanbenefit-api:release-$(build.buildId) .
     cd frontend
     docker build --tag $(registryServerName)/youcanbenefit-web:release-$(build.buildId) .
   displayName: 'docker build'
