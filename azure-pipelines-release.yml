@@ -14,7 +14,7 @@ steps:
 - bash: |
     cd backend
     docker build --tag $(registryServerName)/youcanbenefit-api:release-$(build.buildId) .
-    cd frontend
+    cd ../frontend
     docker build --tag $(registryServerName)/youcanbenefit-web:release-$(build.buildId) .
   displayName: 'docker build'
 
