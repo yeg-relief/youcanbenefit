@@ -134,6 +134,17 @@ export class ScreenerToolbarComponent implements OnInit {
       })
   }
 
+  private createHashCode(str: String) {
+    var hash = 0, i, chr;
+    if (str.length === 0) return hash;
+    for (i = 0; i < str.length; i++) {
+      chr = str.charCodeAt(i);
+      hash = ((hash << 5) - hash) + chr;
+      hash |= 0;
+    }
+    return hash;
+  };
+
   handleUpdateKeys() {
     const keys = this.form$.pipe(
       map( screener => {
@@ -145,7 +156,7 @@ export class ScreenerToolbarComponent implements OnInit {
           let keyType;
           if (q.controlType === "Multiselect") {
             q.multiSelectOptions.forEach(multiQuestion => {
-              keyArray.push({name: this.createKeyName(multiQuestion.text), type: "boolean"})
+              keyArray.push({name: this.createHashCode(multiQuestion.text), type: "boolean"})
             });
           } else if (q.controlType === "NumberInput") {
             keyType = "integer";
@@ -153,7 +164,7 @@ export class ScreenerToolbarComponent implements OnInit {
             keyType = "boolean";
           }
           if (keyType) {
-            keyArray.push({name: this.createKeyName(q.label), type: keyType})
+            keyArray.push({name: this.createHashCode(q.label), type: keyType})
           }
         })
         return keyArray
@@ -165,9 +176,9 @@ export class ScreenerToolbarComponent implements OnInit {
       })
   }
 
-  private createKeyName(questionName: String): String {
-    return questionName.replace(/[\s\?\!\.\,\'\"\:\;\-\[\]\(\)\/]/g, '').toLowerCase().substring(0, 20);
-  }
+  // private createKeyName(questionName: String): String {
+  //   return questionName.replace(/[\s\?\!\.\,\'\"\:\;\-\[\]\(\)\/]/g, '').toLowerCase().substring(0, 20);
+  // }
 
   private removeKeyType(screener: {[key: string]: Question_2[]}) {
     const _removeKeyType = (question: Question_2): Question => {
