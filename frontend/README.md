@@ -1,4 +1,4 @@
-# general information
+# General Information
 
 This is the client side application for `YouCanBenefit`. It is designed such that a user can input certain demographic information 
 -- such as income, age etc -- and the [backend](https://github.com/yeg-relief/youcanbenefit/backend) will return a list of *potentially* 
