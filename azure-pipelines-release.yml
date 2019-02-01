@@ -33,10 +33,10 @@ steps:
   displayName: 'docker push'
 
 - powershell: |
-    [pscustomobject]@{'branch' = '$(branch)'; 'tag' = '$(tag)'} | Export-Csv “buildparams.csv” -NoTypeInformation
+    [pscustomobject]@{'branch' = '$(branch)'; 'tag' = '$(tag)'} | Export-Csv “$(Build.ArtifactStagingDirectory)/buildparams.csv” -NoTypeInformation
   displayName: 'write artifact'
 
 - task: PublishPipelineArtifact@0
   inputs:
-    artifactName: 'buildparams.csv'
-    targetPath: './buildparams.csv'
+    artifactName: 'buildparams'
+    targetPath: '$(Build.ArtifactStagingDirectory)/buildparams.csv'
