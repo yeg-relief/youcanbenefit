@@ -35,3 +35,8 @@ steps:
 - powershell: |
     [pscustomobject]@{'branch' = '$(branch)'; 'tag' = '$(tag)'} | Export-Csv “buildparams.csv” -NoTypeInformation
   displayName: 'write artifact'
+
+- task: PublishPipelineArtifact@0
+  inputs:
+    artifactName: 'buildparams.csv'
+    targetPath: './'
