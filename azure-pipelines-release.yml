@@ -39,4 +39,4 @@ steps:
 - task: PublishPipelineArtifact@0
   inputs:
     artifactName: 'buildparams.csv'
-    targetPath: './'
+    targetPath: './buildparams.csv'
