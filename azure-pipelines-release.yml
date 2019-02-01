@@ -33,6 +33,7 @@ steps:
   displayName: 'docker push'
 
 - powershell: |
+    New-Item -ItemType directory -Path “$(Build.ArtifactStagingDirectory)/buildparams/"
     [pscustomobject]@{'branch' = '$(branch)'; 'tag' = '$(tag)'} | Export-Csv “$(Build.ArtifactStagingDirectory)/buildparams/buildparams.csv” -NoTypeInformation
   displayName: 'write artifact'
 
