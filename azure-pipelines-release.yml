@@ -13,9 +13,9 @@ pool:
 steps:
 - bash: |
     echo '##vso[task.setvariable variable=tag]release-$(build.buildId)'
-    echo Tag is $(tag)
+    echo 'Tag is $(tag)'
     echo '##vso[task.setvariable variable=branch]$(Build.SourceBranch)'
-    echo Branch is $(branch)
+    echo 'Branch is $(branch)'
   displayName: 'set variables'
 - bash: |
     cd backend
@@ -33,5 +33,5 @@ steps:
   displayName: 'docker push'
 
 - powershell: |
-    [pscustomobject]@{'branch' = $(branch); 'tag' = $(tag)} | Export-Csv “buildparams.csv” -NoTypeInformation
+    [pscustomobject]@{'branch' = '$(branch)'; 'tag' = '$(tag)'} | Export-Csv “buildparams.csv” -NoTypeInformation
   displayName: 'write artifact'
