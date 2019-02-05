@@ -31,13 +31,3 @@ steps:
     docker push $(registryServerName)/youcanbenefit-api:$(tag)
     docker push $(registryServerName)/youcanbenefit-web:$(tag)
   displayName: 'docker push'
-
-- powershell: |
-    New-Item -ItemType directory -Path “$(Build.ArtifactStagingDirectory)/buildparams/"
-    [pscustomobject]@{'branch' = '$(branch)'; 'tag' = '$(tag)'} | Export-Csv “$(Build.ArtifactStagingDirectory)/buildparams/buildparams.csv” -NoTypeInformation
-  displayName: 'write artifact'
-
-- task: PublishPipelineArtifact@0
-  inputs:
-    artifactName: 'buildparams'
-    targetPath: '$(Build.ArtifactStagingDirectory)/buildparams'
