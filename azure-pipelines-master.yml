@@ -22,6 +22,14 @@ steps:
             # Add more path filters here
         }
     }
+    
+- bash: |
+    cd backend
+    npm ci
+    npm run unit-test
+    displayName: 'docker unit-test backend'
+    condition: and(succeeded(), eq(variables['backendChanged'], 'True'))
+
 - bash: |
     cd backend
     docker build --tag $(registryServerName)/youcanbenefit-api:$(build.buildId) --tag $(registryServerName)/youcanbenefit-api:latest .
