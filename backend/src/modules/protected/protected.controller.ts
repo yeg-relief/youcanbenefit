@@ -46,6 +46,11 @@ export class ProtectedController {
             .map(update => ({ update }) )
     }
 
+    @Get('/keys')
+    getAllKeysFromQuestions(): Observable<KeyDto[]> {
+        return this.keyService.getKeysFromQuestions();
+    }
+
     @Post('/updatekeys')
     updateAllKeys(@Body() data) {
         return Observable.fromPromise( this.keyService.updateAll(data))
