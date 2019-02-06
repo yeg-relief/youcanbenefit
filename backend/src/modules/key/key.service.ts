@@ -66,6 +66,33 @@ export class KeyService {
         )
     }
 
+    private updateQueries(queries, keys: KeyDto[]): any[] {
+        const updatedQueries = []
+        queries.forEach(query => {
+            const conditions = query['query']['bool']['must'];
+            const updatedConditions = [];
+            conditions.forEach(condition => {
+                let keyRemained = keys.some( key => {
+                    return key.name === Object.keys(condition[Object.keys(condition)[0]])[0]
+                })
+                if (keyRemained) {
+                    updatedConditions.push(condition)
+                }
+            });
+            if (!conditions.length) {
+                updatedQueries.push({
+                    query: {
+                        bool: {
+                            must: updatedConditions
+                        }
+                    },
+                    meta: query['meta']
+                })
+            }
+            
+        })
+        return updatedQueries
+    }
 
     async updateAll(keys: KeyDto[]) : Promise<any> {
         const indexExists = await this.client.indices.exists({ index:'master_screener' });
@@ -78,17 +105,16 @@ export class KeyService {
         })
 
         const queries = queriesRequest.hits.hits.map(h => h._source)
-
+        const updatedQueries = this.updateQueries(queries, keys)
+        
         if (indexExists) {
             await this.client.indices.delete({ index:'master_screener' })
         }
 
         const mapping = []
-
         keys.forEach( key => {
             mapping.push({[key.name] : {type: key.type}})
         })
-
         mapping.push({
             "meta": {
                 "properties": {
@@ -107,19 +133,13 @@ export class KeyService {
                 }
               }
         })
-
         mapping.push({"query" : {type: "percolator"}})
-        console.log(mapping)
-
+        
         const normalizedMapping = mapping.reduce( (result, item) => {
             var key = Object.keys(item)[0]
             result[key] = item[key]
             return result
         }, {});
-
-        console.log(normalizedMapping);
-
-
 
         await this.client.indices.create({ index: 'master_screener'});
         const masterScreenerPutMapping = await this.client.indices.putMapping({
@@ -128,9 +148,9 @@ export class KeyService {
             body: { properties: { ...normalizedMapping } }
         });
 
-        const queryRes = await this.uploadQueries(queries)
-
-        return {masterScreenerPutMapping, queryRes}
+        await this.uploadQueries(updatedQueries)
+        
+        return masterScreenerPutMapping
     }
 
     getKeysFromQuestions(): Observable<any> {
