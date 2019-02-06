@@ -92,23 +92,8 @@ export class ScreenerToolbarComponent implements OnInit {
       partitionQuestions,
       map(this.removeKeyType),
     )
-
-    const unusedKeys = this.form$.pipe(
-      map(screener => {
-        const questionData = screener['form'].value
-        console.log(questionData)
-        const extractKeys = id => {
-          const question = questionData[id]
-          return question.controlType === "Multiselect" ? question.multiSelectOptions.map(q => q.key) : [question.key]
-        }
-
-        const keys = Object.keys(questionData).map(extractKeys).reduce((accum, keys) => [...keys, ...accum], [])
-        const unusedKeys = screener['keys'].filter(key => keys.every(screenerKey => screenerKey.name !== key.name))
-        return unusedKeys
-      })
-    )
     
-    const keys = this.form$.pipe(
+    const questionKeys = this.form$.pipe(
       map(screener => {
         const questionData = screener['form'].value
         console.log(questionData)
@@ -124,9 +109,8 @@ export class ScreenerToolbarComponent implements OnInit {
 
     combineLatest(
       questions,
-      keys,
-      unusedKeys,
-      (questions, keys, unusedKeys) => ({...questions, keys, unusedKeys})
+      questionKeys,
+      (questions, questionKeys) => ({...questions, questionKeys})
     ).pipe(take(1))
       .subscribe(screener => {
         return this.http.post(`${environment.api}/protected/screener`, screener, this.auth.getCredentials()).toPromise().then(console.log).catch(console.error)
