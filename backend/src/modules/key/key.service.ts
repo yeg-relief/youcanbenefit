@@ -88,6 +88,27 @@ export class KeyService {
         keys.forEach( key => {
             mapping.push({[key.name] : {type: key.type}})
         })
+
+        mapping.push({
+            "meta": {
+                "properties": {
+                  "id": {
+                    "type": "text",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "program_guid": {
+                    "type": "text",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  }
+                }
+              }
+        })
+
+        mapping.push({"query" : {type: "percolator"}})
         console.log(mapping)
 
         const normalizedMapping = mapping.reduce( (result, item) => {
@@ -108,7 +129,6 @@ export class KeyService {
         });
 
         const queryRes = await this.uploadQueries(queries)
-
 
         return {masterScreenerPutMapping, queryRes}
     }

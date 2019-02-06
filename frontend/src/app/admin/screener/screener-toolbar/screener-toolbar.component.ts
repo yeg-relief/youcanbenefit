@@ -93,24 +93,25 @@ export class ScreenerToolbarComponent implements OnInit {
       map(this.removeKeyType),
     )
 
-    // const unusedKeys = this.form$.pipe(
-    //   map(screener => {
-    //     const questionData = screener['form'].value
-    //     console.log(questionData)
-    //     const extractKeys = id => {
-    //       const question = questionData[id]
-    //       return question.controlType === "Multiselect" ? question.multiSelectOptions.map(q => q.key) : [question.key]
-    //     }
+    const unusedKeys = this.form$.pipe(
+      map(screener => {
+        const questionData = screener['form'].value
+        console.log(questionData)
+        const extractKeys = id => {
+          const question = questionData[id]
+          return question.controlType === "Multiselect" ? question.multiSelectOptions.map(q => q.key) : [question.key]
+        }
 
-    //     const keys = Object.keys(questionData).map(extractKeys).reduce((accum, keys) => [...keys, ...accum], [])
-    //     const unusedKeys = screener['keys'].filter(key => keys.every(screenerKey => screenerKey.name !== key.name))
-    //     return unusedKeys
-    //   })
-    // )
+        const keys = Object.keys(questionData).map(extractKeys).reduce((accum, keys) => [...keys, ...accum], [])
+        const unusedKeys = screener['keys'].filter(key => keys.every(screenerKey => screenerKey.name !== key.name))
+        return unusedKeys
+      })
+    )
     
     const keys = this.form$.pipe(
       map(screener => {
         const questionData = screener['form'].value
+        console.log(questionData)
         const extractKeys = id => {
           const question = questionData[id]
           return question.controlType === "Multiselect" ? question.multiSelectOptions.map(q => q.key) : [question.key]
@@ -124,7 +125,7 @@ export class ScreenerToolbarComponent implements OnInit {
     combineLatest(
       questions,
       keys,
-      // unusedKeys,
+      unusedKeys,
       (questions, keys, unusedKeys) => ({...questions, keys, unusedKeys})
     ).pipe(take(1))
       .subscribe(screener => {
