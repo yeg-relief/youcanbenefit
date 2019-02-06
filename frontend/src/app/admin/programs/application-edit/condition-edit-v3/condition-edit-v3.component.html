@@ -1,6 +1,6 @@
 <main [formGroup]="condition.form">
   <mat-icon matTooltip="delete condition" (click)="deleteCondition()" class="material-icons" [style.color]="'red'">clear</mat-icon>
-  <select (change)="handleKeyChange($event)" [ngClass]="keyNameClasses">
+  <select (change)="handleKeyChange($event)" [ngClass]="keyNameClasses" id="key-question-labels">
     <option disabled [value]="'invalid'"> invalid </option>
     <option *ngFor="let key of (keys | async)" [value]="key.name" [selected]="isKeySelected(key.name)">
       {{key.name}}

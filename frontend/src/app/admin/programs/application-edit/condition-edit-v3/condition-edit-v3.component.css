@@ -16,8 +16,13 @@ mat-button-toggle-group {
   align-items: flex-start;
 }
 
+#key-question-labels {
+  width: 200px;
+}
+
 select {
   flex: 25% 0 0;
+  margin: 10px;
 }
 
 main.ng-invalid {
