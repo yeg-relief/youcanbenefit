@@ -96,14 +96,7 @@ export class ScreenerToolbarComponent implements OnInit {
     const questionKeys = this.form$.pipe(
       map(screener => {
         const questionData = screener['form'].value
-        console.log(questionData)
-        const extractKeys = id => {
-          const question = questionData[id]
-          return question.controlType === "Multiselect" ? question.multiSelectOptions.map(q => q.key) : [question.key]
-        }
-        const keys = Object.keys(questionData).map(extractKeys).reduce((accum, keys) => [...keys, ...accum], [])
-        const unusedKeys = screener['keys'].filter(key => keys.some(screenerKey => screenerKey.name === key.name))
-        return unusedKeys
+        return this.getQuestionKeys(questionData)
       })
     )
 
@@ -117,28 +110,32 @@ export class ScreenerToolbarComponent implements OnInit {
       })
   }
 
+  private getQuestionKeys(questionData) : any[] {
+    const questionDataArray = this.toArray(questionData)
+    const questionKeyArray = [];
+    questionDataArray.forEach(q => {
+      let questionKeyType;
+      if (q.controlType === "Multiselect") {
+        q.multiSelectOptions.forEach(multiQuestion => {
+          questionKeyArray.push({text: multiQuestion.text, id: 'multiID', type: "boolean"})
+        });
+      } else if (q.controlType === "NumberInput") {
+        questionKeyType = "integer";
+      } else if (q.controlType === "Toggle") {
+        questionKeyType = "boolean";
+      }
+      if (questionKeyType) {
+        questionKeyArray.push({text: q.label, id: q.id, type: questionKeyType})
+      }
+    })
+    return questionKeyArray
+  }
+
   handleUpdateKeys() {
     this.form$.pipe(
       map( screener => {
         const questionData = screener['form'].value
-        const questionDataArray = this.toArray(questionData)
-        const questionKeyArray = [];
-        questionDataArray.forEach(q => {
-          let questionKeyType;
-          if (q.controlType === "Multiselect") {
-            q.multiSelectOptions.forEach(multiQuestion => {
-              questionKeyArray.push({text: multiQuestion.text, id: 'multiID', type: "boolean"})
-            });
-          } else if (q.controlType === "NumberInput") {
-            questionKeyType = "integer";
-          } else if (q.controlType === "Toggle") {
-            questionKeyType = "boolean";
-          }
-          if (questionKeyType) {
-            questionKeyArray.push({text: q.label, id: q.id, type: questionKeyType})
-          }
-        })
-        return questionKeyArray
+        return this.getQuestionKeys(questionData)
       })
     ).pipe(take(1))
       .subscribe(array => {
