@@ -93,23 +93,20 @@ export class ScreenerToolbarComponent implements OnInit {
       map(this.removeKeyType),
     )
 
+    const unusedKeys = this.form$.pipe(
+      map(screener => {
+        const questionData = screener['form'].value
+        console.log(questionData)
+        const extractKeys = id => {
+          const question = questionData[id]
+          return question.controlType === "Multiselect" ? question.multiSelectOptions.map(q => q.key) : [question.key]
+        }
 
-
-    // const unusedKeys = this.form$.pipe(
-    //   map(screener => {
-    //     const questionData = screener['form'].value
-    //     console.log(questionData)
-    //     const extractKeys = id => {
-    //       const question = questionData[id]
-    //       return question.controlType === "Multiselect" ? question.multiSelectOptions.map(q => q.key) : [question.key]
-    //     }
-
-    //     const keys = Object.keys(questionData).map(extractKeys).reduce((accum, keys) => [...keys, ...accum], [])
-    //     const unusedKeys = screener['keys'].filter(key => keys.every(screenerKey => screenerKey.name !== key.name))
-    //     return unusedKeys
-    //   })
-    // )
-
+        const keys = Object.keys(questionData).map(extractKeys).reduce((accum, keys) => [...keys, ...accum], [])
+        const unusedKeys = screener['keys'].filter(key => keys.every(screenerKey => screenerKey.name !== key.name))
+        return unusedKeys
+      })
+    )
     
     const keys = this.form$.pipe(
       map(screener => {
@@ -127,6 +124,7 @@ export class ScreenerToolbarComponent implements OnInit {
     combineLatest(
       questions,
       keys,
+      unusedKeys,
       (questions, keys, unusedKeys) => ({...questions, keys, unusedKeys})
     ).pipe(take(1))
       .subscribe(screener => {
@@ -134,29 +132,17 @@ export class ScreenerToolbarComponent implements OnInit {
       })
   }
 
-  private createHashCode(str: String) {
-    var hash = 0, i, chr;
-    if (str.length === 0) return hash;
-    for (i = 0; i < str.length; i++) {
-      chr = str.charCodeAt(i);
-      hash = ((hash << 5) - hash) + chr;
-      hash |= 0;
-    }
-    return hash;
-  };
-
   handleUpdateKeys() {
     const keys = this.form$.pipe(
       map( screener => {
         const questionData = screener['form'].value
         const questionDataArray = this.toArray(questionData)
         const keyArray = [];
-        console.log(questionData)
         questionDataArray.forEach(q => {
           let keyType;
           if (q.controlType === "Multiselect") {
             q.multiSelectOptions.forEach(multiQuestion => {
-              keyArray.push({name: this.createHashCode(multiQuestion.text), type: "boolean"})
+              keyArray.push({name: multiQuestion.text, type: "boolean"})
             });
           } else if (q.controlType === "NumberInput") {
             keyType = "integer";
@@ -164,7 +150,7 @@ export class ScreenerToolbarComponent implements OnInit {
             keyType = "boolean";
           }
           if (keyType) {
-            keyArray.push({name: this.createHashCode(q.label), type: keyType})
+            keyArray.push({name: q.label, type: keyType})
           }
         })
         return keyArray
@@ -176,14 +162,9 @@ export class ScreenerToolbarComponent implements OnInit {
       })
   }
 
-  // private createKeyName(questionName: String): String {
-  //   return questionName.replace(/[\s\?\!\.\,\'\"\:\;\-\[\]\(\)\/]/g, '').toLowerCase().substring(0, 20);
-  // }
-
   private removeKeyType(screener: {[key: string]: Question_2[]}) {
     const _removeKeyType = (question: Question_2): Question => {
-      // const keyName = this.createKeyName(question);
-      const keyName = question.label.replace(/[\s\?\!\.\,\'\"\:\;\-\[\]\(\)\/]/g, '').toLowerCase().substring(0, 20);
+      const keyName = question.key.name;
       return (<any>Object).assign({}, question, {key: keyName});
     };
 
