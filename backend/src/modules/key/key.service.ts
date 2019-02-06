@@ -149,45 +149,8 @@ export class KeyService {
         });
 
         await this.uploadQueries(updatedQueries)
-        
-        return masterScreenerPutMapping
-    }
 
-    getKeysFromQuestions(): Observable<any> {
-        return Observable.fromPromise(this.clientService.client.search({
-            index: Schema.master_screener.index,
-            type: Schema.master_screener.type,
-            size: 10000,
-            body: { query: { match_all: {} } }
-        })
-        )
-            .map( searchResponse => searchResponse.hits.hits.map(h => h._source))
-            .map( screenerData => screenerData[0]['questions'])
-            .map( questions => {
-                const array = []
-                questions.forEach(question => {
-                    let type;
-                    if (question.controlType === "Multiselect") {
-                        question['multiSelectOptions'].forEach(mQuestion => {
-                            array.push( {
-                                name: mQuestion.text,
-                                type: mQuestion.key.type
-                            })
-                        });
-                        return
-                    }
-                    else if (question.controlType === "NumberInput") {
-                        type = "integer";
-                    } else if (question.controlType === "Toggle") {
-                        type = "boolean"
-                    }
-                    array.push( {
-                        name: question.label,
-                        type: type
-                    })
-                });
-                return array
-            })
+        return masterScreenerPutMapping
     }
 
     findAll(): Observable<any> {
