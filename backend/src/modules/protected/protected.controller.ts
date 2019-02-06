@@ -14,6 +14,7 @@ import "rxjs/add/observable/of"
 import "rxjs/add/operator/catch"
 import {KeyService} from "../key/key.service";
 import {KeyDto} from "../key/key.dto";
+import {QuestionKeyDto} from "../key/question-key.dto";
 import {ScreenerDto} from "../screener/screener.dto";
 import {ScreenerService} from "../screener/screener.service";
 import { ConstantsReadonly } from "../constants.readonly"
@@ -47,7 +48,7 @@ export class ProtectedController {
     }
 
     @Get('/questionkeys')
-    getKeyLabels(): Observable<KeyDto[]> {
+    getQuestionKeys(): Observable<QuestionKeyDto[]> {
         return this.keyService.getQuestionKeys();
     }
 

@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { KeyDto } from './key.dto';
+import { QuestionKeyDto } from './question-key.dto';
 import { Client } from "elasticsearch";
 import { ClientService } from "../db.elasticsearch/client.service"
 import { Observable } from "rxjs/Observable";
@@ -66,14 +67,14 @@ export class KeyService {
         )
     }
 
-    private updateQueries(queries, keys: KeyDto[]): any[] {
+    private updateQueries(queries, keys: QuestionKeyDto[]): any[] {
         const updatedQueries = []
         queries.forEach(query => {
             const conditions = query['query']['bool']['must'];
             const updatedConditions = [];
             conditions.forEach(condition => {
                 let keyRemained = keys.some( key => {
-                    return key.name === Object.keys(condition[Object.keys(condition)[0]])[0]
+                    return key.id === Object.keys(condition[Object.keys(condition)[0]])[0]
                 })
                 if (keyRemained) {
                     updatedConditions.push(condition)
@@ -94,7 +95,7 @@ export class KeyService {
         return updatedQueries
     }
 
-    async updateAll(keys: KeyDto[]) : Promise<any> {
+    async updateAll(questionKeys: QuestionKeyDto[]) : Promise<any> {
         const indexExists = await this.client.indices.exists({ index:'master_screener' });
 
         const queriesRequest = await this.client.search({
@@ -105,15 +106,15 @@ export class KeyService {
         })
 
         const queries = queriesRequest.hits.hits.map(h => h._source)
-        const updatedQueries = this.updateQueries(queries, keys)
+        const updatedQueries = this.updateQueries(queries, questionKeys)
         
         if (indexExists) {
             await this.client.indices.delete({ index:'master_screener' })
         }
 
         const mapping = []
-        keys.forEach( key => {
-            mapping.push({[key.name] : {type: key.type}})
+        questionKeys.forEach( questionKey => {
+            mapping.push({[questionKey.id] : {type: questionKey.type}})
         })
         mapping.push({
             "meta": {
