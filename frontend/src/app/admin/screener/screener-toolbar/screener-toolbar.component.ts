@@ -134,27 +134,27 @@ export class ScreenerToolbarComponent implements OnInit {
   }
 
   handleUpdateKeys() {
-    const keys = this.form$.pipe(
+    this.form$.pipe(
       map( screener => {
         const questionData = screener['form'].value
         const questionDataArray = this.toArray(questionData)
-        const keyArray = [];
+        const questionKeyArray = [];
         questionDataArray.forEach(q => {
-          let keyType;
+          let questionKeyType;
           if (q.controlType === "Multiselect") {
             q.multiSelectOptions.forEach(multiQuestion => {
-              keyArray.push({name: multiQuestion.text, type: "boolean"})
+              questionKeyArray.push({text: multiQuestion.text, id: 'multiID', type: "boolean"})
             });
           } else if (q.controlType === "NumberInput") {
-            keyType = "integer";
+            questionKeyType = "integer";
           } else if (q.controlType === "Toggle") {
-            keyType = "boolean";
+            questionKeyType = "boolean";
           }
-          if (keyType) {
-            keyArray.push({name: q.label, type: keyType})
+          if (questionKeyType) {
+            questionKeyArray.push({text: q.label, id: q.id, type: questionKeyType})
           }
         })
-        return keyArray
+        return questionKeyArray
       })
     ).pipe(take(1))
       .subscribe(array => {
