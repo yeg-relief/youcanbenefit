@@ -27,8 +27,8 @@ steps:
     cd backend
     npm ci
     npm run unit-test
-    displayName: 'docker unit-test backend'
-    condition: and(succeeded(), eq(variables['backendChanged'], 'True'))
+  displayName: 'docker unit-test backend'
+  condition: and(succeeded(), eq(variables['backendChanged'], 'True'))
 
 - bash: |
     cd backend
