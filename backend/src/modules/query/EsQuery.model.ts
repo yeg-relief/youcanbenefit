@@ -24,6 +24,13 @@ export class EsQueryModel {
             id: this.data.id
         };
 
+        const questionTexts = {}
+
+        this.data.conditions.map( condition => {
+            questionTexts[condition.questionKey.id] = condition.questionKey.text
+        })
+
+
         const query = {
             bool: {
                 must: this.data.conditions.map( (applicationCondition: any) => {
@@ -63,7 +70,8 @@ export class EsQueryModel {
 
         const retValue = {
             meta,
-            query
+            query,
+            questionTexts
         };
 
         this.applicationQueryDto = retValue;

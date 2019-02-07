@@ -25,7 +25,7 @@ export class EsConditionModel {
         "gte": "greaterThanOrEqual"
     };
 
-    constructor(private data: esQuery) {}
+    constructor(private data: esQuery, private questionTexts: any) {}
 
     isRange() {
         return typeof this.data.range !== "undefined"
@@ -39,6 +39,15 @@ export class EsConditionModel {
     getPropName(obj) {
         const [first, ...rest] = Object.keys(obj);
         return first;
+    }
+
+    getQuestionKeyText(): string {
+        let id = this.getQuestionKeyId()
+        if (this.questionTexts.hasOwnProperty(id)) {
+            return this.questionTexts[id]
+        } else {
+            return ""
+        }
     }
 
     getQuestionKeyId() {
@@ -81,7 +90,7 @@ export class EsConditionModel {
 
     toApplicationModel(): Condition {
         const questionKey = {
-            text: 'TEST',
+            text: this.getQuestionKeyText(),
             id: this.getQuestionKeyId(),
             type: this.getQuestionKeyType()
         };

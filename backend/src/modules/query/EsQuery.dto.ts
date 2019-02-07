@@ -62,6 +62,7 @@ interface bool {
 export class EsQueryDto {
     readonly query: {[key: string]: bool};
     readonly meta: Meta;
+    readonly questionTexts: {[key: string]: string};
 
     constructor(data) {
         Object.assign(this, data);
