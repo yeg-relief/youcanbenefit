@@ -16,8 +16,8 @@
     </thead>
     <tbody>
       <tr *ngFor="let condition of query.conditions">
-        <td>{{condition.key.name}}</td>
-        <td>{{condition.key.type}}</td>
+        <td>{{condition.questionKey.text}}</td>
+        <td>{{condition.questionKey.type}}</td>
         <div [ngSwitch]="condition.qualifier">
           <td *ngSwitchCase="'lessThan'"> &lt; </td>
           <td *ngSwitchCase="'lessThanOrEqual'"> &lt;= </td>

@@ -1,12 +1,12 @@
 <table>
     <thead>
-      <th> <strong>key name</strong> </th>
-      <th> key type </th>
+      <th> <strong>Question name</strong> </th>
+      <th> Question type </th>
     </thead>
     <tbody>
-      <tr *ngFor="let key of (loadedKeys$ | async)" class="py2">
-        <td> {{ key.name }} </td>
-        <td> {{ key.type }} </td>
+      <tr *ngFor="let questionKey of (loadedKeys$ | async)" class="py2">
+        <td> {{ questionKey.text }} </td>
+        <td> {{ questionKey.type }} </td>
       </tr>
     </tbody>
   </table> 

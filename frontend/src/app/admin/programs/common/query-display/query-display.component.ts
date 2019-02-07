@@ -25,7 +25,7 @@ export class QueryDisplayComponent implements OnChanges, OnInit {
     }
 
     ngOnInit() {
-        this.query.conditions.sort( (a, b) => a.key.name.localeCompare(b.key.name) )
+        this.query.conditions.sort( (a, b) => a.questionKey.text.localeCompare(b.questionKey.text) )
     }
 
     handleDelete(query_id) {
