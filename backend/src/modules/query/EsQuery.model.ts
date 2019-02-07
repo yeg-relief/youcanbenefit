@@ -29,9 +29,9 @@ export class EsQueryModel {
                 must: this.data.conditions.map( (applicationCondition: any) => {
                     let type;
 
-                    const isNumberOrInteger = applicationCondition.key.type === "number" || applicationCondition.key.type === "integer";
+                    const isNumberOrInteger = applicationCondition.questionKey.type === "number" || applicationCondition.questionKey.type === "integer";
 
-                    if (applicationCondition.key.type === "boolean") {
+                    if (applicationCondition.questionKey.type === "boolean") {
                         type = "term"
                     } else if (isNumberOrInteger && applicationCondition.qualifier === "equal") {
                         type = "term"

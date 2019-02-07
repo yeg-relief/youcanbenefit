@@ -1,10 +1,11 @@
-interface Key {
-    name: string;
+interface QuestionKey {
+    text: string;
+    id: string;
     type: string;
 }
 
 interface Condition {
-    key: Key;
+    questionKey: QuestionKey;
     value: number | boolean;
     qualifier?: string;
 }
@@ -40,7 +41,7 @@ export class EsConditionModel {
         return first;
     }
 
-    getKeyName() {
+    getQuestionKeyId() {
         if (this.isRange()) {
             return this.getPropName(this.data.range);
         } else if (this.isTerm()) {
@@ -48,29 +49,29 @@ export class EsConditionModel {
         }
     }
 
-    getKeyType() {
+    getQuestionKeyType() {
         if (this.isRange()) {
             return "number"
         } else if (this.isTerm()) {
-            return typeof this.data.term[this.getKeyName()]
+            return typeof this.data.term[this.getQuestionKeyId()]
         }
     }
 
-    getKeyValue() {
+    getQuestionKeyValue() {
         if (this.isRange()) {
-            const _condition = this.data.range[this.getKeyName()];
+            const _condition = this.data.range[this.getQuestionKeyId()];
             const qualifier = this.getPropName(_condition);
             return _condition[qualifier];
         } else if (this.isTerm()) {
-            return this.data.term[this.getKeyName()]
+            return this.data.term[this.getQuestionKeyId()]
         }
     }
 
     getEsQualifier() {
         if (!this.isRange()) return null;
 
-        const keyName = this.getKeyName();
-        const qualifierObj = this.data.range[keyName];
+        const keyId= this.getQuestionKeyId();
+        const qualifierObj = this.data.range[keyId];
         return this.getPropName(qualifierObj);
     }
 
@@ -79,16 +80,17 @@ export class EsConditionModel {
     }
 
     toApplicationModel(): Condition {
-        const key = {
-            name: this.getKeyName(),
-            type: this.getKeyType()
+        const questionKey = {
+            text: 'TEST',
+            id: this.getQuestionKeyId(),
+            type: this.getQuestionKeyType()
         };
 
-        const value = this.getKeyValue();
+        const value = this.getQuestionKeyValue();
         let qualifier = this.isRange() ? this.getApplicationQualifier() : "equal";
 
         return {
-            key,
+            questionKey,
             value,
             qualifier
         }
