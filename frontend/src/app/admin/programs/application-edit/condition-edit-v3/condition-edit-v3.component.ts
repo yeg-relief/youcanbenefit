@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnDestroy} from '@angular/core';
-import { Key } from '../../../models/key'
+import { Key } from '../../../models'
 import { ProgramConditionClass } from '../../services/program-condition.class';
 import { ProgramModelService } from '../../services/program-model.service'
 import { Observable, Subscription } from 'rxjs';
@@ -42,14 +42,15 @@ export class ConditionEditV3Component implements OnInit, OnDestroy {
     if (this.valueWatcherBoolean && !this.valueWatcherBoolean.closed) this.valueWatcherBoolean.unsubscribe();
   }
 
-
-  isKeySelected(name: string): boolean {
-    return name === this._getSelectedKeyName();
-  }
-
   private _getSelectedKeyName(): string {
     return this.condition.form.value.key.name;
   }
+
+  isKeySelected = (option: any): boolean => {
+    return option && option.name === this._getSelectedKeyName();
+  };
+
+
 
   handleKeyChange($event) {
     const booleanValueStrategy = form => {
@@ -65,7 +66,7 @@ export class ConditionEditV3Component implements OnInit, OnDestroy {
       this.optional.number = true;
     };
 
-    const name = $event.target.value;
+    const name = $event.value.name;
     this.keys
       .pipe(take(1), map(keys => keys.find(k => k.name === name)))
       .subscribe(key => {
@@ -89,13 +90,13 @@ export class ConditionEditV3Component implements OnInit, OnDestroy {
       });
   }
 
-  getKeyType(): string {
+  getKeyType = (): string => {
     return this.condition.form.value.key.type;
-  }
+  };
 
-  isQualifierSelected(qualifierValue: string) {
+  isQualifierSelected = (qualifierValue: any) => {
     return this.getKeyType() !== 'boolean' && this.condition.form.get('qualifier').value === qualifierValue;
-  }
+  };
 
   deleteCondition() {
     this.remove.emit(this.condition)
