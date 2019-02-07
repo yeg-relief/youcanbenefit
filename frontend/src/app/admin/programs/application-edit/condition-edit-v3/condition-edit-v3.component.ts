@@ -50,7 +50,7 @@ export class ConditionEditV3Component implements OnInit, OnDestroy {
   }
 
   private _getSelectedQuestionKeyId(): string {
-    return this.condition.form.value.key.id;
+    return this.condition.form.value.questionKey.id;
   }
 
   handleKeyChange($event) {
@@ -72,7 +72,7 @@ export class ConditionEditV3Component implements OnInit, OnDestroy {
       .pipe(take(1), map(keys => keys.find(k => k.text === text)))
       .subscribe(questionKey => {
         if (questionKey){
-          this.condition.form.get('key').setValue(questionKey);
+          this.condition.form.get('questionKey').setValue(questionKey);
           this.condition.form.get('type').setValue(questionKey.type);
 
           if (questionKey.type === 'boolean')
@@ -92,7 +92,7 @@ export class ConditionEditV3Component implements OnInit, OnDestroy {
   }
 
   getQuestionKeyType(): string {
-    return this.condition.form.value.key.type;
+    return this.condition.form.value.questionKey.type;
   }
 
   isQualifierSelected(qualifierValue: string) {

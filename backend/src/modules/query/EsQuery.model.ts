@@ -41,7 +41,7 @@ export class EsQueryModel {
 
                     const qualifier = this.nameMap[applicationCondition.qualifier];
 
-                    const property = applicationCondition.key.name;
+                    const property = applicationCondition.questionKey.id;
 
                     let inner;
 

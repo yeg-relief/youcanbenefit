@@ -22,7 +22,7 @@ export class ProgramConditionClass {
 
     private _initForm(fb: FormBuilder) {
         this.form = fb.group({
-            key: fb.group({
+            questionKey: fb.group({
                 text: new FormControl(this.data.questionKey.text, Validators.required),
                 id: new FormControl(this.data.questionKey.id, Validators.required),
                 type: new FormControl(this.data.questionKey.type, Validators.required)
@@ -35,15 +35,15 @@ export class ProgramConditionClass {
 
     validator(condition: AbstractControl): {[key: string]: any} {
         const value = condition.value;
-        const questionKey: QuestionKey = value.key;
-        let others = Object.keys(value).filter(k => k !== 'key')
+        const questionKey: QuestionKey = value.questionKey;
+        let others = Object.keys(value).filter(k => k !== 'questionKey')
         const errors = {};
         if (questionKey.text === 'invalid' || questionKey.type === 'invalid') {
             errors['invalid_key'] = 'key is invalid';
-            condition.get('key').setErrors(errors);
+            condition.get('questionKey').setErrors(errors);
         }
 
-        others = value.key.type === 'boolean' ? others.filter(o => o !== 'qualifier') : others;
+        others = value.questionKey.type === 'boolean' ? others.filter(o => o !== 'qualifier') : others;
 
         others.forEach(prop => {
             if(value[prop] === 'invalid')

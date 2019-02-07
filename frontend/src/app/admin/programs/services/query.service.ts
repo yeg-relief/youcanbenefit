@@ -38,7 +38,7 @@ export class QueryService {
                 map(res => res.json()),
                 tap( res => {
                     if (res.result === 'created' || res.result === 'updated') {
-                        query.conditions = query.conditions.sort( (a, b) => a.data.key.name.localeCompare(b.data.key.name));
+                        query.conditions = query.conditions.sort( (a, b) => a.data.questionKey.text.localeCompare(b.data.questionKey.text));
                         this.broadcast.next({
                             id: query.data.id,
                             data: query,
@@ -73,7 +73,7 @@ export class QueryService {
 
     static parseStringValues(conditions: ProgramConditionClass[]): ProgramConditionClass[] {
         return conditions.map((c: ProgramConditionClass) => {
-            const type = c.form.get(['key', 'type']).value;
+            const type = c.form.get(['questionKey', 'type']).value;
 
             return type === 'number' ? QueryService.executeParse(c) : c
         });
@@ -99,7 +99,7 @@ export class QueryService {
         formValue.setValue(Number.parseInt((<string>formValue.value), 10));
 
         if (Number.isNaN(condition.form.value.value)) {
-            throw new Error(`A condition with name: ${condition.data.key.name} is an invalid number.`);
+            throw new Error(`A condition with name: ${condition.data.questionKey.text} is an invalid number.`);
         }
 
         return condition;
