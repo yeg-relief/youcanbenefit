@@ -14,7 +14,8 @@ import {
   MatTooltipModule, 
   MatInputModule,
   MatButtonModule,
-  MatTabsModule
+  MatTabsModule,
+  MatListModule
 } from '@angular/material';
 import { AdminCoreModule } from '../core/admin-core.module';
 import { ProgramDetailComponent } from './program-overview/program-detail/program-detail.component';
@@ -47,7 +48,8 @@ import { DetailsLinksComponent } from './program-edit/details-links/details-link
     MatButtonModule,
     MatTabsModule,
     ReactiveFormsModule,
-    AdminCoreModule
+    AdminCoreModule,
+    MatListModule,
   ],
   declarations: [
     ProgramsComponent,

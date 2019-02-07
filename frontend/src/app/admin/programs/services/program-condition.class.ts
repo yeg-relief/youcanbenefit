@@ -1,10 +1,11 @@
 import { ProgramCondition, Key } from '../../models'
-import { FormGroup, FormBuilder, AbstractControl, Validators, FormControl, FormArray } from '@angular/forms';
+import { FormGroup, FormBuilder, AbstractControl, Validators, FormControl } from '@angular/forms';
+import { distinctUntilChanged } from 'rxjs/operators'
 
 export class ProgramConditionClass {
     data: ProgramCondition;
     form: FormGroup;
-
+    // patchQualifierValue: (any) => void;
     constructor(fb: FormBuilder, opts?){
         this.data = opts ? opts : {
           key: {
@@ -16,7 +17,16 @@ export class ProgramConditionClass {
           qualifier: 'invalid'
         };
         this._initForm(fb);
+        this.form.get('key.type')
+          .valueChanges
+          .pipe(distinctUntilChanged()).subscribe(this.patchQualifierValue)
     }
+
+    patchQualifierValue =  keyType => {
+      if(keyType === 'boolean') {
+        this.form.get('qualifier').setValue('equal');
+      }
+    };
 
     private _initForm(fb: FormBuilder) {
       try {
@@ -64,9 +74,5 @@ export class ProgramConditionClass {
             return errors;
 
         return null;
-    }
-
-    hashedValue(): string {
-        return JSON.stringify(this.data);
     }
 }
