@@ -1,4 +1,4 @@
-import { ProgramCondition, Key } from '../../models'
+import { ProgramCondition, Key, QuestionKey } from '../../models'
 import { FormGroup, FormBuilder, AbstractControl, Validators, FormControl, FormArray } from '@angular/forms';
 
 export class ProgramConditionClass {
@@ -8,8 +8,9 @@ export class ProgramConditionClass {
     constructor(fb: FormBuilder, opts?){
 
         this.data = opts ? opts : {
-            key: {
-                name: 'invalid',
+            questionKey: {
+                text: 'invalid',
+                id: 'invalid',
                 type: 'invalid'
             },
             value: 'invalid',
@@ -22,8 +23,9 @@ export class ProgramConditionClass {
     private _initForm(fb: FormBuilder) {
         this.form = fb.group({
             key: fb.group({
-                name: new FormControl(this.data.key.name, Validators.required),
-                type: new FormControl(this.data.key.type, Validators.required)
+                text: new FormControl(this.data.questionKey.text, Validators.required),
+                id: new FormControl(this.data.questionKey.id, Validators.required),
+                type: new FormControl(this.data.questionKey.type, Validators.required)
             }),
             value: new FormControl(this.data.value, Validators.required),
             type: new FormControl(this.data.type),
@@ -33,10 +35,10 @@ export class ProgramConditionClass {
 
     validator(condition: AbstractControl): {[key: string]: any} {
         const value = condition.value;
-        const key: Key = value.key;
+        const questionKey: QuestionKey = value.key;
         let others = Object.keys(value).filter(k => k !== 'key')
         const errors = {};
-        if (key.name === 'invalid' || key.type === 'invalid') {
+        if (questionKey.text === 'invalid' || questionKey.type === 'invalid') {
             errors['invalid_key'] = 'key is invalid';
             condition.get('key').setErrors(errors);
         }
@@ -48,11 +50,11 @@ export class ProgramConditionClass {
                 errors[prop] = 'invalid'
         });
 
-        if (key.type === 'number' && Number.isNaN(Number.parseInt(value.value, 10))) {
+        if (questionKey.type === 'number' && Number.isNaN(Number.parseInt(value.value, 10))) {
             errors['invalid-number-value'] = `${value.value} is not a valid number`;
         }
 
-        if (key.type === 'number' && value.qualifier === null) {
+        if (questionKey.type === 'number' && value.qualifier === null) {
             errors['null-qualifier'] = `${value.value} has a null qualifier`;
         }
 

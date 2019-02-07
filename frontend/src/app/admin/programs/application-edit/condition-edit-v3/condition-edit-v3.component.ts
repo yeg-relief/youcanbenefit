@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnDestroy} from '@angular/core';
 import { Key } from '../../../models/key'
+import { QuestionKey } from '../../../models/question-key'
 import { ProgramConditionClass } from '../../services/program-condition.class';
 import { ProgramModelService } from '../../services/program-model.service'
 import { Observable, Subscription } from 'rxjs';
@@ -16,6 +17,7 @@ export class ConditionEditV3Component implements OnInit, OnDestroy {
   valueWatcherNumber: Subscription;
   valueWatcherBoolean: Subscription;
   keys: Observable<Key[]>;
+  questionKeys: Observable<QuestionKey[]>
   keyNameClasses = { 'ng-invalid': false };
   optional = {
     boolean: false,
@@ -33,7 +35,7 @@ export class ConditionEditV3Component implements OnInit, OnDestroy {
   constructor(private ps: ProgramModelService) { }
 
   ngOnInit() {
-    this.keys = this.ps.keys.pipe(map((keys: any[]) => keys.sort( (a, b) => a.name.localeCompare(b.name)) ));
+    this.questionKeys = this.ps.questionKeys.pipe(map((questionKeys: any[]) => questionKeys.sort( (a, b) => a.text.localeCompare(b.text)) ));
   }
 
   ngOnDestroy() {
@@ -43,12 +45,12 @@ export class ConditionEditV3Component implements OnInit, OnDestroy {
   }
 
 
-  isKeySelected(name: string): boolean {
-    return name === this._getSelectedKeyName();
+  isQuestionKeySelected(id: string): boolean {
+    return id === this._getSelectedQuestionKeyId();
   }
 
-  private _getSelectedKeyName(): string {
-    return this.condition.form.value.key.name;
+  private _getSelectedQuestionKeyId(): string {
+    return this.condition.form.value.key.id;
   }
 
   handleKeyChange($event) {
@@ -65,15 +67,15 @@ export class ConditionEditV3Component implements OnInit, OnDestroy {
       this.optional.number = true;
     };
 
-    const name = $event.target.value;
-    this.keys
-      .pipe(take(1), map(keys => keys.find(k => k.name === name)))
-      .subscribe(key => {
-        if (key){
-          this.condition.form.get('key').setValue(key);
-          this.condition.form.get('type').setValue(key.type);
+    const text = $event.target.value;
+    this.questionKeys
+      .pipe(take(1), map(keys => keys.find(k => k.text === text)))
+      .subscribe(questionKey => {
+        if (questionKey){
+          this.condition.form.get('key').setValue(questionKey);
+          this.condition.form.get('type').setValue(questionKey.type);
 
-          if (key.type === 'boolean')
+          if (questionKey.type === 'boolean')
             booleanValueStrategy(this.condition.form);
           else 
             numberValueStrategy(this.condition.form);
@@ -89,12 +91,12 @@ export class ConditionEditV3Component implements OnInit, OnDestroy {
       });
   }
 
-  getKeyType(): string {
+  getQuestionKeyType(): string {
     return this.condition.form.value.key.type;
   }
 
   isQualifierSelected(qualifierValue: string) {
-    return this.getKeyType() !== 'boolean' && this.condition.form.get('qualifier').value === qualifierValue;
+    return this.getQuestionKeyType() !== 'boolean' && this.condition.form.get('qualifier').value === qualifierValue;
   }
 
   deleteCondition() {
