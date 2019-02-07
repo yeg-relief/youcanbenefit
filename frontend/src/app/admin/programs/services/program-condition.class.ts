@@ -5,7 +5,7 @@ import { distinctUntilChanged } from 'rxjs/operators'
 export class ProgramConditionClass {
     data: ProgramCondition;
     form: FormGroup;
-    // patchQualifierValue: (any) => void;
+ 
     constructor(fb: FormBuilder, opts?){
         this.data = opts ? opts : {
           key: {
