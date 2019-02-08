@@ -10,13 +10,12 @@ export class QuestionControlService {
         if (!questions || !Array.isArray(questions) ) {
             return new FormGroup({});
         }
-
         questions.sort( (a, b) => a.index - b.index);
 
         const group = questions.reduce((acc, question) => {
             if ( question.id && question.controlType === 'NumberInput') {
                 acc[question.id] = new FormControl('', Validators.pattern('^\\d+$'));
-            } else if (!question.id && question.controlType === 'Multiselect' && Array.isArray(question.multiSelectOptions)) {
+            } else if (question.controlType === 'Multiselect' && Array.isArray(question.multiSelectOptions)) {
                 for (const selectQuestion of question.multiSelectOptions) {
                     acc[selectQuestion.id] = new FormControl('');
                 }

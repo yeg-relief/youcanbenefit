@@ -29,7 +29,8 @@ const screenerState: fromScreener.State  = {
   error: '',
   selectedConstantQuestion: 'fake_id',
   selectedConditionalQuestion: undefined,
-  created: 0
+  created: 0,
+  DATA: "TEST"
 };
 
 
@@ -45,10 +46,6 @@ describe('QuestionEditComponent', () => {
       imports: [ 
         MaterialModule, 
         ReactiveFormsModule,
-        StoreModule.provideStore(fromRoot.reducer, { 
-          screener: screenerState, 
-          keyOverview: fromKeys.initialState,
-        }),
         BrowserAnimationsModule
       ],
       providers: [
