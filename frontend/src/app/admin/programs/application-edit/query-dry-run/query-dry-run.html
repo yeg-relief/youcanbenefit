@@ -1,0 +1,25 @@
+<mat-list class="query-inputs" [formGroup]="query" *ngIf="query !== null">
+    <mat-list-item *ngFor="let key of keys">
+        <mat-form-field>
+            <input matInput disabled [value]="key.name"/>
+        </mat-form-field>
+        <div [ngSwitch]="key.type">
+
+            <span *ngSwitchCase="'integer'">
+                <mat-form-field>
+                    <input type="number" matInput [formControlName]="key.name">
+                </mat-form-field>
+            </span>
+
+            <span *ngSwitchCase="'boolean'">
+                <mat-button-toggle-group *ngSwitchCase="'boolean'" [formControlName]="key.name">
+                    <mat-button-toggle [value]="true" [checked]="true">true</mat-button-toggle>
+                    <mat-button-toggle [value]="false">false</mat-button-toggle>
+                </mat-button-toggle-group>
+            </span>
+            
+            <span *ngSwitchDefault>unknown</span>
+
+        </div>
+    </mat-list-item>
+</mat-list>

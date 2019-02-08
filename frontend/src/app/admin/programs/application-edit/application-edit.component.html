@@ -20,7 +20,14 @@
       </div>
     </header>
     <div id="query-edit" *ngIf="selected !== undefined">
-      <app-query-edit-v3 [programQuery]="selected"> </app-query-edit-v3>
+      <mat-tab-group (selectedTabChange)="selectedTabChange($event)">
+        <mat-tab label="query">
+            <app-query-edit-v3 [programQuery]="selected"> </app-query-edit-v3>
+        </mat-tab>
+        <mat-tab label="test">
+            <query-dry-run [programQuery]="selected"></query-dry-run>
+        </mat-tab>
+      </mat-tab-group>
     </div>
   </main>
 </div>

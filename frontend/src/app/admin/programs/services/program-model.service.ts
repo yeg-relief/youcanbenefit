@@ -1,6 +1,6 @@
 
-import { throwError as observableThrowError, Observable , ReplaySubject, of } from 'rxjs';
-import { map, flatMap, take, zip, catchError, tap, refCount, multicast } from 'rxjs/operators'
+import { throwError as observableThrowError, Observable , ReplaySubject } from 'rxjs';
+import { map, take, catchError, tap, refCount, multicast } from 'rxjs/operators'
 import { Injectable } from '@angular/core';
 import { Http, RequestOptions} from '@angular/http';
 import { ApplicationFacingProgram, ProgramQuery, Key } from '../../models'

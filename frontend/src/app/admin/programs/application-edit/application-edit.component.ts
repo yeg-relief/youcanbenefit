@@ -9,6 +9,7 @@ import { ApplicationFacingProgram } from '../../models';
 import { Observable, ReplaySubject, Subject, merge, combineLatest, of } from 'rxjs';
 import { filter, tap, multicast, refCount, pluck, take, catchError } from 'rxjs/operators'
 import { MatSnackBar } from '@angular/material'
+import { QueryDryRunService } from './query-dry-run/query-dry-run.service';
 
 @Component({
   selector: 'app-application-edit',
@@ -25,8 +26,9 @@ export class ApplicationEditComponent implements OnInit {
   constructor(
     private modelService: ProgramModelService,
     private queryService: QueryService,
+    private queryDryRunService: QueryDryRunService,
     private route: ActivatedRoute,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
   ) {}
 
   ngOnInit() {
@@ -46,6 +48,12 @@ export class ApplicationEditComponent implements OnInit {
       multicast(new ReplaySubject<FormGroup>(1)),
       refCount()
     );
+  }
+
+  selectedTabChange($event){
+    if($event.index === 1) {
+      console.log($event)
+    }
   }
 
   selectQuery(query: ProgramQueryClass) {
@@ -76,6 +84,7 @@ export class ApplicationEditComponent implements OnInit {
       console.error
     );
   }
+
 
   handleCopy(query_id: string) {
     this.program.pipe(take(1))
