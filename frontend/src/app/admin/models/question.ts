@@ -1,4 +1,3 @@
-import { Key } from './key';
 
 export type ID = string;
 export type QuestionType = 'conditional' | 'constant';
@@ -10,7 +9,6 @@ export type ControlType = '' | 'invalid' | 'NumberSelect' | 'NumberInput' | 'Tog
 
 export interface MultiselectQuestion {
     id: ID;
-    key: Key;
     label: string;
     index: number;
 }
@@ -21,19 +19,6 @@ export interface Question {
     expandable: boolean,
     id: ID,
     index: number,
-    key: string,
-    label: string,
-    options: number[],
-    multiSelectOptions: Array<any>
-}
-
-export interface Question_2 {
-    conditionalQuestions?: ID[],
-    controlType: ControlType,
-    expandable: boolean,
-    id: ID,
-    index: number,
-    key: Key,
     label: string,
     options: number[],
     multiSelectOptions: Array<any>

@@ -2,22 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Http, } from '@angular/http';
 import { Store } from '@ngrx/store';
-import { Question, Question_2 } from '../../models';
+import { Question } from '../../models';
 import { AuthService } from '../../core/services/auth.service';
 import * as fromRoot from '../../reducer';
 import { select } from '@ngrx/store'
 import { Observable, pipe, combineLatest } from 'rxjs';
 import {
   map,
-  withLatestFrom,
-  tap,
-  startWith,
   filter, 
   take,
   pluck
 } from 'rxjs/operators'
 import { environment } from '../../../../environments/environment'
-import { DataService } from '../../data.service';
 
 @Component({
   selector: 'app-screener-toolbar',
@@ -34,8 +30,7 @@ export class ScreenerToolbarComponent implements OnInit {
   constructor(
     private store: Store<fromRoot.State>,
     private auth: AuthService,
-    private http: Http,
-    private dataService: DataService,
+    private http: Http
   ) {}
 
   ngOnInit() {
@@ -66,8 +61,7 @@ export class ScreenerToolbarComponent implements OnInit {
     const questions = this.form$.pipe(
       pluck('form'),
       filter(form => form['valid']),
-      partitionQuestions,
-      map(this.removeKeyType),
+      partitionQuestions
     )
     
     const questionKeys = this.form$.pipe(
@@ -119,19 +113,6 @@ export class ScreenerToolbarComponent implements OnInit {
         console.log(array)
         return this.http.post(`${environment.api}/protected/updatekeys`, array, this.auth.getCredentials()).toPromise().then(console.log).catch(console.error)
       })
-  }
-
-  private removeKeyType(screener: {[key: string]: Question_2[]}) {
-    const _removeKeyType = (question: Question_2): Question => {
-      const keyName = question.id;
-      return (<any>Object).assign({}, question, {key: keyName});
-    };
-
-    return {
-      questions: screener['questions'].map(_removeKeyType),
-      conditionalQuestions: screener['conditionalQuestions'].map(_removeKeyType),
-      created: -1
-    }
   }
 
 }

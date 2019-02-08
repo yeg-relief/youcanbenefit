@@ -58,7 +58,7 @@ export class YcbQuestionComponent implements OnInit, OnDestroy {
     ngOnInit() {
 
         if (this.isExpandableQuestion()) {
-            const change = this.form.get(this.question.key).valueChanges
+            const change = this.form.get(this.question.id).valueChanges
                 .pipe(
                     filter(value => typeof value === 'string' && (value === 'true' || value === 'false')),
                     map(val => val === 'true'),
@@ -142,12 +142,12 @@ export class YcbQuestionComponent implements OnInit, OnDestroy {
     }
 
     handleInput(textInput: string) {
-        const isValid = this.form.get(this.question.key).valid;
+        const isValid = this.form.get(this.question.id).valid;
 
         if (!isValid) {
             this.addError();
-        } else if (isValid && this.form.hasError('invalid input', [this.question.key, 'number'])) {
-            console.warn(`form has error on key: ${this.question.key}, but the form says it is valid: ${isValid}`);
+        } else if (isValid && this.form.hasError('invalid input', [this.question.id, 'number'])) {
+            console.warn(`form has error on key: ${this.question.id}, but the form says it is valid: ${isValid}`);
         }
 
         if (!isValid && this.errorInDOM === 'outDOM'){
@@ -161,7 +161,7 @@ export class YcbQuestionComponent implements OnInit, OnDestroy {
     addError() {
         this.form.setErrors({
             ...this.form.errors,
-            [this.question.key]: {number: 'invalid input'}
+            [this.question.id]: {number: 'invalid input'}
         })
     }
 }

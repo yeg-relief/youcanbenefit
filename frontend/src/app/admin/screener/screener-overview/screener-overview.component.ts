@@ -28,7 +28,6 @@ import {
   mergeMap,
   switchMap,
   take,
-  tap,
   pluck
 } from 'rxjs/operators';
 import { DragDropManagerService } from '../question-list/drag-drop-manager.service';

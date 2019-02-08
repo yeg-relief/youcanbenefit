@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { FormGroup } from '@angular/forms';
 import * as fromRoot from '../../reducer';
-import { Question, Question_2 } from '../../models';
+import { Question} from '../../models';
 import { QuestionControlService } from '../../../user/master-screener/questions/question-control.service';
 import { Observable, ReplaySubject } from 'rxjs';
 import { take, tap, map, mergeMap, reduce } from 'rxjs/operators'
@@ -31,7 +31,6 @@ export class ScreenerPreviewComponent implements OnInit {
         fromRoot.getForm,
         take(1),
         this.partitionQuestions.bind(this),
-        this.flattenKeys,
       )
       .subscribe( partitionedQuestions => {
         this.questions = partitionedQuestions['questions'];
@@ -61,27 +60,12 @@ export class ScreenerPreviewComponent implements OnInit {
 
   private isConditional(questionValues, questionID){
     for (const key in questionValues) {
-      const q: Question_2 = questionValues[key];
+      const q: Question = questionValues[key];
       if (Array.isArray(q.conditionalQuestions) && q.conditionalQuestions.find(cq_id => cq_id === questionID) !== undefined) {
         return true;
       }
     }
     return false;
-  }
-
-  private flattenKeys(input: Observable<{[key: string]: Question_2[]}>): Observable<{[key: string]: Question[] }> {
-    const removeKeyType = (question: Question_2): Question => {
-      const keyName = question.key.name;
-      return (<any>Object).assign({}, question, {key: keyName});
-    }
-
-
-    return input.pipe(map( screener => {
-      return {
-        questions: screener['questions'].map(removeKeyType),
-        conditionalQuestions: screener['conditionalQuestions'].map(removeKeyType),
-      }
-    }))
   }
 
   gatherConditionals(question) {
