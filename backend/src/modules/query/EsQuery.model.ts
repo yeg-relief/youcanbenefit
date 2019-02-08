@@ -19,16 +19,19 @@ export class EsQueryModel {
             throw new Error("EsQueryModel: unable to build query from invalid data.")
         }
 
-        const meta = {
-            program_guid: this.data.guid,
-            id: this.data.id
-        };
+        
 
         const questionTexts = {}
 
         this.data.conditions.map( condition => {
             questionTexts[condition.questionKey.id] = condition.questionKey.text
         })
+
+        const meta = {
+            program_guid: this.data.guid,
+            id: this.data.id,
+            questionTexts
+        };
 
 
         const query = {
@@ -70,8 +73,7 @@ export class EsQueryModel {
 
         const retValue = {
             meta,
-            query,
-            questionTexts
+            query
         };
 
         this.applicationQueryDto = retValue;

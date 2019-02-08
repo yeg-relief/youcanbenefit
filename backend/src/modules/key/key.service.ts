@@ -67,29 +67,39 @@ export class KeyService {
         )
     }
 
-    private updateQueries(queries, keys: QuestionKeyDto[]): any[] {
+    private updateQueries(queries, questionKeys: QuestionKeyDto[]): any[] {
         const updatedQueries = []
         queries.forEach(query => {
             const conditions = query['query']['bool']['must'];
             const updatedConditions = [];
             conditions.forEach(condition => {
-                let keyRemained = keys.some( key => {
-                    return key.id === Object.keys(condition[Object.keys(condition)[0]])[0]
+                let keyRemained = questionKeys.some( questionKey => {
+                    return questionKey.id === Object.keys(condition[Object.keys(condition)[0]])[0]
                 })
                 if (keyRemained) {
                     updatedConditions.push(condition)
                 }
             });
-            if (!conditions.length) {
-                updatedQueries.push({
-                    query: {
-                        bool: {
-                            must: updatedConditions
-                        }
-                    },
-                    meta: query['meta']
-                })
-            }
+
+            const questionTexts = query['meta']['questionTexts']
+            questionKeys.forEach( questionKey => {
+                if (questionTexts.hasOwnProperty(questionKey.id)) {
+                    questionTexts[questionKey.id] = questionKey.text
+                }
+            })
+
+            updatedQueries.push({
+                meta: {
+                    program_guid: query['meta']['program_guid'],
+                    id: query['meta']['id'],
+                    questionTexts
+                },
+                query: {
+                    bool: {
+                        must: updatedConditions
+                    }
+                }
+            })
             
         })
         return updatedQueries
@@ -115,24 +125,6 @@ export class KeyService {
         const mapping = []
         questionKeys.forEach( questionKey => {
             mapping.push({[questionKey.id] : {type: questionKey.type}})
-        })
-        mapping.push({
-            "meta": {
-                "properties": {
-                  "id": {
-                    "type": "text",
-                    "fields": {
-                      "keyword": { "type": "keyword", "ignore_above": 256 }
-                    }
-                  },
-                  "program_guid": {
-                    "type": "text",
-                    "fields": {
-                      "keyword": { "type": "keyword", "ignore_above": 256 }
-                    }
-                  }
-                }
-              }
         })
         mapping.push({"query" : {type: "percolator"}})
         
