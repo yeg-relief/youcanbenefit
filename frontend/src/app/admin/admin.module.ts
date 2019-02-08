@@ -7,9 +7,7 @@ import { reducer } from './reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { DataService } from './data.service';
 import { AdminCoreModule } from './core/admin-core.module';
-import { KeyResolverService } from './keys/overview/key-resolver.service';
 import { ProgramsModule } from './programs/programs.module';
-import { KeysModule } from './keys/keys.module';
 import { HttpModule } from '@angular/http';
 import { ScreenerOverviewComponent } from './screener/screener-overview/screener-overview.component';
 import { ScreenerToolbarComponent } from './screener/screener-toolbar/screener-toolbar.component';
@@ -60,7 +58,6 @@ import {
         EffectsModule.forRoot([ScreenerEffects]),
         AdminCoreModule,
         ProgramsModule,
-        KeysModule,
         ReactiveFormsModule,
         FormsModule,
         ScreenerImportsModule,
@@ -82,7 +79,6 @@ import {
     providers: [
         DataService,
         HttpModule,
-        KeyResolverService,
         DragDropManagerService,
         KeyFilterService,
         DataManagementService

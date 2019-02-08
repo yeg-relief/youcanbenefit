@@ -19,7 +19,6 @@ import {
 import { KeyFilterService } from '../services/key-filter.service';
 import { environment } from '../../../../environments/environment'
 import { DataService } from '../../data.service';
-import * as keysActions from '../../keys/actions';
 
 @Component({
   selector: 'app-screener-toolbar',

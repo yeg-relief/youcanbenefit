@@ -15,7 +15,6 @@ export interface State {
     error: string;
     selectedConstantQuestion: ID;
     selectedConditionalQuestion: ID;
-    keys: Key[];
     created: number;
     DATA: string;
 }
@@ -26,7 +25,6 @@ export const initialState: State = {
     error: '',
     selectedConstantQuestion: undefined,
     selectedConditionalQuestion: undefined,
-    keys: [],
     created: 0,
     DATA: "TEST"
 };

@@ -8,7 +8,6 @@ import { StoreModule } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import * as fromRoot from '../../reducer';
 import * as fromScreener from '../store/screener-reducer';
-import * as fromKeys from '../../keys/reducer';
 import { AuthService } from '../../core/services/auth.service'
 import { KeyFilterService } from '../services/key-filter.service'
 
@@ -38,11 +37,8 @@ const screenerState: fromScreener.State  = {
   error: '',
   selectedConstantQuestion: 'fake_id',
   selectedConditionalQuestion: undefined,
-  keys: [
-    {name: 'boolean_key', type: 'boolean'},
-    {name: 'integer_key', type: 'integer'}
-  ],
-  created: 0
+  created: 0,
+  DATA: 'TEST'
 };
 
 
