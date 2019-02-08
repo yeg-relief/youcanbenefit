@@ -91,10 +91,10 @@ export class YcbQuestionComponent implements OnInit, OnDestroy {
         } else if (this.isNumberSelect()) {
             this.question.options.sort( (a, b) => a > b);
         } else if (this.isMultiSelect()) {
-            const keys = this.question.multiSelectOptions.map(o => o.key.name);
-            keys.forEach(keyName => {
-                if (this.form.get(keyName)){
-                    this.form.get(keyName).setValue(false);
+            const keys = this.question.multiSelectOptions.map(q => q.id);
+            keys.forEach(id => {
+                if (this.form.get(id)){
+                    this.form.get(id).setValue(false);
                 }
             });
         }
@@ -146,8 +146,8 @@ export class YcbQuestionComponent implements OnInit, OnDestroy {
 
         if (!isValid) {
             this.addError();
-        } else if (isValid && this.form.hasError('invalid input', [this.question.id, 'number'])) {
-            console.warn(`form has error on key: ${this.question.id}, but the form says it is valid: ${isValid}`);
+        } else if (isValid && this.form.hasError('invalid input', [this.question.text, 'number'])) {
+            console.warn(`form has error on key: ${this.question.text}, but the form says it is valid: ${isValid}`);
         }
 
         if (!isValid && this.errorInDOM === 'outDOM'){

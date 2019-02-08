@@ -88,7 +88,7 @@ export class ScreenerToolbarComponent implements OnInit {
       let questionKeyType;
       if (q.controlType === "Multiselect") {
         q.multiSelectOptions.forEach(multiQuestion => {
-          questionKeyArray.push({text: multiQuestion.text, id: 'multiID', type: "boolean"})
+          questionKeyArray.push({text: multiQuestion.text, id: multiQuestion.id, type: "boolean"})
         });
       } else if (q.controlType === "NumberInput") {
         questionKeyType = "integer";
