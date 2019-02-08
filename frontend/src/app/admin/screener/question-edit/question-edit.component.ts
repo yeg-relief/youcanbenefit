@@ -217,7 +217,7 @@ export class QuestionEditComponent implements OnInit, OnDestroy {
                 form.get('multiSelectOptions').setValue(options);
 
 
-                form.get(['key', 'name']).setValue(null);
+                // form.get(['key', 'name']).setValue(null);
 
                 form.get('expandable').setValue(false);
             })
