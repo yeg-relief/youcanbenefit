@@ -21,7 +21,7 @@ export class MultSelectQuestionsComponent implements OnInit, OnDestroy {
     ngOnInit() {
 
         this.form = this.fb.group({
-            'id': ['', Validators.required],
+            'id': [''],
             'text': ['', Validators.required]
         });
 
@@ -47,7 +47,6 @@ export class MultSelectQuestionsComponent implements OnInit, OnDestroy {
 
         this.update.emit(this.options);
         this.form.reset();
-        console.log(this.options)
     }
 
     handleDelete(id) {

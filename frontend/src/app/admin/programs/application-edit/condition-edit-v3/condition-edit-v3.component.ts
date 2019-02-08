@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnDestroy} from '@angular/core';
-import { Key } from '../../../models/key'
 import { QuestionKey } from '../../../models/question-key'
 import { ProgramConditionClass } from '../../services/program-condition.class';
 import { ProgramModelService } from '../../services/program-model.service'
@@ -16,7 +15,6 @@ export class ConditionEditV3Component implements OnInit, OnDestroy {
   @Output() remove = new EventEmitter();
   valueWatcherNumber: Subscription;
   valueWatcherBoolean: Subscription;
-  keys: Observable<Key[]>;
   questionKeys: Observable<QuestionKey[]>
   keyNameClasses = { 'ng-invalid': false };
   optional = {
