@@ -18,7 +18,7 @@ export class QuestionControlService {
                 acc[question.id] = new FormControl('', Validators.pattern('^\\d+$'));
             } else if (!question.id && question.controlType === 'Multiselect' && Array.isArray(question.multiSelectOptions)) {
                 for (const selectQuestion of question.multiSelectOptions) {
-                    acc[selectQuestion.key.name] = new FormControl('');
+                    acc[selectQuestion.id] = new FormControl('');
                 }
             } else if(question.id ) {
                 acc[question.id] = new FormControl('');

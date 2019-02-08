@@ -59,7 +59,7 @@ export class QuestionsComponent implements OnInit, OnDestroy {
 
     idsToKeys(ids) {
         return this.conditionalQuestions.filter(q => ids.includes(q.id)).map(q => {
-            return q.controlType !== 'Multiselect' ? q.id : q.multiSelectOptions.map(q => q.key.name);
+            return q.controlType !== 'Multiselect' ? q.id : q.multiSelectOptions.map(q => q.id);
         });
     }
 
