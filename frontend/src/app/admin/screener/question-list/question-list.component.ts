@@ -5,7 +5,6 @@ import { Subject, Subscription, combineLatest } from 'rxjs';
 import { takeUntil, map, filter, tap } from 'rxjs/operators'
 import { Store, select } from '@ngrx/store';
 import * as fromRoot from '../../reducer';
-import { KeyFilterService } from '../services/key-filter.service';
 import { DragDropManagerService, DragDatum } from './drag-drop-manager.service';
 
 declare const document;
@@ -40,8 +39,7 @@ export class QuestionListComponent implements OnInit, OnDestroy {
 
   constructor(
     private store: Store<fromRoot.State>, 
-    private dragManager: DragDropManagerService,
-    private keyFilter: KeyFilterService
+    private dragManager: DragDropManagerService
   ) {}
 
   handleAddQuestion() {
@@ -103,31 +101,6 @@ export class QuestionListComponent implements OnInit, OnDestroy {
         this.deselectAll(); 
 
     });
-
-    this.keyFilter.filteredKey$
-      .pipe(
-        takeUntil(this.destroySubs$.asObservable()),
-        map( (update: any) => update.keyNames),
-        filter( keys => keys !== undefined && keys !== null && Array.isArray(keys)),
-      ) 
-      .subscribe( (keys) => {
-
-        if(Object.keys(this.form.value).length > keys.length){
-          for (const id of this.questions) {
-            if(this.classes[id] === undefined) this.initializeStyle(id);
-            if (keys.find(keyName => keyName === this.form.value[id].key.name))
-              this.classes[id]['filtered_me'] = true;
-            else 
-              this.classes[id]['filtered_me'] = false;
-          }
-        } else {
-          for (const id of this.questions) {
-            if(this.classes[id] === undefined) this.initializeStyle(id);
-            
-            this.classes[id]['filtered_me'] = false;
-          }
-        }  
-      })
   }
 
   private initializeStyle(id){

@@ -1,6 +1,5 @@
 import { AbstractControl } from '@angular/forms';
 import { ControlType } from '../../models';
-import { Key } from '../../models';
 
 export function questionValidator(control: AbstractControl): {[key: string]: any} {
    

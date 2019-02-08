@@ -16,7 +16,6 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { QuestionListComponent } from './screener/question-list/question-list.component';
 import { QuestionEditComponent } from './screener/question-edit/question-edit.component';
 import { DragDropManagerService } from './screener/question-list/drag-drop-manager.service';
-import { KeyFilterService } from './screener/services/key-filter.service';
 import { ScreenerPreviewComponent } from './screener/screener-preview/screener-preview.component';
 import { ScreenerContainerComponent } from './screener/screener-container/screener-container.component';
 import { ScreenerImportsModule } from './screener/screener-imports/screener-imports.module';
@@ -80,7 +79,6 @@ import {
         DataService,
         HttpModule,
         DragDropManagerService,
-        KeyFilterService,
         DataManagementService
     ]
 })

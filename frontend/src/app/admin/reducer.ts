@@ -39,7 +39,3 @@ export const getConstantQuestions = createSelector(getScreenerState, fromScreene
 export const getSelectedConstantID = fromScreener.getSelectedConstantID
 
 export const getSelectedConditionalID = fromScreener.getSelectedConditionalID
-
-export const getScreenerKeys =  fromScreener.getKeys
-
-export const getUnusedScreenerKeys = fromScreener.getUnusedKeys

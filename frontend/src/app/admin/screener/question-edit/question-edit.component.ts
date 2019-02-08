@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, EventEmitter, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
-import { ID, Key, ControlType } from '../../models';
+import { ID, ControlType } from '../../models';
 import { Observable, ReplaySubject, Subject, combineLatest, of } from 'rxjs';
 import { 
     map, 
@@ -42,7 +42,6 @@ export class QuestionEditComponent implements OnInit, OnDestroy {
 
     selectedQuestionID$;
     form$: Observable<AbstractControl>;
-    unusedKeys: Key[] = [];
     optionForm: FormGroup;
     fadeState = 'in';
 
@@ -90,7 +89,7 @@ export class QuestionEditComponent implements OnInit, OnDestroy {
                 withLatestFrom(this.store.pipe(fromRoot.getForm)),
                 filter( ([questionID, form]) => form.get(questionID) !== null),
                 map( ([questionID, form]) => form.get(questionID)),
-                startWith(this.fb.group({ label: [''], key: this.fb.group({ name: [''], type: [''] }), controlType: [''], expandable: [false], options: [] })),
+                startWith(this.fb.group({ label: [''], controlType: [''], expandable: [false], options: [] })),
                 tap( (form: any) => {
                     this.controlType = form.get('controlType').value
                     const val = form.value;
@@ -102,9 +101,6 @@ export class QuestionEditComponent implements OnInit, OnDestroy {
                 multicast( new ReplaySubject(1)),
                 refCount()
             )
-
-        this.store.pipe(fromRoot.getUnusedScreenerKeys, takeUntil(this.destroySubs$.asObservable()))
-            .subscribe( (keys: any[]) => this.unusedKeys = [...keys]);
 
         this.form$
             .pipe(
@@ -122,33 +118,6 @@ export class QuestionEditComponent implements OnInit, OnDestroy {
             optionValue: ['', Validators.required ]
         });
 
-        // effects
-        this.form$
-            .pipe(
-                filter(Boolean),
-                map( form => form.get('key')),
-                filter(Boolean),
-                switchMap( key => key.valueChanges.pipe(startWith(key.value),pairwise()) ),
-                debounceTime(100),
-                takeUntil(this.destroySubs$.asObservable()),
-                withLatestFrom(this.form$),
-            )
-            .subscribe( ([ keys, form]) => {
-                const prevKey = keys[0];
-                const currKey = keys[1];  
-                const type = this.unusedKeys.find(k => k.name === currKey.name) ?
-                    this.unusedKeys.find(k => k.name === currKey.name).type : null;
-                form.get(['key', 'type']).setValue(type);
-                if ( (prevKey && currKey) && (prevKey.name && currKey.name) && prevKey.name.substr(0, 7) !== 'invalid'){
-                    this.unusedKeys = this.unusedKeys.filter(k => k.name !== currKey.name)
-                        .concat(prevKey)
-                        .sort( (a, b) => a.name.localeCompare(b.name));
-                } else if (currKey && currKey.name) {
-                    this.unusedKeys = this.unusedKeys.filter(k => k.name !== currKey.name)
-                        .sort( (a, b) => a.name.localeCompare(b.name));
-                }
-
-            });
 
         this.form$
             .pipe(

@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angu
 import { Subject, combineLatest } from 'rxjs';
 import { takeUntil, take } from 'rxjs/operators'
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { Key } from '../../../models';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../../../reducer';
 
@@ -14,26 +13,14 @@ import * as fromRoot from '../../../reducer';
 export class MultSelectQuestionsComponent implements OnInit, OnDestroy {
     @Input() options: Array<any>;
     @Output() update = new EventEmitter<Array<any>>();
-    unusedKeys: Key[] = [];
-    committedKeys: Key[] = [];
     destroySubs$ = new Subject();
     form: FormGroup;
 
     constructor(private store: Store<fromRoot.State>, private fb: FormBuilder) {}
 
     ngOnInit() {
-        this.store
-            .pipe(
-                fromRoot.getUnusedScreenerKeys,
-                takeUntil(this.destroySubs$.asObservable())
-            )
-            .subscribe( (keys: any[]) => this.unusedKeys = [...keys].filter(key => key.type === 'boolean').sort((a, b) => a.name.localeCompare(b.name)));
 
         this.form = this.fb.group({
-            'key': new FormGroup({
-                name: new FormControl('', Validators.required),
-                type: new FormControl('', Validators.required)
-            }),
             'text': ['', Validators.required]
         });
 

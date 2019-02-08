@@ -1,5 +1,5 @@
 import '@ngrx/core/add/operator/select';
-import { Screener, ID, Question_2, Key } from '../../models';
+import { Screener, ID, Question_2} from '../../models';
 import { ScreenerActions, ScreenerActionTypes } from './screener-actions';
 import { FormGroup, AbstractControl, FormControl } from '@angular/forms';
 import { questionValidator } from '../validators';
@@ -39,9 +39,7 @@ export function reducer(state = initialState, action: ScreenerActions): State {
             const index = getConstantQuestionsLength(state);
             const question = blankQuestion(index);
             const control = question_to_control(question);
-            const key_group = key_to_group({ name: question.key.name, type: question.key.type });
             const question_group = new FormGroup(control, questionValidator);
-            question_group.addControl('key', key_group);
             state.form.addControl(question.id, question_group);
 
             return (<any>Object).assign({}, state, {
@@ -67,9 +65,7 @@ export function reducer(state = initialState, action: ScreenerActions): State {
             const question = blankQuestion(index);
             question.expandable = false;
             const control = question_to_control(question);
-            const key_group = key_to_group({ name: question.key.name, type: question.key.type });
             const question_group = new FormGroup(control, questionValidator);
-            question_group.addControl('key', key_group);
             state.form.addControl(question.id, question_group);
             state.form.get([hostID, 'conditionalQuestions']).setValue([...hostQuestion.conditionalQuestions, question.id]);
 
@@ -233,12 +229,10 @@ export function reducer(state = initialState, action: ScreenerActions): State {
             //const allQuestions_2 = allQuestions.map(q => q.key = screener.keys.find(key => key.name === q.key))
 
             const form: FormGroup = allQuestions_2
-                .map(question => [question_to_control(question), key_to_group(question.key)])
-                .map( ([question, key]) => {
+                .map(question => question_to_control(question))
+                .map( (question) => {
                     const questionControl = <{ [key: string]: AbstractControl; }>question;
-                    const keyGroup = <FormGroup>key;
                     const questionGroup = new FormGroup(questionControl);
-                    questionGroup.addControl('key', keyGroup);
                     return questionGroup;
                 })
                 .map(group => { group.setValidators([questionValidator]); return group })
@@ -248,14 +242,12 @@ export function reducer(state = initialState, action: ScreenerActions): State {
                 }, new FormGroup({}));
 
 
-            const keys = screener.keys;
 
             return (<any>Object).assign({}, {
                 loading: false,
                 created: screener.created,
                 error: '',
-                form,
-                keys,
+                form
             })
         }
 
@@ -425,39 +417,6 @@ export function getConstantQuestions(state$: Observable<State>){
 
 }
 
-const selectScreener = pipe(
-    select('root'),
-    select('screener')
-)
-
-export const getKeys = pipe(
-    selectScreener,
-    select('keys'),
-    filter(keys => keys !== undefined && keys.findIndex(k => k === undefined) < 0)
-)
-
-export const getUnusedKeys = pipe(
-    selectScreener,
-    map( ([allKeys, formValue]) => {
-        let usedKeys = [];
-        let multiKeys = [];
-        for (const id in formValue){
-            if (formValue[id].controlType === 'Multiselect' && formValue[id].multiSelectOptions) {
-                const theseKeys = formValue[id].multiSelectOptions.map(option => option.key ? option.key : null).filter(x => x);
-                multiKeys = [...theseKeys, ...multiKeys];
-            }
-        }
-
-        for (const id in formValue){
-            const thisKey = (formValue[id].key && formValue[id].key.name) ? formValue[id].key : null;
-            if (thisKey) {
-                usedKeys = usedKeys.concat(thisKey);
-            }
-        }
-        usedKeys = usedKeys.concat(multiKeys);
-        return allKeys ? allKeys.filter(key => !usedKeys.find(k => k.name === key.name)) : []
-    })
-)
 
 export function getSelectedConstantID(store) {
     return store.pipe(select('root'),select('screener'),pluck('selectedConstantQuestion'))
@@ -524,18 +483,6 @@ export function question_to_control(question: Question_2): ControlMap {
             accum[key] = new FormControl(question[key]);
             return accum;
         }, {});
-}
-
-export function key_to_group(key: Key): FormGroup {
-    return key !== undefined && key.name !== undefined && key.type !== undefined ?
-        new FormGroup({
-            name: new FormControl(key.name),
-            type: new FormControl(key.type)
-        }) :
-        new FormGroup({
-            name: new FormControl(''),
-            type: new FormControl('')
-        });
 }
 
 

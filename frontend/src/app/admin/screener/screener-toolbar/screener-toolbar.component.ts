@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Http, } from '@angular/http';
 import { Store } from '@ngrx/store';
-import { Key, Question, Question_2 } from '../../models';
+import { Question, Question_2 } from '../../models';
 import { AuthService } from '../../core/services/auth.service';
 import * as fromRoot from '../../reducer';
 import { select } from '@ngrx/store'
@@ -16,7 +16,6 @@ import {
   take,
   pluck
 } from 'rxjs/operators'
-import { KeyFilterService } from '../services/key-filter.service';
 import { environment } from '../../../../environments/environment'
 import { DataService } from '../../data.service';
 
@@ -27,16 +26,13 @@ import { DataService } from '../../data.service';
 })
 export class ScreenerToolbarComponent implements OnInit {
   count$: Observable<number>;
-  adminControls: FormGroup;
-  allKeys$: Observable<Key[]>;
   form$: Observable<any>;
   created$: Observable<any>;
   disabled = false;
   errors: any =  { error: '' };
 
   constructor(
-    private store: Store<fromRoot.State>, 
-    private keyFilter: KeyFilterService, 
+    private store: Store<fromRoot.State>,
     private auth: AuthService,
     private http: Http,
     private dataService: DataService,
@@ -44,23 +40,6 @@ export class ScreenerToolbarComponent implements OnInit {
 
   ngOnInit() {
     this.form$ = this.store.pipe(select('root'), select('screener'))
-    const group = { keyFilter: new FormControl('') };
-    this.adminControls = new FormGroup(group);
-
-    this.allKeys$ = 
-      this.adminControls.get('keyFilter').valueChanges
-        .pipe(
-          map( (filterItem) => filterItem.name !== undefined ? filterItem.name : filterItem ),
-          withLatestFrom(this.store.pipe(select('root'), select('screener'), select('keys'))),
-          map( ([filterInput, _, ]) => [_, new RegExp(<string>filterInput, 'gi')]),
-          map( ([keys, filterRegex]) => (<Key[]>keys).filter(key => (<RegExp>filterRegex).test(key.name)) ),
-          tap ( keys => this.keyFilter.setValue(keys.map(k => k.name))),
-          startWith(this.adminControls.get('keyFilter').value)
-        )
-  }
-
-  displayFunction(key: Key){
-    return key ? key.name : key;
   }
 
   isConditional(id: string, questions: any[]): boolean {
@@ -73,7 +52,6 @@ export class ScreenerToolbarComponent implements OnInit {
   }
 
   handleSave() {
-
     const partitionQuestions = pipe(
       map(form => {
         const screener = form['value']
