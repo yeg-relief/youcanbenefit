@@ -146,7 +146,7 @@ export class ScreenerToolbarComponent implements OnInit {
 
   private removeKeyType(screener: {[key: string]: Question_2[]}) {
     const _removeKeyType = (question: Question_2): Question => {
-      const keyName = question.label;
+      const keyName = question.id;
       return (<any>Object).assign({}, question, {key: keyName});
     };
 
