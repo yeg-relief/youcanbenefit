@@ -24,24 +24,24 @@ export class KeyService {
         this.client = this.clientService.client;
     }
 
-    create(key: KeyDto): Promise<any> {
-        return this.client.indices.putMapping({
-            ...this.baseParams,
-            body: {
-                properties: {
-                    [key.name]: {
-                        type: key['type']
-                    }
-                }
-            }
-        })
-            .then(res => res.acknowledged )
-            .catch(err => {
-                return {
-                    "error": "key messed up"
-                }
-            })
-    }
+    // create(key: KeyDto): Promise<any> {
+    //     return this.client.indices.putMapping({
+    //         ...this.baseParams,
+    //         body: {
+    //             properties: {
+    //                 [key.name]: {
+    //                     type: key['type']
+    //                 }
+    //             }
+    //         }
+    //     })
+    //         .then(res => res.acknowledged )
+    //         .catch(err => {
+    //             return {
+    //                 "error": "key messed up"
+    //             }
+    //         })
+    // }
 
 
     private uploadQueries(queries): Promise<any> {
@@ -80,14 +80,12 @@ export class KeyService {
                     updatedConditions.push(condition)
                 }
             });
-
             const questionTexts = query['meta']['questionTexts']
             questionKeys.forEach( questionKey => {
                 if (questionTexts.hasOwnProperty(questionKey.id)) {
                     questionTexts[questionKey.id] = questionKey.text
                 }
             })
-
             updatedQueries.push({
                 meta: {
                     program_guid: query['meta']['program_guid'],
@@ -105,7 +103,7 @@ export class KeyService {
         return updatedQueries
     }
 
-    async updateAll(questionKeys: QuestionKeyDto[]) : Promise<any> {
+    private async backupQueries(questionKeys: QuestionKeyDto[]) : Promise<any> {
         const indexExists = await this.client.indices.exists({ index:'master_screener' });
 
         const queriesRequest = await this.client.search({
@@ -121,6 +119,12 @@ export class KeyService {
         if (indexExists) {
             await this.client.indices.delete({ index:'master_screener' })
         }
+        return updatedQueries
+    }
+
+    async updateAll(questionKeys: QuestionKeyDto[]) : Promise<any> {
+
+        const updatedQueries = await this.backupQueries(questionKeys)
 
         const mapping = []
         questionKeys.forEach( questionKey => {
@@ -157,30 +161,30 @@ export class KeyService {
             .map( screenerData => screenerData[0]['questionKeys'])
     }
 
-    findAll(): Observable<any> {
-        return Observable.fromPromise(this.client.indices.getMapping({
-            ...this.baseParams
-        }))
-            .pluck('master_screener', 'mappings', 'queries', 'properties')
-            .map(keyObj => {
-                delete keyObj['meta'];
-                delete keyObj['query'];
-                return keyObj
-            })
-            .map(obj => {
-                const array = [];
+    // findAll(): Observable<any> {
+    //     return Observable.fromPromise(this.client.indices.getMapping({
+    //         ...this.baseParams
+    //     }))
+    //         .pluck('master_screener', 'mappings', 'queries', 'properties')
+    //         .map(keyObj => {
+    //             delete keyObj['meta'];
+    //             delete keyObj['query'];
+    //             return keyObj
+    //         })
+    //         .map(obj => {
+    //             const array = [];
 
-                for(const name in obj) {
-                    if (obj.hasOwnProperty(name)) {
-                        array.push({
-                            name,
-                            type: obj[name].type
-                        })
-                    }
-                }
+    //             for(const name in obj) {
+    //                 if (obj.hasOwnProperty(name)) {
+    //                     array.push({
+    //                         name,
+    //                         type: obj[name].type
+    //                     })
+    //                 }
+    //             }
 
-                return array
-            })
-    }
+    //             return array
+    //         })
+    // }
 
 }

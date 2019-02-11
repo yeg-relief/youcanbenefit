@@ -36,36 +36,23 @@ export class ProtectedController {
         return Observable.of({created: true})
     }
 
-    @Get('/key/')
-    getAllKeys(): Observable<KeyDto[]> {
-        return this.keyService.findAll();
-    }
-
-    @Post('/key')
-    saveKey(@Body() data) {
-        return Observable.fromPromise( this.keyService.create(data.key || data) )
-            .map(update => ({ update }) )
-    }
-
     @Get('/questionkeys')
     getQuestionKeys(): Observable<QuestionKeyDto[]> {
         return this.keyService.getQuestionKeys();
     }
 
-    @Post('/updatekeys')
-    updateAllKeys(@Body() data) {
-        return Observable.fromPromise( this.keyService.updateAll(data))
+    @Post('/questionkeys')
+    updateAllQuestionKeys(@Body() data) {
+        return Observable.fromPromise(this.keyService.updateAll(data))
     }
 
     @Get('/screener/')
     getScreenerWithKeys(): Observable<any> {
         return Observable.zip(
             this.screenerService.getLatest(),
-            this.keyService.findAll()
-        ).map( ([screener, keys]) => {
+        ).map( ([screener]) => {
             return {
-                ...screener,
-                keys: keys
+                ...screener
             }
         })
     }
