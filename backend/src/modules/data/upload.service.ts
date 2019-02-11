@@ -34,13 +34,11 @@ export class UploadService {
                 Schema.queries.index,
                 'queryMappings'
             );
-            console.log(normalizedMapping)
             queryMappings = await this.client.indices.putMapping({
                 index: Schema.queries.index,
                 type:  Schema.queries.type,
                 body: { properties: { ...normalizedMapping } }
             })
-            
         } else {
             console.dir(Object.keys(data));
             throw new Error("No queryMappings")
