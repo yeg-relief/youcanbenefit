@@ -2,7 +2,7 @@
   <mat-icon matTooltip="delete condition" (click)="deleteCondition()" class="material-icons" [style.color]="'red'">clear</mat-icon>
   <select (change)="handleKeyChange($event)" [ngClass]="keyNameClasses" id="key-question-labels">
     <option disabled [value]="'invalid'"> invalid </option>
-    <option *ngFor="let questionKey of (questionKeys | async)" [value]="questionKey.text" [selected]="isQuestionKeySelected(questionKey.text)">
+    <option *ngFor="let questionKey of (questionKeys | async)" [value]="questionKey.text" [selected]="isQuestionKeySelected(questionKey.id)">
       {{questionKey.text}}
     </option>
   </select>
