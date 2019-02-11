@@ -7,10 +7,6 @@ mat-button-toggle-group {
   align-items: flex-start;
 }
 
-#key-question-labels {
-  width: 200px;
-}
-
 select {
   flex: 25% 0 0;
   margin: 10px;
@@ -22,6 +18,11 @@ mat-list.ng-invalid {
 
 .material-icons {
   cursor: pointer;
+}
+
+.question-text {
+  width: 20em;
+  margin: 0 0.5em;
 }
 
 .qualifier {

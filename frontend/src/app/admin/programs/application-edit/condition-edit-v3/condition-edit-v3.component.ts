@@ -43,7 +43,7 @@ export class ConditionEditV3Component implements OnInit, OnDestroy {
   }
 
 
-  isQuestionKeySelected(option: any): boolean {
+  isQuestionKeySelected = (option: any): boolean => {
     return option && option.id === this._getSelectedQuestionKeyId();
   }
 

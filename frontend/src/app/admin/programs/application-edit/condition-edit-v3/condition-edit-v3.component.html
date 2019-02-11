@@ -8,7 +8,7 @@
         clear
       </mat-icon>
     </button>
-    <mat-form-field>
+    <mat-form-field class="question-text">
       <mat-select placeholder="Question" [compareWith]="isQuestionKeySelected" (selectionChange)="handleKeyChange($event)">
         <mat-option *ngFor="let questionKey of (questionKeys | async)" [value]="questionKey">
         {{questionKey.text}}
