@@ -15,7 +15,7 @@ export class ConditionEditV3Component implements OnInit, OnDestroy {
   @Output() remove = new EventEmitter();
   valueWatcherNumber: Subscription;
   valueWatcherBoolean: Subscription;
-  questionKeys: Observable<QuestionKey[]>
+  questionKeys: Observable<QuestionKey[]>;
   keyNameClasses = { 'ng-invalid': false };
   optional = {
     boolean: false,
@@ -43,13 +43,19 @@ export class ConditionEditV3Component implements OnInit, OnDestroy {
   }
 
 
-  isQuestionKeySelected(id: string): boolean {
-    return id === this._getSelectedQuestionKeyId();
+  isQuestionKeySelected(option: any): boolean {
+    return option && option.id === this._getSelectedQuestionKeyId();
   }
 
   private _getSelectedQuestionKeyId(): string {
     return this.condition.form.value.questionKey.id;
   }
+
+  // isKeySelected = (option: any): boolean => {
+  //   return option && option.name === this._getSelectedQuestionKeyId();
+  // };
+
+
 
   handleKeyChange($event) {
     const booleanValueStrategy = form => {
@@ -65,7 +71,14 @@ export class ConditionEditV3Component implements OnInit, OnDestroy {
       this.optional.number = true;
     };
 
-    const text = $event.target.value;
+    // const text = $event.target.value;
+    // this.questionKeys
+    //   .pipe(take(1), map(keys => keys.find(k => k.text === text)))
+    //   .subscribe(questionKey => {
+    //     if (questionKey){
+    //       this.condition.form.get('questionKey').setValue(questionKey);
+    //       this.condition.form.get('type').setValue(questionKey.type);
+    const text = $event.value.text;
     this.questionKeys
       .pipe(take(1), map(keys => keys.find(k => k.text === text)))
       .subscribe(questionKey => {
@@ -89,11 +102,11 @@ export class ConditionEditV3Component implements OnInit, OnDestroy {
       });
   }
 
-  getQuestionKeyType(): string {
+  getQuestionKeyType = (): string => {
     return this.condition.form.value.questionKey.type;
   }
 
-  isQualifierSelected(qualifierValue: string) {
+  isQualifierSelected = (qualifierValue: any) => {
     return this.getQuestionKeyType() !== 'boolean' && this.condition.form.get('qualifier').value === qualifierValue;
   }
 

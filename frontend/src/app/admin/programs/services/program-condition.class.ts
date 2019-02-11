@@ -1,12 +1,12 @@
 import { ProgramCondition, QuestionKey } from '../../models'
 import { FormGroup, FormBuilder, AbstractControl, Validators, FormControl, FormArray } from '@angular/forms';
+import { distinctUntilChanged } from 'rxjs/operators'
 
 export class ProgramConditionClass {
     data: ProgramCondition;
     form: FormGroup;
-
+ 
     constructor(fb: FormBuilder, opts?){
-
         this.data = opts ? opts : {
             questionKey: {
                 text: 'invalid',
@@ -18,9 +18,19 @@ export class ProgramConditionClass {
             qualifier: 'invalid'
         };
         this._initForm(fb);
+        this.form.get('questionKey.type')
+          .valueChanges
+          .pipe(distinctUntilChanged()).subscribe(this.patchQualifierValue)
     }
 
+    patchQualifierValue =  keyType => {
+      if(keyType === 'boolean') {
+        this.form.get('qualifier').setValue('equal');
+      }
+    };
+
     private _initForm(fb: FormBuilder) {
+      try {
         this.form = fb.group({
             questionKey: fb.group({
                 text: new FormControl(this.data.questionKey.text, Validators.required),
@@ -31,6 +41,10 @@ export class ProgramConditionClass {
             type: new FormControl(this.data.type),
             qualifier: new FormControl(this.data.qualifier)
         }, {validator: this.validator})
+      } catch(e){
+        console.warn("ProgramConditionClass#_initForm")
+      }
+
     }
 
     validator(condition: AbstractControl): {[key: string]: any} {
@@ -62,9 +76,5 @@ export class ProgramConditionClass {
             return errors;
 
         return null;
-    }
-
-    hashedValue(): string {
-        return JSON.stringify(this.data);
     }
 }

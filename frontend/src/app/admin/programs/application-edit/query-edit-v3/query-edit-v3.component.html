@@ -1,15 +1,28 @@
 
 <main>
   <section id="header">
-    <p>id: {{ programQuery.data.id }}</p>
+    <p>id: {{programQuery.data.id}}</p>
     <div class="flex-grow"></div>
-    <button mat-raised-button color="primary" (click)="saveQuery()" [disabled]="!programQuery.form.valid">save</button>
-    <button mat-raised-button [style.backgroundColor]="'darkorange'" (click)="newCondition()" [disabled]="!programQuery.form.valid">new condition</button>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="saveQuery()"
+      [disabled]="!programQuery.form.valid">
+      save
+    </button>
+    <button
+      mat-raised-button
+      [style.backgroundColor]="'darkorange'"
+      (click)="newCondition()"
+      [disabled]="!programQuery.form.valid">
+      new condition
+    </button>
   </section>
   <section id="conditions">
-      <app-condition-edit-v3 (remove)="handleRemove($event)" *ngFor="let condition of programQuery.conditions" [condition]="condition">
-
+      <app-condition-edit-v3
+        (remove)="handleRemove($event)"
+        *ngFor="let condition of programQuery.conditions"
+        [condition]="condition">
       </app-condition-edit-v3>
-    
   </section>
 </main>

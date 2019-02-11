@@ -1,20 +1,24 @@
 <div class="my-container" *ngIf="(form | async) !== null">
-  <section>
-    <app-query-display [selected]="selected"  (edit)="selectQuery(query)" (delete)="handleDelete($event)" *ngFor="let query of (program | async).application" [query]="query.data" ></app-query-display>
+  <section id="query-list">
+    <app-query-display
+      [selected]="selected"
+      (edit)="selectQuery(query)"
+      (delete)="handleDelete($event)"
+      (copy)="handleCopy($event)"
+      *ngFor="let query of (program | async).application"
+      [query]="query.data">
+    </app-query-display>
   </section>
 
   <main>
     <mat-icon routerLink="../../edit/{{data.guid}}" [replaceUrl]="true" matTooltip="Edit description">create</mat-icon>
     <header id="program-details">
-      
-      <h1>{{ (program | async)?.user.data?.title }} query details </h1>
-      <p>{{ (program | async)?.application.length }} queries local.</p>
+      <h3>{{ (program | async)?.user.data?.title }} query details </h3>
+      <div>{{ (program | async)?.application.length }} queries local.</div>
       <div class="actions">
         <button mat-raised-button (click)="newQuery()" color="primary" title="new query">new query</button>
-        <button mat-raised-button disabled title="[future] new query from template">from template</button>
       </div>
     </header>
-
     <div id="query-edit" *ngIf="selected !== undefined">
       <app-query-edit-v3 [programQuery]="selected"> </app-query-edit-v3>
     </div>
