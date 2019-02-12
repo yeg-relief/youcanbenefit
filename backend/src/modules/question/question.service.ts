@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { KeyDto } from './key.dto';
-import { QuestionKeyDto } from './question-key.dto';
+import { QuestionDto } from './question.dto';
 import { Client } from "elasticsearch";
 import { ClientService } from "../db.elasticsearch/client.service"
 import { Observable } from "rxjs/Observable";
@@ -8,12 +7,10 @@ import "rxjs/add/observable/fromPromise";
 import "rxjs/add/operator/pluck";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/reduce";
-import { create } from 'domain';
 import { Schema } from '../data/schema'
 
-
 @Injectable()
-export class KeyService {
+export class QuestionService {
     private client: Client;
     private readonly baseParams = {
         index: "master_screener",
@@ -23,25 +20,6 @@ export class KeyService {
     constructor(private readonly clientService: ClientService) {
         this.client = this.clientService.client;
     }
-
-    // create(key: KeyDto): Promise<any> {
-    //     return this.client.indices.putMapping({
-    //         ...this.baseParams,
-    //         body: {
-    //             properties: {
-    //                 [key.name]: {
-    //                     type: key['type']
-    //                 }
-    //             }
-    //         }
-    //     })
-    //         .then(res => res.acknowledged )
-    //         .catch(err => {
-    //             return {
-    //                 "error": "key messed up"
-    //             }
-    //         })
-    // }
 
 
     private uploadQueries(queries): Promise<any> {
@@ -67,7 +45,7 @@ export class KeyService {
         )
     }
 
-    private updateQueries(queries, questionKeys: QuestionKeyDto[]): any[] {
+    private updateQueries(queries, questionKeys: QuestionDto[]): any[] {
         const updatedQueries = []
         queries.forEach(query => {
             const conditions = query['query']['bool']['must'];
@@ -103,7 +81,7 @@ export class KeyService {
         return updatedQueries
     }
 
-    private async backupQueries(questionKeys: QuestionKeyDto[]) : Promise<any> {
+    private async backupQueries(questionKeys: QuestionDto[]) : Promise<any> {
         const indexExists = await this.client.indices.exists({ index:'master_screener' });
 
         const queriesRequest = await this.client.search({
@@ -122,7 +100,7 @@ export class KeyService {
         return updatedQueries
     }
 
-    async updateAll(questionKeys: QuestionKeyDto[]) : Promise<any> {
+    async updateAll(questionKeys: QuestionDto[]) : Promise<any> {
 
         const updatedQueries = await this.backupQueries(questionKeys)
 
@@ -160,31 +138,4 @@ export class KeyService {
             .map( searchResponse => searchResponse.hits.hits.map(h => h._source))
             .map( screenerData => screenerData[0]['questionKeys'])
     }
-
-    // findAll(): Observable<any> {
-    //     return Observable.fromPromise(this.client.indices.getMapping({
-    //         ...this.baseParams
-    //     }))
-    //         .pluck('master_screener', 'mappings', 'queries', 'properties')
-    //         .map(keyObj => {
-    //             delete keyObj['meta'];
-    //             delete keyObj['query'];
-    //             return keyObj
-    //         })
-    //         .map(obj => {
-    //             const array = [];
-
-    //             for(const name in obj) {
-    //                 if (obj.hasOwnProperty(name)) {
-    //                     array.push({
-    //                         name,
-    //                         type: obj[name].type
-    //                     })
-    //                 }
-    //             }
-
-    //             return array
-    //         })
-    // }
-
 }
