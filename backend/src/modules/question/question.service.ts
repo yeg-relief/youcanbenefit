@@ -21,7 +21,6 @@ export class QuestionService {
         this.client = this.clientService.client;
     }
 
-
     private uploadQueries(queries): Promise<any> {
         const _queries = this.uploadQueriesWithOverwrite(queries);
         return Promise.all(_queries)
@@ -99,27 +98,21 @@ export class QuestionService {
         return updatedQueries
     }
 
-    async updateQuestions(questionKeys: QuestionDto[]) : Promise<any> {
+    async updateQuestions(questions: QuestionDto[]) : Promise<any> {
 
-        const updatedQueries = await this.backupQueries(questionKeys)
+        const updatedQueries = await this.backupQueries(questions)
 
-        const mapping = []
-        questionKeys.forEach( questionKey => {
-            mapping.push({[questionKey.id] : {type: questionKey.type}})
+        const mapping = {}
+        questions.forEach( question => {
+            mapping[question.id] = { type: question.type}
         })
-        mapping.push({"query" : {type: "percolator"}})
-        
-        const normalizedMapping = mapping.reduce( (result, item) => {
-            var key = Object.keys(item)[0]
-            result[key] = item[key]
-            return result
-        }, {});
+        mapping['query'] = { type: "percolator"}
 
         await this.client.indices.create({ index: 'master_screener'});
         const masterScreenerPutMapping = await this.client.indices.putMapping({
             index: Schema.queries.index,
             type: Schema.queries.type,
-            body: { properties: { ...normalizedMapping } }
+            body: { properties: { ...mapping } }
         });
 
         await this.uploadQueries(updatedQueries)
