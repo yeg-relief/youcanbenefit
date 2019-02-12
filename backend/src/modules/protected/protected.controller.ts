@@ -12,9 +12,8 @@ import "rxjs/add/operator/mergeMap"
 import "rxjs/add/observable/throw"
 import "rxjs/add/observable/of"
 import "rxjs/add/operator/catch"
-import {KeyService} from "../key/key.service";
-import {KeyDto} from "../key/key.dto";
-import {QuestionKeyDto} from "../key/question-key.dto";
+import { QuestionService } from '../question/question.service';
+import { QuestionDto } from '../question/question.dto';
 import {ScreenerDto} from "../screener/screener.dto";
 import {ScreenerService} from "../screener/screener.service";
 import { ConstantsReadonly } from "../constants.readonly"
@@ -27,7 +26,7 @@ export class ProtectedController {
     constructor(
         private programService: ProgramService,
         private queryService: ApplicationQueryService,
-        private keyService: KeyService,
+        private questionService: QuestionService,
         private screenerService: ScreenerService
     ) {}
 
@@ -36,14 +35,14 @@ export class ProtectedController {
         return Observable.of({created: true})
     }
 
-    @Get('/questionkeys')
-    getQuestionKeys(): Observable<QuestionKeyDto[]> {
-        return this.keyService.getQuestionKeys();
+    @Get('/question/')
+    getQuestions(): Observable<QuestionDto[]> {
+        return this.questionService.getQuestions();
     }
 
-    @Post('/questionkeys')
-    updateAllQuestionKeys(@Body() data) {
-        return Observable.fromPromise(this.keyService.updateAll(data))
+    @Post('/question/')
+    updateQuestions(@Body() data) {
+        return Observable.fromPromise(this.questionService.updateQuestions(data))
     }
 
     @Get('/screener/')

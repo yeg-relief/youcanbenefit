@@ -39,7 +39,6 @@ export class QuestionService {
             }).catch(err => {
                 console.log("\x1b[31m", 'ERROR: uploading queries');
                 console.log(err);
-                process.exit(102);
                 return new Error(err)
             })
         )
@@ -100,7 +99,7 @@ export class QuestionService {
         return updatedQueries
     }
 
-    async updateAll(questionKeys: QuestionDto[]) : Promise<any> {
+    async updateQuestions(questionKeys: QuestionDto[]) : Promise<any> {
 
         const updatedQueries = await this.backupQueries(questionKeys)
 
@@ -128,7 +127,7 @@ export class QuestionService {
         return masterScreenerPutMapping
     }
 
-    getQuestionKeys(): Observable<any> {
+    getQuestions(): Observable<any> {
         return Observable.fromPromise(this.clientService.client.search({
             index: Schema.master_screener.index,
             type: Schema.master_screener.type,

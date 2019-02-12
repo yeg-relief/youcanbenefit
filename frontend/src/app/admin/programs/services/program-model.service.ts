@@ -115,7 +115,7 @@ export class ProgramModelService {
 
     private _getQuestionKeys = () => {
         const creds = this.getCredentials();
-        return this.http.get(`${environment.api}/protected/questionkeys/`, creds)
+        return this.http.get(`${environment.api}/protected/question/`, creds)
             .pipe(map( res => res.json()), catchError(this.loadError))
     }
 
