@@ -20,6 +20,7 @@
   </section>
   <section id="conditions">
       <app-condition-edit-v3
+        (keyChange)="sortKeysOnChange($event)"
         (remove)="handleRemove($event)"
         *ngFor="let condition of programQuery.conditions"
         [condition]="condition">

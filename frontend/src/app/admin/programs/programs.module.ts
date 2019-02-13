@@ -31,8 +31,9 @@ import { QueryService } from './services/query.service';
 import { TagEditComponent } from './program-edit/tag-edit/tag-edit.component';
 import { EditRowComponent } from './program-edit/edit-row/edit-row.component';
 import { DetailsLinksComponent } from './program-edit/details-links/details-links.component';
-import { QueryDryRunComponent } from './application-edit/query-dry-run/query-dry-run.component'
-import { QueryDryRunService } from './application-edit/query-dry-run/query-dry-run.service'
+import { QueryDryRunComponent } from './application-edit/query-dry-run/query-dry-run.component';
+import { QueryDryRunService } from './application-edit/query-dry-run/query-dry-run.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -52,6 +53,7 @@ import { QueryDryRunService } from './application-edit/query-dry-run/query-dry-r
     ReactiveFormsModule,
     AdminCoreModule,
     MatListModule,
+    HttpClientModule
   ],
   declarations: [
     ProgramsComponent,

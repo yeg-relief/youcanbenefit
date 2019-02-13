@@ -6,10 +6,9 @@ import { ProgramQueryClass } from '../services/program-query.class';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup } from '@angular/forms'
 import { ApplicationFacingProgram } from '../../models';
-import { Observable, ReplaySubject, Subject, merge, combineLatest, of } from 'rxjs';
+import { Observable, ReplaySubject, Subject, merge, combineLatest, of, zip } from 'rxjs';
 import { filter, tap, multicast, refCount, pluck, take, catchError } from 'rxjs/operators'
 import { MatSnackBar } from '@angular/material'
-import { QueryDryRunService } from './query-dry-run/query-dry-run.service';
 
 @Component({
   selector: 'app-application-edit',
@@ -26,7 +25,6 @@ export class ApplicationEditComponent implements OnInit {
   constructor(
     private modelService: ProgramModelService,
     private queryService: QueryService,
-    private queryDryRunService: QueryDryRunService,
     private route: ActivatedRoute,
     public snackBar: MatSnackBar,
   ) {}
@@ -50,9 +48,29 @@ export class ApplicationEditComponent implements OnInit {
     );
   }
 
-  selectedTabChange($event){
-    if($event.index === 1) {
-      console.log($event)
+  isTabbingDisabled() {
+    if (this.selected) {
+      for (const condition of this.selected.conditions){
+        if (!condition.form.valid) return true
+      }
+    }
+    return false
+  }
+
+  handleTab($event){
+    if($event.index) {
+        try {
+          this.queryService.createOrUpdate(this.selected, this.selected.data.guid)
+              .pipe(take(1))
+              .subscribe(
+                  val => {
+                      if(!(val.result === 'created' || val.result === 'updated')) {
+                        this.snackBar.open('error: query not saved.', '', { duration: 2000 })
+                      }
+                  });
+      } catch (err) {
+          this.snackBar.open(err.message, '', { duration: 2000 })
+      }
     }
   }
 

@@ -54,4 +54,8 @@ export class QueryEditV3Component implements OnInit, OnDestroy {
     handleRemove(condition) {
         this.programQuery.removeCondition(condition);
     }
+
+    sortKeysOnChange(){
+        this.programQuery.conditions.sort( (a, b) => a.data.key.name.localeCompare(b.data.key.name));
+    }
 }

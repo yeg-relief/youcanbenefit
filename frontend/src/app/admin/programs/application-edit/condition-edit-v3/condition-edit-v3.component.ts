@@ -13,6 +13,7 @@ import { map, take } from 'rxjs/operators'
 export class ConditionEditV3Component implements OnInit, OnDestroy {
   @Input() condition: ProgramConditionClass;
   @Output() remove = new EventEmitter();
+  @Output() keyChange = new EventEmitter();
   valueWatcherNumber: Subscription;
   valueWatcherBoolean: Subscription;
   keys: Observable<Key[]>;
@@ -85,6 +86,7 @@ export class ConditionEditV3Component implements OnInit, OnDestroy {
             } else {
               this.keyNameClasses['ng-invalid'] = false;
             }
+            this.keyChange.emit();
           }, 0);
         }
       });

@@ -1,5 +1,5 @@
-<div [ngClass]="styleClass">
-  <table style="width:80%;" (click)="edit.emit(query.id)">
+<div [ngClass]="styleClass" (click)="handleSelect(query.id)">
+  <table style="width:80%;">
     <colgroup span="4">
       <col style="width: 25%;">
       <col style="width: 25%;">

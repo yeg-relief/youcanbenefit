@@ -1,6 +1,7 @@
 import { Component, Input, Output, ChangeDetectionStrategy, EventEmitter, OnChanges, OnInit } from '@angular/core';
 import { ProgramQueryClass } from '../../services/program-query.class';
 import { ProgramQuery } from '../../../models'
+import { EditRowComponent } from '../../program-edit/edit-row/edit-row.component';
 
 @Component({
     selector: 'app-query-display',
@@ -20,9 +21,9 @@ export class QueryDisplayComponent implements OnChanges, OnInit {
     };
     ngOnChanges(changes){
         if (changes && changes.selected !== undefined && changes.selected.currentValue !== undefined) {
-            changes.selected.currentValue.data.id === this.query.id ?
-                this.styleClass.selected = true : this.styleClass.selected = false;
+            this.styleClass.selected = changes.selected.currentValue.data.id === this.query.id;
         }
+        this.query.conditions.sort( (a, b) => a.key.name.localeCompare(b.key.name) );
     }
 
     ngOnInit() {
@@ -44,5 +45,11 @@ export class QueryDisplayComponent implements OnChanges, OnInit {
 
     handleCopy(query_id) {
       this.copy.emit(query_id);
+    }
+
+    handleSelect($event) {
+        if ($event) {
+            this.edit.emit($event)
+        }
     }
 }

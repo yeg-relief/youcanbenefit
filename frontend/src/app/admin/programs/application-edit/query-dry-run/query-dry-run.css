@@ -1,11 +1,23 @@
-.condition {
+:host{
     display: flex;
-    align-items: center;
-    justify-content: space-around;
-    height: 100%;
-    width: 100%;
 }
 
+
+.returned-programs,
 .query-inputs {
     min-height: 55vh;
+    flex-basis: 40%;
+}
+
+.returned-programs {
+    border-left: solid lightgrey 2px;
+    border-right: solid lightgrey 2px;
+    flex-basis: 60%;
+    padding-left: 1em;
+    width: 300px;
+}
+
+.returned-programs
+.mat-list-icon {
+    color: darkorange;
 }

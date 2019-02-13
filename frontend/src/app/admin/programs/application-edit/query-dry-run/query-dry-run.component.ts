@@ -1,8 +1,8 @@
 import { Component, Input, OnChanges } from '@angular/core';
 import { ProgramQueryClass } from '../../services/program-query.class';
-import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { group } from '@angular/animations';
+import { QueryDryRunService } from './query-dry-run.service';
 
 @Component({
     selector: 'query-dry-run',
@@ -11,62 +11,46 @@ import { group } from '@angular/animations';
 })
 export class QueryDryRunComponent implements  OnChanges {
     @Input() programQuery: ProgramQueryClass;
-    private selectedQueryChanges: Subscription = null;
+    private inputQueryChanges: Subscription = null;
+    private dryRunValuesChange: Subscription = null;
+    private recordedValues: any = null;
     public keys: any[];
     public query: FormGroup;
     public data: any[];
+    public programs = [];
 
-    constructor(private fb: FormBuilder) {}
+    constructor(private service: QueryDryRunService) {}
 
     ngOnChanges(){
         const { value, valueChanges } = this.programQuery.form
-        if (this.selectedQueryChanges !== null){
-            this.selectedQueryChanges.unsubscribe()
+        const { service: { buildQuery }, query } = this;
+        if (this.inputQueryChanges !== null){
+            this.inputQueryChanges.unsubscribe()
         }
-        this.selectedQueryChanges = valueChanges.subscribe(this._buildQuery)
-        this._buildQuery(value)
+        this.inputQueryChanges = valueChanges.subscribe(value => {
+            this.assignValues(buildQuery(value));
+        })        
+        this.assignValues(buildQuery(value));
     }
 
-    private _buildQuery: (value: any) => void = (value) => {
-        function zip(a: any[], b: any[]) {
-            let result = [];
-            for(let i = 0; i < a.length; i++) {
-                result.push([ a[i], b[i] ])
-            }
-            return result
+    private assignValues = (object) => {
+        if (this.dryRunValuesChange !== null) {
+            this.inputQueryChanges.unsubscribe()
         }
+        this.keys = object.keys.sort((a, b) => a.name.localeCompare(b.name));
+        this.query = object.query;
+        this.dryRunValuesChange = this.query.valueChanges.subscribe(values => {
+            this.recordedValues = {...values}
+        })
 
-        function pluckKey({ key }){
-            return key;
+        if (this.recordedValues) {
+            this.query.patchValue(this.recordedValues)
         }
-        function getKeyValue(condition){
-            console.log(condition.key.type)
-            switch(condition.key.type) {
-                case "integer": {
-                    return 0
-                }
+    }
 
-                case "boolean": {
-                    return true;
-                }
-
-                default: {
-                    console.log(condition.key.type)
-                    return 0;
-                }
-            }
-        }
-        function buildGroup(group, condition){
-            if (condition && Object.keys(condition).length) {
-                const key = condition.key
-                const control = new FormControl(getKeyValue(condition))
-                group[key.name] = control
-            }
-            return group
-        }
-        this.keys = value.conditions.map(pluckKey)
-        this.query = this.fb.group(value.conditions.reduce(buildGroup, {}))
-        console.log(this.query)
-        this.query.valueChanges.subscribe(console.log)
+    public runQuery(){
+        this.service.runQuery(this.query.value).subscribe(programs => {
+            this.programs = programs
+        })
     }
 }
