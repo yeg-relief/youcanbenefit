@@ -120,7 +120,7 @@ export class QuestionService {
         return masterScreenerPutMapping
     }
 
-    getQuestions(): Observable<any> {
+    getQuestions(): Observable<QuestionDto> {
         return Observable.fromPromise(this.clientService.client.search({
             index: Schema.master_screener.index,
             type: Schema.master_screener.type,
