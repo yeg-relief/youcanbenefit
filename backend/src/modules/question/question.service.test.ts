@@ -3,6 +3,7 @@ import { QuestionService } from './question.service';
 import { DbElasticsearchModule } from '../db.elasticsearch/db.elasticsearch.module';
 import { QuestionDto } from './question.dto';
 import { ProgramService } from '../Program/program.service';
+import { EsQueryService } from '../query/EsQuery.service';
 
 describe('QuestionService', () => {
   let questionService: QuestionService;
@@ -22,7 +23,8 @@ describe('QuestionService', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [DbElasticsearchModule],
-      providers: [QuestionService],
+      providers: [QuestionService,
+                  EsQueryService],
     }).compile();
 
     questionService = module.get<QuestionService>(QuestionService);
