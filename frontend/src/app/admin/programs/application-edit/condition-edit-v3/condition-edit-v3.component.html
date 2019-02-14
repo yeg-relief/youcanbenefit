@@ -10,7 +10,7 @@
     </button>
     <mat-form-field class="question-text">
       <mat-select placeholder="Question" [compareWith]="isQuestionSelected" (selectionChange)="handleQuestionChange($event)">
-        <mat-option *ngFor="let question of (questions | async)" [value]="questions">
+        <mat-option *ngFor="let question of (questions | async)" [value]="question">
         {{question.text}}
         </mat-option>
       </mat-select>

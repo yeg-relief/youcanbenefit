@@ -14,9 +14,9 @@
 
         <div class="questions">
             <app-ycb-question
-                *ngFor="let question of screenerQuestions"
-                [question]="question"
-                [conditionalQuestions]="gatherConditionals(question)"
+                *ngFor="let screenerQuestion of screenerQuestions"
+                [screenerQuestion]="screenerQuestion"
+                [conditionalQuestions]="gatherConditionals(screenerQuestion)"
                 [form]="form"
                 (onExpand)="addControls($event)"
                 (onHide)="removeControls($event)">
