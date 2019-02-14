@@ -13,8 +13,11 @@ import { EsQueryDto } from '../query/EsQuery.dto';
 
 @Injectable()
 export class QuestionService {
-
     constructor(private readonly clientService: ClientService, private queryService: EsQueryService) {}
+
+    get maxSize() {
+        return { size: 10000 }
+    }
 
     async updateQuestions(questions: QuestionDto[]) : Promise<boolean> {
         const updatedQueries = await this.queryService.findAll()
@@ -31,7 +34,7 @@ export class QuestionService {
         return Observable.fromPromise(this.clientService.client.search({
             index: Schema.master_screener.index,
             type: Schema.master_screener.type,
-            size: 10000,
+            ...this.maxSize,
             body: { query: { match_all: {} } }
         }))
             .map( searchResponse => searchResponse.hits.hits.map(h => h._source))

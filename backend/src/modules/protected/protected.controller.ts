@@ -40,13 +40,13 @@ export class ProtectedController {
         return this.questionService.getQuestions();
     }
 
-    @Post('/question/')
-    updateQuestions(@Body() data) {
-        return Observable.fromPromise(this.questionService.updateQuestions(data))
-    }
+    // @Post('/question/')
+    // updateQuestions(@Body() data) {
+    //     return Observable.fromPromise(this.questionService.updateQuestions(data))
+    // }
 
     @Get('/screener/')
-    getScreenerWithKeys(): Observable<any> {
+    getScreenerWithQuestions(): Observable<any> {
         return Observable.zip(
             this.screenerService.getLatest(),
         ).map( ([screener]) => {
@@ -58,7 +58,12 @@ export class ProtectedController {
 
     @Post('/screener/')
     saveScreener(@Body() data) {
-        return this.screenerService.update((<ScreenerDto> data))
+        return Observable.zip(
+            this.screenerService.update((<ScreenerDto> data)),
+            this.questionService.updateQuestions(data['questions'])
+        ).map(([screener, questions]) => {
+            return {screener, questions}
+        })
     }
 
     @Get('/program/')

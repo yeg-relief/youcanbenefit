@@ -76,11 +76,11 @@ export class ScreenerToolbarComponent implements OnInit {
       (screenerQuestions, questions) => ({...screenerQuestions, questions})
     ).pipe(take(1))
       .subscribe(screener => {
-        return this.http.post(`${environment.api}/protected/screener`, screener, this.auth.getCredentials()).toPromise().then(console.log).catch(console.error)
+        return this.http.post(`${environment.api}/protected/screener/`, screener, this.auth.getCredentials()).toPromise().then(console.log).catch(console.error)
       })
   }
 
-  private getQuestions(questionData) : any[] {
+  getQuestions(questionData) : any[] {
     const questionDataArray = this.toArray(questionData)
     const questionArray = [];
     questionDataArray.forEach(q => {
@@ -99,19 +99,6 @@ export class ScreenerToolbarComponent implements OnInit {
       }
     })
     return questionArray
-  }
-
-  handleUpdateKeys() {
-    this.form$.pipe(
-      map( screener => {
-        const questionData = screener['form'].value
-        return this.getQuestions(questionData)
-      })
-    ).pipe(take(1))
-      .subscribe(array => {
-        console.log(array)
-        return this.http.post(`${environment.api}/protected/question/`, array, this.auth.getCredentials()).toPromise().then(console.log).catch(console.error)
-      })
   }
 
 }
