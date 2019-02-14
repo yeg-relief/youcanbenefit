@@ -12,7 +12,8 @@ import {
   take,
   pluck
 } from 'rxjs/operators'
-import { environment } from '../../../../environments/environment'
+import { environment } from '../../../../environments/environment';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-screener-toolbar',
@@ -29,7 +30,8 @@ export class ScreenerToolbarComponent implements OnInit {
   constructor(
     private store: Store<fromRoot.State>,
     private auth: AuthService,
-    private http: Http
+    private http: Http,
+    public snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
@@ -76,7 +78,18 @@ export class ScreenerToolbarComponent implements OnInit {
       (screenerQuestions, questions) => ({...screenerQuestions, questions})
     ).pipe(take(1))
       .subscribe(screener => {
-        return this.http.post(`${environment.api}/protected/screener/`, screener, this.auth.getCredentials()).toPromise().then(console.log).catch(console.error)
+        return this.http.post(`${environment.api}/protected/screener/`, screener, this.auth.getCredentials())
+                .subscribe(res => {
+                  if (res.status === 201) {
+                    res = res.json();
+                    if ((res['screener']['result'] === 'created' || res['screener']['result'] === 'updated') &&
+                          res['questions']['acknowledged'] === true) {
+                      this.snackBar.open("screener saved", '', { duration: 2000})
+                      return
+                    }
+                  }
+                  this.snackBar.open("screener failed to save", '', { duration: 2000})
+                })
       })
   }
 
