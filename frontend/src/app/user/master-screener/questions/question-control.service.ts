@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Question } from '../../../admin/models';
+import { ScreenerQuestion } from '../../../admin/models';
 
 @Injectable()
 export class QuestionControlService {
     constructor() { }
 
-    toFormGroup(questions: Question[]): FormGroup {
+    toFormGroup(questions: ScreenerQuestion[]): FormGroup {
         if (!questions || !Array.isArray(questions) ) {
             return new FormGroup({});
         }
@@ -27,7 +27,7 @@ export class QuestionControlService {
         return new FormGroup(group);
     }
 
-    addQuestions(questions: Question[], form: FormGroup) {
+    addQuestions(questions: ScreenerQuestion[], form: FormGroup) {
         let extractedQuestions = questions.reduce( (accumulator, question) => {
             let questions = [];
             if (question.controlType === 'Multiselect') {
@@ -45,7 +45,7 @@ export class QuestionControlService {
             .forEach( question => form.addControl(question.id, new FormControl('')));
     }
 
-    removeQuestions(questions: Question[], form: FormGroup) {
+    removeQuestions(questions: ScreenerQuestion[], form: FormGroup) {
         let extractedQuestions = questions.reduce( (accumulator, question) => {
             let questions = [];
             if (question.controlType === 'Multiselect') {

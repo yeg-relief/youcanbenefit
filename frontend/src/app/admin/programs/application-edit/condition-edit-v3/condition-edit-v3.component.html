@@ -9,21 +9,21 @@
       </mat-icon>
     </button>
     <mat-form-field class="question-text">
-      <mat-select placeholder="Question" [compareWith]="isQuestionKeySelected" (selectionChange)="handleKeyChange($event)">
-        <mat-option *ngFor="let questionKey of (questionKeys | async)" [value]="questionKey">
-        {{questionKey.text}}
+      <mat-select placeholder="Question" [compareWith]="isQuestionSelected" (selectionChange)="handleQuestionChange($event)">
+        <mat-option *ngFor="let question of (questions | async)" [value]="questions">
+        {{question.text}}
         </mat-option>
       </mat-select>
     </mat-form-field>
 
-    <div [ngClass]="optional" *ngIf="getQuestionKeyType() === 'boolean'">
+    <div [ngClass]="optional" *ngIf="getQuestionType() === 'boolean'">
       <mat-button-toggle-group formControlName="value">
         <mat-button-toggle [value]="true"> true </mat-button-toggle>
         <mat-button-toggle [value]="false"> false </mat-button-toggle>
       </mat-button-toggle-group>
     </div>
 
-    <div [ngClass]="optional" *ngIf="getQuestionKeyType() !== 'boolean'">
+    <div [ngClass]="optional" *ngIf="getQuestionType() !== 'boolean'">
       <mat-form-field class="qualifier">
         <mat-select placeholder="qualifier" [compareWith]="isQualifierSelected" formControlName="qualifier">
           <mat-option *ngFor="let qualifier of qualifiers" [value]="qualifier.value">

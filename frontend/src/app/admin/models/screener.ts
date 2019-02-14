@@ -1,7 +1,7 @@
-import { Question } from './question';
+import { ScreenerQuestion } from './screener-question';
 
 export interface Screener{
-  conditionalQuestions: Question[]
+  conditionalQuestions: ScreenerQuestion[]
   created: number,
-  questions: Question[],
+  screenerQuestions: ScreenerQuestion[],
 };

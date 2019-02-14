@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Http, } from '@angular/http';
 import { Store } from '@ngrx/store';
-import { Question } from '../../models';
 import { AuthService } from '../../core/services/auth.service';
 import * as fromRoot from '../../reducer';
 import { select } from '@ngrx/store'
@@ -53,60 +52,60 @@ export class ScreenerToolbarComponent implements OnInit {
         const array = this.toArray(screener)
         return {
           conditionalQuestions: array.filter(question => this.isConditional(question.id, array)),
-          questions: array.filter(question => !this.isConditional(question.id, array))
+          screenerQuestions: array.filter(question => !this.isConditional(question.id, array))
         }
       })
     )
 
-    const questions = this.form$.pipe(
+    const screenerQuestions = this.form$.pipe(
       pluck('form'),
       filter(form => form['valid']),
       partitionQuestions
     )
     
-    const questionKeys = this.form$.pipe(
+    const questions = this.form$.pipe(
       map(screener => {
         const questionData = screener['form'].value
-        return this.getQuestionKeys(questionData)
+        return this.getQuestions(questionData)
       })
     )
 
     combineLatest(
+      screenerQuestions,
       questions,
-      questionKeys,
-      (questions, questionKeys) => ({...questions, questionKeys})
+      (screenerQuestions, questions) => ({...screenerQuestions, questions})
     ).pipe(take(1))
       .subscribe(screener => {
         return this.http.post(`${environment.api}/protected/screener`, screener, this.auth.getCredentials()).toPromise().then(console.log).catch(console.error)
       })
   }
 
-  private getQuestionKeys(questionData) : any[] {
+  private getQuestions(questionData) : any[] {
     const questionDataArray = this.toArray(questionData)
-    const questionKeyArray = [];
+    const questionArray = [];
     questionDataArray.forEach(q => {
-      let questionKeyType;
+      let questionType;
       if (q.controlType === "Multiselect") {
         q.multiSelectOptions.forEach(multiQuestion => {
-          questionKeyArray.push({text: multiQuestion.text, id: multiQuestion.id, type: "boolean"})
+          questionArray.push({text: multiQuestion.text, id: multiQuestion.id, type: "boolean"})
         });
       } else if (q.controlType === "NumberInput") {
-        questionKeyType = "integer";
+        questionType = "integer";
       } else if (q.controlType === "Toggle") {
-        questionKeyType = "boolean";
+        questionType = "boolean";
       }
-      if (questionKeyType) {
-        questionKeyArray.push({text: q.label, id: q.id, type: questionKeyType})
+      if (questionType) {
+        questionArray.push({text: q.label, id: q.id, type: questionType})
       }
     })
-    return questionKeyArray
+    return questionArray
   }
 
   handleUpdateKeys() {
     this.form$.pipe(
       map( screener => {
         const questionData = screener['form'].value
-        return this.getQuestionKeys(questionData)
+        return this.getQuestions(questionData)
       })
     ).pipe(take(1))
       .subscribe(array => {

@@ -3,7 +3,7 @@ import { throwError as observableThrowError, Observable , ReplaySubject, of } fr
 import { map, flatMap, take, zip, catchError, tap, refCount, multicast } from 'rxjs/operators'
 import { Injectable } from '@angular/core';
 import { Http, RequestOptions} from '@angular/http';
-import { ApplicationFacingProgram, ProgramQuery, QuestionKey } from '../../models'
+import { ApplicationFacingProgram, ProgramQuery, Question} from '../../models'
 import { UserFacingProgram } from '../../../shared/models'
 import { AuthService } from '../../core/services/auth.service'
 import { Program } from './program.class';
@@ -13,7 +13,7 @@ import { environment } from '../../../../environments/environment'
 @Injectable()
 export class ProgramModelService {
     private _cache: Observable<ApplicationFacingProgram[]>;
-    questionKeys: Observable<QuestionKey[]>;
+    questions: Observable<Question[]>;
     constructor(
         private http: Http,
         private authService: AuthService,
@@ -27,7 +27,7 @@ export class ProgramModelService {
             )
         )
 
-        this.questionKeys = withSharing(this._getQuestionKeys)
+        this.questions = withSharing(this._getQuestions)
         this._cache = withSharing(this._loadPrograms)
     }
 
@@ -113,7 +113,7 @@ export class ProgramModelService {
             )
     }
 
-    private _getQuestionKeys = () => {
+    private _getQuestions = () => {
         const creds = this.getCredentials();
         return this.http.get(`${environment.api}/protected/question/`, creds)
             .pipe(map( res => res.json()), catchError(this.loadError))

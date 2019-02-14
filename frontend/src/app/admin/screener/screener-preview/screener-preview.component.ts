@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { FormGroup } from '@angular/forms';
 import * as fromRoot from '../../reducer';
-import { Question} from '../../models';
+import { ScreenerQuestion} from '../../models';
 import { QuestionControlService } from '../../../user/master-screener/questions/question-control.service';
 import { Observable, ReplaySubject } from 'rxjs';
 import { take, tap, map, mergeMap, reduce } from 'rxjs/operators'
@@ -15,8 +15,8 @@ import { take, tap, map, mergeMap, reduce } from 'rxjs/operators'
 })
 export class ScreenerPreviewComponent implements OnInit {
   form = new ReplaySubject<FormGroup>(1);
-  questions: Question[] = [];
-  conditionalQuestions: Question[] = [];
+  screenerQuestions: ScreenerQuestion[] = [];
+  conditionalQuestions: ScreenerQuestion[] = [];
 
   constructor(
     private store: Store<fromRoot.State>,
@@ -33,9 +33,9 @@ export class ScreenerPreviewComponent implements OnInit {
         this.partitionQuestions.bind(this),
       )
       .subscribe( partitionedQuestions => {
-        this.questions = partitionedQuestions['questions'];
+        this.screenerQuestions = partitionedQuestions['screenerQuestions'];
         this.conditionalQuestions = partitionedQuestions['conditionalQuestions'];
-        this.form.next( this.questionControlService.toFormGroup(this.questions) );
+        this.form.next( this.questionControlService.toFormGroup(this.screenerQuestions) );
       });
   }
 
@@ -60,7 +60,7 @@ export class ScreenerPreviewComponent implements OnInit {
 
   private isConditional(questionValues, questionID){
     for (const key in questionValues) {
-      const q: Question = questionValues[key];
+      const q: ScreenerQuestion = questionValues[key];
       if (Array.isArray(q.conditionalQuestions) && q.conditionalQuestions.find(cq_id => cq_id === questionID) !== undefined) {
         return true;
       }

@@ -1,5 +1,5 @@
 import '@ngrx/core/add/operator/select';
-import { Screener, ID, Question} from '../../models';
+import { Screener, ID, ScreenerQuestion} from '../../models';
 import { ScreenerActions, ScreenerActionTypes } from './screener-actions';
 import { FormGroup, AbstractControl, FormControl } from '@angular/forms';
 import { questionValidator } from '../validators';
@@ -57,7 +57,7 @@ export function reducer(state = initialState, action: ScreenerActions): State {
 
             if( hostForm === null ) return state;
 
-            const hostQuestion: Question = hostForm.value;
+            const hostQuestion: ScreenerQuestion = hostForm.value;
             const index = getConditionalQuestionsLength(hostID, state);
 
             if ( index < 0 ) return state;
@@ -87,7 +87,7 @@ export function reducer(state = initialState, action: ScreenerActions): State {
             let selectedConditionalQuestion = state.selectedConditionalQuestion;
 
             if (typeof hostID === 'string') {
-                const hostQuestion: Question = state.form.value[hostID];
+                const hostQuestion: ScreenerQuestion = state.form.value[hostID];
                 state.form.get([hostID, 'conditionalQuestions'])
                     .setValue(hostQuestion.conditionalQuestions.filter(c_id => c_id !== id));
 
@@ -96,7 +96,7 @@ export function reducer(state = initialState, action: ScreenerActions): State {
                 selectedConditionalQuestion = sortedConditionalQuestions.length > 0 ? sortedConditionalQuestions[0] : undefined;
 
             } else if (hostID === false){
-                const constantquestion: Question = state.form.get(id).value;
+                const constantquestion: ScreenerQuestion = state.form.get(id).value;
                 if (constantquestion.expandable && constantquestion.conditionalQuestions.length > 0 ){
                     for (const condQuestion of constantquestion.conditionalQuestions) state.form.removeControl(condQuestion);
                 }
@@ -122,7 +122,7 @@ export function reducer(state = initialState, action: ScreenerActions): State {
 
             const questionID = (<ID>action.payload)['questionID'];
             const containerType = (<string>action.payload)['containerType'];
-            const question: Question = state.form.get([questionID]) === null ? undefined : state.form.get([questionID]).value;
+            const question: ScreenerQuestion = state.form.get([questionID]) === null ? undefined : state.form.get([questionID]).value;
             const hostID = isConditionalQuestion(questionID, state);
             const constantLength = getConstantQuestionsLength(state);
             const conditionalLength = typeof hostID === 'string' ? getConditionalQuestionsLength(hostID, state) : undefined;
@@ -216,7 +216,7 @@ export function reducer(state = initialState, action: ScreenerActions): State {
 
             const allQuestions = [
                 ...screener.conditionalQuestions || [],
-                ...screener.questions || []
+                ...screener.screenerQuestions || []
             ];
 
             //const allQuestions_2 = allQuestions.map(q => q.key = screener.keys.find(key => key.name === q.key))
@@ -436,7 +436,7 @@ export function getConditionalQuestionIDS(state$: Observable<State>){
 
 // these following functions are used internally
 
-export function blankQuestion(index: number): Question {
+export function blankQuestion(index: number): ScreenerQuestion {
     const id = randomString();
     return {
         controlType: 'invalid',
@@ -450,7 +450,7 @@ export function blankQuestion(index: number): Question {
     };
 }
 
-export function question_to_control(question: Question): ControlMap {
+export function question_to_control(question: ScreenerQuestion): ControlMap {
 
     const approvedProperties = [
         'conditionalQuestions',
@@ -474,7 +474,7 @@ export function question_to_control(question: Question): ControlMap {
 
 
 export function getConstantQuestionsLength(state: State): number {
-    const value: { [key: string]: Question } = state.form.value;
+    const value: { [key: string]: ScreenerQuestion } = state.form.value;
 
     return Object.keys(value).reduce( (length: number, key) => {
         const id = value[key].id;
@@ -484,7 +484,7 @@ export function getConstantQuestionsLength(state: State): number {
 
 export function getConditionalQuestionsLength(hostID: ID, state: State): number {
     if (state === undefined || state.form === undefined) return -1;
-    const questionValues: { [key: string]: Question } = state.form.value;
+    const questionValues: { [key: string]: ScreenerQuestion } = state.form.value;
 
     const question = questionValues[hostID];
     if ( question === undefined ) return -1;
@@ -499,10 +499,10 @@ export function getConditionalQuestionsLength(hostID: ID, state: State): number 
 
 export function isConditionalQuestion(id: ID, state: State): ID | false {
     if (state === undefined || state.form === undefined) return false;
-    const questionValues: { [key: string]: Question } = state.form.value;
+    const questionValues: { [key: string]: ScreenerQuestion } = state.form.value;
 
     for (const key in questionValues) {
-        const q: Question = questionValues[key];
+        const q: ScreenerQuestion = questionValues[key];
         if (Array.isArray(q.conditionalQuestions) && q.conditionalQuestions.find(cq_id => cq_id === id) !== undefined) {
             return q.id;
         }

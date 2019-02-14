@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnDestroy} from '@angular/core';
-import { QuestionKey } from '../../../models/question-key'
+import { Question } from '../../../models/question';
 import { ProgramConditionClass } from '../../services/program-condition.class';
 import { ProgramModelService } from '../../services/program-model.service'
 import { Observable, Subscription } from 'rxjs';
@@ -15,7 +15,7 @@ export class ConditionEditV3Component implements OnInit, OnDestroy {
   @Output() remove = new EventEmitter();
   valueWatcherNumber: Subscription;
   valueWatcherBoolean: Subscription;
-  questionKeys: Observable<QuestionKey[]>;
+  questions: Observable<Question[]>;
   keyNameClasses = { 'ng-invalid': false };
   optional = {
     boolean: false,
@@ -33,7 +33,7 @@ export class ConditionEditV3Component implements OnInit, OnDestroy {
   constructor(private ps: ProgramModelService) { }
 
   ngOnInit() {
-    this.questionKeys = this.ps.questionKeys.pipe(map((questionKeys: any[]) => questionKeys.sort( (a, b) => a.text.localeCompare(b.text)) ));
+    this.questions = this.ps.questions.pipe(map((questions: any[]) => questions.sort( (a, b) => a.text.localeCompare(b.text)) ));
   }
 
   ngOnDestroy() {
@@ -43,21 +43,15 @@ export class ConditionEditV3Component implements OnInit, OnDestroy {
   }
 
 
-  isQuestionKeySelected = (option: any): boolean => {
-    return option && option.id === this._getSelectedQuestionKeyId();
+  isQuestionSelected = (option: any): boolean => {
+    return option && option.id === this._getSelectedQuestionId();
   }
 
-  private _getSelectedQuestionKeyId(): string {
-    return this.condition.form.value.questionKey.id;
+  private _getSelectedQuestionId(): string {
+    return this.condition.form.value.question.id;
   }
 
-  // isKeySelected = (option: any): boolean => {
-  //   return option && option.name === this._getSelectedQuestionKeyId();
-  // };
-
-
-
-  handleKeyChange($event) {
+  handleQuestionChange($event) {
     const booleanValueStrategy = form => {
       form.get('value').setValue(true);
       this.optional.boolean = true;
@@ -71,22 +65,15 @@ export class ConditionEditV3Component implements OnInit, OnDestroy {
       this.optional.number = true;
     };
 
-    // const text = $event.target.value;
-    // this.questionKeys
-    //   .pipe(take(1), map(keys => keys.find(k => k.text === text)))
-    //   .subscribe(questionKey => {
-    //     if (questionKey){
-    //       this.condition.form.get('questionKey').setValue(questionKey);
-    //       this.condition.form.get('type').setValue(questionKey.type);
     const text = $event.value.text;
-    this.questionKeys
-      .pipe(take(1), map(keys => keys.find(k => k.text === text)))
-      .subscribe(questionKey => {
-        if (questionKey){
-          this.condition.form.get('questionKey').setValue(questionKey);
-          this.condition.form.get('type').setValue(questionKey.type);
+    this.questions
+      .pipe(take(1), map(questions => questions.find(q => q.text === text)))
+      .subscribe(question => {
+        if (question){
+          this.condition.form.get('question').setValue(question);
+          this.condition.form.get('type').setValue(question.type);
 
-          if (questionKey.type === 'boolean')
+          if (question.type === 'boolean')
             booleanValueStrategy(this.condition.form);
           else 
             numberValueStrategy(this.condition.form);
@@ -102,12 +89,12 @@ export class ConditionEditV3Component implements OnInit, OnDestroy {
       });
   }
 
-  getQuestionKeyType = (): string => {
-    return this.condition.form.value.questionKey.type;
+  getQuestionType = (): string => {
+    return this.condition.form.value.question.type;
   }
 
   isQualifierSelected = (qualifierValue: any) => {
-    return this.getQuestionKeyType() !== 'boolean' && this.condition.form.get('qualifier').value === qualifierValue;
+    return this.getQuestionType() !== 'boolean' && this.condition.form.get('qualifier').value === qualifierValue;
   }
 
   deleteCondition() {

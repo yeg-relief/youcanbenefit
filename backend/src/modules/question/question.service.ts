@@ -35,6 +35,6 @@ export class QuestionService {
             body: { query: { match_all: {} } }
         }))
             .map( searchResponse => searchResponse.hits.hits.map(h => h._source))
-            .map( screenerData => screenerData[0]['questionKeys'])
+            .map( screenerData => screenerData[0]['questions'])
     }
 }
