@@ -22,12 +22,12 @@ export class QuestionService {
                     .toPromise()
         await this.queryService.deleteIndex();
         await this.queryService.createIndex();
-        await this.queryService.putQuestionMappings(questions);
+        const res = await this.queryService.putMappings(questions);
         await this.queryService.uploadQueries(updatedQueries);
-        return
+        return res
     }
 
-    getQuestions(): Observable<QuestionDto> {
+    getQuestions(): Observable<QuestionDto[]> {
         return Observable.fromPromise(this.clientService.client.search({
             index: Schema.master_screener.index,
             type: Schema.master_screener.type,

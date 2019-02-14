@@ -24,7 +24,7 @@ export class EsQueryModel {
         const questionTexts = {}
 
         this.data.conditions.map( condition => {
-            questionTexts[condition.questionKey.id] = condition.questionKey.text
+            questionTexts[condition.question.id] = condition.question.text
         })
 
         const meta = {
@@ -39,9 +39,9 @@ export class EsQueryModel {
                 must: this.data.conditions.map( (applicationCondition: any) => {
                     let type;
 
-                    const isNumberOrInteger = applicationCondition.questionKey.type === "number" || applicationCondition.questionKey.type === "integer";
+                    const isNumberOrInteger = applicationCondition.question.type === "number" || applicationCondition.question.type === "integer";
 
-                    if (applicationCondition.questionKey.type === "boolean") {
+                    if (applicationCondition.question.type === "boolean") {
                         type = "term"
                     } else if (isNumberOrInteger && applicationCondition.qualifier === "equal") {
                         type = "term"
@@ -51,7 +51,7 @@ export class EsQueryModel {
 
                     const qualifier = this.nameMap[applicationCondition.qualifier];
 
-                    const property = applicationCondition.questionKey.id;
+                    const property = applicationCondition.question.id;
 
                     let inner;
 

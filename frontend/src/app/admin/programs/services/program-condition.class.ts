@@ -8,7 +8,7 @@ export class ProgramConditionClass {
  
     constructor(fb: FormBuilder, opts?){
         this.data = opts ? opts : {
-            questionKey: {
+            question: {
                 text: 'invalid',
                 id: 'invalid',
                 type: 'invalid'

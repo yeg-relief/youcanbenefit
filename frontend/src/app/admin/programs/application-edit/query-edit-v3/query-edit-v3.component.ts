@@ -16,7 +16,7 @@ export class QueryEditV3Component implements OnInit, OnDestroy {
     constructor(private service: QueryService, public snackBar: MatSnackBar) { }
 
     ngOnInit() {
-        this.programQuery.conditions.sort( (a, b) => a.data.questionKey.text.localeCompare(b.data.questionKey.text));
+        this.programQuery.conditions.sort( (a, b) => a.data.question.text.localeCompare(b.data.question.text));
 
         this._subscription = this.service.broadcast.asObservable()
             .pipe(filter(event => event.type === this.service.update && event.id === this.programQuery.data.id))

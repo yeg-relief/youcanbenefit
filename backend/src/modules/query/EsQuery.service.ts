@@ -64,7 +64,7 @@ export class EsQueryService {
         return this.clientService.delete(this.INDEX, this.TYPE, id)
     }
 
-    putQuestionMappings(questions: QuestionDto[]): Promise<boolean> {
+    putMappings(questions: QuestionDto[]): Promise<boolean> {
         const mapping = {};
         questions.forEach( question => {
             mapping[question.id] = { type: question.type };
@@ -91,17 +91,17 @@ export class EsQueryService {
             const conditions = query['query']['bool']['must'];
             const updatedConditions = [];
             conditions.forEach(condition => {
-                let keyRemained = newQuestions.some( questionKey => {
-                    return questionKey.id === Object.keys(condition[Object.keys(condition)[0]])[0]
+                let questionRemained = newQuestions.some( question => {
+                    return question.id === Object.keys(condition[Object.keys(condition)[0]])[0]
                 })
-                if (keyRemained) {
+                if (questionRemained) {
                     updatedConditions.push(condition)
                 }
             });
             const questionTexts = query['meta']['questionTexts']
-            newQuestions.forEach( questionKey => {
-                if (questionTexts.hasOwnProperty(questionKey.id)) {
-                    questionTexts[questionKey.id] = questionKey.text
+            newQuestions.forEach( question => {
+                if (questionTexts.hasOwnProperty(question.id)) {
+                    questionTexts[question.id] = question.text
                 }
             })
             updatedQueries.push({

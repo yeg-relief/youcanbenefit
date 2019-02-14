@@ -1,11 +1,7 @@
-interface QuestionKey {
-    text: string;
-    id: string;
-    type: string;
-}
+import { QuestionDto } from '../question/question.dto';
 
 interface Condition {
-    questionKey: QuestionKey;
+    question: QuestionDto;
     value: number | boolean;
     qualifier?: string;
 }
@@ -14,7 +10,6 @@ export interface esQuery {
     range?: {[key: string]: Object}
     term?:  {[key: string]: string | number}
 }
-
 
 export class EsConditionModel {
     nameMap = {
@@ -41,8 +36,8 @@ export class EsConditionModel {
         return first;
     }
 
-    getQuestionKeyText(): string {
-        let id = this.getQuestionKeyId()
+    getQuestionText(): string {
+        let id = this.getQuestionId()
         if (this.questionTexts.hasOwnProperty(id)) {
             return this.questionTexts[id]
         } else {
@@ -50,7 +45,7 @@ export class EsConditionModel {
         }
     }
 
-    getQuestionKeyId() {
+    getQuestionId() {
         if (this.isRange()) {
             return this.getPropName(this.data.range);
         } else if (this.isTerm()) {
@@ -58,29 +53,29 @@ export class EsConditionModel {
         }
     }
 
-    getQuestionKeyType() {
+    getQuestionType() {
         if (this.isRange()) {
             return "number"
         } else if (this.isTerm()) {
-            return typeof this.data.term[this.getQuestionKeyId()]
+            return typeof this.data.term[this.getQuestionId()]
         }
     }
 
-    getQuestionKeyValue() {
+    getQuestionValue() {
         if (this.isRange()) {
-            const _condition = this.data.range[this.getQuestionKeyId()];
+            const _condition = this.data.range[this.getQuestionId()];
             const qualifier = this.getPropName(_condition);
             return _condition[qualifier];
         } else if (this.isTerm()) {
-            return this.data.term[this.getQuestionKeyId()]
+            return this.data.term[this.getQuestionId()]
         }
     }
 
     getEsQualifier() {
         if (!this.isRange()) return null;
 
-        const keyId= this.getQuestionKeyId();
-        const qualifierObj = this.data.range[keyId];
+        const questionId= this.getQuestionId();
+        const qualifierObj = this.data.range[questionId];
         return this.getPropName(qualifierObj);
     }
 
@@ -89,17 +84,17 @@ export class EsConditionModel {
     }
 
     toApplicationModel(): Condition {
-        const questionKey = {
-            text: this.getQuestionKeyText(),
-            id: this.getQuestionKeyId(),
-            type: this.getQuestionKeyType()
+        const question = {
+            text: this.getQuestionText(),
+            id: this.getQuestionId(),
+            type: this.getQuestionType()
         };
 
-        const value = this.getQuestionKeyValue();
+        const value = this.getQuestionValue();
         let qualifier = this.isRange() ? this.getApplicationQualifier() : "equal";
 
         return {
-            questionKey,
+            question,
             value,
             qualifier
         }
