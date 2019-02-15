@@ -5,7 +5,6 @@ import { routing } from './admin.routes';
 import { StoreModule } from '@ngrx/store';
 import { reducer } from './reducer';
 import { EffectsModule } from '@ngrx/effects';
-import { DataService } from './data.service';
 import { AdminCoreModule } from './core/admin-core.module';
 import { ProgramsModule } from './programs/programs.module';
 import { HttpModule } from '@angular/http';
@@ -76,7 +75,6 @@ import {
         DataComponent,
     ],
     providers: [
-        DataService,
         HttpModule,
         DragDropManagerService,
         DataManagementService

@@ -53,9 +53,6 @@ type Condition =
     {[key: string]: {[key:string]: boolean | number }} |
     {[key:string]: {[key:string]: {[key:string]: number } } }
 
-
-// type Meta = {[key: string]: string} | {[key:string]: {[key: string]: string}}
-
 interface bool {
     readonly must: Condition[]
 }
