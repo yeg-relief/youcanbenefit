@@ -40,11 +40,6 @@ export class ProtectedController {
         return this.questionService.getQuestions();
     }
 
-    // @Post('/question/')
-    // updateQuestions(@Body() data) {
-    //     return Observable.fromPromise(this.questionService.updateQuestions(data))
-    // }
-
     @Get('/screener/')
     getScreenerWithQuestions(): Observable<any> {
         return Observable.zip(
