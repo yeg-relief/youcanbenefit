@@ -26,6 +26,9 @@ export class ScreenerPreviewComponent implements OnInit {
   ngOnInit() {
     this.store.pipe(fromRoot.getForm,take(1)).subscribe( (form: FormGroup) => this.form.next(form));
 
+    this.store.subscribe(
+      data => console.log(data)
+    )
     this.store
       .pipe(
         fromRoot.getForm,
@@ -33,6 +36,7 @@ export class ScreenerPreviewComponent implements OnInit {
         this.partitionQuestions.bind(this),
       )
       .subscribe( partitionedQuestions => {
+        console.log(partitionedQuestions)
         this.screenerQuestions = partitionedQuestions['screenerQuestions'];
         this.conditionalQuestions = partitionedQuestions['conditionalQuestions'];
         this.form.next( this.questionControlService.toFormGroup(this.screenerQuestions) );
@@ -51,10 +55,10 @@ export class ScreenerPreviewComponent implements OnInit {
           if (this.isConditional(formValues, value)) {
             accum.conditionalQuestions = [...accum.conditionalQuestions, formValues[value]];
           } else {
-            accum.questions = [...accum.questions, formValues[value]];
+            accum.screenerQuestions = [...accum.screenerQuestions, formValues[value]];
           } 
           return accum;
-        }, {conditionalQuestions: [], questions: []})
+        }, {conditionalQuestions: [], screenerQuestions: []})
       )
   }
 
@@ -68,11 +72,11 @@ export class ScreenerPreviewComponent implements OnInit {
     return false;
   }
 
-  gatherConditionals(question) {
-    if (!question.expandable || !Array.isArray(question.conditionalQuestions) || question.conditionalQuestions.length === 0){
+  gatherConditionals(screenerQuestion) {
+    if (!screenerQuestion.expandable || !Array.isArray(screenerQuestion.conditionalQuestions) || screenerQuestion.conditionalQuestions.length === 0){
       return [];
     }
-    const conditionals = question.conditionalQuestions;
+    const conditionals = screenerQuestion.conditionalQuestions;
     return this.conditionalQuestions.filter( q => conditionals.find(id => id === q.id))
   }
 
