@@ -25,7 +25,7 @@
             <mat-option *ngFor="let control of CONTROL_TYPE_VALUES" [value]="control.value"> {{ control.display }} </mat-option>
         </mat-select>
 
-        <!-- <section [formGroup]="optionForm" *ngIf="controlType === 'NumberSelect'">
+        <section [formGroup]="optionForm" *ngIf="controlType === 'NumberSelect'">
             <div class="col-12 flex" >
                 <mat-form-field class="col-9">
                     <input matInput placeholder="option value" formControlName="optionValue">
@@ -38,7 +38,7 @@
                     <mat-chip *ngFor="let option of options" (click)="spliceOption(option)">{{ option }}</mat-chip>
                 </mat-chip-list>
             </div>
-        </section> -->
+        </section>
 
         <app-mult-select-questions *ngIf="controlType === 'Multiselect'" [options]="multiQuestions" (update)="updateMultiSelect($event)"></app-mult-select-questions>
     </form>

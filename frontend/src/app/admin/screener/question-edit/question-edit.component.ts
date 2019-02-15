@@ -35,7 +35,6 @@ import { Animations } from '../../../shared/animations'
 export class QuestionEditComponent implements OnInit, OnDestroy {
     readonly CONTROL_TYPE_VALUES = [
         { value: 'NumberInput', display: 'number input' },
-        // { value: 'NumberSelect', display: 'select' },
         { value: 'Toggle', display: 'toggle' },
         { value: 'Multiselect', display: 'multiselect'}
     ].sort( (a, b) => a.display.trim().localeCompare(b.display.trim()));
@@ -56,10 +55,6 @@ export class QuestionEditComponent implements OnInit, OnDestroy {
     constructor(private store: Store<fromRoot.State>, private fb: FormBuilder) { }
 
     ngOnInit() {
-
-        // this.selectedQuestionID$ = of('unselect all the questions')
-
-        // data sources
         this.selectedQuestionID$ = combineLatest(
             getSelectedConstantID(this.store),
             getSelectedConditionalID(this.store)
@@ -110,7 +105,6 @@ export class QuestionEditComponent implements OnInit, OnDestroy {
                 delay(300),
                 tap(_ => this.fadeState = 'in'),
             ).subscribe();    
-        // local form(s)
 
         const digit_pattern = '^\\d+$';
 
@@ -172,11 +166,10 @@ export class QuestionEditComponent implements OnInit, OnDestroy {
     }
 
     updateOptions(input$: Observable<Array<ControlType | FormGroup>>): Observable<Array<ControlType | FormGroup>> {
-
         return input$.do( ([controlType, form]) => {
             const f = <FormGroup>form;
             const ct = <ControlType>controlType;
-
+            
             if (f.get('options') === null) f.addControl('options', new FormControl([]));
 
             if (ct === 'NumberSelect' || ct === 'Multiselect') {
@@ -208,17 +201,11 @@ export class QuestionEditComponent implements OnInit, OnDestroy {
 
     updateMultiSelect(options){
         if (this.controlType === 'Multiselect') {
-
             this.form$.take(1).subscribe( (form: FormGroup) => {
                 if (!form.get('multiSelectOptions')) {
                     form.addControl('multiSelectOptions', new FormControl([]));
                 }
-
                 form.get('multiSelectOptions').setValue(options);
-
-
-                // form.get(['key', 'name']).setValue(null);
-
                 form.get('expandable').setValue(false);
             })
         }

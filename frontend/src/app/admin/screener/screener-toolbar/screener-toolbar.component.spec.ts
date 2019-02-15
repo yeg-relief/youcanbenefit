@@ -32,8 +32,7 @@ const screenerState: fromScreener.State  = {
   error: '',
   selectedConstantQuestion: 'fake_id',
   selectedConditionalQuestion: undefined,
-  created: 0,
-  DATA: 'TEST'
+  created: 0
 };
 
 
