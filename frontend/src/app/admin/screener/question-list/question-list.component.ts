@@ -19,13 +19,12 @@ export class QuestionListComponent implements OnInit, OnDestroy {
   @Input() form: FormGroup;
   @Input() type: QuestionType; // are these conditional or constant questions in the list?
   @Input() host_id: ID | undefined; // undefined if these are constant questions
-  //@Input() filter: string; // key name to filter by
   @Output() questionSelect = new EventEmitter<ID>();
   @Output() questionUnselect = new EventEmitter<ID>();
-  @Output() addQuestion = new EventEmitter<{[key: string]: QuestionType | ID }>();
+  @Output() addQuestion = new EventEmitter<{[id: string]: QuestionType | ID }>();
   @Output() dragEvent =  new EventEmitter<DragDatum>();
 
-  classes: { [key: string]: {[key: string]: boolean} } = { };
+  classes: { [id: string]: {[id: string]: boolean} } = { };
   constant_type: QuestionType = QUESTION_TYPE_CONSTANT;
   conditional_type: QuestionType = QUESTION_TYPE_CONDITIONAL;
 
@@ -122,8 +121,8 @@ export class QuestionListComponent implements OnInit, OnDestroy {
   }
 
   deselectAll() {
-    for (const key in this.classes) {
-      if (this.classes[key]['selected'] === true) this.classes[key]['selected'] = false;
+    for (const id in this.classes) {
+      if (this.classes[id]['selected'] === true) this.classes[id]['selected'] = false;
     }
   }
 
@@ -139,7 +138,7 @@ export class QuestionListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() { 
     // attempt to clear the selected class that sticks after route change...
-    for(const key in this.classes) delete this.classes[key];
+    for(const id in this.classes) delete this.classes[id];
     
     this.destroySubs$.next(); 
   }
@@ -254,9 +253,9 @@ export class QuestionListComponent implements OnInit, OnDestroy {
 
       this.dragManager.dropItem( targetNode.id.split('-')[0] );
 
-      for (const key in this.classes) {
-        this.classes[key]['dragStart'] = false;
-        this.classes[key]['dragOver'] = false;
+      for (const id in this.classes) {
+        this.classes[id]['dragStart'] = false;
+        this.classes[id]['dragOver'] = false;
       }
       
       
@@ -276,9 +275,9 @@ export class QuestionListComponent implements OnInit, OnDestroy {
       this.dragManager.dropItem( targetID );
     }
 
-    for (const key in this.classes) {
-        this.classes[key]['dragStart'] = false;
-        this.classes[key]['dragOver'] = false;
+    for (const id in this.classes) {
+        this.classes[id]['dragStart'] = false;
+        this.classes[id]['dragOver'] = false;
       }
       
       
@@ -289,9 +288,9 @@ export class QuestionListComponent implements OnInit, OnDestroy {
   }
 
   dragEnd() {
-    for(const key in this.classes) {
-      this.classes[key]['dragOver'] = false;
-      this.classes[key]['dragStart'] = false;
+    for(const id in this.classes) {
+      this.classes[id]['dragOver'] = false;
+      this.classes[id]['dragStart'] = false;
     }
     this.containerClasses = {
       container_over: false

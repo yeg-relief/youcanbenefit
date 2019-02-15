@@ -1,4 +1,4 @@
-<mat-card style="height: 25vh;" *ngIf="form$ | async; let form">
+<mat-card style="height: 18vh;" *ngIf="form$ | async; let form">
    <mat-card-title> Screener Edit </mat-card-title>
   <div class="flex flex-justify">
     <section>
@@ -7,7 +7,7 @@
     
     <section class="flex flex-column flex-justify flex-stretch">
 
-      <button [disabled]="form.form.invalid" style="width: 10vw; height: 5vh" (click)="handleSave()" mat-raised-button color="primary"> SAVE </button>
+      <button [disabled]="form.form.invalid" style="width: 10vw; height: 5vh; margin-right: 0.5vw" (click)="handleSave()" mat-raised-button color="primary"> SAVE </button>
       
       <button [attr.disabled]="form.form.invalid" 
               style="width: 10vw; height: 5vh; margin-top: 1em;" 
