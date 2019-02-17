@@ -32,9 +32,10 @@ export class ApiController {
     }
 
     @Get('document/:guid')
-    getDocumentByGuid(@Param() params): Promise<DocumentDto>{
+    getDocumentByGuid(@Param() params): Promise<string>{
         return this.documentService.getByGuid(params.guid);
     }
+
     @Post('document')
     createDocument(@Body() body): Promise<any>{
         return this.documentService.create(body);

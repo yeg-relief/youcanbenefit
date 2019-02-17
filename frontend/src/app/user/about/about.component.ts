@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AboutService } from './about.service';
 
 @Component({
   selector: 'app-about',
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./about.component.css']
 })
 export class AboutComponent implements OnInit {
-
-  constructor() { }
+  dynamicDocument = "test document";
+  constructor(
+    private aboutService: AboutService
+  ) {}
 
   ngOnInit() {
+    console.log('Asking for doc')
+    this.aboutService.getDocument().then((doc) => {
+      this.dynamicDocument = doc
+    }, (err) => {
+      console.error(err)
+    })
   }
 
 }

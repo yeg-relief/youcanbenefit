@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { ToolbarComponent } from './shared/components/toolbar/toolbar.component';
 import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
 import { AboutComponent } from './user/about/about.component';
+import { AboutService } from './user/about/about.service'
 import { MasterScreenerModule } from './user/master-screener/master-screener.module';
 import { BrowseModule } from './user/browse/browse.module';
 import { HomeComponent } from './user/home/home.component';
@@ -63,7 +64,8 @@ import {
         AuthService,
         AuthGuardService,
         ProgramsServiceService,
-        InitialRedirectService
+        InitialRedirectService,
+        AboutService
     ],
     bootstrap: [AppComponent]
 })
