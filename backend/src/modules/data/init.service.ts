@@ -14,8 +14,9 @@ export class InitService {
         const masterScreenerExists = await this.client.indices.exists({ index: 'master_screener'});
         const questionsExists = await this.client.indices.exists({ index: 'questions'});
         const programsExists = await this.client.indices.exists({ index: 'programs'});
+        const documentsExists = await this.client.indices.exists({index: 'documents'})
 
-        return masterScreenerExists && questionsExists && programsExists;
+        return masterScreenerExists && questionsExists && programsExists && documentsExists ;
     }
 
 
@@ -23,8 +24,8 @@ export class InitService {
         const masterScreenerExists = await this.client.indices.exists({ index: 'master_screener'});
         const questionsExists = await this.client.indices.exists({ index: 'questions'});
         const programsExists = await this.client.indices.exists({ index: 'programs'});
-
-        const hasBeenInitialized = masterScreenerExists && questionsExists && programsExists;
+        const documentsExists = await this.client.indices.exists({index: 'documents'})
+        const hasBeenInitialized = masterScreenerExists && questionsExists && programsExists && documentsExists;
 
 
         if (hasBeenInitialized && !force) {
@@ -41,6 +42,9 @@ export class InitService {
 
         if (programsExists) {
             await this.client.indices.delete({ index: 'programs'});
+        }
+        if (documentsExists) {
+            await this.client.indices.delete({ index: 'documents'});
         }
 
         await this.client.indices.create({ index: 'master_screener'});
@@ -63,6 +67,9 @@ export class InitService {
             type: 'user_facing',
             body: { properties: { ...PROGRAM_MAPPING } }
         });
+
+        await this.client.indices.create({ index: 'documents'});
+        
 
         return [
             [ masterScreenerExists, masterScreenerPutMapping],
