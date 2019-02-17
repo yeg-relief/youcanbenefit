@@ -26,4 +26,8 @@ export class DocumentService {
         return this.clientService.create(document, this.INDEX, this.TYPE, document.guid);
     }
 
+    async getByGuid(guid: string): Promise<DocumentDto> {
+        return this.clientService.getById(this.baseParams, guid);
+    }
+
 }

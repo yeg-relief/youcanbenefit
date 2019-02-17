@@ -5,6 +5,7 @@ import { ScreenerService } from "../screener/screener.service"
 import { ProgramDto } from "../Program/program.dto";
 import { PercolateService } from "../percolate/percolate.service";
 import { DocumentService } from "../document/document.service"
+import { DocumentDto } from '../document/document.dto';
 
 @Controller('api')
 export class ApiController {
@@ -30,6 +31,10 @@ export class ApiController {
         return this.programService.getByGuid(params.guid);
     }
 
+    @Get('document/:guid')
+    getDocumentByGuid(@Param() params): Promise<DocumentDto>{
+        return this.documentService.getByGuid(params.guid);
+    }
     @Post('document')
     createDocument(@Body() body): Promise<any>{
         return this.documentService.create(body);
