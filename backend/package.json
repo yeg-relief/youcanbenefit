@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "YouCanBenefit backend API.",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/yeg-relief/youcanbenefit"
+    "type": "git",
+    "url": "https://github.com/yeg-relief/youcanbenefit"
   },
   "license": "MIT",
   "scripts": {
@@ -34,6 +34,7 @@
     "reflect-metadata": "^0.1.12",
     "rxjs": "^6.3.3",
     "rxjs-compat": "^6.3.3",
+    "sanitize-html": "^1.20.0",
     "typescript": "^2.9.2",
     "uuid": "^3.3.2",
     "winston": "^2.4.4"

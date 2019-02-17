@@ -33,7 +33,7 @@ export class ApiController {
 
     @Get('document/:guid')
     getDocumentByGuid(@Param() params): Promise<string>{
-        return this.documentService.getByGuid(params.guid);
+        return this.documentService.getByTitle(params.guid);
     }
 
     @Post('document')

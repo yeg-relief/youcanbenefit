@@ -1,6 +1,6 @@
 export class DocumentDto {
     created: number;
-    guid: string;
+    title: string;
     content: string;
 
     constructor(data) {
