@@ -3,18 +3,28 @@
     "mappings": {
       "queries": {
         "properties": {
-          "age": { "type": "integer" },
-          "aish": { "type": "boolean" },
-          "albertaworks": { "type": "boolean" },
-          "childcare": { "type": "boolean" },
-          "childdisability": { "type": "boolean" },
-          "children": { "type": "boolean" },
-          "cppcontributions": { "type": "boolean" },
-          "disability": { "type": "boolean" },
-          "empoyment": { "type": "boolean" },
-          "grossincome": { "type": "integer" },
-          "grosspersonal": { "type": "integer" },
-          "kincare": { "type": "boolean" },
+          "2gmDyd4A5yOGxRuIFohB": { "type": "boolean" },
+          "52BONWt6kVy3h4wnQnuz": { "type": "integer" },
+          "DTcDYBr3aQOZPyZV2MT7": { "type": "boolean" },
+          "E9L05fKKsRFsNsfjaJ5U": { "type": "boolean" },
+          "EVbsvHuXh8ul9x42AXCQ": { "type": "integer" },
+          "H0u1Ugl4Ha1Cq9KQ3K9l": { "type": "boolean" },
+          "H6jpQAF6d4nAHxmxtrWv": { "type": "boolean" },
+          "HVZbfiR8XkcSwJ2FFBNq": { "type": "boolean" },
+          "MbCvH6nIcQ852Gr5fhn5": { "type": "boolean" },
+          "QXHbrs8fUROUrTx492LI": { "type": "boolean" },
+          "QjN5nJJ1jqeUFiHg48XI": { "type": "boolean" },
+          "S3LvVtaiIBcQZUvNn7Hn": { "type": "boolean" },
+          "SvFSpo9vkchY2mZkiY4p": { "type": "boolean" },
+          "TjlDh3B3QWdZa0Id09Sq": { "type": "boolean" },
+          "U9Q4lMqhGSE0pKLoyGYf": { "type": "boolean" },
+          "VIXBl1tiUyAx8EPuZrzk": { "type": "boolean" },
+          "WD8NTqY5cCOpEVsgdQNA": { "type": "boolean" },
+          "an2swDUmzfKa61MhdziL": { "type": "integer" },
+          "hdPMbny6X0WNhwuiJiMt": { "type": "integer" },
+          "j1qAUIGZsErQNFaijXAG": { "type": "boolean" },
+          "jlW503so415f3iBQRSei": { "type": "boolean" },
+          "kpdBh6jfLAPK6fFnGlyA": { "type": "boolean" },
           "meta": {
             "properties": {
               "id": {
@@ -28,25 +38,154 @@
                 "fields": {
                   "keyword": { "type": "keyword", "ignore_above": 256 }
                 }
+              },
+              "questionTexts": {
+                "properties": {
+                  "2gmDyd4A5yOGxRuIFohB": {
+                    "type": "text",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "52BONWt6kVy3h4wnQnuz": {
+                    "type": "text",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "DTcDYBr3aQOZPyZV2MT7": {
+                    "type": "text",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "E9L05fKKsRFsNsfjaJ5U": {
+                    "type": "text",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "EVbsvHuXh8ul9x42AXCQ": {
+                    "type": "text",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "H0u1Ugl4Ha1Cq9KQ3K9l": {
+                    "type": "text",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "H6jpQAF6d4nAHxmxtrWv": {
+                    "type": "text",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "HVZbfiR8XkcSwJ2FFBNq": {
+                    "type": "text",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "MbCvH6nIcQ852Gr5fhn5": {
+                    "type": "text",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "QXHbrs8fUROUrTx492LI": {
+                    "type": "text",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "QjN5nJJ1jqeUFiHg48XI": {
+                    "type": "text",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "S3LvVtaiIBcQZUvNn7Hn": {
+                    "type": "text",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "SvFSpo9vkchY2mZkiY4p": {
+                    "type": "text",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "TjlDh3B3QWdZa0Id09Sq": {
+                    "type": "text",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "U9Q4lMqhGSE0pKLoyGYf": {
+                    "type": "text",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "VIXBl1tiUyAx8EPuZrzk": {
+                    "type": "text",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "WD8NTqY5cCOpEVsgdQNA": {
+                    "type": "text",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "an2swDUmzfKa61MhdziL": {
+                    "type": "text",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "hdPMbny6X0WNhwuiJiMt": {
+                    "type": "text",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "j1qAUIGZsErQNFaijXAG": {
+                    "type": "text",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "kpdBh6jfLAPK6fFnGlyA": {
+                    "type": "text",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "t9LFzwOPeWiBbrew3cyS": {
+                    "type": "text",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
+                  "wPe0S0iQ23kToF7B2CJd": {
+                    "type": "text",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  }
+                }
               }
             }
           },
-          "moreschool": { "type": "boolean" },
-          "needincome": { "type": "boolean" },
-          "needs": { "type": "integer" },
-          "netincome": { "type": "integer" },
-          "number": { "type": "integer" },
-          "numberchildren": { "type": "integer" },
-          "oas": { "type": "boolean" },
-          "otherincome": { "type": "boolean" },
-          "pregnant": { "type": "boolean" },
           "query": { "type": "percolator" },
-          "recreation": { "type": "boolean" },
-          "spouse": { "type": "boolean" },
-          "stayathome": { "type": "boolean" },
-          "test": { "type": "boolean" },
-          "victim": { "type": "boolean" },
-          "youngestchild": { "type": "integer" }
+          "t9LFzwOPeWiBbrew3cyS": { "type": "boolean" },
+          "wPe0S0iQ23kToF7B2CJd": { "type": "boolean" }
         }
       }
     }

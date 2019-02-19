@@ -1,5 +1,68 @@
 {
-  "questions": [
+  "conditionalQuestions": [
+    {
+      "controlType": "NumberInput",
+      "label": "How many children do you have under 18?",
+      "expandable": false,
+      "index": 0,
+      "id": "an2swDUmzfKa61MhdziL",
+      "conditionalQuestions": [],
+      "options": []
+    },
+    {
+      "controlType": "NumberInput",
+      "label": "How old is your YOUNGEST child?",
+      "expandable": false,
+      "index": 1,
+      "id": "52BONWt6kVy3h4wnQnuz",
+      "conditionalQuestions": [],
+      "options": []
+    },
+    {
+      "controlType": "Multiselect",
+      "label": "Who cares for your children? (Select all that apply)",
+      "expandable": false,
+      "index": 5,
+      "id": "zP1jPrL6tpHVZPcpGuIy",
+      "conditionalQuestions": [],
+      "options": [],
+      "multiSelectOptions": [
+        {
+          "id": "WD8NTqY5cCOpEVsgdQNA",
+          "text": "A licensed day care (such as a Day Home, Child Care Center, or Preschool)"
+        },
+        {
+          "id": "t9LFzwOPeWiBbrew3cyS",
+          "text": "A parent who stays at home"
+        },
+        {
+          "id": "j1qAUIGZsErQNFaijXAG",
+          "text": "A relative who does not live in your home"
+        }
+      ]
+    },
+    {
+      "controlType": "Toggle",
+      "label": "Are you looking for recreation activities for your child or children?",
+      "expandable": false,
+      "index": 3,
+      "id": "DTcDYBr3aQOZPyZV2MT7",
+      "conditionalQuestions": [],
+      "options": [],
+      "multiSelectOptions": []
+    },
+    {
+      "controlType": "Toggle",
+      "label": "I have a child with a disability",
+      "expandable": false,
+      "index": 4,
+      "id": "U9Q4lMqhGSE0pKLoyGYf",
+      "conditionalQuestions": [],
+      "options": [],
+      "multiSelectOptions": []
+    }
+  ],
+  "screenerQuestions": [
     {
       "controlType": "NumberInput",
       "label": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
@@ -7,8 +70,7 @@
       "index": 0,
       "id": "hdPMbny6X0WNhwuiJiMt",
       "conditionalQuestions": [],
-      "options": [],
-      "key": "grossincome"
+      "options": []
     },
     {
       "controlType": "NumberInput",
@@ -17,8 +79,7 @@
       "index": 2,
       "id": "EVbsvHuXh8ul9x42AXCQ",
       "conditionalQuestions": [],
-      "options": [],
-      "key": "age"
+      "options": []
     },
     {
       "controlType": "Toggle",
@@ -27,8 +88,7 @@
       "index": 5,
       "id": "VIXBl1tiUyAx8EPuZrzk",
       "conditionalQuestions": [],
-      "options": [],
-      "key": "spouse"
+      "options": []
     },
     {
       "controlType": "Toggle",
@@ -43,44 +103,40 @@
         "U9Q4lMqhGSE0pKLoyGYf",
         "zP1jPrL6tpHVZPcpGuIy"
       ],
-      "options": [],
-      "key": "children"
+      "options": []
     },
     {
       "controlType": "Multiselect",
       "label": "Select all of the following that apply to you",
       "expandable": false,
-      "index": 7,
+      "index": 6,
       "id": "mdfIL5kSwI0w4br8oXIN",
       "conditionalQuestions": [],
       "options": [],
       "multiSelectOptions": [
+        { "id": "S3LvVtaiIBcQZUvNn7Hn", "text": "I have a disability" },
         {
-          "key": { "name": "disability", "type": "boolean" },
-          "text": "I have a disability"
-        },
-        {
-          "key": { "name": "moreschool", "type": "boolean" },
+          "id": "SvFSpo9vkchY2mZkiY4p",
           "text": "I am going to/planning to go to school"
         },
         {
-          "key": { "name": "victim", "type": "boolean" },
+          "id": "MbCvH6nIcQ852Gr5fhn5",
           "text": "I have been a victim of a crime I reported to the police in the last two years"
         },
         {
-          "key": { "name": "cppcontributions", "type": "boolean" },
+          "id": "H0u1Ugl4Ha1Cq9KQ3K9l",
           "text": "I have paid into the Canada Pension Plan (CPP) for 4 of the last 6 years"
         },
         {
-          "key": { "name": "needincome", "type": "boolean" },
-          "text": "I need help to pay for basic needs (food, shelter, clothes, etc.)"
+          "id": "QjN5nJJ1jqeUFiHg48XI",
+          "text": "I need help to pay for basic needs (food, clothes, etc.)"
         },
         {
-          "key": { "name": "pregnant", "type": "boolean" },
+          "id": "TjlDh3B3QWdZa0Id09Sq",
           "text": "I have high ongoing drug costs or am pregnant"
-        }
-      ],
-      "key": ""
+        },
+        { "id": "kpdBh6jfLAPK6fFnGlyA", "text": "I need housing support" }
+      ]
     },
     {
       "controlType": "Multiselect",
@@ -91,91 +147,136 @@
       "conditionalQuestions": [],
       "options": [],
       "multiSelectOptions": [
-        { "key": { "name": "aish", "type": "boolean" }, "text": "AISH" },
+        { "id": "wPe0S0iQ23kToF7B2CJd", "text": "AISH" },
         {
-          "key": { "name": "albertaworks", "type": "boolean" },
+          "id": "E9L05fKKsRFsNsfjaJ5U",
           "text": "Income Support/Alberta works"
         },
-        {
-          "key": { "name": "empoyment", "type": "boolean" },
-          "text": "Employment"
-        },
-        {
-          "key": { "name": "oas", "type": "boolean" },
-          "text": "Old Age Security"
-        },
-        { "key": { "name": "otherincome", "type": "boolean" }, "text": "Other" }
-      ],
-      "key": ""
+        { "id": "H6jpQAF6d4nAHxmxtrWv", "text": "Employment" },
+        { "id": "QXHbrs8fUROUrTx492LI", "text": "Old Age Security" },
+        { "id": "jlW503so415f3iBQRSei", "text": "Other" }
+      ]
+    },
+    {
+      "controlType": "Toggle",
+      "label": "Have you lived in Canada for 10 years since age 18?",
+      "expandable": false,
+      "index": 7,
+      "id": "2gmDyd4A5yOGxRuIFohB",
+      "conditionalQuestions": [],
+      "options": [],
+      "multiSelectOptions": []
     }
   ],
-  "conditionalQuestions": [
+  "questions": [
     {
-      "controlType": "NumberInput",
-      "label": "How many children do you have under 18?",
-      "expandable": false,
-      "index": 0,
+      "text": "How many children do you have under 18?",
       "id": "an2swDUmzfKa61MhdziL",
-      "conditionalQuestions": [],
-      "options": [],
-      "key": "numberchildren"
+      "type": "integer"
     },
     {
-      "controlType": "NumberInput",
-      "label": "How old is your YOUNGEST child?",
-      "expandable": false,
-      "index": 1,
+      "text": "How old is your YOUNGEST child?",
       "id": "52BONWt6kVy3h4wnQnuz",
-      "conditionalQuestions": [],
-      "options": [],
-      "key": "youngestchild"
+      "type": "integer"
     },
     {
-      "controlType": "Multiselect",
-      "label": "Who cares for your children? (Select all that apply)",
-      "expandable": false,
-      "index": 5,
-      "id": "zP1jPrL6tpHVZPcpGuIy",
-      "conditionalQuestions": [],
-      "options": [],
-      "multiSelectOptions": [
-        {
-          "key": { "name": "childcare", "type": "boolean" },
-          "text": "A licensed day care (such as a Day Home, Child Care Center, or Preschool)"
-        },
-        {
-          "key": { "name": "stayathome", "type": "boolean" },
-          "text": "A parent who stays at home"
-        },
-        {
-          "key": { "name": "kincare", "type": "boolean" },
-          "text": "A relative who does not live in your home"
-        }
-      ],
-      "key": ""
+      "text": "A licensed day care (such as a Day Home, Child Care Center, or Preschool)",
+      "id": "WD8NTqY5cCOpEVsgdQNA",
+      "type": "boolean"
     },
     {
-      "controlType": "Toggle",
-      "label": "Are you looking for recreation activities for your child or children?",
-      "expandable": false,
-      "index": 3,
+      "text": "A parent who stays at home",
+      "id": "t9LFzwOPeWiBbrew3cyS",
+      "type": "boolean"
+    },
+    {
+      "text": "A relative who does not live in your home",
+      "id": "j1qAUIGZsErQNFaijXAG",
+      "type": "boolean"
+    },
+    {
+      "text": "Are you looking for recreation activities for your child or children?",
       "id": "DTcDYBr3aQOZPyZV2MT7",
-      "conditionalQuestions": [],
-      "options": [],
-      "multiSelectOptions": [],
-      "key": "recreation"
+      "type": "boolean"
     },
     {
-      "controlType": "Toggle",
-      "label": "I have a child with a disability",
-      "expandable": false,
-      "index": 4,
+      "text": "I have a child with a disability",
       "id": "U9Q4lMqhGSE0pKLoyGYf",
-      "conditionalQuestions": [],
-      "options": [],
-      "multiSelectOptions": [],
-      "key": "childdisability"
+      "type": "boolean"
+    },
+    {
+      "text": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+      "id": "hdPMbny6X0WNhwuiJiMt",
+      "type": "integer"
+    },
+    {
+      "text": "How old are you?",
+      "id": "EVbsvHuXh8ul9x42AXCQ",
+      "type": "integer"
+    },
+    {
+      "text": "Do you have a spouse or common-law partner?",
+      "id": "VIXBl1tiUyAx8EPuZrzk",
+      "type": "boolean"
+    },
+    {
+      "text": "Do you have children under the age of 18 living with you?",
+      "id": "HVZbfiR8XkcSwJ2FFBNq",
+      "type": "boolean"
+    },
+    {
+      "text": "I have a disability",
+      "id": "S3LvVtaiIBcQZUvNn7Hn",
+      "type": "boolean"
+    },
+    {
+      "text": "I am going to/planning to go to school",
+      "id": "SvFSpo9vkchY2mZkiY4p",
+      "type": "boolean"
+    },
+    {
+      "text": "I have been a victim of a crime I reported to the police in the last two years",
+      "id": "MbCvH6nIcQ852Gr5fhn5",
+      "type": "boolean"
+    },
+    {
+      "text": "I have paid into the Canada Pension Plan (CPP) for 4 of the last 6 years",
+      "id": "H0u1Ugl4Ha1Cq9KQ3K9l",
+      "type": "boolean"
+    },
+    {
+      "text": "I need help to pay for basic needs (food, clothes, etc.)",
+      "id": "QjN5nJJ1jqeUFiHg48XI",
+      "type": "boolean"
+    },
+    {
+      "text": "I have high ongoing drug costs or am pregnant",
+      "id": "TjlDh3B3QWdZa0Id09Sq",
+      "type": "boolean"
+    },
+    {
+      "text": "I need housing support",
+      "id": "kpdBh6jfLAPK6fFnGlyA",
+      "type": "boolean"
+    },
+    { "text": "AISH", "id": "wPe0S0iQ23kToF7B2CJd", "type": "boolean" },
+    {
+      "text": "Income Support/Alberta works",
+      "id": "E9L05fKKsRFsNsfjaJ5U",
+      "type": "boolean"
+    },
+    { "text": "Employment", "id": "H6jpQAF6d4nAHxmxtrWv", "type": "boolean" },
+    {
+      "text": "Old Age Security",
+      "id": "QXHbrs8fUROUrTx492LI",
+      "type": "boolean"
+    },
+    { "text": "Other", "id": "jlW503so415f3iBQRSei", "type": "boolean" },
+    {
+      "text": "Have you lived in Canada for 10 years since age 18?",
+      "id": "2gmDyd4A5yOGxRuIFohB",
+      "type": "boolean"
     }
   ],
-  "created": 1519232807029
+  "created": 1550271418583
 }

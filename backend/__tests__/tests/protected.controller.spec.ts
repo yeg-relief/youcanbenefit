@@ -34,7 +34,7 @@ describe('/protected', () => {
         .expect(response => {
             const extractedProperties = response.body.map( applicationProgramDto => applicationProgramDto.guid);
             extractedProperties.sort( (a, b) => a.localeCompare(b));
-
+            
             expect(extractedProperties).toMatchSnapshot();
         })
     });
