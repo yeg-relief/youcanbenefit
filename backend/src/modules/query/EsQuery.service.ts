@@ -20,6 +20,10 @@ export class EsQueryService {
         private readonly clientService: ClientService,
     ) {}
 
+    get maxSize() {
+        return { size: 10000 }
+    }
+
     async create(query: EsQueryDto): Promise<boolean> {
         try {
             const res = await this.clientService.create(query, this.INDEX, this.TYPE, query.meta.id);
@@ -42,6 +46,7 @@ export class EsQueryService {
     getByGuid(guid: string): Promise<EsQueryDto[]> {
         return this.clientService.client.search({
             ...this.baseParams,
+            ...this.maxSize,
             body: { "query": { match: { "meta.program_guid": guid } }
         }})
             .then(searchResponse => searchResponse.hits.hits.map(hit => hit._source))
