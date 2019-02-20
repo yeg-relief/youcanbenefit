@@ -7,13 +7,20 @@ import "rxjs/add/observable/fromPromise";
 import "rxjs/add/operator/pluck";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/reduce";
-import { Schema } from '../data/schema'
 import { EsQueryService } from '../query/EsQuery.service';
 import { EsQueryDto } from '../query/EsQuery.dto';
 
 @Injectable()
 export class QuestionService {
     constructor(private readonly clientService: ClientService, private queryService: EsQueryService) {}
+
+    private readonly INDEX = "questions";
+    private readonly TYPE = "screener";
+    private readonly baseParams = {
+        index: this.INDEX,
+        type: this.TYPE
+    };
+
 
     get maxSize() {
         return { size: 10000 }
@@ -32,8 +39,7 @@ export class QuestionService {
 
     getQuestions(): Observable<QuestionDto[]> {
         return Observable.fromPromise(this.clientService.client.search({
-            index: Schema.master_screener.index,
-            type: Schema.master_screener.type,
+            ...this.baseParams,
             ...this.maxSize,
             body: { query: { match_all: {} } }
         }))
