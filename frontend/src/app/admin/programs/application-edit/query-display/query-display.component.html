@@ -8,7 +8,7 @@
     </colgroup>
     <thead class="border-bottom">
       <tr>
-        <th>Key</th>
+        <th>Question</th>
         <th>Type</th>
         <th>Qualifier</th>
         <th>Value</th>
@@ -16,8 +16,8 @@
     </thead>
     <tbody>
       <tr *ngFor="let condition of query.conditions">
-        <td>{{condition.key.name}}</td>
-        <td>{{condition.key.type}}</td>
+        <td>{{condition.question.text}}</td>
+        <td>{{condition.question.type}}</td>
         <div [ngSwitch]="condition.qualifier">
           <td *ngSwitchCase="'lessThan'"> &lt; </td>
           <td *ngSwitchCase="'lessThanOrEqual'"> &lt;= </td>
@@ -30,15 +30,12 @@
       </tr>
     </tbody>
   </table>
-  <div style="width: 5%">
-    <button mat-button color="primary" (click)="edit.emit(query.id)">
-      <i class="material-icons">edit</i>
-    </button>
-  </div>
-  <div class="px2"></div>
-  <div style="width: 5%">
+  <div class="query-actions">
     <button mat-button color="warn" (click)="handleDelete(query.id)">
       <i class="material-icons">clear</i>
+    </button>
+    <button *ngIf="query.conditions.length" mat-button color="primary" (click)="handleCopy(query.id)">
+      <i class="material-icons">content_copy</i>
     </button>
   </div>
 </div>

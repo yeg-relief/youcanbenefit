@@ -42,22 +42,10 @@ section {
   justify-content: space-between;
 }
 
-#question-container > *:not(button):not([formGroupName="key"]) {
+#question-container > *:not(button) {
   padding: 1em;
   width: 70%;
   margin: 0 auto;
-}
-
- 
-div[formGroupName="key"] {
-  width: 30%;
-  margin-left: 15%;
-}
-
-div[formGroupName="key"] > select {
-  width: 100%;
-  position: relative;
-  background: darkorange;
 }
 
 #question-container > button {
@@ -75,10 +63,6 @@ option {
   overflow: hidden;
 }
 
-select {
-  height: 3em;
-}
-
 #option-add-button {
   margin-left: 1em;
 }
@@ -90,7 +74,7 @@ mat-chip {
 }
 
 .checkbox-container {
-  margin-top: 1em; 
-  margin-bottom: 1em;
+  margin-top: 0em; 
+  margin-bottom: 0em;
   width: 100%;
 }

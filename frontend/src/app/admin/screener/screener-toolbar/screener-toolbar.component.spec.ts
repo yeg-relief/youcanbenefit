@@ -8,17 +8,11 @@ import { StoreModule } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import * as fromRoot from '../../reducer';
 import * as fromScreener from '../store/screener-reducer';
-import * as fromKeys from '../../keys/reducer';
 import { AuthService } from '../../core/services/auth.service'
-import { KeyFilterService } from '../services/key-filter.service'
 
 declare const btoa;
 
 const questionOne = new FormGroup({
-  key: new FormGroup({
-    name: new FormControl('boolean_key'),
-    type: new FormControl('boolean')
-  }),
   label: new FormControl('question label'),
   controlType: new FormControl('Toggle'),
   id: new FormControl('fake_id'),
@@ -38,10 +32,6 @@ const screenerState: fromScreener.State  = {
   error: '',
   selectedConstantQuestion: 'fake_id',
   selectedConditionalQuestion: undefined,
-  keys: [
-    {name: 'boolean_key', type: 'boolean'},
-    {name: 'integer_key', type: 'integer'}
-  ],
   created: 0
 };
 
@@ -69,7 +59,6 @@ describe('ScreenerToolbarComponent', () => {
         })
       ],
       providers: [
-        KeyFilterService,
         { provide: AuthService, useClass: MockAuthService }
       ],
       declarations: [ ScreenerToolbarComponent ]

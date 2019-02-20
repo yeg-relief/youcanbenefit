@@ -1,30 +1,40 @@
-<main [formGroup]="condition.form">
-  <mat-icon matTooltip="delete condition" (click)="deleteCondition()" class="material-icons" [style.color]="'red'">clear</mat-icon>
-  <select (change)="handleKeyChange($event)" [ngClass]="keyNameClasses">
-    <option disabled [value]="'invalid'"> invalid </option>
-    <option *ngFor="let key of (keys | async)" [value]="key.name" [selected]="isKeySelected(key.name)">
-      {{key.name}}
-    </option>
-  </select>
-
-  <div [ngClass]="optional" *ngIf="getKeyType() === 'boolean'">
-    <mat-button-toggle-group id="boolean-key-edit" formControlName="value">
-      <mat-button-toggle [value]="true"> true </mat-button-toggle>
-      <mat-button-toggle [value]="false"> false </mat-button-toggle>
-    </mat-button-toggle-group>
-  </div>
-
-  <div [ngClass]="optional" *ngIf="getKeyType() !== 'boolean' ">
-    <select formControlName="qualifier">
-      <option *ngFor="let qualifier of qualifiers" [value]="qualifier.value" [selected]="isQualifierSelected(qualifier.value)"> 
-        {{ qualifier.display }}
-      </option>
-    </select>
-      
-      
-    <mat-form-field>
-      <input matInput formControlName="value"/>
+<mat-list role="list" [formGroup]="condition.form">
+  <mat-list-item role="listitem">
+    <button mat-icon-button (click)="deleteCondition()">
+      <mat-icon
+        matTooltip="delete condition"
+        class="material-icons"
+        [style.color]="'red'">
+        clear
+      </mat-icon>
+    </button>
+    <mat-form-field class="question-text">
+      <mat-select placeholder="Question" [compareWith]="isQuestionSelected" (selectionChange)="handleQuestionChange($event)">
+        <mat-option *ngFor="let question of (questions | async)" [value]="question">
+        {{question.text}}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
 
-  </div>
-</main>
+    <div [ngClass]="optional" *ngIf="getQuestionType() === 'boolean'">
+      <mat-button-toggle-group formControlName="value">
+        <mat-button-toggle [value]="true"> true </mat-button-toggle>
+        <mat-button-toggle [value]="false"> false </mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+
+    <div [ngClass]="optional" *ngIf="getQuestionType() !== 'boolean'">
+      <mat-form-field class="qualifier">
+        <mat-select placeholder="qualifier" [compareWith]="isQualifierSelected" formControlName="qualifier">
+          <mat-option *ngFor="let qualifier of qualifiers" [value]="qualifier.value">
+            {{qualifier.display}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="value">
+        <input placeholder="value" matInput formControlName="value"/>
+      </mat-form-field>
+    </div>
+  </mat-list-item>
+</mat-list>

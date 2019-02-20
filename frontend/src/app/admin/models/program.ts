@@ -1,8 +1,8 @@
 import { UserFacingProgram } from '../../shared/models';
-import { Key } from './key';
+import { Question } from './question';
 
 export interface ProgramCondition {
-  key: Key;
+  question: Question;
   value: boolean | string | number;
   type: 'boolean' | 'text' | 'number';
   qualifier?: string | 'lessThan' | 'lessThanOrEqual' | 'equal' | 'greaterThanOrEqual' | 'greaterThan';

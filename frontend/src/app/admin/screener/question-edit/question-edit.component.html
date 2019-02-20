@@ -15,17 +15,6 @@
             <input matInput placeholder="Question Label" formControlName="label">
         </mat-form-field>
 
-        <div formGroupName="key" *ngIf="controlType !== 'Multiselect'">
-            <select placeholder="Key" formControlName="name">
-                <option selected disabled [value]="form.get(['key', 'name'])?.value">
-                    <pre> {{ form.get(['key', 'name']).value }} : {{ form.get(['key', 'type']).value }} </pre>
-                </option>
-                <option *ngFor="let unusedKey of unusedKeys" [value]="unusedKey.name">
-                    <pre>{{ unusedKey.name }} : {{ unusedKey.type }}</pre>
-                </option>
-            </select>
-        </div>
-
         <div class="checkbox-container" *ngIf="controlType !== 'Multiselect'">
             <mat-checkbox formControlName="expandable">
                 Expandable

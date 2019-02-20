@@ -34,8 +34,7 @@
       <mat-icon mat-list-avatar *ngIf="!form.get([id, 'expandable'])?.value && type === constant_type" [style.width]="'1em'"></mat-icon>
       
       
-      <h4 mat-line>{{ form.get([id, 'key'])?.value?.name }}</h4>
-      <h4 mat-line>{{ form.get([id, 'controlType'])?.value }}</h4>
+      <h4 mat-line>{{ form.get([id, 'label'])?.value }}</h4>
       <p mat-line *ngIf="form.get([id, 'expandable'])?.value && type === constant_type">
         [+] {{ form.get([id, 'conditionalQuestions'])?.value.length }} hidden question(s) 
       </p>

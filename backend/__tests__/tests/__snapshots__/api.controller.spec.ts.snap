@@ -2,19 +2,20 @@
 
 exports[`/api GET /:guid -- get a specific program 1`] = `
 Object {
-  "description": "Free library card which gets you access to library services",
+  "description": "Free library card which gives you access to library services",
   "detailLinks": Array [],
-  "details": "What is it?
+  "details": "
+What is it?
 Membership with the Edmonton Public Library (EPL) gets you free access to over 13,000 programs, millions of books, movies, video games, software, and more.
 
-Who is Eligible?
+Who is eligible?
 - Any resident of Edmonton
 
-What do I need to Apply?
-- An identification
+What do I need to apply?
+- Identification
 - Proof of residence
 
-You can apply online by following the link below or visit your local EPL branch to sign up",
+You can apply online by following the link below, or visit your local EPL branch to sign up",
   "externalLink": "www2.epl.ca/signup/",
   "guid": "GiufEa3ziFwfBEgkjI2gIlfNkk",
   "tags": Array [
@@ -30,10 +31,11 @@ Array [
   Object {
     "description": "Extended health coverage for adults with low incomes",
     "detailLinks": Array [],
-    "details": "What is it?
+    "details": "
+What is it?
 The Alberta Adult Health Benefit (AAHB) program supports Albertans with limited incomes by covering the cost of prescription drugs, dental services, optical services, emergency ambulance, and diabetic supplies. The AAHB pays for supplies that are not available through standard Alberta health coverage.
 
-Who is eligable?
+Who is eligible?
 Residents of Alberta are eligible for the AAHB if they meet the income criteria as well as one of the following conditions:
 - Leaving Alberta Works Income Support or Assured Income for the Severely Handicapped (AISH) and has income from employment, self-employment, or the Canada Pension Plan Disability program
 - High ongoing prescription drug needs
@@ -42,32 +44,64 @@ Residents of Alberta are eligible for the AAHB if they meet the income criteria 
 An individual or family is NOT eligible for AAHB if they are receiving extended health benefits from other government programs including: 
 - Income Support/AISH
 - Child and Youth Supports (Child Health Benefit)
-- Government Funded Indigenous Health Programs
-- Sponsored Immigrants or Refugees
-- Seniors (65+) Health Programs
+- Government-funded Indigenous health programs
+- Sponsored immigrants or refugees
+- Seniors (65+) health programs
 
 What do I need to apply?
 - SIN numbers for all family members
 - Alberta Personal Health Number
-- Completed your taxes so that Alberta Health Services can check your income
+- Completed taxes so Alberta Health Services can check your income
 
-For more information and to find the application follow the link below",
+For more information and to find the application follow the link below.",
     "externalLink": "www.alberta.ca/alberta-adult-health-benefit.aspx",
     "guid": "hp5mupqcVY8ZMiKg7Q91Uoi4Wf",
     "tags": Array [
       "Health",
       "Alberta",
-      "Adult",
     ],
     "title": "Adult Health Benefit",
   },
   Object {
+    "description": "Alberta Aids to Daily Living (AADL) helps those with a long-term disability, chronic illness or terminal illness to stay independent.",
+    "detailLinks": Array [
+      "http://www.health.alberta.ca/services/aids-to-daily-living.html",
+    ],
+    "details": "
+What is it?
+- AADL helps pay for basic medical equipment and supplies to help Albertans stay independent in their communities.
+- Participating Albertans pay 25% of the benefit cost to a maximum of $500 per individual or family per year.
+- Participating low-income Albertans, and those receiving income assistance, are exempt from paying the cost-sharing portion.
+
+Who is eligible?
+- A clinical assessment by a health care professional is required to determine eligibility. The health care professional will determine what equipment and supplies you can receive through the AADL program.
+- You may be eligible if you are an Alberta resident with a valid Alberta Health Care Insurance Plan card, and you require assistance because of a long-term disability, chronic illness or terminal illness (long-term and chronic are defined as being 6 months or longer.)
+
+Who is not eligible for AADL?
+You may not be eligible if you are eligible to receive comparable benefits from another source, including:
+- Veterans Affairs (if you are a veteran who needs help because of a medical condition from active duty)
+- Workers' Compensation Board
+- A private insurance plan
+- Non-Insured Health Benefits (NIHB) Directorate, First Nations and Inuit Branch, Health Canada (people who have treaty status on or off a reserve receive assistance from NIHB with their medical equipment and supplies, but if a benefit is not available through NIHB, and if clients are eligible for AADL, then AADL benefits can be accessed)
+
+For more information and to find out about how to apply, follow the links below.",
+    "externalLink": "www.health.alberta.ca/services/AADL-benefits-apply.html",
+    "guid": "7OFwDmSwGTZO5J3PeLQ85sxLZn",
+    "tags": Array [
+      "Alberta",
+      "Health",
+      "Disability",
+    ],
+    "title": "Alberta Aids to Daily Living",
+  },
+  Object {
     "description": "Money to support eligible working families to boost their income",
     "detailLinks": Array [],
-    "details": "What is it?
+    "details": "
+What is it?
 The Alberta Family Employment Tax Credit (AFETC) is a non-taxable benefit given twice a year to eligible families who earn money from work.
 
-Who is Eligible?
+Who is eligible?
 To be eligible for the AFETC, you must:
 - Be a parent of one or more children under 18
 - Be a resident of Alberta for at least one month prior to receiving the credit
@@ -78,7 +112,7 @@ What do I need to apply?
 - File your taxes
 - Receiving the Canada Child Benefit (if you are not already receiving the Canada Child Benefit please check that benefit for details on how to apply)
 
-For more information follow the link below",
+For more information follow the link below.",
     "externalLink": "www.alberta.ca/alberta-family-employment-tax-credit.aspx",
     "guid": "OGR28icdrofstoYETvIGg19XAv",
     "tags": Array [
@@ -91,8 +125,9 @@ For more information follow the link below",
   Object {
     "description": "Increases the income for seniors receiving Old Age Security",
     "detailLinks": Array [],
-    "details": "What is it?
-The Alberta Seniors Benefit (ASB) program provides extra monthly income to seniors receiving Old Age Security (OAS) and Guaranteed Income Supplement (GIS).
+    "details": "
+What is it?
+The Alberta Seniors Benefit (ASB) program provides extra monthly income to seniors receiving Old Age Security (OAS) and the Guaranteed Income Supplement (GIS).
 
 Who is eligible?
 - Seniors over 65 years old
@@ -105,7 +140,7 @@ What do I need to apply?
 - Proof of eligibility for Old Age Security (usually an Old Age Security Notice of Entitlement Letter) 
 - Direct Deposit information (all ASB money is paid via direct deposit)
 
-To apply you will need to complete the Seniors Financial Assistance Package from the link below",
+To apply, you will need to complete the Seniors Financial Assistance Package from the link below.",
     "externalLink": "www.seniors-housing.alberta.ca/seniors/seniors-benefit-program.html",
     "guid": "JIcpL1cap5Eg0ikPk2tecp6JG7",
     "tags": Array [
@@ -115,9 +150,36 @@ To apply you will need to complete the Seniors Financial Assistance Package from
     "title": "Alberta Seniors Benefit",
   },
   Object {
-    "description": "Regular monthly income for those with significant disabilities that limit the ability to work",
+    "description": "Loans for students in post-secondary programs",
+    "detailLinks": Array [
+      "https://studentaid.alberta.ca/before-you-apply/",
+    ],
+    "details": "
+What is it?
+The Alberta and Canada governments provide student loans and grants to help students reach their post-secondary educational goals. When you apply as a full-time student, you are considered for both Alberta and Canada student loans and grants. 
+
+Who is eligible?
+- Both full and some part-time students in eligible programs, at eligible post-secondary schools. Find out if your program and school are eligible, here: https://studentaid.alberta.ca/before-you-apply/eligibility/eligibility-search/
+- Loan eligibility is determined based on your financial need. You repay your loans once you graduate or leave school, after a 6 month grace period where no payments are required.
+- Grants are awarded based on financial need or to those who require special financial assistance. Grants do not have to be repaid, unless your eligibility changes.
+
+How do I apply?
+- Visit the student advisors or Office of the Registrar at the school you attend or plan to attend, and they can help you apply (the people who provide this help may have different job titles at different schools)
+- You can learn about things to think about before you apply, and you can submit an application, online at the link below.
+",
+    "externalLink": "studentaid.alberta.ca/",
+    "guid": "tNGy4XadOixXFFaxRRTKe8dqNs",
+    "tags": Array [
+      "Alberta",
+      "Education",
+    ],
+    "title": "Alberta Student Aid",
+  },
+  Object {
+    "description": "Regular monthly income for those with significant disabilities that limit their ability to work",
     "detailLinks": Array [],
-    "details": "What is it?
+    "details": "
+What is it?
 Assured Income for the Severely Handicapped (AISH) provides regular income to cover basics such as shelter, food, and clothing for those with significant disabilities that prevent them from working.  It also includes health care benefits, child benefits, and extra money to cover personal costs.  
 
 Who is eligible?
@@ -136,7 +198,7 @@ What do I need to apply?
 - Proof of residence in Alberta
 - Supporting proof of assets
 
-For more information and to find the application follow the link below",
+For more information and to find the application, follow the link below.",
     "externalLink": "www.alberta.ca/aish.aspx",
     "guid": "1lKYPN8nNaAMldGufGZNEwfjIK",
     "tags": Array [
@@ -148,17 +210,18 @@ For more information and to find the application follow the link below",
   Object {
     "description": "Extended health coverage for seniors over 65",
     "detailLinks": Array [],
-    "details": "What is it?
-The Alberta Government offers extended health coverage for all seniors over 65. This helps partially cover the cost of prescription drugs, diabetic supplies, and more. 
+    "details": "
+What is it?
+The Alberta government offers extended health coverage for all seniors over 65. This helps partially cover the cost of prescription drugs, diabetic supplies, and more. 
 
-Who is Eligible?
+Who is eligible?
 - All seniors over 65 (not income based) and people receiving an Alberta Widows Pension
 - Alberta residents
 
 How do I apply?
 - No application is required. All you have to do is sign up with the Blue Cross and get your Blue Cross Identification card.
 
-To subscribe for coverage contact the Blue Cross at 1–800–661-6995 or follow the link below for more information",
+To subscribe for coverage, contact the Blue Cross at 1–800–661-6995 or follow the link below for more information.",
     "externalLink": "www.health.alberta.ca/services/drugs-seniors.html",
     "guid": "9rRXexrA3JzmXbFdKCmjtTj57l",
     "tags": Array [
@@ -169,33 +232,33 @@ To subscribe for coverage contact the Blue Cross at 1–800–661-6995 or follow
     "title": "Blue Cross Coverage for Seniors",
   },
   Object {
-    "description": "A tax-free monthly payment to families with children under 18",
+    "description": "A tax-free monthly payment to families with children under 18 years of age",
     "detailLinks": Array [
       "www.canada.ca/en/revenue-agency/services/forms-publications/publications/t4114-canada-child-benefit-related-provincial-territorial-programs/canada-child-benefit.html#P142_7327",
     ],
-    "details": "What is it?
--The Canada Revenue Agency uses information from your income tax and benefit return to calculate your CCB payments 
--To receive the CCB you must file a tax return every year even if you do not have any income during the year
+    "details": "
+What is it?
+- The Canada Revenue Agency uses information from your income tax and benefit return to calculate your Canada Child Benefit (CCB) payments 
+- To receive the CCB you must file a tax return every year even if you do not have any income during the year
 
 Who is eligible?
-To be eligible for the Canada child benefit (CCB), you must meet all of the following conditions:
--You must live with the child, and the child must be under 18 years of age
--You must be primarily responsible for the care and upbringing of the child
--You must be a resident of Canada for tax purposes
+To be eligible for the CCB, you must meet all of the following conditions:
+- You must live with the child, and the child must be under 18 years of age
+- You must be primarily responsible for the care and upbringing of the child
+- You must be a resident of Canada for tax purposes
 
 You or your spouse or common-law partner must be:
--a Canadian citizen
--a permanent resident
--a protected person
--a temporary resident who has lived in Canada for the previous 18 months, and who has a valid permit in the 19th month
--an Indian within the meaning of the Indian Act
+- a Canadian citizen
+- a permanent resident
+- a protected person
+- a temporary resident who has lived in Canada for the previous 18 months, and who has a valid permit in the 19th month
+- an Indian within the meaning of the Indian Act
 
 What do I need to apply?
--You do not need to reapply every year 
--Complete the RC66 Canada Child Benefit Application form (unless you already completed the Automated benefits application at your child's birth) 
+- You do not need to reapply every year 
+- Complete the RC66 Canada Child Benefit Application form (unless you already completed the Automated benefits application at your child's birth) 
 
-For more information see the links below: 
-",
+For more information, see the links below: ",
     "externalLink": "www.canada.ca/en/revenue-agency/services/forms-publications/forms/rc66.html",
     "guid": "ZPNzWEr5XfUq5aYdy2bSYIKO5T",
     "tags": Array [
@@ -206,23 +269,26 @@ For more information see the links below:
     "title": "Canada Child Benefit (CCB)",
   },
   Object {
-    "description": "Free money for low income families to help you save for a child's education after high school",
+    "description": "Free money for low income families, to help you save for a child's education after high school",
     "detailLinks": Array [],
-    "details": "What is it?
-The Canada Learning Bond is money that the Government of Canada deposits into a Registered Education Savings Plan (RESP) to help you save for a child's education after high school. The government puts in $500 for the first year and then $100 a year afterwards until the child turns 15. Applying for and receiving the Canada Learning Bond will not affect any other benefits that you or an eligible child receives.
+    "details": "
+What is it?
+-The Canada Learning Bond is money that the Government of Canada deposits into a Registered Education Savings Plan (RESP) to help you save for your child's education after high school. 
+-The government puts in $500 for the first year and then $100 each year afterwards, until the child turns 15. 
+-Applying for and receiving the Canada Learning Bond will not affect any other benefits that you or an eligible child receives.
 
-Who is Eligible?
-A Child is eligible if they are:
-- born in or after 2004
-- a resident of Alberta
-- has a primary caregiver with an eligible income
+Who is eligible?
+A child is eligible if they:
+- were born in or after 2004
+- are a resident of Alberta
+- have a primary caregiver with an eligible income
 
-How do I Apply?
+How do I apply?
 To apply contact your bank or credit union to open an RESP and ask them to apply for the Canada Learning Bond
 
-you can start your RESP at www.startmyRESP.ca/e4c
+You can start your RESP at www.startmyRESP.ca/e4c
 
-For more detailed information check the link below",
+For more detailed information, check the link below.",
     "externalLink": "www.canada.ca/en/employment-social-development/services/learning-bond.html",
     "guid": "8U2rl4Ha5GXBVqjNStudvzHIch",
     "tags": Array [
@@ -233,27 +299,26 @@ For more detailed information check the link below",
     "title": "Canada Learning Bond",
   },
   Object {
-    "description": "Income for people with a disability and their dependant children",
+    "description": "Income for people with a disability and their dependent children",
     "detailLinks": Array [],
-    "details": "What is it?
+    "details": "
+What is it?
 Canada Pension Plan - Disability (CPP-D) provides a monthly income to people who have made enough contributions to the CPP and who are disabled and cannot work at any job on a regular basis. Benefits may also be available to their dependent children.
 
 The benefit comes in two parts:
-CPP disability benefit 
-A taxable monthly payment that is available to people who have contributed to the CPP and who are not able to work regularly because of a disability.
-Children's benefit 
-A monthly benefit for dependent children (under age 18 or between 18 and 25 and attending school full time) of someone receiving a CPP disability benefit.
+1. The CPP disability benefit, which is a taxable monthly payment that is available to people who have contributed to the CPP and who are not able to work regularly because of a disability.
+2. The children's benefit, which is a monthly benefit for dependent children (under age 18, or between 18 and 25 and attending school full time) of someone receiving a CPP disability benefit.
 
-Who is Eligible?
+Who is eligible?
 In order to be eligible someone must:
 - have a severe and prolonged disability OR have a terminal illness
 - be under the age of 65
-- meet the CPP contribution requirements.
+- meet the CPP contribution requirements
 
-What do I need to Apply?
-To apply you will need documentation of your disability. For more detailed information and to find the application follow the link below.
+What do I need to apply?
+To apply you will need documentation of your disability. 
 
-",
+For more detailed information and to find the application follow the link below.",
     "externalLink": "www.canada.ca/en/services/benefits/publicpensions/cpp/cpp-disability-benefit.html",
     "guid": "8Lqu2z4WCAP9w5sjhcAeOKuHN5",
     "tags": Array [
@@ -265,46 +330,97 @@ To apply you will need documentation of your disability. For more detailed infor
   Object {
     "description": "Helps cover the costs of getting kids involved in a sports, dance teams, or other active programs for families with a low income",
     "detailLinks": Array [],
-    "details": "What is it?
-JumpStart is a private fund that helps to cover the cost needed to be involved in a sport or physical activity. This can include paying registration fees and/or covering the cost of equipment. You will need to apply before the fees need to be paid.
+    "details": "
+What is it?
+- JumpStart is a private fund that helps to cover the cost needed to be involved in a sport or physical activity, including paying registration fees and/or covering the cost of equipment
+- You will need to apply for JumpStart before the fees need to be paid
 
-Who is Eligible?
-For a child to be eligible they need to be:
-- between the ages of 4-18
-- need financial assistance to participate in the sport or physical activity
+Who is eligible?
+- children aged 4-18 who need financial assistance to participate in a sport or physical activity
 
-What do I need to Apply?
-- contact information (name, postal code, telephone number and email address)
+What do I need to apply?
+- contact information (name, postal code, telephone number, and email address)
 - first name, last name, gender and date of birth of the child
 - details of the sport or physical activity
-- amount that is being requested from Jumpstart
-- the name of the non-profit/charitable/service organization (Payee) running the sport or physical activity program
-- Proof of financial need such as income assessment, prior year T4 statement or three consecutive pay stubs
+- amount that is being requested from JumpStart
+- the name of the non-profit/charitable/service organization running the sport or physical activity program
+- proof of financial need such as income assessment, the prior year's T4 statement, or three consecutive pay stubs
 
-For more detailed information and to begin the application you can call 1-844-YES-PLAY or follow the link below.",
+For more detailed information and to begin the application, you can call 1-844-YES-PLAY or follow the link below.",
     "externalLink": "jumpstart.canadiantire.ca/content/microsites/jumpstart/en/apply.html",
     "guid": "NTVwRTvMb82TIB5VLbf3v36tZN",
     "tags": Array [
       "Recreation",
       "Children",
+      "Sport",
     ],
     "title": "Canadian Tire JumpStart",
   },
   Object {
-    "description": "Helps pay for day care, family day homes, or out of school care for children under 12",
-    "detailLinks": Array [],
-    "details": "What is it?
-The Alberta Child Care Subsidy is a subsidy of up to $628 per month to help cover the cost of approved family day homes, licensed day care, out of school care, or group family child care for children 0-12 years who are not yet in grade 7.
-An additional $100 Extended Hours Subsidy is available for children requiring care on evenings and weekends.
+    "description": "A subsidized housing program where tenants pay an affordable rent amount, which is calculated as either 30% of their adjusted gross monthly household income or the core shelter rates if they are receiving Income Support from Alberta Works.",
+    "detailLinks": Array [
+      "www.crhc.ca/s/Point-Scoring-Information-Sheet.pdf",
+      "www.crhc.ca",
+    ],
+    "details": "
+What is it?
+- Capital Region Housing (CRH) offers different programs to help people find affordable housing in the Edmonton area, including housing that is owned or managed by CRH and subsidies to help cover rent for people who have a private landlord.
+- The programs include Near Market Rentals, Community Housing, Direct Rent Supplement and the Private Landlord Supplement
 
-Who is Eligible?
+Who is eligible?
+Eligibility is depends on the CRH program you are interested in:
+
+Near Market Rentals
+- Based only on your household income and depends on how many bedrooms your household needs
+- No citizenship or asset level requirements needed 
+
+Community Housing, Direct Rent Supplement or Private Landlord Rent Supplement
+- Household income must fall below a certain limit determined by the number of bedrooms your household needs to accommodate everyone:
+     - Bachelor : $34,000
+     - 1 bedroom : $39,000
+     - 2 bedroom : $50,000
+     - 3 bedroom : $59,500
+     - 4+ bedroom : $64,500
+- The total value of the assets in a household must be less than $25,000
+- Not included as assets are your primary vehicle, investments like RRSPs, and work tools
+- All members of the household must have one of the following statuses: Canadian citizenship, permanent resident (except for private sponsorship arrangements), convention refugee, applied for refugee or immigration status, or private sponsorship has broken down
+
+Priority into CRH programs
+- If you are eligible for any of these programs, priority into CRH programs is determined based on a points system
+- Points are awarded for things like how many dependents you have, how much your rent is compared to your income, or if you are currently in an overcrowded housing situation
+
+Detailed information on point scoring at CRH, follow this link:
+https://www.crhc.ca/s/Point-Scoring-Information-Sheet.pdf
+
+What do I need to apply?
+Fill out an application form with the link below:
+https://www.crhc.ca/s/A1-Community-RS-Application-03-2017-csy5.pdf
+
+If you just have questions, you can visit the CRH website: www.crhc.ca",
+    "externalLink": "www.crhc.ca/s/A1-Community-RS-Application-03-2017-csy5.pdf",
+    "guid": "j1g5dV0buzXSZoNNHborFuLIko",
+    "tags": Array [
+      "Edmonton",
+      "Housing",
+    ],
+    "title": "Capital Region Housing (CRH)",
+  },
+  Object {
+    "description": "Helps pay for daycare, family day homes, or out of school care for children under 12",
+    "detailLinks": Array [],
+    "details": "
+What is it?
+- The Alberta Child Care Subsidy is a subsidy of up to $628 per month to help cover the cost of approved family day homes, licensed daycare, out of school care, or group family child care for children aged 0-12 years, who are not yet in grade 7.
+- An additional $100 Extended Hours Subsidy is available for children requiring care on evenings and weekends.
+
+Who is eligible?
 - The parent or the child receiving care are Canadian citizens or permanent residents of Canada 
 - The child and parent live in Alberta
-- The child is 12 years of age or younger and not yet in Grade 7
+- The child is 12 years of age or younger and not yet in grade 7
 - The parent(s) are currently working, attending school, looking for work or have special needs
 
-How do I Apply?
-You can apply for both subsidies by completing the online application in the link below",
+How do I apply?
+You can apply for both subsidies by completing the online application, at the link below.",
     "externalLink": "www.humanservices.alberta.ca/financial-support/15104.html",
     "guid": "K08iJHYVRGL5pBOomOvwa2zwX2",
     "tags": Array [
@@ -315,22 +431,45 @@ You can apply for both subsidies by completing the online application in the lin
     "title": "Child Care Subsidy",
   },
   Object {
-    "description": "Helps pay for eyeglasses, prescriptions and dental visits for children in families with low income",
-    "detailLinks": Array [],
-    "details": "What is it?
-The Alberta Child Health Benefit plan pays for health services, such as dental care, eyewear, prescription drugs, ambulance services, and diabetic supplies that are not available through standard Alberta Health Care Insurance. There are no fees to sign up.
+    "description": "A tax-free benefit for families who care for a child under the age of 18 who has a severe and prolonged impairment in physical or mental functions.",
+    "detailLinks": Array [
+      "https://www.canada.ca/en/revenue-agency/services/forms-publications/forms/t2201.html",
+    ],
+    "details": "
+Who is eligible?
+Children under 18 years of age, who meet one of the following criteria. The child:
+- is markedly restricted in at least one of the basic activities of daily living
+- is significantly restricted in two or more or the basic activities of daily living (include a vision impairment)
+- needs life-sustaining therapy
 
-Who is Eligible?
-- Families with low income who do not have any other form of government health benefits
-- Children up to age 18
-- Children from 18 - 20 who live at home and are still attending high school
-
-Families receiving Health Benefits from Income Support, Indigenous Programs, or the Alberta Adult Health Benefit are NOT eligible.
+Their disability must also be:
+- prolonged, which means the impairment has lasted, or is expected to last for at least 12 months
+- present all or most of the time (at least 90% of the time)
 
 How do I apply?
+- A medical form must be completed by a medical practitioner to confirm there is a prolonged impairment
+- You must complete Form T2201, the Disability Tax Credit Certificate, at the link below.",
+    "externalLink": "www.canada.ca/en/revenue-agency/services/child-family-benefits/about-child- disability-benefit.html#q1",
+    "guid": "V3eKEkg2SL4UTFOGd0dvcd2zEO",
+    "tags": Array [],
+    "title": "Child Disability Benefit (CDB)",
+  },
+  Object {
+    "description": "Helps pay for eyeglasses, prescriptions, and dental visits for children in families with low income",
+    "detailLinks": Array [],
+    "details": "
+What is it?
+The Alberta Child Health Benefit plan pays for health services, such as dental care, eye wear, prescription drugs, ambulance services, and diabetic supplies that are not available through the standard Alberta Health Care Insurance Plan. There is no fee to sign up.
 
-Complete the paper application in the link below and mail it to the included Alberta Human Services address.
-",
+Who is eligible?
+- Families with low income who do not have any other form of government health benefits
+- Children up to age 18
+- Children aged 18 - 20 who live at home and are still attending high school
+
+Families receiving health benefits from Income Support, Indigenous Programs, or the Alberta Adult Health Benefit are NOT eligible.
+
+How do I apply?
+Complete the paper application in the link below and mail it to the included Alberta Human Services address.",
     "externalLink": "www.alberta.ca/alberta-child-health-benefit.aspx",
     "guid": "nQXxT1OMhPGbkqkPHc2QTpofRv",
     "tags": Array [
@@ -343,13 +482,13 @@ Complete the paper application in the link below and mail it to the included Alb
   Object {
     "description": "Provides financial relief to persons with disabilities or individuals supporting persons with disabilities",
     "detailLinks": Array [],
-    "details": "What is it?
-The Disability Tax Credit (DTC) provides a tax refund to help support you or a dependent with a disability. You claim the credit when you file your taxes. 
-If you were unaware of the DTC in previous years, you may be able to get money back by refiling your taxes. Sometimes this can be as much as $15,000. 
+    "details": "
+What is it?
+- The Disability Tax Credit (DTC) provides a tax refund to help support you or a dependent with a disability. You claim the credit when you file your taxes. 
+- If you were unaware of the DTC in previous years, you may be able to get money back by refiling your taxes. Sometimes this can be as much as $15,000. 
+- You need to be receiving the Disability Tax Credit to open a Registered Disability Savings Plan (RDSP).
 
-You need the Disability Tax Credit in order to open a Registered Disability Savings Plan (RDSP).
-
-Who is Eligible?
+Who is eligible?
 A person is eligible if they meet one of the following criteria:
 - is blind
 - is markedly restricted in at least one of the basic activities of daily living
@@ -362,13 +501,13 @@ Their disability must also be:
 
 How do I apply?
 - Download the DTC Form (also called the T2201)
-- Depending on your disability, take the form to one of these people: your family doctor, optometrist, audiologist, occupational therapist, physiotherapist, psychologist or speech/ language pathologist. 
-- Get the signed form back from your practitioner. 
+- Depending on your disability, take the form to one of these people: your family doctor, a nurse practitioner, optometrist, audiologist, occupational therapist, physiotherapist, psychologist or speech/language pathologist. 
+- Get the signed form back from your practitioner
 - Take the signed form to a Canada Revenue Agency Tax Centre
 
 Approval can take a few months. If you are not approved with your first application please apply again as many people succeed on the second or third try.
 
-For more detailed information and to find the application follow the link below",
+For more detailed information and to find the application, follow the link below.",
     "externalLink": "www.rdsp.com/tutorial/how-do-you-apply-for-the-disability-tax-credit/",
     "guid": "UbdhHxTUe3N5zm5BxR6WQ2i6vf",
     "tags": Array [
@@ -379,19 +518,20 @@ For more detailed information and to find the application follow the link below"
     "title": "Disability Tax Credit",
   },
   Object {
-    "description": "Free library card which gets you access to library services",
+    "description": "Free library card which gives you access to library services",
     "detailLinks": Array [],
-    "details": "What is it?
+    "details": "
+What is it?
 Membership with the Edmonton Public Library (EPL) gets you free access to over 13,000 programs, millions of books, movies, video games, software, and more.
 
-Who is Eligible?
+Who is eligible?
 - Any resident of Edmonton
 
-What do I need to Apply?
-- An identification
+What do I need to apply?
+- Identification
 - Proof of residence
 
-You can apply online by following the link below or visit your local EPL branch to sign up",
+You can apply online by following the link below, or visit your local EPL branch to sign up",
     "externalLink": "www2.epl.ca/signup/",
     "guid": "GiufEa3ziFwfBEgkjI2gIlfNkk",
     "tags": Array [
@@ -401,33 +541,61 @@ You can apply online by following the link below or visit your local EPL branch 
     "title": "Edmonton Public Library Card",
   },
   Object {
+    "description": "Support to help parents of children with disabilities raise their children at home, and as full participants in community life",
+    "detailLinks": Array [
+      "http://www.humanservices.alberta.ca/disability-services/15663.html",
+    ],
+    "details": "
+What is it?
+- The Family Support for Children with Disabilities (FSCD) Program provides a wide range of family-centred supports and services that are meant to help families promote their child’s healthy development and encourage their child’s participation in activities at home and in the community.
+- The program is voluntary; parents remain the guardians for their child and are responsible for all decision-making and the usual expenses of raising a child until their child turns 18 years old.
+- The FSCD program works in partnership with eligible families to provide supports and services based on each child and family’s individual assessed needs.
+
+Who is eligible?
+In order for a family to be eligible for the FSCD program:
+1. The child with a disability must be under age 18
+2. The person applying for the program must be the child’s parent or have guardianship of the child
+3. The child must be a Canadian citizen or permanent resident
+4. The child and the parent or guardian must reside in Alberta
+5. Medical documentation must be provided confirming that the child has a disability or is awaiting a diagnosis
+You can read more about these requirements on the Alberta Children's Services website, at the link below.
+
+How do I apply?
+To apply, visit the link below. You can submit your application online, or with paper.",
+    "externalLink": "www.humanservices.alberta.ca/disability-services/14855.html",
+    "guid": "Jz15uGLGW9eeopL31U3lJ46LvB",
+    "tags": Array [
+      "Children",
+      "Alberta",
+      "Disability",
+    ],
+    "title": "Family Support for Children with Disabilities (FSCD)",
+  },
+  Object {
     "description": "Victims can get money to help recover from the effects of a crime, based on the injuries directly suffered",
     "detailLinks": Array [],
-    "details": "What is it?
-Victims of a crime can get money to help recover. The eligibility is based on the injuries directly suffered. There are three kinds of benefits available.
-Injury benefit – for those physically / psychologically injured as a direct result of a crime
-Witness benefit – for witnesses of a crime that resulted in the death of a loved one
-Death benefit – reimbursement of funeral costs for victims that died as a result of violent crime
+    "details": "
+What is it?
+If you are the victim of a crime, you can get money to help recover. Eligibility is based on the injuries directly suffered and there are three kinds of benefits available.
+- Injury benefit – for those physically / psychologically injured as a direct result of a crime
+- Witness benefit – for witnesses of a crime that resulted in the death of a loved one
+- Death benefit – reimbursement of funeral costs for victims that died as a result of violent crime
 
-Who is Eligible?
-- a victim an eligible crime
-- the crime happened in Alberta – Don't need to be an Alberta resident
+Who is eligible?
+- a victim of an eligible crime that happened in Alberta (the victim does not need to be an Alberta resident)
 - reported the crime to police within a reasonable period of time
 - co-operated with the investigation into the crime
-- an application is received within 2 years of the date of the crime – in special circumstances this may be extended. 
-- a criminal record and if you had any part in causing your injuries is also considered
+- an application is received within 2 years of the date of the crime (in special circumstances this may be extended) 
+- whether or not you have a criminal record, and if you had any part in causing your injuries is also considered
 
-Motor vehicle incidents are generally not eligible 
+Motor vehicle incidents are generally not eligible.
 
 What do I need to apply?
-
-To receive help either speak to the Edmonton local victim services unit by following this link: 
+To receive help either:
+- speak to the Edmonton Police Service's Victim Services Unit by following this link: 
 www.edmontonpolice.ca/CommunityPolicing/FamilyProtection/VictimServices.aspx
-
 OR 
-
-For more information and to find the application follow the link below
-",
+- follow the link below to find more information and the application",
     "externalLink": "www.alberta.ca/help-for-victims-of-crime.aspx",
     "guid": "bzf4ryrVVsKkqpsEA5dBZd2kP5",
     "tags": Array [
@@ -438,17 +606,17 @@ For more information and to find the application follow the link below
   Object {
     "description": "Extra money for eligible seniors to help increase Old Age Security payments",
     "detailLinks": Array [],
-    "details": "What is it?
+    "details": "
+What is it?
 The Guaranteed Income Supplement (GIS) provides a monthly non-taxable benefit to eligible Old Age Security (OAS) pension recipients.
 
-Who is Eligible?
+Who is eligible?
 - Seniors receiving Old Age Security
 - Be living in Canada
 - Meet the income eligibility 
 
 What do I need to apply?
-
-An application must be submitted in writing. For more detailed information and to find the application follow the link below.",
+- An application must be submitted in writing. For more detailed information and to find the application follow the link below.",
     "externalLink": "www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security/guaranteed-income-supplement.html",
     "guid": "kc0ov01FtBgr88C5P6EE6lnC8s",
     "tags": Array [
@@ -459,43 +627,47 @@ An application must be submitted in writing. For more detailed information and t
   },
   Object {
     "description": "Provides a wide range of additional benefits to cover the cost of things like child care, diet needs, work and school expenses, and more!",
-    "detailLinks": Array [],
-    "details": "What is it?
-For people receiving Income Support there is a wide range of additional benefits that can help cover extra costs. This includes: childcare, special diets, utility connection fees, work-related expenses, unexpected emergencies, supports for fleeing violence, school expenses for children, and more.
+    "detailLinks": Array [
+      "drive.google.com/file/d/0B3lwQq7WEcwSRmF2RmRDbTRubEFnWHN6cHBVVlZfWWJwcl9r/view?usp=sharing",
+    ],
+    "details": "
+What is it?
+For people receiving Income Support, there are a wide range of additional benefits that can help cover extra costs. This includes: child care, special diets, utility connection fees, work-related expenses, unexpected emergencies, supports for fleeing violence, school expenses for children, and more.
 
-Who is Eligible?
+Who is eligible?
 - be receiving Income Support
 - have a financial need that fits into one of the categories 
 
 What do I need to apply?
 In order to apply you will need to speak to your Income Support Worker about what documentation is needed. You can find your Worker by calling 1-877-644-9992 or following the link below.",
-    "externalLink": "www.alberta.ca/income-support.aspx#toc-4",
+    "externalLink": "www.alberta.ca/income-support.aspx",
     "guid": "sgKMX0336kgepHbPeObRLOvcFL",
     "tags": Array [
       "Alberta",
       "Health",
       "Children",
-      "Housing",
+      "Education",
     ],
     "title": "Income Support - Additional Benefits",
   },
   Object {
-    "description": "Provides extra money to help pay for rent for those receiving income support",
-    "detailLinks": Array [],
-    "details": "What is it?
-The Additional Core Shelter Benefit helps provide up to an additional $300 a month to pay for rent for individuals and families receiving income support.
+    "description": "Provides extra money to help pay for rent for those receiving Income Support",
+    "detailLinks": Array [
+      "drive.google.com/file/d/0B3lwQq7WEcwSRmF2RmRDbTRubEFnWHN6cHBVVlZfWWJwcl9r/view?usp=sharing",
+    ],
+    "details": "
+What is it?
+The Additional Core Shelter Benefit helps provide up to an additional $300 a month to pay for rent for individuals and families receiving Income Support.
 
 Who is eligible?
-This benefit is for any of the following situations:
+This benefit is for individuals and families receiving Income Support, and living in any of the following situations:
 - households of six or more people
 - people who need their housing adapted for a disability
 - anyone whose health would be endangered by a move
 
 What do I need to apply?
-To apply you will need to bring proof of family size or a doctor's note confirming the danger of moving or need for adapted accommodation to your Income Support worker.
-
-",
-    "externalLink": "www.humanservices.alberta.ca/documents/income-support-factsheet.pdf",
+To apply you will need to bring proof of family size or a doctor's note confirming the danger of moving or need for adapted accommodation to your Income Support worker.",
+    "externalLink": "www.alberta.ca/income-support.aspx",
     "guid": "HiGYI2bhBoQ6n82R9ptoNZ0oaQ",
     "tags": Array [
       "Housing",
@@ -506,16 +678,17 @@ To apply you will need to bring proof of family size or a doctor's note confirmi
   Object {
     "description": "Provides money to pay for basic needs like food, clothing, and shelter",
     "detailLinks": Array [],
-    "details": "What is it?
-Income Support provides money to pay for basic needs like food, clothing, and shelter. This is a monthly benefit that changes depending on your needs, financial resources, ability to work, and the size of your family. Albertans who are eligible for Income Support also receive: health benefits for themselves and their children, help and training to find a job, help getting child support payments.
+    "details": "
+What is it?
+Income Support provides money to pay for basic needs like food, clothing, and shelter. This is a monthly benefit that changes depending on your needs, financial resources, ability to work, and the size of your family. Albertans who are eligible for Income Support also receive health benefits for themselves and their children, help and training to find a job, help accessing child support payments.
 
 Who is eligible?
-Income Support is available for people 3 general situations:
+Income Support is available for people in three general situations:
 1.	Cannot work due to chronic health problems or other barriers to employment (Barriers to Full Employment)
 2.	Looking for work, working but not earning enough, or temporarily unable to work (Expected to Work)
 3.	Need training so they can get a job (Learners)
 
-This program is for Alberta Residents over 18 who have used up all Employment Insurance Benefits
+This program is for Alberta residents over 18 years of age who have used up all Employment Insurance benefits
 
 What do I need to apply?
 You will need the following documents to apply:
@@ -528,8 +701,7 @@ You will need the following documents to apply:
 
 To receive income support you will need to complete an application and then meet with an Income Support Worker at an Alberta Works or Alberta Supports office. 
 
-For more information and to find the application follow the link below
-
+For more information and to find the application, follow the link below.
 ",
     "externalLink": "www.alberta.ca/income-support.aspx",
     "guid": "5b1J8A2fhE9cwVo9W5MfbLmuNr",
@@ -539,73 +711,99 @@ For more information and to find the application follow the link below
     "title": "Income Support - Alberta Works",
   },
   Object {
+    "description": "Provides financial assistance for registration fees for organized sport to eligible children aged 18 and under",
+    "detailLinks": Array [
+      "http://www.kidsportcanada.ca/alberta/edmonton/",
+    ],
+    "details": "
+What is it?  
+• Provides grants to children from families facing financial barriers, so they can participate in registered sport programs
+• Supports programs that provide the child with a sustained sport experience led by qualified instructors
+• KidSport funds 50% of registration fees up to $125 for any one application at a time
+• Families can apply more than once up to a maximum combined $250 per calendar year (January 1 – December 31)
+• Eligible sports may include soccer, swimming, hockey, skating, basketball, taekwondo, gymnastics, football, cheerleading, baseball, martial arts, cycling, volleyball, dance or fitness
+
+Who is eligible?
+• Children and youth who are 18 years of age and younger, and come from a family that is low income, on AISH, unemployed, or receiving income support through provincial government 
+• Will accept City of Edmonton Leisure Access Pass welcome letter
+• KidSport considers the social and economic barriers facing the family when determining eligibility",
+    "externalLink": "www.kidsportcanada.ca/site/assets/files/8281/kidsport_edmonton_application.pdf",
+    "guid": "eJYKjE0tT13d1kBH9WLbgETu58",
+    "tags": Array [
+      "Children",
+      "Recreation",
+      "Sport",
+    ],
+    "title": "KidSport Edmonton",
+  },
+  Object {
     "description": "Helps cover the costs for a relative who cares for a child while the parent(s) are working or in school",
     "detailLinks": Array [],
-    "details": "What is it?
-Kin Child Care Subsidy is available for children who are being cared for by a relative who does not live in the same home as the child. Funding of up to $400 per month is available to eligible low- and middle-income families. 
+    "details": "
+What is it?
+If you would like to pay relatives to care for your children, you may do so through the Kin Child Care program. Funding of up to $400 per month is available to eligible low- and middle-income families with children under the age of seven and not yet attending Grade 1, and $200 for school-age children (Grades 1-6). 
 
-Who is Eligible?
-- Alberta Residents
--  children must be in care for a minimum of 25 hours per month for school age children and 50 hours per month for preschool children
+Who is eligible?
+- Alberta residents
+- Minimum 50 hours of care required per month for children not yet attending Grade 1, or 25 hours of care for children attending Grades 1 to 6
 - Parent(s) must be working, seeking work, attending post-secondary education, have a special need or have a child with a special need
-- the relative caregiver must not live in the same home as the child
+- The relative caregiver must not live in the same home as the child
+- Your total gross family income and the reason for child care will also be considered
 
-What do I need to Apply?
-
-To apply fill out the online application at the link below.",
-    "externalLink": "www.humanservices.alberta.ca/financial-support/15104.html",
+What do I need to apply?
+- To apply, fill out the online application at the link below.",
+    "externalLink": "www.humanservices.alberta.ca/financial-support/15679.html",
     "guid": "iHPbkwKFsck9ZLnMePKSj5e5mz",
     "tags": Array [
       "Children",
       "Alberta",
       "Childcare",
     ],
-    "title": "Kin Care Subsidy",
+    "title": "Kin Child Care Funding Program",
   },
   Object {
     "description": "Helps eligible Edmontonians access City of Edmonton Recreation, Leisure and Attraction facilities for free or at a reduced cost",
     "detailLinks": Array [],
-    "details": "Leisure Access Program
- 
+    "details": " 
 What is it?
- 
 The Leisure Access Program helps you access participating City of Edmonton Recreation, Leisure and Attraction facilities for free or at a reduced cost. The program consists of two parts based on income eligibility: the Annual Program and the Monthly Pass. The Annual Program includes FREE access to the facilities as well discounts on registered programs. For people who do not qualify for the Annual program they may qualify for the Monthly Pass which includes access to participating facilities for $20/month for an individual or $70/month for a family. 
  
 Who is eligible?
- 
-The Leisure Access Program is available to all Edmonton residents who are under the income threshold, are on AISH, are new immigrant or refugees, or a child in government care.
+- The Leisure Access Program is available to all Edmonton residents who are under the income threshold, are on AISH, are new immigrant or refugees, or a child in government care.
  
 How do I apply?
- 
-Citizens who apply for the Leisure Access Program are automatically considered for the Ride Transit program and will be enrolled if they are eligible; you are not required to have a separate application. Complete the paper application and take it one of the City of Edmonton Community and Recreation Facilities or the Edmonton Service Center in the Edmonton Tower. Be sure to include your proof of residency and proof of income supporting documents. 
+- Complete the paper application and take it one of the City of Edmonton Community and Recreation Facilities or the Edmonton Service Centre in the Edmonton Tower. 
+- Be sure to include your proof of residency and proof of income supporting documents. 
+- Citizens who apply for the Leisure Access Program are automatically considered for the Ride Transit Program and will be enrolled if they are eligible; you are not required to have a separate application. 
 
-For more information and to find the application follow the link below",
+For more information and to find the application, follow the link below",
     "externalLink": "www.edmonton.ca/programs_services/leisure-access-program.aspx",
     "guid": "NMh2Fu1IG5XnpOf5b6zu2t1Hh6",
     "tags": Array [
       "Edmonton",
       "Recreation",
       "Children",
-      "Adult",
     ],
     "title": "Leisure Access Program",
   },
   Object {
     "description": "Provides seniors with a monthly payment to help cover the cost of living",
     "detailLinks": Array [],
-    "details": "What is it?
-The Old Age Security (OAS) pension is a monthly payment available to seniors aged 65 and older who are Canadian residents. Employment history does not matter for determining eligibility: you can receive the Old Age Security (OAS) pension even if you have never worked or are still working
+    "details": "
+What is it?
+- The Old Age Security (OAS) pension is a monthly payment available to seniors aged 65 and older who are Canadian residents
+- Employment history does not matter for determining eligibility: you can receive the OAS pension even if you have never worked or are still working
 
 In addition to the OAS pension, there are two more types of OAS benefits:
-Allowance: If you are 60 to 64 years old and your spouse or common-law partner is receiving OAS and can get the Guaranteed Income Supplement (GIS)
-Allowance for the Survivor: If you are 60 to 64 years old and you are widowed
+- Allowance: If you are 60 to 64 years old and your spouse or common-law partner is receiving OAS and can also receive the Guaranteed Income Supplement (GIS)
+- Allowance for the Survivor: If you are 60 to 64 years old and you are widowed
 
-Who is Eligible?
+Who is eligible?
 - 65 years old or older
 - a Canadian citizen or a legal resident
 - have resided in Canada for at least 10 years since the age of 18
 
-What do I need to Apply?
+What do I need to apply?
 
 For more detailed information and to begin your application follow the link below.",
     "externalLink": "www.canada.ca/en/services/benefits/publicpensions/cpp/old-age-security.html",
@@ -618,19 +816,19 @@ For more detailed information and to begin your application follow the link belo
   Object {
     "description": "Helps cover the cost of dental or eye care for eligible seniors",
     "detailLinks": Array [],
-    "details": "What is it?
-The Alberta Government helps cover the cost of dental and eye care for eligible seniors. The Optical Assistance for Seniors program will reimburse eligible seniors for prescription eyeglasses. The Dental Assistance for Seniors program will reimburse eligible seniors for things like: exams, x-rays, polishing and scaling, fillings, extractions, root canals, procedures relating to gum disease, and dentures. Both programs work by providing a reimbursement for services already paid for and have a shared application process.
+    "details": "
+What is it?
+The Alberta government helps cover the cost of dental and eye care for eligible seniors. Both programs work by providing a reimbursement for services already paid for and have a shared application process.
+- The Optical Assistance for Seniors program will reimburse eligible seniors for prescription eyeglasses. It does not cover eye exams, contacts, surgery, or other optical needs. 
+- The Dental Assistance for Seniors program will reimburse eligible seniors for things like: exams, x-rays, polishing and scaling, fillings, extractions, root canals, procedures relating to gum disease, and dentures. It does not cover bridges, crowns, braces, implants, fluoride treatment, bleaching, or inlays.
 
-The Optical program does not cover eye exams, contacts, surgery, or other optical needs. 
-The Dental program does not cover bridges, crowns, braces, implants, fluoride treatment, bleaching, or inlays.
-
-Who is Eligible?
+Who is eligible?
 - Alberta residents who are 65 or older 
 - Must be a Canadian Citizen or Permanent Resident
 - Must meet the income criteria
 
-What do I need to Apply?
-To apply you will need to complete the Seniors Financial Assistance Package from the link below",
+What do I need to apply?
+To apply, you will need to complete the Seniors Financial Assistance Package from the link below.",
     "externalLink": "www.seniors-housing.alberta.ca/seniors/dental-optical-assistance.html",
     "guid": "1iXreywnofiF2jKKknlbKRXAtX",
     "tags": Array [
@@ -641,25 +839,60 @@ To apply you will need to complete the Seniors Financial Assistance Package from
     "title": "Optical and Dental Assistance for Seniors",
   },
   Object {
-    "description": "A tax free savings plan for people with a disability",
+    "description": "Helps lower-income Albertans with mobility challenges make their homes more acceessible",
     "detailLinks": Array [],
-    "details": "What is it?
-A Registered Disability Savings Plan (RDSP) is a tax free savings account where someone who has the Disability Tax Credit can receive support to save from the government. The Government of Canada will deposit money into RDSP if you qualify for the Canada Disability Savings Bond (FREE $$) or Canada Disability Savings Grant (matched $$). Savings kept in an RDSP must be left in the account for atleast 10 years or until the age of 60 to receive the Bond or Grant.
+    "details": "
+What is it?
+RAMP will provide up to $7,500 per person each year, or up to $15,000 per person within 10 years, to help people with mobility challenges modify their homes so they are more accessible.
 
-Canada Disability Savings Bond: the Government will deposit money into RDSPs of low to modest income individuals under the age of 49.  Eligible individuals receive up to $1,000 a year to a lifetime limit of $20,000 depending on family net income. A contribution is not required to receive the Bond.
+Who is eligible?
+- Any Albertan who uses a wheelchair (or for seniors, uses a four-wheel walker on an ongoing basis) or lives with a progressive neuro-degenerative disease
+- You must be a homeowner, tenant or living with family
+- If you are Indigenous, you can be living off- or on-reserve
+- If you are a single person, your gross household income is $36,900 or less and if you are in a couple, your gross household income is $46,500 or less. These income amounts can be increased by:
+     - $9,600 for each child under 21 years of age still living at home and attending school full-time
+     - $7,131 if the family is applying for a dependent child under 18 and still living at home who uses a wheelchair
+
+What do I need to apply?
+- Review the RAMP guidelines and criteria at the link below, then submit your application online. ",
+    "externalLink": "www.humanservices.alberta.ca/disability-services/residential-access-modification-program.html",
+    "guid": "tWucjcIELoF0O1Z0DksuXWDGY7",
+    "tags": Array [
+      "Disability",
+      "Alberta",
+      "Housing",
+    ],
+    "title": "RAMP - Residential Access Modification Program",
+  },
+  Object {
+    "description": "A tax free savings plan for people with a disability",
+    "detailLinks": Array [
+      "www.canada.ca/en/revenue-agency/services/tax/individuals/topics/registered-disability-savings-plan-rdsp.html",
+    ],
+    "details": "
+What is it?
+- A Registered Disability Savings Plan (RDSP) is a tax-free savings account for people who receive the Disability Tax Credit, and it allows the Government of Canada to contribute to your savings!
+- The Government of Canada will deposit money into an RDSP for you, if you qualify for the Canada Disability Savings Bond (FREE $$) or Canada Disability Savings Grant (matched $$). 
+- Savings kept in an RDSP must be left in the account for at least 10 years or until the age of 60 to receive the Bond or Grant.
+
+Canada Disability Savings Bond: the Government will deposit money into RDSPs of low- to modest-income individuals under the age of 49.  Eligible individuals receive up to $1,000 a year to a lifetime limit of $20,000, depending on the family's net income. You don't have to make your own contribution in order to receive the Bond.
  
-Canada Disability Savings Grant: the Government provides matching grants of up to $3 for every $1 an eligble person puts into their RDSP until the age of 49. The maximum grant is $3,500 each year, with a lifetime limit of $70,000. 
+Canada Disability Savings Grant: the Government provides matching grants of up to $3 for every $1 an eligible person puts into their RDSP until the age of 49. The maximum grant is $3,500 each year, with a lifetime limit of $70,000. 
 
-Who is Eligible?
+Who is eligible?
 - Must qualify for the Disability Tax Credit (DTC)
-- Open to people under the age of 60
+- You can receive the Canada Disability Savings Bond or Grant until you are 49 years old.
+- If you are under 60 years of age (you must apply to open an RDSP before the end of the calendar year in which you turned 59)
 - Requires a valid Social Insurance Number (SIN)
 
-There is no impact on other benefits, such as Alberta Income Support, AISH, Canada Child Tax Benefits, GST Credit, Old Age Security, and EI.
+Putting money into an RDSP and receiving the Canada Disability Savings Bond or Grant will not impact your other benefits, such as Alberta Income Support, AISH, Canada Child Tax Benefits, GST Credit, Old Age Security, and EI.
 
-What do I need to Apply?
-To open an RDSP speak to your Bank or Credit Union.",
-    "externalLink": "www.canada.ca/en/revenue-agency/services/tax/individuals/topics/registered-disability-savings-plan-rdsp.html",
+What do I need to apply?
+- File your taxes, and claim the Disability Tax Credit
+- To open an RDSP, speak to your bank or credit union
+
+For more information about the RDSPs, and about Canada Disability Savings Bonds and Grants, visit the links below.",
+    "externalLink": "www.canada.ca/en/employment-social-development/programs/disability/savings/grants-bonds.html",
     "guid": "BcKJhMTErAsHfXq1jzealos8kp",
     "tags": Array [
       "Canada",
@@ -669,19 +902,23 @@ To open an RDSP speak to your Bank or Credit Union.",
     "title": "Registered Disability Savings Plan (RDSP)",
   },
   Object {
-    "description": "A tax free savings account that both you and the government put money in to help pay for a child’s education after high school",
+    "description": "A tax-free savings account that both you and the government put money into, to help pay for a child’s education after high school",
     "detailLinks": Array [],
-    "details": "What is it?
-A Registered Education Savings Plan (RESP) is a tax free savings account to help pay for a child's education after high school. The government helps build savings by matching contributions by between 20% - 40% depending on income. All children can receive 20% matched funds regardless of family income, an extra 10% - 20% is available for families with lower incomes. These matching funds are available to a lifetime maximum of $7,200. If a person cannot contribute in any given year, they are able to catch up in future years. 
+    "details": "
+What is it?
+- A Registered Education Savings Plan (RESP) is a tax-free savings account to help pay for a child's education after high school. 
+- The government helps build savings by matching contributions, up to a lifetime maximum of $7,200, by between 20% - 40% depending on income. All children can receive 20% matched funds regardless of family income and an extra 10% - 20% is available for families with lower incomes.
+- If a person cannot contribute in a given year, they are able to catch up on contributions in future years. 
+- You can open an RESP account with $0 - you will not be charged any fees.
 
 Who is eligible?
 - All children who live in Canada and have a SIN number
 - Anyone can open an RESP for a child, not just the child's parent
 
 What do I need to apply?
-To open an RESP all that is needed is the Child's SIN number and an ID for the person opening the account.
+- To open an RESP, all you need is the child's SIN number and an ID for the person opening the account.
 
-To begin the process of opening an RESP follow the link below.",
+To begin the process of opening an RESP, follow the link below.",
     "externalLink": "www.startmyresp.ca/e4c",
     "guid": "oZ68OrZFpvkMMGHqV3CFELhuVY",
     "tags": Array [
@@ -693,20 +930,25 @@ To begin the process of opening an RESP follow the link below.",
     "title": "Registered Education Savings Plan (RESP)",
   },
   Object {
-    "description": "Monthly transit pass for eligible low-income Edmontonians at a subsidized rate of $35/month. ",
+    "description": "Monthly transit pass for eligible low-income Edmontonians at a subsidized rate of $35/month ",
     "detailLinks": Array [],
-    "details": "What is it?
-The Ride Transit Program gives low income Edmonton residents the ability to buy a $35 a month transit pass at certain locations.
+    "details": "
+What is it?
+The Ride Transit Program provides greater access to Edmonton's bus and LRT system, by providing Adult and Youth monthly passes to eligible low income Edmontonians and their families at a subsidized rate of $35 per month.
  
 Who is eligible?
- 
-Edmontonians whose income is at or under the Federal, before tax Low Income Cut Off (LICO)  household amounts.
+This program is available for Edmonton residents who qualify under one of the following (some exceptions apply):
+- An Assured Income for the Severely Handicapped (AISH) Health Benefit recipient
+- CPP Disability recipient (Canada Pension Plan)
+- Dependents of an AISH Health Benefit recipient 
+- Recipients of income support / learner income support benefits
+- Household income is at or below the Low Income Cut-Off (LICO) amount 
+- Permanent residents and refugee claimants
  
 How do I apply?
- 
-The Ride Transit Program has the same application process as the Leisure Access Pass. Complete the paper application and take it one of the City of Edmonton Recreation Centers or the Edmonton Service Center in the Edmonton Tower along with the required ID and proof of income.
- 
-If you already have the Leisure Access Pass then you can sign up online at the following link: https://www.edmonton.ca/projects_plans/transit/ride-transit-application-form.aspx
+- The Ride Transit Program has the same application process as the Leisure Access Pass. 
+- Complete the paper application and take it one of the City of Edmonton Recreation Centres or the Edmonton Service Centre in the Edmonton Tower. along with the required ID and proof of income.
+- If you already have the Leisure Access Pass. then you can sign up for the Ride Transit Pass online at: https://www.edmonton.ca/projects_plans/transit/ride-transit-application-form.aspx
 ",
     "externalLink": "www.edmonton.ca/ets/subsidized-transit.aspx",
     "guid": "7Vo9xE20WJJJ1ZORDlog1odyzo",
@@ -717,10 +959,40 @@ If you already have the Leisure Access Pass then you can sign up online at the f
     "title": "Ride Transit Program",
   },
   Object {
-    "description": "Annual Bus pass for seniors with a low income",
+    "description": "Eligible seniors can apply for a low-interest home equity loan with the Government of Alberta to cover repairs, adaptations, and/or renovations to their primary residence.",
+    "detailLinks": Array [
+      "www.seniors-housing.alberta.ca/seniors/home-adaptation-repair.html",
+    ],
+    "details": "
+What is it?
+- The Seniors Home Adaptation and Repair Program (SHARP) allows seniors to use their home equity to remain in their homes and maintain their independence. Eligible seniors can apply for a low-interest home equity loan with the Government of Alberta to cover repairs, adaptations, and/or renovations to their primary residence.
+- The intent is to help seniors remain independent and be safe in their homes, adapt and modify their homes to improve accessibility and mobility, and improve the energy efficiency of their homes.
+- Some project examples are bathroom/walk-in tubs, furnace and hot water tank upgrades, stair lifts, widening of doorways, or roof and window replacement.
+
+Who is eligible?
+To be eligible for this program you must:
+- have an annual income of $75,000 or less
+- be 65 years of age or older (only one spouse/partner needs to be at least 65) and listed as a registered owner of a residential property in a Land Titles Office
+- be a Canadian citizen, or have been lawfully admitted to Canada for permanent residence
+- be an Alberta resident, having lived in the province for at least 3 months
+
+What do I need to apply?
+- To apply, you will need to complete the SHARP application from the link below
+- Fill out the loan application - if you don't meet the requirements to qualify for a loan or you don't have sufficient home equity, you may be eligible for a SHARP grant instead",
+    "externalLink": "www.seniors-housing.alberta.ca/documents/2017-SHARP-Application.pdf",
+    "guid": "KUpG0etZQ91lIlOmSGEVromWec",
+    "tags": Array [
+      "Seniors",
+      "Housing",
+    ],
+    "title": "Seniors Home Adaption and Repair Program (SHARP)",
+  },
+  Object {
+    "description": "Annual bus pass for seniors with a low income",
     "detailLinks": Array [],
-    "details": "What is it?
-Seniors with a low income can get an annual bus pass for $57.50. Passes can be used for unlimited travel on all Edmonton Transit buses, the LRT and DATS (for registered DATS users).
+    "details": "
+What is it?
+Seniors with a low income can get an annual bus pass for $57.50. Passes can be used for unlimited travel on all Edmonton Transit buses, the LRT, and DATS (for registered DATS users).
 
 Who is eligible?
 To be eligible you must be:
@@ -745,18 +1017,77 @@ For more detailed information or to begin your application follow the link below
     "title": "Seniors Low Income Bus Pass",
   },
   Object {
+    "description": "Low-interest home equity loans available to Alberta homeowners who are 65+",
+    "detailLinks": Array [],
+    "details": "
+What is it?
+- The Seniors Property Tax Deferral (SPTD) program allows senior homeowners to defer all or part of their property taxes through a low-interest home equity loan with the Government of Alberta (GOA).
+- The GOA will pay the property taxes to the municipality on behalf of the senior, and the senior will repay the loan, with interest, when they sell their home, are no longer eligible for the loan, or sooner if they choose.
+
+Who is eligible?
+To apply for the SPTD program, which is  100 per cent voluntary, you must:
+- be 65 years old or older
+- be an Alberta resident
+- own a residential property in Alberta
+- have a minimum of 25 per cent equity in your home
+
+For more information and to find the application, follow the link below.",
+    "externalLink": "www.atb.com/personal-banking/resources/Pages/Seniors-Property-Tax-Deferral-Program.aspx",
+    "guid": "ELKEEgllSRMnkqoHN8N2Ufmxaw",
+    "tags": Array [
+      "Alberta",
+      "Seniors",
+      "Housing",
+    ],
+    "title": "Seniors Property Tax Deferral Program",
+  },
+  Object {
+    "description": "Financial assistance for low-income seniors, to help afford the cost of appliances and specific health and personal supports",
+    "detailLinks": Array [
+      "https://www.alberta.ca/seniors-financial-assistance.aspx#toc-3",
+    ],
+    "details": "
+What is it?
+Seniors with low-income can get financial assistance to help afford the cost of appliances and specific health and personal supports. 
+- Eligible appliances depend on where the senior lives, but they range from beds, to televisions and vacuums, to refrigerators and stoves, to washers and dryers.
+- Health supports include Continuous Positive Airway Pressure (CPAP) machine and supplies, diabetic supplies, nutritional beverage, podiatry, and prescription costs.
+- Personal supports include, but aren't limited to, bed bug fumigation, celiac groceries, clothing, spousal funeral expenses, relocation of washer and dryer, help with utilities that have been, or are about to be, disconnected.
+The full list of items that may be funded is available at the second website listed below.
+
+Who is eligible?
+To be eligible for this program you must:
+- be 65 years of age or older
+- be an Alberta resident
+- be a Canadian citizen or have been lawfully admitted to Canada for permanent residence
+- meet financial eligibility criteria
+Note that if you and/or your spouse have deferred receiving the Old Age Security pension, you are not eligible for Special Needs Assistance for Seniors.
+
+How do I apply?
+- To apply, visit the first website listed below.
+- Be aware that it takes about 16 weeks for staff at Alberta Seniors and Housing to process Special Needs Assistance for Seniors applications.",
+    "externalLink": "www.alberta.ca/seniors-special-needs-assistance.aspx#toc-2",
+    "guid": "bgUdObkiCIh0sgQB5019ZJZsl7",
+    "tags": Array [
+      "Seniors",
+      "Housing",
+      "Alberta",
+    ],
+    "title": "Special Needs Assistance for Seniors",
+  },
+  Object {
     "description": "Helps pay for pre-school or early childhood development programs for children whose parent cares for them at home",
     "detailLinks": Array [],
-    "details": "What is it?
-Eligible families may qualify for a subsidy of up to $1,200 per year for each pre-school-aged child who attends a licensed pre-school or an approved early childhood development program.
+    "details": "
+What is it?
+Eligible families who have one parent who stays at home or works, volunteers or attends school less than 20 hours per week may qualify for a subsidy of up to $1,200 per year for each pre-school-aged child who attends a licensed pre-school or an approved early childhood development program.
 
 Who is eligible?
 - one parent who stays at home or works, volunteers or attends school less than 20 hours per week
 - Alberta residents
-- have a recent recent Notice of Assessment
+- have a recent Notice of Assessment
 
 What do I need to apply?
-For more detailed information and to apply online follow the link below",
+For more detailed information and to apply online, follow the link below",
     "externalLink": "www.humanservices.alberta.ca/financial-support/15679.html",
     "guid": "9dHBCUXa0z8tEZg6QcYMBJVXjf",
     "tags": Array [
@@ -767,44 +1098,22 @@ For more detailed information and to apply online follow the link below",
     "title": "Stay-at-Home Parent Subsidy",
   },
   Object {
-    "description": "Helps people with mobility challenges to make their homes more acceessible",
-    "detailLinks": Array [],
-    "details": "What is it?
-RAMP will provide up to $7,500  to help people with mobility challenges to modify their homes t be more accessible.
-
-Who is eligible?
-Any Albertan who has one of the following: 
--uses a wheelchair
-- seniors using a wheelchair or four-wheel walker
--Anyone with a progressive neurological - degenerative disease
-
-What do I need to apply?
-
-Apply on-line - what specifics do they need?",
-    "externalLink": "www.humanservices.alberta.ca/disability-services/residential-access-modification-program.html",
-    "guid": "tWucjcIELoF0O1Z0DksuXWDGY7",
-    "tags": Array [
-      "Disability",
-      "Alberta",
-      "Housing",
-    ],
-    "title": "Under construction - RAMP - Residential Access Modification Program",
-  },
-  Object {
     "description": "Monetary benefit that helps boost the income for low income working Canadians",
     "detailLinks": Array [],
-    "details": "What is it?
-The Working Income Tax Benefit provides a payment to help boost the income for low income working Canadians. This payment is provided as part of a tax refund at the end of the year.
+    "details": "
+What is it?
+The Working Income Tax Benefit provides a payment to help boost the income for low income working Canadians. This payment is provided as part of a tax refund each year.
 
-Note: you can apply for quarterly advance payments by completing the RC201 form in the link below. Advance payments are made for up to 50% of what you are eligible for with the rest being included in with your year end tax refund.
+Note: You can apply for quarterly advance payments by completing the RC201 form in the link below. Advance payments are made for up to 50% of what you are eligible for, with the rest included in your year end tax refund.
 
-Who is Eligible?
-- anyone is employed and a resident of Canada who meets the income criteria
+Who is eligible?
+- any employed resident of Canada who meets the income criteria
 - anyone who spends more than 90 days in prison is NOT eligible
 
-What do I need to Apply?
-- File your taxes
-The Working Income Tax Benefit is included with the tax refund and is automatically calculated when you file your taxes with software. If you file your taxes with paper you will need to complete Schedule 6 included in the link below.
+What do I need to apply?
+- All you need to do is file your taxes
+
+The Working Income Tax Benefit is included with the tax refund and is automatically calculated when you file your taxes with software. If you file your taxes with paper you will need to complete Schedule 6, which is included in the link below.
 
 For more detailed information and to find the advance payment application follow the link below.",
     "externalLink": "www.canada.ca/en/revenue-agency/services/child-family-benefits/working-income-tax-benefit-witb.html",
@@ -818,21 +1127,22 @@ For more detailed information and to find the advance payment application follow
   Object {
     "description": "The YMCA provides financial assistance to help reduce the cost of using YMCA facilities and programs.",
     "detailLinks": Array [],
-    "details": "What is it?
- Through the YMCA Financial Assistance program, the YMCA membership and program experience is available to families at a reduced cost regardless of their ability to pay the full fees. This includes access to Health, Fitness & Aquatics centres, the Summer Camps and Day Camps, and Child Care facilities. 
+    "details": "
+What is it?
+Through the YMCA Financial Assistance program, the YMCA membership and program experience is available to families at a reduced cost regardless of their ability to pay the full fees. This includes access to Health, Fitness & Aquatics centres, the Summer Camps and Day Camps, and Child Care facilities. 
 
 Who is eligible?
 Financial Assistance is available to:
-- Alberta residents receiving AISH, Income Support, the Alberta Adult Health Benefit, or the Alberta Child Health Benefit
-- Alberta residents with eligible income amounts
+- If you're an Alberta resident who can show that you receive AISH, Income Support, the Alberta Adult Health Benefit, or the Alberta Child Health Benefit, your eligibility is pre-approved
+- For other low-income Albertans, eligibility is determined by family income and size
 
 What do I need to apply?
 To apply you will need:
-- Identification
-- Void cheque, Visa or Mastercard to process your monthly payments; or banking authorization.
-- If you are applying through income eligibility you will also need: current paystubs, most recent Notice of Assessment, and a referral letter from a government or social service agency
+- Photo identification for at least one adult in the family
+- A void cheque, Visa or Mastercard to process your monthly payments, or banking authorization.
+- If you are applying based on family income and size, you will also need: current paystubs, most recent Notice of Assessment, and a referral letter from a government or social service agency
 
-For more detailed information and to start the application follow the link below.",
+For more detailed information and to start the application, follow the link below.",
     "externalLink": "northernalberta.ymca.ca/Join-Now/Financial-Assistance",
     "guid": "EY1QV5T6AyB4Ykl2Lt1Nt9kf9g",
     "tags": Array [
@@ -853,7 +1163,6 @@ Object {
       "expandable": false,
       "id": "an2swDUmzfKa61MhdziL",
       "index": 0,
-      "key": "numberchildren",
       "label": "How many children do you have under 18?",
       "options": Array [],
     },
@@ -863,7 +1172,6 @@ Object {
       "expandable": false,
       "id": "52BONWt6kVy3h4wnQnuz",
       "index": 1,
-      "key": "youngestchild",
       "label": "How old is your YOUNGEST child?",
       "options": Array [],
     },
@@ -873,28 +1181,18 @@ Object {
       "expandable": false,
       "id": "zP1jPrL6tpHVZPcpGuIy",
       "index": 5,
-      "key": "",
       "label": "Who cares for your children? (Select all that apply)",
       "multiSelectOptions": Array [
         Object {
-          "key": Object {
-            "name": "childcare",
-            "type": "boolean",
-          },
+          "id": "WD8NTqY5cCOpEVsgdQNA",
           "text": "A licensed day care (such as a Day Home, Child Care Center, or Preschool)",
         },
         Object {
-          "key": Object {
-            "name": "stayathome",
-            "type": "boolean",
-          },
+          "id": "t9LFzwOPeWiBbrew3cyS",
           "text": "A parent who stays at home",
         },
         Object {
-          "key": Object {
-            "name": "kincare",
-            "type": "boolean",
-          },
+          "id": "j1qAUIGZsErQNFaijXAG",
           "text": "A relative who does not live in your home",
         },
       ],
@@ -906,7 +1204,6 @@ Object {
       "expandable": false,
       "id": "DTcDYBr3aQOZPyZV2MT7",
       "index": 3,
-      "key": "recreation",
       "label": "Are you looking for recreation activities for your child or children?",
       "multiSelectOptions": Array [],
       "options": Array [],
@@ -917,7 +1214,6 @@ Object {
       "expandable": false,
       "id": "U9Q4lMqhGSE0pKLoyGYf",
       "index": 4,
-      "key": "childdisability",
       "label": "I have a child with a disability",
       "multiSelectOptions": Array [],
       "options": Array [],
@@ -925,12 +1221,133 @@ Object {
   ],
   "questions": Array [
     Object {
+      "id": "an2swDUmzfKa61MhdziL",
+      "text": "How many children do you have under 18?",
+      "type": "integer",
+    },
+    Object {
+      "id": "52BONWt6kVy3h4wnQnuz",
+      "text": "How old is your YOUNGEST child?",
+      "type": "integer",
+    },
+    Object {
+      "id": "WD8NTqY5cCOpEVsgdQNA",
+      "text": "A licensed day care (such as a Day Home, Child Care Center, or Preschool)",
+      "type": "boolean",
+    },
+    Object {
+      "id": "t9LFzwOPeWiBbrew3cyS",
+      "text": "A parent who stays at home",
+      "type": "boolean",
+    },
+    Object {
+      "id": "j1qAUIGZsErQNFaijXAG",
+      "text": "A relative who does not live in your home",
+      "type": "boolean",
+    },
+    Object {
+      "id": "DTcDYBr3aQOZPyZV2MT7",
+      "text": "Are you looking for recreation activities for your child or children?",
+      "type": "boolean",
+    },
+    Object {
+      "id": "U9Q4lMqhGSE0pKLoyGYf",
+      "text": "I have a child with a disability",
+      "type": "boolean",
+    },
+    Object {
+      "id": "hdPMbny6X0WNhwuiJiMt",
+      "text": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+      "type": "integer",
+    },
+    Object {
+      "id": "EVbsvHuXh8ul9x42AXCQ",
+      "text": "How old are you?",
+      "type": "integer",
+    },
+    Object {
+      "id": "VIXBl1tiUyAx8EPuZrzk",
+      "text": "Do you have a spouse or common-law partner?",
+      "type": "boolean",
+    },
+    Object {
+      "id": "HVZbfiR8XkcSwJ2FFBNq",
+      "text": "Do you have children under the age of 18 living with you?",
+      "type": "boolean",
+    },
+    Object {
+      "id": "S3LvVtaiIBcQZUvNn7Hn",
+      "text": "I have a disability",
+      "type": "boolean",
+    },
+    Object {
+      "id": "SvFSpo9vkchY2mZkiY4p",
+      "text": "I am going to/planning to go to school",
+      "type": "boolean",
+    },
+    Object {
+      "id": "MbCvH6nIcQ852Gr5fhn5",
+      "text": "I have been a victim of a crime I reported to the police in the last two years",
+      "type": "boolean",
+    },
+    Object {
+      "id": "H0u1Ugl4Ha1Cq9KQ3K9l",
+      "text": "I have paid into the Canada Pension Plan (CPP) for 4 of the last 6 years",
+      "type": "boolean",
+    },
+    Object {
+      "id": "QjN5nJJ1jqeUFiHg48XI",
+      "text": "I need help to pay for basic needs (food, clothes, etc.)",
+      "type": "boolean",
+    },
+    Object {
+      "id": "TjlDh3B3QWdZa0Id09Sq",
+      "text": "I have high ongoing drug costs or am pregnant",
+      "type": "boolean",
+    },
+    Object {
+      "id": "kpdBh6jfLAPK6fFnGlyA",
+      "text": "I need housing support",
+      "type": "boolean",
+    },
+    Object {
+      "id": "wPe0S0iQ23kToF7B2CJd",
+      "text": "AISH",
+      "type": "boolean",
+    },
+    Object {
+      "id": "E9L05fKKsRFsNsfjaJ5U",
+      "text": "Income Support/Alberta works",
+      "type": "boolean",
+    },
+    Object {
+      "id": "H6jpQAF6d4nAHxmxtrWv",
+      "text": "Employment",
+      "type": "boolean",
+    },
+    Object {
+      "id": "QXHbrs8fUROUrTx492LI",
+      "text": "Old Age Security",
+      "type": "boolean",
+    },
+    Object {
+      "id": "jlW503so415f3iBQRSei",
+      "text": "Other",
+      "type": "boolean",
+    },
+    Object {
+      "id": "2gmDyd4A5yOGxRuIFohB",
+      "text": "Have you lived in Canada for 10 years since age 18?",
+      "type": "boolean",
+    },
+  ],
+  "screenerQuestions": Array [
+    Object {
       "conditionalQuestions": Array [],
       "controlType": "NumberInput",
       "expandable": false,
       "id": "hdPMbny6X0WNhwuiJiMt",
       "index": 0,
-      "key": "grossincome",
       "label": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
       "options": Array [],
     },
@@ -940,7 +1357,6 @@ Object {
       "expandable": false,
       "id": "EVbsvHuXh8ul9x42AXCQ",
       "index": 2,
-      "key": "age",
       "label": "How old are you?",
       "options": Array [],
     },
@@ -950,7 +1366,6 @@ Object {
       "expandable": false,
       "id": "VIXBl1tiUyAx8EPuZrzk",
       "index": 5,
-      "key": "spouse",
       "label": "Do you have a spouse or common-law partner?",
       "options": Array [],
     },
@@ -966,7 +1381,6 @@ Object {
       "expandable": true,
       "id": "HVZbfiR8XkcSwJ2FFBNq",
       "index": 3,
-      "key": "children",
       "label": "Do you have children under the age of 18 living with you?",
       "options": Array [],
     },
@@ -975,51 +1389,36 @@ Object {
       "controlType": "Multiselect",
       "expandable": false,
       "id": "mdfIL5kSwI0w4br8oXIN",
-      "index": 7,
-      "key": "",
+      "index": 6,
       "label": "Select all of the following that apply to you",
       "multiSelectOptions": Array [
         Object {
-          "key": Object {
-            "name": "disability",
-            "type": "boolean",
-          },
+          "id": "S3LvVtaiIBcQZUvNn7Hn",
           "text": "I have a disability",
         },
         Object {
-          "key": Object {
-            "name": "moreschool",
-            "type": "boolean",
-          },
+          "id": "SvFSpo9vkchY2mZkiY4p",
           "text": "I am going to/planning to go to school",
         },
         Object {
-          "key": Object {
-            "name": "victim",
-            "type": "boolean",
-          },
+          "id": "MbCvH6nIcQ852Gr5fhn5",
           "text": "I have been a victim of a crime I reported to the police in the last two years",
         },
         Object {
-          "key": Object {
-            "name": "cppcontributions",
-            "type": "boolean",
-          },
+          "id": "H0u1Ugl4Ha1Cq9KQ3K9l",
           "text": "I have paid into the Canada Pension Plan (CPP) for 4 of the last 6 years",
         },
         Object {
-          "key": Object {
-            "name": "needincome",
-            "type": "boolean",
-          },
-          "text": "I need help to pay for basic needs (food, shelter, clothes, etc.)",
+          "id": "QjN5nJJ1jqeUFiHg48XI",
+          "text": "I need help to pay for basic needs (food, clothes, etc.)",
         },
         Object {
-          "key": Object {
-            "name": "pregnant",
-            "type": "boolean",
-          },
+          "id": "TjlDh3B3QWdZa0Id09Sq",
           "text": "I have high ongoing drug costs or am pregnant",
+        },
+        Object {
+          "id": "kpdBh6jfLAPK6fFnGlyA",
+          "text": "I need housing support",
         },
       ],
       "options": Array [],
@@ -1030,45 +1429,39 @@ Object {
       "expandable": false,
       "id": "xTwJ7RyLBIjfI3h2AZ4F",
       "index": 5,
-      "key": "",
       "label": "What are your main sources of income?",
       "multiSelectOptions": Array [
         Object {
-          "key": Object {
-            "name": "aish",
-            "type": "boolean",
-          },
+          "id": "wPe0S0iQ23kToF7B2CJd",
           "text": "AISH",
         },
         Object {
-          "key": Object {
-            "name": "albertaworks",
-            "type": "boolean",
-          },
+          "id": "E9L05fKKsRFsNsfjaJ5U",
           "text": "Income Support/Alberta works",
         },
         Object {
-          "key": Object {
-            "name": "empoyment",
-            "type": "boolean",
-          },
+          "id": "H6jpQAF6d4nAHxmxtrWv",
           "text": "Employment",
         },
         Object {
-          "key": Object {
-            "name": "oas",
-            "type": "boolean",
-          },
+          "id": "QXHbrs8fUROUrTx492LI",
           "text": "Old Age Security",
         },
         Object {
-          "key": Object {
-            "name": "otherincome",
-            "type": "boolean",
-          },
+          "id": "jlW503so415f3iBQRSei",
           "text": "Other",
         },
       ],
+      "options": Array [],
+    },
+    Object {
+      "conditionalQuestions": Array [],
+      "controlType": "Toggle",
+      "expandable": false,
+      "id": "2gmDyd4A5yOGxRuIFohB",
+      "index": 7,
+      "label": "Have you lived in Canada for 10 years since age 18?",
+      "multiSelectOptions": Array [],
       "options": Array [],
     },
   ],
@@ -1078,33 +1471,65 @@ Object {
 exports[`/api POST /notification -- returns programs 1`] = `
 Array [
   Object {
-    "description": "A tax-free monthly payment to families with children under 18",
+    "description": "Regular monthly income for those with significant disabilities that limit their ability to work",
+    "detailLinks": Array [],
+    "details": "
+What is it?
+Assured Income for the Severely Handicapped (AISH) provides regular income to cover basics such as shelter, food, and clothing for those with significant disabilities that prevent them from working.  It also includes health care benefits, child benefits, and extra money to cover personal costs.  
+
+Who is eligible?
+To receive AISH you must be:
+- At least 18 years old and not eligible to receive an Old Age Security pension
+- Live in Alberta and are a Canadian citizen or permanent resident
+- Must have a disability that is likely to remain permanent
+- Have a disability that is the main factor limiting your ability to earn a living
+- Have income and assets under the AISH limits
+
+What do I need to apply?
+- Identification for you and any family members
+- Documentation of the disability and its effects
+- Contact information for a family doctor
+- Proof of income including tax returns and pay stubs if applicable
+- Proof of residence in Alberta
+- Supporting proof of assets
+
+For more information and to find the application, follow the link below.",
+    "externalLink": "www.alberta.ca/aish.aspx",
+    "guid": "1lKYPN8nNaAMldGufGZNEwfjIK",
+    "tags": Array [
+      "Disability",
+      "Alberta",
+    ],
+    "title": "Assured Income for the Severely Handicapped (AISH)",
+  },
+  Object {
+    "description": "A tax-free monthly payment to families with children under 18 years of age",
     "detailLinks": Array [
       "www.canada.ca/en/revenue-agency/services/forms-publications/publications/t4114-canada-child-benefit-related-provincial-territorial-programs/canada-child-benefit.html#P142_7327",
     ],
-    "details": "What is it?
--The Canada Revenue Agency uses information from your income tax and benefit return to calculate your CCB payments 
--To receive the CCB you must file a tax return every year even if you do not have any income during the year
+    "details": "
+What is it?
+- The Canada Revenue Agency uses information from your income tax and benefit return to calculate your Canada Child Benefit (CCB) payments 
+- To receive the CCB you must file a tax return every year even if you do not have any income during the year
 
 Who is eligible?
-To be eligible for the Canada child benefit (CCB), you must meet all of the following conditions:
--You must live with the child, and the child must be under 18 years of age
--You must be primarily responsible for the care and upbringing of the child
--You must be a resident of Canada for tax purposes
+To be eligible for the CCB, you must meet all of the following conditions:
+- You must live with the child, and the child must be under 18 years of age
+- You must be primarily responsible for the care and upbringing of the child
+- You must be a resident of Canada for tax purposes
 
 You or your spouse or common-law partner must be:
--a Canadian citizen
--a permanent resident
--a protected person
--a temporary resident who has lived in Canada for the previous 18 months, and who has a valid permit in the 19th month
--an Indian within the meaning of the Indian Act
+- a Canadian citizen
+- a permanent resident
+- a protected person
+- a temporary resident who has lived in Canada for the previous 18 months, and who has a valid permit in the 19th month
+- an Indian within the meaning of the Indian Act
 
 What do I need to apply?
--You do not need to reapply every year 
--Complete the RC66 Canada Child Benefit Application form (unless you already completed the Automated benefits application at your child's birth) 
+- You do not need to reapply every year 
+- Complete the RC66 Canada Child Benefit Application form (unless you already completed the Automated benefits application at your child's birth) 
 
-For more information see the links below: 
-",
+For more information, see the links below: ",
     "externalLink": "www.canada.ca/en/revenue-agency/services/forms-publications/forms/rc66.html",
     "guid": "ZPNzWEr5XfUq5aYdy2bSYIKO5T",
     "tags": Array [
@@ -1115,22 +1540,21 @@ For more information see the links below:
     "title": "Canada Child Benefit (CCB)",
   },
   Object {
-    "description": "Helps pay for eyeglasses, prescriptions and dental visits for children in families with low income",
+    "description": "Helps pay for eyeglasses, prescriptions, and dental visits for children in families with low income",
     "detailLinks": Array [],
-    "details": "What is it?
-The Alberta Child Health Benefit plan pays for health services, such as dental care, eyewear, prescription drugs, ambulance services, and diabetic supplies that are not available through standard Alberta Health Care Insurance. There are no fees to sign up.
+    "details": "
+What is it?
+The Alberta Child Health Benefit plan pays for health services, such as dental care, eye wear, prescription drugs, ambulance services, and diabetic supplies that are not available through the standard Alberta Health Care Insurance Plan. There is no fee to sign up.
 
-Who is Eligible?
+Who is eligible?
 - Families with low income who do not have any other form of government health benefits
 - Children up to age 18
-- Children from 18 - 20 who live at home and are still attending high school
+- Children aged 18 - 20 who live at home and are still attending high school
 
-Families receiving Health Benefits from Income Support, Indigenous Programs, or the Alberta Adult Health Benefit are NOT eligible.
+Families receiving health benefits from Income Support, Indigenous Programs, or the Alberta Adult Health Benefit are NOT eligible.
 
 How do I apply?
-
-Complete the paper application in the link below and mail it to the included Alberta Human Services address.
-",
+Complete the paper application in the link below and mail it to the included Alberta Human Services address.",
     "externalLink": "www.alberta.ca/alberta-child-health-benefit.aspx",
     "guid": "nQXxT1OMhPGbkqkPHc2QTpofRv",
     "tags": Array [
@@ -1141,19 +1565,20 @@ Complete the paper application in the link below and mail it to the included Alb
     "title": "Child Health Benefit",
   },
   Object {
-    "description": "Free library card which gets you access to library services",
+    "description": "Free library card which gives you access to library services",
     "detailLinks": Array [],
-    "details": "What is it?
+    "details": "
+What is it?
 Membership with the Edmonton Public Library (EPL) gets you free access to over 13,000 programs, millions of books, movies, video games, software, and more.
 
-Who is Eligible?
+Who is eligible?
 - Any resident of Edmonton
 
-What do I need to Apply?
-- An identification
+What do I need to apply?
+- Identification
 - Proof of residence
 
-You can apply online by following the link below or visit your local EPL branch to sign up",
+You can apply online by following the link below, or visit your local EPL branch to sign up",
     "externalLink": "www2.epl.ca/signup/",
     "guid": "GiufEa3ziFwfBEgkjI2gIlfNkk",
     "tags": Array [
@@ -1165,16 +1590,17 @@ You can apply online by following the link below or visit your local EPL branch 
   Object {
     "description": "Provides money to pay for basic needs like food, clothing, and shelter",
     "detailLinks": Array [],
-    "details": "What is it?
-Income Support provides money to pay for basic needs like food, clothing, and shelter. This is a monthly benefit that changes depending on your needs, financial resources, ability to work, and the size of your family. Albertans who are eligible for Income Support also receive: health benefits for themselves and their children, help and training to find a job, help getting child support payments.
+    "details": "
+What is it?
+Income Support provides money to pay for basic needs like food, clothing, and shelter. This is a monthly benefit that changes depending on your needs, financial resources, ability to work, and the size of your family. Albertans who are eligible for Income Support also receive health benefits for themselves and their children, help and training to find a job, help accessing child support payments.
 
 Who is eligible?
-Income Support is available for people 3 general situations:
+Income Support is available for people in three general situations:
 1.	Cannot work due to chronic health problems or other barriers to employment (Barriers to Full Employment)
 2.	Looking for work, working but not earning enough, or temporarily unable to work (Expected to Work)
 3.	Need training so they can get a job (Learners)
 
-This program is for Alberta Residents over 18 who have used up all Employment Insurance Benefits
+This program is for Alberta residents over 18 years of age who have used up all Employment Insurance benefits
 
 What do I need to apply?
 You will need the following documents to apply:
@@ -1187,8 +1613,7 @@ You will need the following documents to apply:
 
 To receive income support you will need to complete an application and then meet with an Income Support Worker at an Alberta Works or Alberta Supports office. 
 
-For more information and to find the application follow the link below
-
+For more information and to find the application, follow the link below.
 ",
     "externalLink": "www.alberta.ca/income-support.aspx",
     "guid": "5b1J8A2fhE9cwVo9W5MfbLmuNr",
@@ -1198,48 +1623,25 @@ For more information and to find the application follow the link below
     "title": "Income Support - Alberta Works",
   },
   Object {
-    "description": "Helps eligible Edmontonians access City of Edmonton Recreation, Leisure and Attraction facilities for free or at a reduced cost",
+    "description": "Monthly transit pass for eligible low-income Edmontonians at a subsidized rate of $35/month ",
     "detailLinks": Array [],
-    "details": "Leisure Access Program
- 
+    "details": "
 What is it?
- 
-The Leisure Access Program helps you access participating City of Edmonton Recreation, Leisure and Attraction facilities for free or at a reduced cost. The program consists of two parts based on income eligibility: the Annual Program and the Monthly Pass. The Annual Program includes FREE access to the facilities as well discounts on registered programs. For people who do not qualify for the Annual program they may qualify for the Monthly Pass which includes access to participating facilities for $20/month for an individual or $70/month for a family. 
- 
-Who is eligible?
- 
-The Leisure Access Program is available to all Edmonton residents who are under the income threshold, are on AISH, are new immigrant or refugees, or a child in government care.
- 
-How do I apply?
- 
-Citizens who apply for the Leisure Access Program are automatically considered for the Ride Transit program and will be enrolled if they are eligible; you are not required to have a separate application. Complete the paper application and take it one of the City of Edmonton Community and Recreation Facilities or the Edmonton Service Center in the Edmonton Tower. Be sure to include your proof of residency and proof of income supporting documents. 
-
-For more information and to find the application follow the link below",
-    "externalLink": "www.edmonton.ca/programs_services/leisure-access-program.aspx",
-    "guid": "NMh2Fu1IG5XnpOf5b6zu2t1Hh6",
-    "tags": Array [
-      "Edmonton",
-      "Recreation",
-      "Children",
-      "Adult",
-    ],
-    "title": "Leisure Access Program",
-  },
-  Object {
-    "description": "Monthly transit pass for eligible low-income Edmontonians at a subsidized rate of $35/month. ",
-    "detailLinks": Array [],
-    "details": "What is it?
-The Ride Transit Program gives low income Edmonton residents the ability to buy a $35 a month transit pass at certain locations.
+The Ride Transit Program provides greater access to Edmonton's bus and LRT system, by providing Adult and Youth monthly passes to eligible low income Edmontonians and their families at a subsidized rate of $35 per month.
  
 Who is eligible?
- 
-Edmontonians whose income is at or under the Federal, before tax Low Income Cut Off (LICO)  household amounts.
+This program is available for Edmonton residents who qualify under one of the following (some exceptions apply):
+- An Assured Income for the Severely Handicapped (AISH) Health Benefit recipient
+- CPP Disability recipient (Canada Pension Plan)
+- Dependents of an AISH Health Benefit recipient 
+- Recipients of income support / learner income support benefits
+- Household income is at or below the Low Income Cut-Off (LICO) amount 
+- Permanent residents and refugee claimants
  
 How do I apply?
- 
-The Ride Transit Program has the same application process as the Leisure Access Pass. Complete the paper application and take it one of the City of Edmonton Recreation Centers or the Edmonton Service Center in the Edmonton Tower along with the required ID and proof of income.
- 
-If you already have the Leisure Access Pass then you can sign up online at the following link: https://www.edmonton.ca/projects_plans/transit/ride-transit-application-form.aspx
+- The Ride Transit Program has the same application process as the Leisure Access Pass. 
+- Complete the paper application and take it one of the City of Edmonton Recreation Centres or the Edmonton Service Centre in the Edmonton Tower. along with the required ID and proof of income.
+- If you already have the Leisure Access Pass. then you can sign up for the Ride Transit Pass online at: https://www.edmonton.ca/projects_plans/transit/ride-transit-application-form.aspx
 ",
     "externalLink": "www.edmonton.ca/ets/subsidized-transit.aspx",
     "guid": "7Vo9xE20WJJJ1ZORDlog1odyzo",

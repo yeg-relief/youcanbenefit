@@ -5,7 +5,7 @@ import { Program } from '../services/program.class';
 import { ProgramQueryClass } from '../services/program-query.class';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup } from '@angular/forms'
-import { ApplicationFacingProgram } from '../../models/program';
+import { ApplicationFacingProgram } from '../../models';
 import { Observable, ReplaySubject, Subject, merge, combineLatest, of } from 'rxjs';
 import { filter, tap, multicast, refCount, pluck, take, catchError } from 'rxjs/operators'
 import { MatSnackBar } from '@angular/material'
@@ -77,11 +77,22 @@ export class ApplicationEditComponent implements OnInit {
     );
   }
 
+  handleCopy(query_id: string) {
+    this.program.pipe(take(1))
+      .subscribe( program => {
+        const query = this.modelService.getBlankQuery(program.data.guid);
+        const conditions = program.application.find(q => q.data.id === query_id).conditions;
+        query.conditions = conditions.map(c => c.data);
+        program._addQuery(query);
+        this.selected = program.application.find(qc => qc.data.id === query.id);
+      })
+  }
+
   newQuery(){
     this.program.pipe(take(1))
         .subscribe( program => {
           const query = this.modelService.getBlankQuery(program.data.guid);
-          program._addQuery(query)
+          program._addQuery(query);
           this.selected = program.application.find(qc => qc.data.id === query.id);
         })
   }

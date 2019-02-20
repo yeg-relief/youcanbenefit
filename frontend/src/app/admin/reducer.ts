@@ -1,16 +1,13 @@
 import { Observable } from 'rxjs';
 import { combineReducers, select } from '@ngrx/store';
-import * as fromKeyOverview from './keys/reducer';
 import * as fromScreener from './screener/store/screener-reducer';
 import { createSelector } from 'reselect';
 
 export interface State {
-  keyOverview: fromKeyOverview.State;
   screener: fromScreener.State;
 }
 
 const reducers = {
-  keyOverview: fromKeyOverview.reducer,
   screener: fromScreener.reducer
 };
 
@@ -42,12 +39,3 @@ export const getConstantQuestions = createSelector(getScreenerState, fromScreene
 export const getSelectedConstantID = fromScreener.getSelectedConstantID
 
 export const getSelectedConditionalID = fromScreener.getSelectedConditionalID
-
-export const getScreenerKeys =  fromScreener.getKeys
-
-export const getUnusedScreenerKeys = fromScreener.getUnusedKeys
-
-
-/* for keys **key/overview etc** */
-export const allLoadedKeys = createSelector(getKeyOverview, fromKeyOverview.getLoadedKeys);
-

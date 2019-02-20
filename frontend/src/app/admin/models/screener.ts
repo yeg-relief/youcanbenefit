@@ -1,10 +1,7 @@
-import { Key } from './key';
-import { Question } from './question';
+import { ScreenerQuestion } from './screener-question';
 
 export interface Screener{
-  conditionalQuestions: Question[]
+  conditionalQuestions: ScreenerQuestion[]
   created: number,
-  keys: Key[]
-  questions: Question[],
-  unusedKeys: Key[]
+  screenerQuestions: ScreenerQuestion[],
 };
