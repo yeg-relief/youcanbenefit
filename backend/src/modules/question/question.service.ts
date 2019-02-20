@@ -14,8 +14,8 @@ import { EsQueryDto } from '../query/EsQuery.dto';
 export class QuestionService {
     constructor(private readonly clientService: ClientService, private queryService: EsQueryService) {}
 
-    private readonly INDEX = "master_screener";
-    private readonly TYPE = "queries";
+    private readonly INDEX = "questions";
+    private readonly TYPE = "screener";
     private readonly baseParams = {
         index: this.INDEX,
         type: this.TYPE
