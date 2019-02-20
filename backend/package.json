@@ -10,7 +10,7 @@
   "scripts": {
     "start": "NODE_ENV=development nodemon",
     "start:watch": "NODE_ENV=development nodemon",
-    "prestart:prod": "SET NODE_ENV=production && tsc",
+    "prestart:prod": "NODE_ENV=production tsc",
     "start:prod": "NODE_ENV=production node dist/server.js",
     "unit-test": "NODE_ENV=test jest \".(test)\\.(ts|tsx|js)$\"",
     "generate-coverage": "NODE_ENV=test jest --coverage",
