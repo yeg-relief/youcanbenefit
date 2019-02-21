@@ -2,7 +2,7 @@
 import {throwError as observableThrowError,  Observable } from 'rxjs';
 import { map, catchError, tap, } from 'rxjs/operators'
 import { Injectable } from '@angular/core';
-import { Question } from '../../shared';
+import { ScreenerQuestion } from '../../shared';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { FormGroup } from "@angular/forms";
 import { ProgramsServiceService } from "../programs-service.service";
@@ -13,7 +13,7 @@ export class MasterScreenerService {
     results = [];
     constructor(private http: Http, private programService: ProgramsServiceService) { }
 
-    loadQuestions(): Observable<Question[]> {
+    loadQuestions(): Observable<ScreenerQuestion[]> {
         return this.http.get(`${environment.api}/api/screener/`)
             .pipe(
                 map(res => res.json()),

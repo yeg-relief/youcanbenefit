@@ -14,15 +14,15 @@ export class QuestionsResolverService {
     return this.backend.loadQuestions()
       .pipe(
         switchMap( (data: any) => {
-          if (data.questions === undefined || data.conditionalQuestions === undefined) {
+          if (data.screenerQuestions === undefined || data.conditionalQuestions === undefined) {
             return observableThrowError({error: 'malformed data', data})
           }
   
-          if (!Array.isArray(data.questions)) {
+          if (!Array.isArray(data.screenerQuestions)) {
             return observableThrowError({error: 'questions are not an array', data})
           }
   
-          data.questions.sort(QuestionsResolverService.findAndSort);
+          data.screenerQuestions.sort(QuestionsResolverService.findAndSort);
   
           data.conditionalQuestions.forEach(QuestionsResolverService.findAndSort);
   

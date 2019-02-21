@@ -3,1328 +3,2822 @@
     "query": {
       "bool": {
         "must": [
-          { "term": { "spouse": false } },
-          { "term": { "children": false } },
-          { "range": { "grossincome": { "lte": 31186 } } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "NMh2Fu1IG5XnpOf5b6zu2t1Hh6",
-      "id": "FYOK6fk2sF4OZ1fx7I2G7W88uA"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "term": { "children": true } },
-          { "term": { "childcare": true } },
-          { "range": { "youngestchild": { "lte": 12 } } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "K08iJHYVRGL5pBOomOvwa2zwX2",
-      "id": "e655VOQ1qhGw494xqv1wkbgFqZ"
-    }
-  },
-  {
-    "query": { "bool": { "must": [{ "term": { "victim": true } }] } },
-    "meta": {
-      "program_guid": "bzf4ryrVVsKkqpsEA5dBZd2kP5",
-      "id": "0LOEWEuGIcrIUKfQOScJGgzeuw"
-    }
-  },
-  {
-    "query": { "bool": { "must": [{ "term": { "aish": true } }] } },
-    "meta": {
-      "program_guid": "7Vo9xE20WJJJ1ZORDlog1odyzo",
-      "id": "BNevTmioTDgu769J6L5D5a8cIN"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "range": { "age": { "gte": 65 } } },
-          { "term": { "spouse": true } },
-          { "range": { "grossincome": { "lte": 63350 } } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "1iXreywnofiF2jKKknlbKRXAtX",
-      "id": "2wUl4V609svowjB7bDKaxFlQD9"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "range": { "age": { "lte": 65 } } },
-          { "term": { "disability": true } },
-          { "term": { "needincome": true } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "1lKYPN8nNaAMldGufGZNEwfjIK",
-      "id": "KEneBGtYLDQJ6yMk2cg34EBZdO"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "term": { "children": true } },
-          { "term": { "childdisability": true } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "BcKJhMTErAsHfXq1jzealos8kp",
-      "id": "Jso58WDyBO6jduPMGMHjSUw8Ce"
-    }
-  },
-  {
-    "query": { "bool": { "must": [{ "term": { "albertaworks": true } }] } },
-    "meta": {
-      "program_guid": "HiGYI2bhBoQ6n82R9ptoNZ0oaQ",
-      "id": "wPdqol6u5o7rN5oIy4mQgcyxX1"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "range": { "grossincome": { "lte": 31237 } } },
-          { "term": { "spouse": true } },
-          { "term": { "numberchildren": 1 } },
-          { "term": { "children": true } },
-          { "term": { "albertaworks": false } },
-          { "term": { "aish": false } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "nQXxT1OMhPGbkqkPHc2QTpofRv",
-      "id": "XsVRvsZeLOLgQhqZLwiLXaHFQk"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "range": { "grossincome": { "lte": 36325 } } },
-          { "term": { "numberchildren": 2 } },
-          { "term": { "children": true } },
-          { "term": { "spouse": false } },
-          { "term": { "albertaworks": false } },
-          { "term": { "aish": false } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "nQXxT1OMhPGbkqkPHc2QTpofRv",
-      "id": "m6b1jkRrVWGTxqr33nmh5gExfD"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "term": { "children": true } },
-          { "range": { "grossincome": { "lte": 63640 } } },
-          { "term": { "numberchildren": 6 } },
-          { "range": { "youngestchild": { "lte": 14 } } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "8U2rl4Ha5GXBVqjNStudvzHIch",
-      "id": "2ORqn8lb2oORRSvf7Jt5G60gDt"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "term": { "children": true } },
-          { "range": { "grossincome": { "lte": 57724 } } },
-          { "term": { "numberchildren": 5 } },
-          { "range": { "youngestchild": { "lte": 14 } } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "8U2rl4Ha5GXBVqjNStudvzHIch",
-      "id": "A8Bm3s4wNR2FRLbtXOpAeyk7iQ"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "range": { "grossincome": { "lte": 52583 } } },
-          { "term": { "numberchildren": 3 } },
-          { "term": { "children": true } },
-          { "term": { "spouse": true } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "7Vo9xE20WJJJ1ZORDlog1odyzo",
-      "id": "lzOm0j1ruUfKkjhd6fCObXRW5Q"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "range": { "grossincome": { "lte": 46362 } } },
-          { "term": { "children": true } },
-          { "term": { "numberchildren": 2 } },
-          { "term": { "spouse": true } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "7Vo9xE20WJJJ1ZORDlog1odyzo",
-      "id": "VnLsYRBt92CR8eyCETK4G3aPPM"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "range": { "youngestchild": { "gte": 4 } } },
-          { "term": { "children": true } },
-          { "term": { "recreation": true } }
+          { "range": { "an2swDUmzfKa61MhdziL": { "gte": 1 } } },
+          { "range": { "52BONWt6kVy3h4wnQnuz": { "gte": 4 } } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "term": { "DTcDYBr3aQOZPyZV2MT7": true } }
         ]
       }
     },
     "meta": {
       "program_guid": "NTVwRTvMb82TIB5VLbf3v36tZN",
-      "id": "B6TW605ZCeb85od9e6sfZB6gQd"
+      "id": "B6TW605ZCeb85od9e6sfZB6gQd",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "52BONWt6kVy3h4wnQnuz": "How old is your YOUNGEST child?",
+        "DTcDYBr3aQOZPyZV2MT7": "Are you looking for recreation activities for your child or children?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?"
+      }
     }
   },
   {
     "query": {
       "bool": {
         "must": [
-          { "term": { "spouse": false } },
-          { "term": { "children": true } },
-          { "term": { "numberchildren": 5 } },
-          { "range": { "grossincome": { "lte": 59304 } } }
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "term": { "an2swDUmzfKa61MhdziL": 2 } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 38780 } } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": false } }
         ]
       }
     },
     "meta": {
       "program_guid": "7Vo9xE20WJJJ1ZORDlog1odyzo",
-      "id": "8e3wTuBPIwuyvCfJSL6qRDQpbe"
+      "id": "74ofh3kZhnIglDGC7sKqYeDJJT",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?"
+      }
     }
   },
   {
     "query": {
-      "bool": {
-        "must": [
-          { "term": { "albertaworks": true } },
-          { "term": { "recreation": true } }
-        ]
-      }
+      "bool": { "must": [{ "term": { "U9Q4lMqhGSE0pKLoyGYf": true } }] }
     },
-    "meta": {
-      "program_guid": "EY1QV5T6AyB4Ykl2Lt1Nt9kf9g",
-      "id": "gBMSAb1SMSQ4PWyC45EnRgUdjD"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "term": { "spouse": true } },
-          { "term": { "numberchildren": 4 } },
-          { "range": { "grossincome": { "lte": 46932 } } },
-          { "term": { "children": true } },
-          { "term": { "albertaworks": false } },
-          { "term": { "aish": false } },
-          { "range": { "age": { "lt": 65 } } },
-          { "term": { "pregnant": true } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "hp5mupqcVY8ZMiKg7Q91Uoi4Wf",
-      "id": "vM0Rtnrpx4aDVWy4eFO8vAUuTf"
-    }
-  },
-  {
-    "query": { "bool": { "must": [{ "term": { "childdisability": true } }] } },
     "meta": {
       "program_guid": "UbdhHxTUe3N5zm5BxR6WQ2i6vf",
-      "id": "vPVPzD4NDaVzbGaennIMcZkVSU"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "term": { "empoyment": true } },
-          { "term": { "children": true } },
-          { "term": { "numberchildren": 2 } },
-          { "range": { "grossincome": { "lte": 78676 } } }
-        ]
+      "id": "vPVPzD4NDaVzbGaennIMcZkVSU",
+      "questionTexts": {
+        "U9Q4lMqhGSE0pKLoyGYf": "I have a child with a disability"
       }
-    },
-    "meta": {
-      "program_guid": "OGR28icdrofstoYETvIGg19XAv",
-      "id": "3Kx0FTsyx9Hqw4sg7wh0sFIKKS"
     }
   },
   {
     "query": {
       "bool": {
         "must": [
-          { "term": { "children": true } },
-          { "term": { "stayathome": true } },
-          { "range": { "youngestchild": { "lte": 6 } } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "9dHBCUXa0z8tEZg6QcYMBJVXjf",
-      "id": "Sf1WxcGf3y2SPDbMFoVBj7KVHD"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "range": { "age": { "gte": 65 } } },
-          { "term": { "spouse": true } },
-          { "range": { "grossincome": { "lte": 44335 } } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "JIcpL1cap5Eg0ikPk2tecp6JG7",
-      "id": "keYjE3IbT8ApFlLq5KZrBSWqFt"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "term": { "childcare": true } },
-          { "range": { "youngestchild": { "lte": 0 } } },
-          { "term": { "children": true } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "K08iJHYVRGL5pBOomOvwa2zwX2",
-      "id": "Y81057maOOdbLbev0IhuVrV4P2"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "range": { "grossincome": { "lte": 26023 } } },
-          { "term": { "numberchildren": 1 } },
-          { "term": { "children": true } },
-          { "term": { "spouse": false } },
-          { "term": { "albertaworks": false } },
-          { "term": { "aish": false } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "nQXxT1OMhPGbkqkPHc2QTpofRv",
-      "id": "kzak7zAzlYMGU6Ybo8aq8vNBLB"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "range": { "grossincome": { "lte": 45916 } } },
-          { "range": { "numberchildren": { "lte": 3 } } },
-          { "term": { "children": true } },
-          { "range": { "youngestchild": { "lte": 14 } } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "8U2rl4Ha5GXBVqjNStudvzHIch",
-      "id": "RMpreSSoH5aSclD5M0vqHmSJfA"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "range": { "grossincome": { "lte": 38826 } } },
-          { "term": { "numberchildren": 1 } },
-          { "term": { "children": true } },
-          { "term": { "spouse": false } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "NMh2Fu1IG5XnpOf5b6zu2t1Hh6",
-      "id": "ewnzVrqgkpAm5mQU5O5ayiO1DW"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "range": { "grossincome": { "lte": 47731 } } },
-          { "term": { "numberchildren": 2 } },
-          { "term": { "children": true } },
-          { "term": { "spouse": false } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "NMh2Fu1IG5XnpOf5b6zu2t1Hh6",
-      "id": "hqyCT9IOzYcN2LH29YapIPdJnU"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "range": { "grossincome": { "lte": 38185 } } },
-          { "term": { "numberchildren": 2 } },
-          { "term": { "children": true } },
-          { "term": { "spouse": false } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "7Vo9xE20WJJJ1ZORDlog1odyzo",
-      "id": "xsLvcq5mCBdFNiKdf48jYBsOW4"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "range": { "age": { "gte": 65 } } },
-          { "range": { "grossincome": { "lte": 121314 } } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "zXRcJxGzIrwhmk5LTbE4jdwBMh",
-      "id": "yAModAKLjobHGmre56bNBxJSt6"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "term": { "spouse": false } },
-          { "term": { "children": true } },
-          { "range": { "grossincome": { "lte": 66027 } } },
-          { "range": { "numberchildren": { "gte": 6 } } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "7Vo9xE20WJJJ1ZORDlog1odyzo",
-      "id": "fUs7Bb1KjWJ75sFdUOJgrwg1iQ"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "range": { "numberchildren": { "gte": 5 } } },
-          { "term": { "children": true } },
-          { "term": { "spouse": true } },
-          { "range": { "grossincome": { "lte": 82534 } } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "NMh2Fu1IG5XnpOf5b6zu2t1Hh6",
-      "id": "Vwk9WOw50b1WYpVMFcsC7ab6yD"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "range": { "age": { "gte": 19 } } },
-          { "term": { "children": true } },
-          { "term": { "empoyment": true } },
-          { "range": { "grossincome": { "lte": 27905 } } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "IO2YsSRkLCIZwIcYGjO6rNkxUE",
-      "id": "N14KVQlJdNI4rwotwESm2eYPkZ"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "term": { "numberchildren": 5 } },
-          { "term": { "children": true } },
-          { "term": { "spouse": false } },
-          { "range": { "grossincome": { "lte": 74139 } } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "NMh2Fu1IG5XnpOf5b6zu2t1Hh6",
-      "id": "KcFpnE0cPNwfaIMp1U2hjyyZHn"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "range": { "grossincome": { "lte": 57953 } } },
-          { "term": { "numberchildren": 2 } },
-          { "term": { "children": true } },
-          { "term": { "spouse": true } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "NMh2Fu1IG5XnpOf5b6zu2t1Hh6",
-      "id": "YPHpXVQNmCI3Ej6moXdx6lOziU"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "range": { "age": { "gte": 19 } } },
-          { "term": { "children": false } },
-          { "range": { "grossincome": { "lte": 19717 } } },
-          { "term": { "spouse": false } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "IO2YsSRkLCIZwIcYGjO6rNkxUE",
-      "id": "ClUhqtlSDOhzQTc7dlKvVwiWqI"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "term": { "aish": true } },
-          { "term": { "recreation": true } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "EY1QV5T6AyB4Ykl2Lt1Nt9kf9g",
-      "id": "pQJWgFucOYJm8smzYYXUACu9pW"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "range": { "age": { "lt": 65 } } },
-          { "term": { "aish": false } },
-          { "term": { "albertaworks": false } },
-          { "term": { "spouse": false } },
-          { "term": { "children": true } },
-          { "term": { "numberchildren": 1 } },
-          { "range": { "grossincome": { "lte": 26023 } } },
-          { "term": { "pregnant": true } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "hp5mupqcVY8ZMiKg7Q91Uoi4Wf",
-      "id": "d5NswIlUvzxY0AJ1hGm4eKQtS4"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "term": { "pregnant": true } },
-          { "range": { "age": { "lt": 65 } } },
-          { "term": { "aish": false } },
-          { "term": { "albertaworks": false } },
-          { "term": { "spouse": false } },
-          { "term": { "children": false } },
-          { "range": { "grossincome": { "lte": 16580 } } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "hp5mupqcVY8ZMiKg7Q91Uoi4Wf",
-      "id": "JeXk8cOZnqJMepmHpxDqpsEXNE"
-    }
-  },
-  {
-    "query": {
-      "bool": { "must": [{ "range": { "grossincome": { "lte": 25000 } } }] }
-    },
-    "meta": {
-      "program_guid": "5b1J8A2fhE9cwVo9W5MfbLmuNr",
-      "id": "GRIQnmw3f7DVtK9KX9muH9qsa7"
-    }
-  },
-  {
-    "query": { "bool": { "must": [{ "term": { "disability": true } }] } },
-    "meta": {
-      "program_guid": "UbdhHxTUe3N5zm5BxR6WQ2i6vf",
-      "id": "mvvP8SJMN1KPtHvvlEJNNEV9lf"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "term": { "spouse": false } },
-          { "term": { "children": false } },
-          { "range": { "grossincome": { "lte": 24949 } } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "7Vo9xE20WJJJ1ZORDlog1odyzo",
-      "id": "NmzSeyPmMuu7BT6c5dkI0vZVtl"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "term": { "disability": true } },
-          { "range": { "age": { "lt": 65 } } },
-          { "term": { "cppcontributions": true } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "8Lqu2z4WCAP9w5sjhcAeOKuHN5",
-      "id": "cVyxm1ILkVg9fwxK53rvzvjorG"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "term": { "spouse": true } },
-          { "term": { "children": false } },
-          { "range": { "grossincome": { "lte": 31061 } } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "7Vo9xE20WJJJ1ZORDlog1odyzo",
-      "id": "vvH1AgRrWHwp2T4ikuaZeBCYVx"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "range": { "age": { "gte": 65 } } },
-          { "term": { "spouse": false } },
-          { "range": { "grossincome": { "lte": 31675 } } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "1iXreywnofiF2jKKknlbKRXAtX",
-      "id": "sQGVNLcz9eYoJmi6Bg9jsCwCka"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "range": { "age": { "gte": 65 } } },
-          { "range": { "grossincome": { "lte": 17544 } } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "Y5KEzulkwxviOuzB4Ny5QTzMGD",
-      "id": "ONzlceqOoECeHkELmgoFS6xC88"
-    }
-  },
-  {
-    "query": {
-      "bool": { "must": [{ "range": { "grossincome": { "gte": 0 } } }] }
-    },
-    "meta": {
-      "program_guid": "GiufEa3ziFwfBEgkjI2gIlfNkk",
-      "id": "I0yNLlwkGykQneDL9RkfuTLSnL"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "range": { "grossincome": { "lte": 36634 } } },
-          { "term": { "spouse": true } },
-          { "term": { "numberchildren": 2 } },
-          { "term": { "children": true } },
-          { "term": { "albertaworks": false } },
-          { "term": { "aish": false } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "nQXxT1OMhPGbkqkPHc2QTpofRv",
-      "id": "u8PLVx8TZjhCxSHy3ZIWXimoQT"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "term": { "children": true } },
-          { "range": { "grossincome": { "lte": 51809 } } },
-          { "term": { "numberchildren": 4 } },
-          { "range": { "youngestchild": { "lte": 14 } } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "8U2rl4Ha5GXBVqjNStudvzHIch",
-      "id": "hAL9r2zsn6sYTXafeK6DeJiTFh"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "term": { "spouse": true } },
-          { "term": { "children": true } },
-          { "term": { "numberchildren": 4 } },
-          { "range": { "grossincome": { "lte": 59304 } } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "7Vo9xE20WJJJ1ZORDlog1odyzo",
-      "id": "aHeSXel9akciqC9rQtNFfNXpQv"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "range": { "grossincome": { "lte": 31061 } } },
-          { "term": { "numberchildren": 1 } },
-          { "term": { "children": true } },
-          { "term": { "spouse": false } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "7Vo9xE20WJJJ1ZORDlog1odyzo",
-      "id": "waqDZ58bQNWuWCZWpySSmwbr0d"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "term": { "oas": true } },
-          { "range": { "age": { "gte": 65 } } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "kc0ov01FtBgr88C5P6EE6lnC8s",
-      "id": "tgoJkviY6uoWeOMVnmovIClZb2"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "range": { "grossincome": { "lte": 57953 } } },
-          { "term": { "numberchildren": 3 } },
-          { "term": { "children": true } },
-          { "term": { "spouse": false } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "NMh2Fu1IG5XnpOf5b6zu2t1Hh6",
-      "id": "JpYoW075fsJP8bYdniAFGY1LcD"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "range": { "grossincome": { "lte": 65729 } } },
-          { "term": { "numberchildren": 3 } },
-          { "term": { "children": true } },
-          { "term": { "spouse": true } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "NMh2Fu1IG5XnpOf5b6zu2t1Hh6",
-      "id": "4C6L9xqwkLAzFQRC6aLHdCVa7E"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "term": { "children": true } },
-          { "term": { "numberchildren": 4 } },
-          { "term": { "spouse": true } },
-          { "range": { "grossincome": { "lte": 74139 } } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "NMh2Fu1IG5XnpOf5b6zu2t1Hh6",
-      "id": "z3cGFHydqj3RQXjgjLx2D4F0kG"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "range": { "age": { "gte": 19 } } },
-          { "term": { "children": false } },
-          { "range": { "grossincome": { "lte": 27905 } } },
-          { "term": { "spouse": true } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "IO2YsSRkLCIZwIcYGjO6rNkxUE",
-      "id": "bYq0aS7uVHSkSuop8nWMJ02iRf"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "range": { "grossincome": { "lte": 23212 } } },
-          { "term": { "albertaworks": false } },
-          { "term": { "children": false } },
-          { "term": { "spouse": true } },
-          { "term": { "aish": false } },
-          { "range": { "age": { "lt": 65 } } },
-          { "term": { "pregnant": true } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "hp5mupqcVY8ZMiKg7Q91Uoi4Wf",
-      "id": "jzMQkEK41gnhmwWyxAuWF3eZ4d"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "term": { "aish": false } },
-          { "term": { "albertaworks": false } },
-          { "term": { "children": true } },
-          { "term": { "numberchildren": 2 } },
-          { "term": { "spouse": true } },
-          { "range": { "age": { "lt": 65 } } },
-          { "range": { "grossincome": { "lte": 36634 } } },
-          { "term": { "pregnant": true } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "hp5mupqcVY8ZMiKg7Q91Uoi4Wf",
-      "id": "wgLgrNpNO6WYMjMSbiGiI4ABLt"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "term": { "aish": false } },
-          { "term": { "albertaworks": false } },
-          { "term": { "children": true } },
-          { "term": { "numberchildren": 4 } },
-          { "term": { "spouse": false } },
-          { "range": { "age": { "lt": 65 } } },
-          { "range": { "grossincome": { "lte": 41957 } } },
-          { "term": { "pregnant": true } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "hp5mupqcVY8ZMiKg7Q91Uoi4Wf",
-      "id": "C8NZoL1Nf7VEgEC4VMFI9GlebN"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "term": { "spouse": false } },
-          { "term": { "numberchildren": 3 } },
-          { "term": { "children": true } },
-          { "range": { "grossincome": { "lt": 36325 } } },
-          { "term": { "albertaworks": false } },
-          { "term": { "aish": false } },
-          { "range": { "age": { "lt": 65 } } },
-          { "term": { "pregnant": true } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "hp5mupqcVY8ZMiKg7Q91Uoi4Wf",
-      "id": "fMwdx1jiAZUt09ALDer98GardT"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "term": { "empoyment": true } },
-          { "term": { "children": true } },
-          { "range": { "numberchildren": { "gte": 4 } } },
-          { "range": { "grossincome": { "lte": 92736 } } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "OGR28icdrofstoYETvIGg19XAv",
-      "id": "tDghoolWAZcv4JXuckwCb6KA3k"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "term": { "children": true } },
-          { "term": { "empoyment": true } },
-          { "term": { "numberchildren": 3 } },
-          { "range": { "grossincome": { "lte": 89236 } } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "OGR28icdrofstoYETvIGg19XAv",
-      "id": "KrdE0bdpq7J8vXJiy4Q8SllQFo"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "term": { "spouse": true } },
-          { "term": { "children": false } },
-          { "range": { "grossincome": { "lte": 38826 } } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "NMh2Fu1IG5XnpOf5b6zu2t1Hh6",
-      "id": "oNTsBxrOAIWlqoXKxjxO0pD0Mb"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "range": { "age": { "gte": 65 } } },
-          { "term": { "spouse": false } },
-          { "range": { "grossincome": { "lte": 27300 } } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "JIcpL1cap5Eg0ikPk2tecp6JG7",
-      "id": "y5tht3PDqR4H7ybpsjJIrJIMS5"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "term": { "children": true } },
-          { "range": { "youngestchild": { "lte": 16 } } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "oZ68OrZFpvkMMGHqV3CFELhuVY",
-      "id": "4JVTBXbPLXvh1pYGfcKQxh0F6q"
-    }
-  },
-  {
-    "query": { "bool": { "must": [{ "range": { "age": { "gte": 65 } } }] } },
-    "meta": {
-      "program_guid": "9rRXexrA3JzmXbFdKCmjtTj57l",
-      "id": "jUFsXz7O53LBU8ciTV0LvFC67g"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "range": { "grossincome": { "lte": 41594 } } },
-          { "term": { "spouse": true } },
-          { "term": { "numberchildren": 3 } },
-          { "term": { "children": true } },
-          { "term": { "albertaworks": false } },
-          { "term": { "aish": false } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "nQXxT1OMhPGbkqkPHc2QTpofRv",
-      "id": "QgvZnzvcvmLHXva5317ItGGiVL"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "range": { "grossincome": { "lte": 36325 } } },
-          { "term": { "numberchildren": 3 } },
-          { "term": { "children": true } },
-          { "term": { "spouse": false } },
-          { "term": { "albertaworks": false } },
-          { "term": { "aish": false } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "nQXxT1OMhPGbkqkPHc2QTpofRv",
-      "id": "EJnCRCVLxUZOw4QnkO1Psd9B5y"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "term": { "children": true } },
-          { "range": { "grossincome": { "lte": 69556 } } },
-          { "range": { "numberchildren": { "gte": 7 } } },
-          { "range": { "youngestchild": { "lte": 14 } } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "8U2rl4Ha5GXBVqjNStudvzHIch",
-      "id": "bkZsB751Q3CEmmjL9SrtLoggH0"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "range": { "numberchildren": { "gte": 6 } } },
-          { "term": { "children": true } },
-          { "term": { "spouse": false } },
-          { "range": { "grossincome": { "lte": 82534 } } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "NMh2Fu1IG5XnpOf5b6zu2t1Hh6",
-      "id": "ExJfXb7YoU0bcmTijLMmOZ3n9o"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "term": { "spouse": false } },
-          { "range": { "grossincome": { "lte": 52583 } } },
-          { "term": { "children": true } },
-          { "term": { "numberchildren": 4 } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "7Vo9xE20WJJJ1ZORDlog1odyzo",
-      "id": "P9jw5D6wgObpCsETxjjsGIVXzI"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "term": { "numberchildren": 4 } },
-          { "term": { "spouse": false } },
-          { "term": { "children": true } },
-          { "range": { "grossincome": { "lte": 65729 } } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "NMh2Fu1IG5XnpOf5b6zu2t1Hh6",
-      "id": "ZQ2IG6q3zc643SxnrG9kwumNoV"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "term": { "spouse": true } },
-          { "term": { "children": true } },
-          { "range": { "grossincome": { "lte": 66027 } } },
-          { "range": { "numberchildren": { "gte": 5 } } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "7Vo9xE20WJJJ1ZORDlog1odyzo",
-      "id": "K2J94CYV9o5kMy2XI0jayCvkwX"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "term": { "numberchildren": 2 } },
-          { "range": { "grossincome": { "lte": 31010 } } },
-          { "term": { "children": true } },
-          { "term": { "albertaworks": false } },
-          { "term": { "aish": false } },
-          { "range": { "age": { "lt": 65 } } },
-          { "term": { "spouse": false } },
-          { "term": { "pregnant": true } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "hp5mupqcVY8ZMiKg7Q91Uoi4Wf",
-      "id": "jI1HlTlpbULsSVUmHnYi3ZlVJ7"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "term": { "aish": false } },
-          { "term": { "albertaworks": false } },
-          { "term": { "children": true } },
-          { "term": { "numberchildren": 1 } },
-          { "term": { "spouse": true } },
-          { "range": { "age": { "lt": 65 } } },
-          { "range": { "grossincome": { "lte": 31237 } } },
-          { "term": { "pregnant": true } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "hp5mupqcVY8ZMiKg7Q91Uoi4Wf",
-      "id": "qZyokzKnpIw3Ue6mdTi8je3knK"
-    }
-  },
-  {
-    "query": { "bool": { "must": [{ "term": { "children": true } }] } },
-    "meta": {
-      "program_guid": "ZPNzWEr5XfUq5aYdy2bSYIKO5T",
-      "id": "a53Yp7GXjvBX7dM7rDOH1Cr5Vp"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "term": { "empoyment": true } },
-          { "term": { "children": true } },
-          { "term": { "numberchildren": 1 } },
-          { "range": { "grossincome": { "lte": 61111 } } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "OGR28icdrofstoYETvIGg19XAv",
-      "id": "hproSPJEPervrwFwHnMOUWsdYi"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "term": { "children": true } },
-          { "range": { "youngestchild": { "lt": 12 } } },
-          { "term": { "kincare": true } }
-        ]
-      }
-    },
-    "meta": {
-      "program_guid": "iHPbkwKFsck9ZLnMePKSj5e5mz",
-      "id": "ByilvC7F37RdSm1aTcw3xa1gYm"
-    }
-  },
-  {
-    "query": {
-      "bool": {
-        "must": [
-          { "term": { "disability": true } },
-          { "range": { "age": { "lt": 60 } } }
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "term": { "U9Q4lMqhGSE0pKLoyGYf": true } }
         ]
       }
     },
     "meta": {
       "program_guid": "BcKJhMTErAsHfXq1jzealos8kp",
-      "id": "oPJF9HPPCmFY09o4IpmiDsjVJx"
-    }
-  },
-  {
-    "query": { "bool": { "must": [{ "term": { "albertaworks": true } }] } },
-    "meta": {
-      "program_guid": "sgKMX0336kgepHbPeObRLOvcFL",
-      "id": "oJZN5FvcBDDv8T8l8cexXws48r"
+      "id": "Jso58WDyBO6jduPMGMHjSUw8Ce",
+      "questionTexts": {
+        "U9Q4lMqhGSE0pKLoyGYf": "I have a child with a disability",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?"
+      }
     }
   },
   {
     "query": {
       "bool": {
         "must": [
-          { "range": { "grossincome": { "lte": 46362 } } },
-          { "term": { "numberchildren": 3 } },
-          { "term": { "children": true } },
-          { "term": { "spouse": false } }
+          { "term": { "S3LvVtaiIBcQZUvNn7Hn": true } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": false } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 46500 } } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": true } }
         ]
       }
     },
     "meta": {
-      "program_guid": "7Vo9xE20WJJJ1ZORDlog1odyzo",
-      "id": "cRSgT8mgQDBcbwHuVuu47CV2EC"
+      "program_guid": "tWucjcIELoF0O1Z0DksuXWDGY7",
+      "id": "GcoaHGQCH7WNGs8n5f2H1C35YU",
+      "questionTexts": {
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?",
+        "S3LvVtaiIBcQZUvNn7Hn": "I have a disability"
+      }
     }
   },
   {
     "query": {
       "bool": {
         "must": [
-          { "range": { "grossincome": { "lte": 38185 } } },
-          { "term": { "numberchildren": 1 } },
-          { "term": { "children": true } },
-          { "term": { "spouse": true } }
+          { "range": { "EVbsvHuXh8ul9x42AXCQ": { "gte": 65 } } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 63350 } } }
         ]
       }
     },
     "meta": {
-      "program_guid": "7Vo9xE20WJJJ1ZORDlog1odyzo",
-      "id": "ZdLhg2PImCJcTQJJGszhUBE2es"
+      "program_guid": "1iXreywnofiF2jKKknlbKRXAtX",
+      "id": "2wUl4V609svowjB7bDKaxFlQD9",
+      "questionTexts": {
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "EVbsvHuXh8ul9x42AXCQ": "How old are you?",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?"
+      }
     }
   },
   {
     "query": {
       "bool": {
         "must": [
-          { "range": { "grossincome": { "lte": 47731 } } },
-          { "term": { "numberchildren": 1 } },
-          { "term": { "children": true } },
-          { "term": { "spouse": true } }
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "term": { "U9Q4lMqhGSE0pKLoyGYf": true } },
+          { "term": { "S3LvVtaiIBcQZUvNn7Hn": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 101631 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 5 } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "tWucjcIELoF0O1Z0DksuXWDGY7",
+      "id": "yrcMdKwPkcEB1oBw1F6zwUTbL5",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "U9Q4lMqhGSE0pKLoyGYf": "I have a child with a disability",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?",
+        "S3LvVtaiIBcQZUvNn7Hn": "I have a disability"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": { "must": [{ "term": { "E9L05fKKsRFsNsfjaJ5U": true } }] }
+    },
+    "meta": {
+      "program_guid": "HiGYI2bhBoQ6n82R9ptoNZ0oaQ",
+      "id": "wPdqol6u5o7rN5oIy4mQgcyxX1",
+      "questionTexts": {
+        "E9L05fKKsRFsNsfjaJ5U": "Income Support/Alberta works"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "E9L05fKKsRFsNsfjaJ5U": true } },
+          { "term": { "DTcDYBr3aQOZPyZV2MT7": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "EY1QV5T6AyB4Ykl2Lt1Nt9kf9g",
+      "id": "gBMSAb1SMSQ4PWyC45EnRgUdjD",
+      "questionTexts": {
+        "DTcDYBr3aQOZPyZV2MT7": "Are you looking for recreation activities for your child or children?",
+        "E9L05fKKsRFsNsfjaJ5U": "Income Support/Alberta works"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": { "must": [{ "term": { "MbCvH6nIcQ852Gr5fhn5": true } }] }
+    },
+    "meta": {
+      "program_guid": "bzf4ryrVVsKkqpsEA5dBZd2kP5",
+      "id": "0LOEWEuGIcrIUKfQOScJGgzeuw",
+      "questionTexts": {
+        "MbCvH6nIcQ852Gr5fhn5": "I have been a victim of a crime I reported to the police in the last two years"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "U9Q4lMqhGSE0pKLoyGYf": false } },
+          { "term": { "S3LvVtaiIBcQZUvNn7Hn": true } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 75300 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 3 } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "tWucjcIELoF0O1Z0DksuXWDGY7",
+      "id": "jnhFHSMKdyLeaq68G18j0FGMjt",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "U9Q4lMqhGSE0pKLoyGYf": "I have a child with a disability",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?",
+        "S3LvVtaiIBcQZUvNn7Hn": "I have a disability"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 66251 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 4 } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": true } }
         ]
       }
     },
     "meta": {
       "program_guid": "NMh2Fu1IG5XnpOf5b6zu2t1Hh6",
-      "id": "slIx1MImf1Io9c0sxkgT5wTBu9"
+      "id": "ML1oy4oIjQaAIVSteMQQJ1jlEF",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?"
+      }
     }
   },
   {
     "query": {
       "bool": {
         "must": [
-          { "range": { "age": { "lt": 65 } } },
-          { "term": { "aish": false } },
-          { "term": { "albertaworks": false } },
-          { "term": { "children": true } },
-          { "range": { "grossincome": { "lte": 41957 } } },
-          { "term": { "numberchildren": 4 } },
-          { "term": { "spouse": false } },
-          { "term": { "pregnant": true } }
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": true } },
+          { "term": { "an2swDUmzfKa61MhdziL": 4 } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 46932 } } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "term": { "E9L05fKKsRFsNsfjaJ5U": false } },
+          { "term": { "wPe0S0iQ23kToF7B2CJd": false } },
+          { "range": { "EVbsvHuXh8ul9x42AXCQ": { "lt": 65 } } },
+          { "term": { "TjlDh3B3QWdZa0Id09Sq": true } }
         ]
       }
     },
     "meta": {
       "program_guid": "hp5mupqcVY8ZMiKg7Q91Uoi4Wf",
-      "id": "NOyR66aE30dJYXgdHJ2CvGLpnx"
+      "id": "vM0Rtnrpx4aDVWy4eFO8vAUuTf",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "EVbsvHuXh8ul9x42AXCQ": "How old are you?",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?",
+        "TjlDh3B3QWdZa0Id09Sq": "I have high ongoing drug costs or am pregnant",
+        "wPe0S0iQ23kToF7B2CJd": "AISH",
+        "E9L05fKKsRFsNsfjaJ5U": "Income Support/Alberta works"
+      }
     }
   },
   {
     "query": {
       "bool": {
         "must": [
-          { "term": { "albertaworks": false } },
-          { "term": { "aish": false } },
-          { "term": { "children": true } },
-          { "term": { "numberchildren": 3 } },
-          { "term": { "spouse": true } },
-          { "range": { "age": { "lt": 65 } } },
-          { "range": { "grossincome": { "lte": 41594 } } },
-          { "term": { "pregnant": true } }
+          { "range": { "an2swDUmzfKa61MhdziL": { "gt": 0 } } },
+          { "term": { "wPe0S0iQ23kToF7B2CJd": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "LryMTwZFN6Dh6tuMhsFyZcopE8",
+      "id": "orntGWrDE5yMlkCCrpK5jYsqU9",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "wPe0S0iQ23kToF7B2CJd": "AISH"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "term": { "H6jpQAF6d4nAHxmxtrWv": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 90337 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 3 } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "OGR28icdrofstoYETvIGg19XAv",
+      "id": "N6cF8QZgwmfTc6KQbqXRwg7n1R",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?",
+        "H6jpQAF6d4nAHxmxtrWv": "Employment"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 53402 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 3 } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "7Vo9xE20WJJJ1ZORDlog1odyzo",
+      "id": "lzOm0j1ruUfKkjhd6fCObXRW5Q",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": false } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 31544 } } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "7Vo9xE20WJJJ1ZORDlog1odyzo",
+      "id": "nH2ZQcfuV7sixEA50k6rmgghyw",
+      "questionTexts": {
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "kpdBh6jfLAPK6fFnGlyA": true } },
+          { "range": { "EVbsvHuXh8ul9x42AXCQ": { "gte": 65 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "bgUdObkiCIh0sgQB5019ZJZsl7",
+      "id": "p6q3VzPGsWPOFso3wnfFMIe7S5",
+      "questionTexts": {
+        "EVbsvHuXh8ul9x42AXCQ": "How old are you?",
+        "kpdBh6jfLAPK6fFnGlyA": "I need housing support"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 63640 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 6 } },
+          { "range": { "52BONWt6kVy3h4wnQnuz": { "lte": 14 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "8U2rl4Ha5GXBVqjNStudvzHIch",
+      "id": "2ORqn8lb2oORRSvf7Jt5G60gDt",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "52BONWt6kVy3h4wnQnuz": "How old is your YOUNGEST child?",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "term": { "WD8NTqY5cCOpEVsgdQNA": true } },
+          { "range": { "52BONWt6kVy3h4wnQnuz": { "lte": 12 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "K08iJHYVRGL5pBOomOvwa2zwX2",
+      "id": "e655VOQ1qhGw494xqv1wkbgFqZ",
+      "questionTexts": {
+        "52BONWt6kVy3h4wnQnuz": "How old is your YOUNGEST child?",
+        "WD8NTqY5cCOpEVsgdQNA": "A licensed day care (such as a Day Home, Child Care Center, or Preschool)",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 31237 } } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": true } },
+          { "term": { "an2swDUmzfKa61MhdziL": 1 } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "term": { "E9L05fKKsRFsNsfjaJ5U": false } },
+          { "term": { "wPe0S0iQ23kToF7B2CJd": false } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "nQXxT1OMhPGbkqkPHc2QTpofRv",
+      "id": "XsVRvsZeLOLgQhqZLwiLXaHFQk",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?",
+        "wPe0S0iQ23kToF7B2CJd": "AISH",
+        "E9L05fKKsRFsNsfjaJ5U": "Income Support/Alberta works"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "U9Q4lMqhGSE0pKLoyGYf": true } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "term": { "S3LvVtaiIBcQZUvNn7Hn": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 53631 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 1 } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": false } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "tWucjcIELoF0O1Z0DksuXWDGY7",
+      "id": "ZQNiiFqV3az22mpSnhV39G4ACW",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "U9Q4lMqhGSE0pKLoyGYf": "I have a child with a disability",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?",
+        "S3LvVtaiIBcQZUvNn7Hn": "I have a disability"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 36325 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 2 } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": false } },
+          { "term": { "E9L05fKKsRFsNsfjaJ5U": false } },
+          { "term": { "wPe0S0iQ23kToF7B2CJd": false } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "nQXxT1OMhPGbkqkPHc2QTpofRv",
+      "id": "m6b1jkRrVWGTxqr33nmh5gExfD",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?",
+        "wPe0S0iQ23kToF7B2CJd": "AISH",
+        "E9L05fKKsRFsNsfjaJ5U": "Income Support/Alberta works"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "EVbsvHuXh8ul9x42AXCQ": { "gte": 65 } } },
+          { "term": { "2gmDyd4A5yOGxRuIFohB": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "kc0ov01FtBgr88C5P6EE6lnC8s",
+      "id": "LD4LrfzKMVqQ6rnUuUuLmsdf9X",
+      "questionTexts": {
+        "EVbsvHuXh8ul9x42AXCQ": "How old are you?",
+        "2gmDyd4A5yOGxRuIFohB": "Have you lived in Canada for 10 years since age 18?"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 57724 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 5 } },
+          { "range": { "52BONWt6kVy3h4wnQnuz": { "lte": 14 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "8U2rl4Ha5GXBVqjNStudvzHIch",
+      "id": "A8Bm3s4wNR2FRLbtXOpAeyk7iQ",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "52BONWt6kVy3h4wnQnuz": "How old is your YOUNGEST child?",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 42658 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 2 } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": false } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "NMh2Fu1IG5XnpOf5b6zu2t1Hh6",
+      "id": "jd21iISy4WAliues3F09989wLd",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [{ "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 0 } } }]
+      }
+    },
+    "meta": {
+      "program_guid": "lIIalwNvet94JPIC7QhFDnHfxk",
+      "id": "Y4a8p6sBd2mYkoFmINq3D2buvx",
+      "questionTexts": {
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12."
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "U9Q4lMqhGSE0pKLoyGYf": false } },
+          { "term": { "S3LvVtaiIBcQZUvNn7Hn": true } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 65700 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 3 } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": false } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "tWucjcIELoF0O1Z0DksuXWDGY7",
+      "id": "3MfzEVBxlPFurd93NRsxWuPyVv",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "U9Q4lMqhGSE0pKLoyGYf": "I have a child with a disability",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?",
+        "S3LvVtaiIBcQZUvNn7Hn": "I have a disability"
+      }
+    }
+  },
+  {
+    "query": { "bool": { "must": [] } },
+    "meta": {
+      "program_guid": "LryMTwZFN6Dh6tuMhsFyZcopE8",
+      "id": "sMZTNZbNSb1QanPFLntKugnozm",
+      "questionTexts": {}
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 75000 } } },
+          { "term": { "kpdBh6jfLAPK6fFnGlyA": true } },
+          { "range": { "EVbsvHuXh8ul9x42AXCQ": { "gte": 65 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "KUpG0etZQ91lIlOmSGEVromWec",
+      "id": "CxPKeFIvt8wDqB2CwlfLcWbBGW",
+      "questionTexts": {
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "EVbsvHuXh8ul9x42AXCQ": "How old are you?",
+        "kpdBh6jfLAPK6fFnGlyA": "I need housing support"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "EVbsvHuXh8ul9x42AXCQ": { "lte": 65 } } },
+          { "term": { "S3LvVtaiIBcQZUvNn7Hn": true } },
+          { "term": { "QjN5nJJ1jqeUFiHg48XI": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "1lKYPN8nNaAMldGufGZNEwfjIK",
+      "id": "KEneBGtYLDQJ6yMk2cg34EBZdO",
+      "questionTexts": {
+        "EVbsvHuXh8ul9x42AXCQ": "How old are you?",
+        "S3LvVtaiIBcQZUvNn7Hn": "I have a disability",
+        "QjN5nJJ1jqeUFiHg48XI": "I need help to pay for basic needs (food, clothes, etc.)"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": { "must": [{ "term": { "SvFSpo9vkchY2mZkiY4p": true } }] }
+    },
+    "meta": {
+      "program_guid": "lIIalwNvet94JPIC7QhFDnHfxk",
+      "id": "b3xrzh0EfKncIhv1rNBgZobg1h",
+      "questionTexts": {
+        "SvFSpo9vkchY2mZkiY4p": "I am going to/planning to go to school"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "U9Q4lMqhGSE0pKLoyGYf": false } },
+          { "term": { "S3LvVtaiIBcQZUvNn7Hn": true } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 65700 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 2 } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "tWucjcIELoF0O1Z0DksuXWDGY7",
+      "id": "ExIUem1KBWT2JQxewDUYBBkZ7J",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "U9Q4lMqhGSE0pKLoyGYf": "I have a child with a disability",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?",
+        "S3LvVtaiIBcQZUvNn7Hn": "I have a disability"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [{ "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 25000 } } }]
+      }
+    },
+    "meta": {
+      "program_guid": "5b1J8A2fhE9cwVo9W5MfbLmuNr",
+      "id": "GRIQnmw3f7DVtK9KX9muH9qsa7",
+      "questionTexts": {
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12."
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "TjlDh3B3QWdZa0Id09Sq": true } },
+          { "range": { "EVbsvHuXh8ul9x42AXCQ": { "lt": 65 } } },
+          { "term": { "wPe0S0iQ23kToF7B2CJd": false } },
+          { "term": { "E9L05fKKsRFsNsfjaJ5U": false } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": false } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": false } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 16580 } } }
         ]
       }
     },
     "meta": {
       "program_guid": "hp5mupqcVY8ZMiKg7Q91Uoi4Wf",
-      "id": "vCYJSMCl8vxwkYKpU74Gcy1BVg"
+      "id": "JeXk8cOZnqJMepmHpxDqpsEXNE",
+      "questionTexts": {
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "EVbsvHuXh8ul9x42AXCQ": "How old are you?",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?",
+        "TjlDh3B3QWdZa0Id09Sq": "I have high ongoing drug costs or am pregnant",
+        "wPe0S0iQ23kToF7B2CJd": "AISH",
+        "E9L05fKKsRFsNsfjaJ5U": "Income Support/Alberta works"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [{ "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 25000 } } }]
+      }
+    },
+    "meta": {
+      "program_guid": "1lKYPN8nNaAMldGufGZNEwfjIK",
+      "id": "54yI9Tr3LZXzwqaj1cHobMlJXx",
+      "questionTexts": {
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12."
+      }
     }
   },
   {
     "query": {
       "bool": {
         "must": [
-          { "term": { "disability": true } },
-          { "term": { "children": false } },
-          { "term": { "spouse": false } },
-          { "range": { "grossincome": { "lte": 36900 } } }
+          { "term": { "WD8NTqY5cCOpEVsgdQNA": true } },
+          { "range": { "52BONWt6kVy3h4wnQnuz": { "lte": 0 } } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "K08iJHYVRGL5pBOomOvwa2zwX2",
+      "id": "Y81057maOOdbLbev0IhuVrV4P2",
+      "questionTexts": {
+        "52BONWt6kVy3h4wnQnuz": "How old is your YOUNGEST child?",
+        "WD8NTqY5cCOpEVsgdQNA": "A licensed day care (such as a Day Home, Child Care Center, or Preschool)",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "term": { "H6jpQAF6d4nAHxmxtrWv": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 93887 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 4 } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "OGR28icdrofstoYETvIGg19XAv",
+      "id": "L9kKtBGWqrOirVbXbC0nTmjaRH",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?",
+        "H6jpQAF6d4nAHxmxtrWv": "Employment"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "U9Q4lMqhGSE0pKLoyGYf": false } },
+          { "term": { "S3LvVtaiIBcQZUvNn7Hn": true } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 56100 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 1 } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": true } }
         ]
       }
     },
     "meta": {
       "program_guid": "tWucjcIELoF0O1Z0DksuXWDGY7",
-      "id": "X4yslFLYfBswm1k3yor6JkqNq8"
+      "id": "4cke52Yk05cxujAYjBX2CGhH2Q",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "U9Q4lMqhGSE0pKLoyGYf": "I have a child with a disability",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?",
+        "S3LvVtaiIBcQZUvNn7Hn": "I have a disability"
+      }
     }
   },
   {
     "query": {
       "bool": {
         "must": [
-          { "term": { "childdisability": true } },
-          { "term": { "children": true } },
-          { "term": { "numberchildren": 2 } },
-          { "term": { "spouse": true } },
-          { "range": { "grossincome": { "lte": 72831 } } }
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 42658 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 1 } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "NMh2Fu1IG5XnpOf5b6zu2t1Hh6",
+      "id": "9robErB58d4qSkR2t6LQIY4U8R",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "EVbsvHuXh8ul9x42AXCQ": { "lt": 65 } } },
+          { "term": { "wPe0S0iQ23kToF7B2CJd": false } },
+          { "term": { "E9L05fKKsRFsNsfjaJ5U": false } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": false } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "term": { "an2swDUmzfKa61MhdziL": 1 } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 26023 } } },
+          { "term": { "TjlDh3B3QWdZa0Id09Sq": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "hp5mupqcVY8ZMiKg7Q91Uoi4Wf",
+      "id": "d5NswIlUvzxY0AJ1hGm4eKQtS4",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "EVbsvHuXh8ul9x42AXCQ": "How old are you?",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?",
+        "TjlDh3B3QWdZa0Id09Sq": "I have high ongoing drug costs or am pregnant",
+        "wPe0S0iQ23kToF7B2CJd": "AISH",
+        "E9L05fKKsRFsNsfjaJ5U": "Income Support/Alberta works"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 42658 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 2 } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": false } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "NMh2Fu1IG5XnpOf5b6zu2t1Hh6",
+      "id": "pNvSKYDbKv3vy2P5f5Ilvxv0AI",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 45916 } } },
+          { "range": { "an2swDUmzfKa61MhdziL": { "lte": 3 } } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "range": { "52BONWt6kVy3h4wnQnuz": { "lte": 14 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "8U2rl4Ha5GXBVqjNStudvzHIch",
+      "id": "RMpreSSoH5aSclD5M0vqHmSJfA",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "52BONWt6kVy3h4wnQnuz": "How old is your YOUNGEST child?",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": { "must": [{ "term": { "S3LvVtaiIBcQZUvNn7Hn": true } }] }
+    },
+    "meta": {
+      "program_guid": "UbdhHxTUe3N5zm5BxR6WQ2i6vf",
+      "id": "mvvP8SJMN1KPtHvvlEJNNEV9lf",
+      "questionTexts": { "S3LvVtaiIBcQZUvNn7Hn": "I have a disability" }
+    }
+  },
+  {
+    "query": {
+      "bool": { "must": [{ "term": { "wPe0S0iQ23kToF7B2CJd": true } }] }
+    },
+    "meta": {
+      "program_guid": "NMh2Fu1IG5XnpOf5b6zu2t1Hh6",
+      "id": "wtsG52recnZwM8fdKMUkcddGuw",
+      "questionTexts": { "wPe0S0iQ23kToF7B2CJd": "AISH" }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "term": { "H6jpQAF6d4nAHxmxtrWv": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 61862 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 1 } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "OGR28icdrofstoYETvIGg19XAv",
+      "id": "HopZAkaJmU8eL4DMcXBih8yqYy",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?",
+        "H6jpQAF6d4nAHxmxtrWv": "Employment"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "term": { "t9LFzwOPeWiBbrew3cyS": true } },
+          { "range": { "52BONWt6kVy3h4wnQnuz": { "lte": 6 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "9dHBCUXa0z8tEZg6QcYMBJVXjf",
+      "id": "Sf1WxcGf3y2SPDbMFoVBj7KVHD",
+      "questionTexts": {
+        "52BONWt6kVy3h4wnQnuz": "How old is your YOUNGEST child?",
+        "t9LFzwOPeWiBbrew3cyS": "A parent who stays at home",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 38780 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 1 } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "7Vo9xE20WJJJ1ZORDlog1odyzo",
+      "id": "f4weE2JudZRlnG9wahhJ2ndO1t",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "U9Q4lMqhGSE0pKLoyGYf": true } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "term": { "S3LvVtaiIBcQZUvNn7Hn": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 63231 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 1 } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": true } }
         ]
       }
     },
     "meta": {
       "program_guid": "tWucjcIELoF0O1Z0DksuXWDGY7",
-      "id": "618CegwDyWX6WJ68XMhq6fSTQa"
+      "id": "qx1lI0mejS6oRWpZ8Xczdoetnk",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "U9Q4lMqhGSE0pKLoyGYf": "I have a child with a disability",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?",
+        "S3LvVtaiIBcQZUvNn7Hn": "I have a disability"
+      }
     }
   },
   {
     "query": {
       "bool": {
         "must": [
-          { "term": { "needincome": true } },
-          { "range": { "age": { "lt": 65 } } }
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 125696 } } },
+          { "term": { "2gmDyd4A5yOGxRuIFohB": true } },
+          { "range": { "EVbsvHuXh8ul9x42AXCQ": { "gte": 65 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "kc0ov01FtBgr88C5P6EE6lnC8s",
+      "id": "tPTosV87QQgSXtMzZ8SvwFtpZh",
+      "questionTexts": {
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "EVbsvHuXh8ul9x42AXCQ": "How old are you?",
+        "2gmDyd4A5yOGxRuIFohB": "Have you lived in Canada for 10 years since age 18?"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "U9Q4lMqhGSE0pKLoyGYf": false } },
+          { "term": { "S3LvVtaiIBcQZUvNn7Hn": true } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 84900 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 4 } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "tWucjcIELoF0O1Z0DksuXWDGY7",
+      "id": "K1CNrsxFdvpeEpmnynHBWRGzAM",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "U9Q4lMqhGSE0pKLoyGYf": "I have a child with a disability",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?",
+        "S3LvVtaiIBcQZUvNn7Hn": "I have a disability"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "H6jpQAF6d4nAHxmxtrWv": true } },
+          { "range": { "EVbsvHuXh8ul9x42AXCQ": { "gte": 19 } } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": false } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 19717 } } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": false } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "IO2YsSRkLCIZwIcYGjO6rNkxUE",
+      "id": "ClUhqtlSDOhzQTc7dlKvVwiWqI",
+      "questionTexts": {
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "EVbsvHuXh8ul9x42AXCQ": "How old are you?",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?",
+        "H6jpQAF6d4nAHxmxtrWv": "Employment"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "EVbsvHuXh8ul9x42AXCQ": { "gte": 65 } } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 44335 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "JIcpL1cap5Eg0ikPk2tecp6JG7",
+      "id": "keYjE3IbT8ApFlLq5KZrBSWqFt",
+      "questionTexts": {
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "EVbsvHuXh8ul9x42AXCQ": "How old are you?",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 26023 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 1 } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": false } },
+          { "term": { "E9L05fKKsRFsNsfjaJ5U": false } },
+          { "term": { "wPe0S0iQ23kToF7B2CJd": false } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "nQXxT1OMhPGbkqkPHc2QTpofRv",
+      "id": "kzak7zAzlYMGU6Ybo8aq8vNBLB",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?",
+        "wPe0S0iQ23kToF7B2CJd": "AISH",
+        "E9L05fKKsRFsNsfjaJ5U": "Income Support/Alberta works"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "U9Q4lMqhGSE0pKLoyGYf": true } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "term": { "S3LvVtaiIBcQZUvNn7Hn": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 63231 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 2 } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": false } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "tWucjcIELoF0O1Z0DksuXWDGY7",
+      "id": "Rgy6kpW6f1J81yDq6qGWsH5z7D",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "U9Q4lMqhGSE0pKLoyGYf": "I have a child with a disability",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?",
+        "S3LvVtaiIBcQZUvNn7Hn": "I have a disability"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "wPe0S0iQ23kToF7B2CJd": true } },
+          { "term": { "DTcDYBr3aQOZPyZV2MT7": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "EY1QV5T6AyB4Ykl2Lt1Nt9kf9g",
+      "id": "pQJWgFucOYJm8smzYYXUACu9pW",
+      "questionTexts": {
+        "DTcDYBr3aQOZPyZV2MT7": "Are you looking for recreation activities for your child or children?",
+        "wPe0S0iQ23kToF7B2CJd": "AISH"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": { "must": [{ "term": { "QjN5nJJ1jqeUFiHg48XI": true } }] }
+    },
+    "meta": {
+      "program_guid": "sgKMX0336kgepHbPeObRLOvcFL",
+      "id": "NyClavaCG0mCD2H7p7M0GLtF3f",
+      "questionTexts": {
+        "QjN5nJJ1jqeUFiHg48XI": "I need help to pay for basic needs (food, clothes, etc.)"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "EVbsvHuXh8ul9x42AXCQ": { "gte": 65 } } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 121314 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "zXRcJxGzIrwhmk5LTbE4jdwBMh",
+      "id": "yAModAKLjobHGmre56bNBxJSt6",
+      "questionTexts": {
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "EVbsvHuXh8ul9x42AXCQ": "How old are you?"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "EVbsvHuXh8ul9x42AXCQ": { "gte": 19 } } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "term": { "H6jpQAF6d4nAHxmxtrWv": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 27905 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "IO2YsSRkLCIZwIcYGjO6rNkxUE",
+      "id": "N14KVQlJdNI4rwotwESm2eYPkZ",
+      "questionTexts": {
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "EVbsvHuXh8ul9x42AXCQ": "How old are you?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?",
+        "H6jpQAF6d4nAHxmxtrWv": "Employment"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": { "must": [{ "term": { "S3LvVtaiIBcQZUvNn7Hn": true } }] }
+    },
+    "meta": {
+      "program_guid": "1f9ZToxQUx1exRYtqzhee209Hm",
+      "id": "JNaZ6GxLdbASckhNPoKYH4QyTV",
+      "questionTexts": { "S3LvVtaiIBcQZUvNn7Hn": "I have a disability" }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 58742 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 3 } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "NMh2Fu1IG5XnpOf5b6zu2t1Hh6",
+      "id": "tHY1Zz8gei180P4qoCyOipxS1t",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "U9Q4lMqhGSE0pKLoyGYf": true } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "term": { "S3LvVtaiIBcQZUvNn7Hn": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 82431 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 4 } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": false } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "tWucjcIELoF0O1Z0DksuXWDGY7",
+      "id": "0C7SDdW4Rhan9mnpgZ1ozDG2Sv",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "U9Q4lMqhGSE0pKLoyGYf": "I have a child with a disability",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?",
+        "S3LvVtaiIBcQZUvNn7Hn": "I have a disability"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "an2swDUmzfKa61MhdziL": { "gt": 0 } } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 42255 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "LryMTwZFN6Dh6tuMhsFyZcopE8",
+      "id": "BrVdQCpghzKVHySBMqJ5tWwQ9Y",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12."
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 51809 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 4 } },
+          { "range": { "52BONWt6kVy3h4wnQnuz": { "lte": 14 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "8U2rl4Ha5GXBVqjNStudvzHIch",
+      "id": "hAL9r2zsn6sYTXafeK6DeJiTFh",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "52BONWt6kVy3h4wnQnuz": "How old is your YOUNGEST child?",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 47084 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 3 } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": false } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "7Vo9xE20WJJJ1ZORDlog1odyzo",
+      "id": "6CN8TcM58spKxV8Hq9UGuzeBIy",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "wPe0S0iQ23kToF7B2CJd": false } },
+          { "term": { "E9L05fKKsRFsNsfjaJ5U": false } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "term": { "an2swDUmzfKa61MhdziL": 4 } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": false } },
+          { "range": { "EVbsvHuXh8ul9x42AXCQ": { "lt": 65 } } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 41957 } } },
+          { "term": { "TjlDh3B3QWdZa0Id09Sq": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "hp5mupqcVY8ZMiKg7Q91Uoi4Wf",
+      "id": "C8NZoL1Nf7VEgEC4VMFI9GlebN",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "EVbsvHuXh8ul9x42AXCQ": "How old are you?",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?",
+        "TjlDh3B3QWdZa0Id09Sq": "I have high ongoing drug costs or am pregnant",
+        "wPe0S0iQ23kToF7B2CJd": "AISH",
+        "E9L05fKKsRFsNsfjaJ5U": "Income Support/Alberta works"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": { "must": [{ "term": { "wPe0S0iQ23kToF7B2CJd": true } }] }
+    },
+    "meta": {
+      "program_guid": "7Vo9xE20WJJJ1ZORDlog1odyzo",
+      "id": "O4rVLf71g6jbMatH0vcyWGsGrA",
+      "questionTexts": { "wPe0S0iQ23kToF7B2CJd": "AISH" }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "QjN5nJJ1jqeUFiHg48XI": true } },
+          { "range": { "EVbsvHuXh8ul9x42AXCQ": { "gte": 65 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "bgUdObkiCIh0sgQB5019ZJZsl7",
+      "id": "qe0XjKMyMvC20sCmfkRtAeZmCp",
+      "questionTexts": {
+        "EVbsvHuXh8ul9x42AXCQ": "How old are you?",
+        "QjN5nJJ1jqeUFiHg48XI": "I need help to pay for basic needs (food, clothes, etc.)"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "H6jpQAF6d4nAHxmxtrWv": true } },
+          { "range": { "EVbsvHuXh8ul9x42AXCQ": { "gte": 19 } } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": false } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 27905 } } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "IO2YsSRkLCIZwIcYGjO6rNkxUE",
+      "id": "bYq0aS7uVHSkSuop8nWMJ02iRf",
+      "questionTexts": {
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "EVbsvHuXh8ul9x42AXCQ": "How old are you?",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?",
+        "H6jpQAF6d4nAHxmxtrWv": "Employment"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "EVbsvHuXh8ul9x42AXCQ": { "gte": 65 } } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 17544 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "Y5KEzulkwxviOuzB4Ny5QTzMGD",
+      "id": "ONzlceqOoECeHkELmgoFS6xC88",
+      "questionTexts": {
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "EVbsvHuXh8ul9x42AXCQ": "How old are you?"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 73761 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 6 } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": false } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "NMh2Fu1IG5XnpOf5b6zu2t1Hh6",
+      "id": "El4cNOnpJd05doIu5wZQwFq6Iw",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "QXHbrs8fUROUrTx492LI": true } },
+          { "range": { "EVbsvHuXh8ul9x42AXCQ": { "gte": 65 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "kc0ov01FtBgr88C5P6EE6lnC8s",
+      "id": "tgoJkviY6uoWeOMVnmovIClZb2",
+      "questionTexts": {
+        "EVbsvHuXh8ul9x42AXCQ": "How old are you?",
+        "QXHbrs8fUROUrTx492LI": "Old Age Security"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": false } },
+          { "term": { "an2swDUmzfKa61MhdziL": 3 } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lt": 36325 } } },
+          { "term": { "E9L05fKKsRFsNsfjaJ5U": false } },
+          { "term": { "wPe0S0iQ23kToF7B2CJd": false } },
+          { "range": { "EVbsvHuXh8ul9x42AXCQ": { "lt": 65 } } },
+          { "term": { "TjlDh3B3QWdZa0Id09Sq": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "hp5mupqcVY8ZMiKg7Q91Uoi4Wf",
+      "id": "fMwdx1jiAZUt09ALDer98GardT",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "EVbsvHuXh8ul9x42AXCQ": "How old are you?",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?",
+        "TjlDh3B3QWdZa0Id09Sq": "I have high ongoing drug costs or am pregnant",
+        "wPe0S0iQ23kToF7B2CJd": "AISH",
+        "E9L05fKKsRFsNsfjaJ5U": "Income Support/Alberta works"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "U9Q4lMqhGSE0pKLoyGYf": true } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "term": { "S3LvVtaiIBcQZUvNn7Hn": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 72831 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 3 } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": false } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "tWucjcIELoF0O1Z0DksuXWDGY7",
+      "id": "r1KKdNdsDw9moS8EmXHDZ74GP3",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "U9Q4lMqhGSE0pKLoyGYf": "I have a child with a disability",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?",
+        "S3LvVtaiIBcQZUvNn7Hn": "I have a disability"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 36634 } } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": true } },
+          { "term": { "an2swDUmzfKa61MhdziL": 2 } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "term": { "E9L05fKKsRFsNsfjaJ5U": false } },
+          { "term": { "wPe0S0iQ23kToF7B2CJd": false } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "nQXxT1OMhPGbkqkPHc2QTpofRv",
+      "id": "u8PLVx8TZjhCxSHy3ZIWXimoQT",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?",
+        "wPe0S0iQ23kToF7B2CJd": "AISH",
+        "E9L05fKKsRFsNsfjaJ5U": "Income Support/Alberta works"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 51792 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 2 } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "NMh2Fu1IG5XnpOf5b6zu2t1Hh6",
+      "id": "7hN1rEuVr2LAhi5e02TxvdT1AG",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "S3LvVtaiIBcQZUvNn7Hn": true } },
+          { "range": { "EVbsvHuXh8ul9x42AXCQ": { "lt": 65 } } },
+          { "term": { "H0u1Ugl4Ha1Cq9KQ3K9l": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "8Lqu2z4WCAP9w5sjhcAeOKuHN5",
+      "id": "cVyxm1ILkVg9fwxK53rvzvjorG",
+      "questionTexts": {
+        "EVbsvHuXh8ul9x42AXCQ": "How old are you?",
+        "S3LvVtaiIBcQZUvNn7Hn": "I have a disability",
+        "H0u1Ugl4Ha1Cq9KQ3K9l": "I have paid into the Canada Pension Plan (CPP) for 4 of the last 6 years"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 51792 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 3 } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": false } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "NMh2Fu1IG5XnpOf5b6zu2t1Hh6",
+      "id": "TJtJxLdBrs3r75Hmy0JYFFT7q6",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "EVbsvHuXh8ul9x42AXCQ": { "gte": 65 } } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": false } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 31675 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "1iXreywnofiF2jKKknlbKRXAtX",
+      "id": "sQGVNLcz9eYoJmi6Bg9jsCwCka",
+      "questionTexts": {
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "EVbsvHuXh8ul9x42AXCQ": "How old are you?",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "U9Q4lMqhGSE0pKLoyGYf": true } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "Jz15uGLGW9eeopL31U3lJ46LvB",
+      "id": "rRJam6zNQqiIH0EA1sYOkz6lAc",
+      "questionTexts": {
+        "U9Q4lMqhGSE0pKLoyGYf": "I have a child with a disability",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "U9Q4lMqhGSE0pKLoyGYf": true } },
+          { "term": { "S3LvVtaiIBcQZUvNn7Hn": true } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 56100 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 2 } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": false } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "tWucjcIELoF0O1Z0DksuXWDGY7",
+      "id": "eOM6pzxJGZubrXFb2u0LeSbHyy",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "U9Q4lMqhGSE0pKLoyGYf": "I have a child with a disability",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?",
+        "S3LvVtaiIBcQZUvNn7Hn": "I have a disability"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "wPe0S0iQ23kToF7B2CJd": false } },
+          { "term": { "E9L05fKKsRFsNsfjaJ5U": false } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "term": { "an2swDUmzfKa61MhdziL": 2 } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": true } },
+          { "range": { "EVbsvHuXh8ul9x42AXCQ": { "lt": 65 } } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 36634 } } },
+          { "term": { "TjlDh3B3QWdZa0Id09Sq": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "hp5mupqcVY8ZMiKg7Q91Uoi4Wf",
+      "id": "wgLgrNpNO6WYMjMSbiGiI4ABLt",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "EVbsvHuXh8ul9x42AXCQ": "How old are you?",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?",
+        "TjlDh3B3QWdZa0Id09Sq": "I have high ongoing drug costs or am pregnant",
+        "wPe0S0iQ23kToF7B2CJd": "AISH",
+        "E9L05fKKsRFsNsfjaJ5U": "Income Support/Alberta works"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": { "must": [{ "term": { "kpdBh6jfLAPK6fFnGlyA": true } }] }
+    },
+    "meta": {
+      "program_guid": "HiGYI2bhBoQ6n82R9ptoNZ0oaQ",
+      "id": "XlothlF68gZKt8bKOQ7m4UNXcj",
+      "questionTexts": { "kpdBh6jfLAPK6fFnGlyA": "I need housing support" }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [{ "range": { "hdPMbny6X0WNhwuiJiMt": { "gte": 0 } } }]
+      }
+    },
+    "meta": {
+      "program_guid": "GiufEa3ziFwfBEgkjI2gIlfNkk",
+      "id": "I0yNLlwkGykQneDL9RkfuTLSnL",
+      "questionTexts": {
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12."
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "U9Q4lMqhGSE0pKLoyGYf": true } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "term": { "S3LvVtaiIBcQZUvNn7Hn": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 82431 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 3 } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "tWucjcIELoF0O1Z0DksuXWDGY7",
+      "id": "jk054KZ7bMMimYHrDioQXurTD0",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "U9Q4lMqhGSE0pKLoyGYf": "I have a child with a disability",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?",
+        "S3LvVtaiIBcQZUvNn7Hn": "I have a disability"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "DTcDYBr3aQOZPyZV2MT7": true } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "eJYKjE0tT13d1kBH9WLbgETu58",
+      "id": "YKuN3Y2xsefH2LJnDiW65kDoIE",
+      "questionTexts": {
+        "DTcDYBr3aQOZPyZV2MT7": "Are you looking for recreation activities for your child or children?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 23212 } } },
+          { "term": { "E9L05fKKsRFsNsfjaJ5U": false } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": false } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": true } },
+          { "term": { "wPe0S0iQ23kToF7B2CJd": false } },
+          { "range": { "EVbsvHuXh8ul9x42AXCQ": { "lt": 65 } } },
+          { "term": { "TjlDh3B3QWdZa0Id09Sq": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "hp5mupqcVY8ZMiKg7Q91Uoi4Wf",
+      "id": "jzMQkEK41gnhmwWyxAuWF3eZ4d",
+      "questionTexts": {
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "EVbsvHuXh8ul9x42AXCQ": "How old are you?",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?",
+        "TjlDh3B3QWdZa0Id09Sq": "I have high ongoing drug costs or am pregnant",
+        "wPe0S0iQ23kToF7B2CJd": "AISH",
+        "E9L05fKKsRFsNsfjaJ5U": "Income Support/Alberta works"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": { "must": [{ "term": { "HVZbfiR8XkcSwJ2FFBNq": true } }] }
+    },
+    "meta": {
+      "program_guid": "7Vo9xE20WJJJ1ZORDlog1odyzo",
+      "id": "1jJJPlrmV6HTsE19OaJ4ooKedL",
+      "questionTexts": {
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "range": { "52BONWt6kVy3h4wnQnuz": { "lte": 16 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "oZ68OrZFpvkMMGHqV3CFELhuVY",
+      "id": "4JVTBXbPLXvh1pYGfcKQxh0F6q",
+      "questionTexts": {
+        "52BONWt6kVy3h4wnQnuz": "How old is your YOUNGEST child?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "U9Q4lMqhGSE0pKLoyGYf": true } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "term": { "S3LvVtaiIBcQZUvNn7Hn": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 73831 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 2 } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "tWucjcIELoF0O1Z0DksuXWDGY7",
+      "id": "iQYCSfCFTxeiycNulRdHbOMHGx",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "U9Q4lMqhGSE0pKLoyGYf": "I have a child with a disability",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?",
+        "S3LvVtaiIBcQZUvNn7Hn": "I have a disability"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 41594 } } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": true } },
+          { "term": { "an2swDUmzfKa61MhdziL": 3 } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "term": { "E9L05fKKsRFsNsfjaJ5U": false } },
+          { "term": { "wPe0S0iQ23kToF7B2CJd": false } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "nQXxT1OMhPGbkqkPHc2QTpofRv",
+      "id": "QgvZnzvcvmLHXva5317ItGGiVL",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?",
+        "wPe0S0iQ23kToF7B2CJd": "AISH",
+        "E9L05fKKsRFsNsfjaJ5U": "Income Support/Alberta works"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": false } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": false } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 27872 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "NMh2Fu1IG5XnpOf5b6zu2t1Hh6",
+      "id": "FoD1CvvPIYmBMSLzQbYvZa9fE0",
+      "questionTexts": {
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 73761 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 5 } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "NMh2Fu1IG5XnpOf5b6zu2t1Hh6",
+      "id": "E2wl1sjZ3laZKObxjjg6JYpsrP",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "term": { "H6jpQAF6d4nAHxmxtrWv": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 79662 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 2 } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "OGR28icdrofstoYETvIGg19XAv",
+      "id": "80L2rQHsz8ZdSvXIrI6UwpoZyA",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?",
+        "H6jpQAF6d4nAHxmxtrWv": "Employment"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 36325 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 3 } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": false } },
+          { "term": { "E9L05fKKsRFsNsfjaJ5U": false } },
+          { "term": { "wPe0S0iQ23kToF7B2CJd": false } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "nQXxT1OMhPGbkqkPHc2QTpofRv",
+      "id": "EJnCRCVLxUZOw4QnkO1Psd9B5y",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?",
+        "wPe0S0iQ23kToF7B2CJd": "AISH",
+        "E9L05fKKsRFsNsfjaJ5U": "Income Support/Alberta works"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [{ "range": { "EVbsvHuXh8ul9x42AXCQ": { "gte": 65 } } }]
+      }
+    },
+    "meta": {
+      "program_guid": "9rRXexrA3JzmXbFdKCmjtTj57l",
+      "id": "jUFsXz7O53LBU8ciTV0LvFC67g",
+      "questionTexts": { "EVbsvHuXh8ul9x42AXCQ": "How old are you?" }
+    }
+  },
+  {
+    "query": {
+      "bool": { "must": [{ "term": { "kpdBh6jfLAPK6fFnGlyA": true } }] }
+    },
+    "meta": {
+      "program_guid": "j1g5dV0buzXSZoNNHborFuLIko",
+      "id": "TaSCxCexrJBl4Csn3jV5m9lkQv",
+      "questionTexts": { "kpdBh6jfLAPK6fFnGlyA": "I need housing support" }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "S3LvVtaiIBcQZUvNn7Hn": true } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 84900 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 5 } },
+          { "term": { "U9Q4lMqhGSE0pKLoyGYf": false } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "tWucjcIELoF0O1Z0DksuXWDGY7",
+      "id": "0worz3ScGBmpheR8bVz3fQFaCw",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "U9Q4lMqhGSE0pKLoyGYf": "I have a child with a disability",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?",
+        "S3LvVtaiIBcQZUvNn7Hn": "I have a disability"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [{ "range": { "EVbsvHuXh8ul9x42AXCQ": { "gte": 65 } } }]
+      }
+    },
+    "meta": {
+      "program_guid": "ELKEEgllSRMnkqoHN8N2Ufmxaw",
+      "id": "50Bsj7XVyeeUozuLAJ9dA61JYM",
+      "questionTexts": { "EVbsvHuXh8ul9x42AXCQ": "How old are you?" }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "U9Q4lMqhGSE0pKLoyGYf": true } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "term": { "S3LvVtaiIBcQZUvNn7Hn": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 92031 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 5 } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "tWucjcIELoF0O1Z0DksuXWDGY7",
+      "id": "Cq7owRGKxcmE0uBozbAhT5hqQ4",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "U9Q4lMqhGSE0pKLoyGYf": "I have a child with a disability",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?",
+        "S3LvVtaiIBcQZUvNn7Hn": "I have a disability"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 69556 } } },
+          { "range": { "an2swDUmzfKa61MhdziL": { "gte": 7 } } },
+          { "range": { "52BONWt6kVy3h4wnQnuz": { "lte": 14 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "8U2rl4Ha5GXBVqjNStudvzHIch",
+      "id": "bkZsB751Q3CEmmjL9SrtLoggH0",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "52BONWt6kVy3h4wnQnuz": "How old is your YOUNGEST child?",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "EVbsvHuXh8ul9x42AXCQ": { "gte": 65 } } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": false } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 27300 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "JIcpL1cap5Eg0ikPk2tecp6JG7",
+      "id": "y5tht3PDqR4H7ybpsjJIrJIMS5",
+      "questionTexts": {
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "EVbsvHuXh8ul9x42AXCQ": "How old are you?",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "wPe0S0iQ23kToF7B2CJd": false } },
+          { "term": { "E9L05fKKsRFsNsfjaJ5U": false } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "term": { "an2swDUmzfKa61MhdziL": 1 } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": true } },
+          { "range": { "EVbsvHuXh8ul9x42AXCQ": { "lt": 65 } } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 31237 } } },
+          { "term": { "TjlDh3B3QWdZa0Id09Sq": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "hp5mupqcVY8ZMiKg7Q91Uoi4Wf",
+      "id": "qZyokzKnpIw3Ue6mdTi8je3knK",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "EVbsvHuXh8ul9x42AXCQ": "How old are you?",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?",
+        "TjlDh3B3QWdZa0Id09Sq": "I have high ongoing drug costs or am pregnant",
+        "wPe0S0iQ23kToF7B2CJd": "AISH",
+        "E9L05fKKsRFsNsfjaJ5U": "Income Support/Alberta works"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "U9Q4lMqhGSE0pKLoyGYf": true } },
+          { "term": { "S3LvVtaiIBcQZUvNn7Hn": true } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 46500 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 1 } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": false } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "tWucjcIELoF0O1Z0DksuXWDGY7",
+      "id": "OfMsrGSFiOUBNzZ43ecbPJ8r8E",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "U9Q4lMqhGSE0pKLoyGYf": "I have a child with a disability",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?",
+        "S3LvVtaiIBcQZUvNn7Hn": "I have a disability"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 67055 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 6 } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": false } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "7Vo9xE20WJJJ1ZORDlog1odyzo",
+      "id": "xtatS4Qu1QXIl8UCo5A0Z0vBx0",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": false } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "term": { "an2swDUmzfKa61MhdziL": 5 } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 60228 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "7Vo9xE20WJJJ1ZORDlog1odyzo",
+      "id": "TOtVtHlSCsjY633nt7atrzcqnr",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 75000 } } },
+          { "range": { "EVbsvHuXh8ul9x42AXCQ": { "gte": 65 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "KUpG0etZQ91lIlOmSGEVromWec",
+      "id": "KhPpzFR678bkS6wLZ2hHXFWXTr",
+      "questionTexts": {
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "EVbsvHuXh8ul9x42AXCQ": "How old are you?"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": { "must": [{ "term": { "HVZbfiR8XkcSwJ2FFBNq": true } }] }
+    },
+    "meta": {
+      "program_guid": "ZPNzWEr5XfUq5aYdy2bSYIKO5T",
+      "id": "a53Yp7GXjvBX7dM7rDOH1Cr5Vp",
+      "questionTexts": {
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": false } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 25338 } } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": false } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "7Vo9xE20WJJJ1ZORDlog1odyzo",
+      "id": "Mb12f1w3DlUsmIdTV9b4WxKkDn",
+      "questionTexts": {
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": { "must": [{ "term": { "SvFSpo9vkchY2mZkiY4p": true } }] }
+    },
+    "meta": {
+      "program_guid": "tNGy4XadOixXFFaxRRTKe8dqNs",
+      "id": "QR9DUYgL21jCXDg5MzWZvvP6xb",
+      "questionTexts": {
+        "SvFSpo9vkchY2mZkiY4p": "I am going to/planning to go to school"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "an2swDUmzfKa61MhdziL": 2 } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 31010 } } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "term": { "E9L05fKKsRFsNsfjaJ5U": false } },
+          { "term": { "wPe0S0iQ23kToF7B2CJd": false } },
+          { "range": { "EVbsvHuXh8ul9x42AXCQ": { "lt": 65 } } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": false } },
+          { "term": { "TjlDh3B3QWdZa0Id09Sq": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "hp5mupqcVY8ZMiKg7Q91Uoi4Wf",
+      "id": "jI1HlTlpbULsSVUmHnYi3ZlVJ7",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "EVbsvHuXh8ul9x42AXCQ": "How old are you?",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?",
+        "TjlDh3B3QWdZa0Id09Sq": "I have high ongoing drug costs or am pregnant",
+        "wPe0S0iQ23kToF7B2CJd": "AISH",
+        "E9L05fKKsRFsNsfjaJ5U": "Income Support/Alberta works"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 53402 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 4 } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": false } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "7Vo9xE20WJJJ1ZORDlog1odyzo",
+      "id": "oDGVUIxH26ETOm255vsmqQnI67",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 65975 } } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "term": { "U9Q4lMqhGSE0pKLoyGYf": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "V3eKEkg2SL4UTFOGd0dvcd2zEO",
+      "id": "fivWjDtl3WS5c01BxuqwTAIx6U",
+      "questionTexts": {
+        "U9Q4lMqhGSE0pKLoyGYf": "I have a child with a disability",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 60228 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 4 } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "7Vo9xE20WJJJ1ZORDlog1odyzo",
+      "id": "EEAACgK1aR7vpxK394XYdRxg4u",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 34698 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 2 } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": false } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "NMh2Fu1IG5XnpOf5b6zu2t1Hh6",
+      "id": "2DygTlM5lPIud35JIZQwyU3q7j",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "range": { "52BONWt6kVy3h4wnQnuz": { "lt": 12 } } },
+          { "term": { "j1qAUIGZsErQNFaijXAG": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "iHPbkwKFsck9ZLnMePKSj5e5mz",
+      "id": "ByilvC7F37RdSm1aTcw3xa1gYm",
+      "questionTexts": {
+        "52BONWt6kVy3h4wnQnuz": "How old is your YOUNGEST child?",
+        "j1qAUIGZsErQNFaijXAG": "A relative who does not live in your home",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": false } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 34698 } } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "NMh2Fu1IG5XnpOf5b6zu2t1Hh6",
+      "id": "uOXY50WcrwVDyouA4RFTHvuvT5",
+      "questionTexts": {
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "S3LvVtaiIBcQZUvNn7Hn": true } },
+          { "range": { "EVbsvHuXh8ul9x42AXCQ": { "lt": 60 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "BcKJhMTErAsHfXq1jzealos8kp",
+      "id": "oPJF9HPPCmFY09o4IpmiDsjVJx",
+      "questionTexts": {
+        "EVbsvHuXh8ul9x42AXCQ": "How old are you?",
+        "S3LvVtaiIBcQZUvNn7Hn": "I have a disability"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 67055 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 5 } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "7Vo9xE20WJJJ1ZORDlog1odyzo",
+      "id": "gvBBvqvbNfT6Yx5w6o6mqigVu7",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "U9Q4lMqhGSE0pKLoyGYf": false } },
+          { "term": { "S3LvVtaiIBcQZUvNn7Hn": true } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 94500 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 5 } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "tWucjcIELoF0O1Z0DksuXWDGY7",
+      "id": "4gsT0MkXsxTAzOoBLZ2I3TVHIj",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "U9Q4lMqhGSE0pKLoyGYf": "I have a child with a disability",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?",
+        "S3LvVtaiIBcQZUvNn7Hn": "I have a disability"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": { "must": [{ "term": { "S3LvVtaiIBcQZUvNn7Hn": true } }] }
+    },
+    "meta": {
+      "program_guid": "7OFwDmSwGTZO5J3PeLQ85sxLZn",
+      "id": "57BLZGbVfESOueJaehzRz4gzDr",
+      "questionTexts": { "S3LvVtaiIBcQZUvNn7Hn": "I have a disability" }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "U9Q4lMqhGSE0pKLoyGYf": false } },
+          { "term": { "S3LvVtaiIBcQZUvNn7Hn": true } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 75300 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 4 } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": false } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "tWucjcIELoF0O1Z0DksuXWDGY7",
+      "id": "SyFB3N8esp4HHtQTPRdjIUkTMi",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "U9Q4lMqhGSE0pKLoyGYf": "I have a child with a disability",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?",
+        "S3LvVtaiIBcQZUvNn7Hn": "I have a disability"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [{ "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 75000 } } }]
+      }
+    },
+    "meta": {
+      "program_guid": "rQd4Jr6lwSYXxRlfN0QwEbCJTX",
+      "id": "ObWWW9PyLlKJG51pEVcnVo9Ua5",
+      "questionTexts": {
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12."
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "EVbsvHuXh8ul9x42AXCQ": { "gte": 65 } } },
+          { "term": { "2gmDyd4A5yOGxRuIFohB": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "zXRcJxGzIrwhmk5LTbE4jdwBMh",
+      "id": "hv8H2EMOT6sD9kofHb5IkVX3pk",
+      "questionTexts": {
+        "EVbsvHuXh8ul9x42AXCQ": "How old are you?",
+        "2gmDyd4A5yOGxRuIFohB": "Have you lived in Canada for 10 years since age 18?"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "S3LvVtaiIBcQZUvNn7Hn": true } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": false } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": false } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 36900 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "tWucjcIELoF0O1Z0DksuXWDGY7",
+      "id": "X4yslFLYfBswm1k3yor6JkqNq8",
+      "questionTexts": {
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?",
+        "S3LvVtaiIBcQZUvNn7Hn": "I have a disability"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "QjN5nJJ1jqeUFiHg48XI": true } },
+          { "range": { "EVbsvHuXh8ul9x42AXCQ": { "lt": 65 } } }
         ]
       }
     },
     "meta": {
       "program_guid": "5b1J8A2fhE9cwVo9W5MfbLmuNr",
-      "id": "qxMUO1178ntx3Y5AhOTDcxWAjy"
+      "id": "qxMUO1178ntx3Y5AhOTDcxWAjy",
+      "questionTexts": {
+        "EVbsvHuXh8ul9x42AXCQ": "How old are you?",
+        "QjN5nJJ1jqeUFiHg48XI": "I need help to pay for basic needs (food, clothes, etc.)"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 34544 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 1 } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": false } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "7Vo9xE20WJJJ1ZORDlog1odyzo",
+      "id": "rzSu9iVovCj2TALDSNgHRN0E5l",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": { "must": [{ "term": { "E9L05fKKsRFsNsfjaJ5U": true } }] }
+    },
+    "meta": {
+      "program_guid": "sgKMX0336kgepHbPeObRLOvcFL",
+      "id": "oJZN5FvcBDDv8T8l8cexXws48r",
+      "questionTexts": {
+        "E9L05fKKsRFsNsfjaJ5U": "Income Support/Alberta works"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "an2swDUmzfKa61MhdziL": { "gt": 0 } } },
+          { "term": { "H6jpQAF6d4nAHxmxtrWv": false } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "LryMTwZFN6Dh6tuMhsFyZcopE8",
+      "id": "sBT8TXgQaBp6DOIerjhGDGD2F4",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "H6jpQAF6d4nAHxmxtrWv": "Employment"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 58742 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 4 } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": false } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "NMh2Fu1IG5XnpOf5b6zu2t1Hh6",
+      "id": "SAz1ivFZyuG2Ud4TsNx2dVbFod",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "U9Q4lMqhGSE0pKLoyGYf": true } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "term": { "S3LvVtaiIBcQZUvNn7Hn": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 92031 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 5 } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": false } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "tWucjcIELoF0O1Z0DksuXWDGY7",
+      "id": "jTnHh9TyN4amGTYVnOclqaqkT9",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "U9Q4lMqhGSE0pKLoyGYf": "I have a child with a disability",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?",
+        "S3LvVtaiIBcQZUvNn7Hn": "I have a disability"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "range": { "EVbsvHuXh8ul9x42AXCQ": { "lt": 65 } } },
+          { "term": { "wPe0S0iQ23kToF7B2CJd": false } },
+          { "term": { "E9L05fKKsRFsNsfjaJ5U": false } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 41957 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 4 } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": false } },
+          { "term": { "TjlDh3B3QWdZa0Id09Sq": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "hp5mupqcVY8ZMiKg7Q91Uoi4Wf",
+      "id": "NOyR66aE30dJYXgdHJ2CvGLpnx",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "EVbsvHuXh8ul9x42AXCQ": "How old are you?",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?",
+        "TjlDh3B3QWdZa0Id09Sq": "I have high ongoing drug costs or am pregnant",
+        "wPe0S0iQ23kToF7B2CJd": "AISH",
+        "E9L05fKKsRFsNsfjaJ5U": "Income Support/Alberta works"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": true } },
+          { "term": { "an2swDUmzfKa61MhdziL": 2 } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 47084 } } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "7Vo9xE20WJJJ1ZORDlog1odyzo",
+      "id": "7Iy2wNKiwYmwCVfsHMml0BkxJn",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "E9L05fKKsRFsNsfjaJ5U": false } },
+          { "term": { "wPe0S0iQ23kToF7B2CJd": false } },
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "term": { "an2swDUmzfKa61MhdziL": 3 } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": true } },
+          { "range": { "EVbsvHuXh8ul9x42AXCQ": { "lt": 65 } } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 41594 } } },
+          { "term": { "TjlDh3B3QWdZa0Id09Sq": true } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "hp5mupqcVY8ZMiKg7Q91Uoi4Wf",
+      "id": "vCYJSMCl8vxwkYKpU74Gcy1BVg",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "EVbsvHuXh8ul9x42AXCQ": "How old are you?",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?",
+        "TjlDh3B3QWdZa0Id09Sq": "I have high ongoing drug costs or am pregnant",
+        "wPe0S0iQ23kToF7B2CJd": "AISH",
+        "E9L05fKKsRFsNsfjaJ5U": "Income Support/Alberta works"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "kpdBh6jfLAPK6fFnGlyA": true } },
+          { "term": { "QjN5nJJ1jqeUFiHg48XI": true } },
+          { "range": { "EVbsvHuXh8ul9x42AXCQ": { "gte": 65 } } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "bgUdObkiCIh0sgQB5019ZJZsl7",
+      "id": "Yw8AaVYkj1cXj8q4JnEiEQxZRl",
+      "questionTexts": {
+        "EVbsvHuXh8ul9x42AXCQ": "How old are you?",
+        "QjN5nJJ1jqeUFiHg48XI": "I need help to pay for basic needs (food, clothes, etc.)",
+        "kpdBh6jfLAPK6fFnGlyA": "I need housing support"
+      }
+    }
+  },
+  {
+    "query": {
+      "bool": {
+        "must": [
+          { "term": { "HVZbfiR8XkcSwJ2FFBNq": true } },
+          { "range": { "hdPMbny6X0WNhwuiJiMt": { "lte": 66251 } } },
+          { "term": { "an2swDUmzfKa61MhdziL": 5 } },
+          { "term": { "VIXBl1tiUyAx8EPuZrzk": false } }
+        ]
+      }
+    },
+    "meta": {
+      "program_guid": "NMh2Fu1IG5XnpOf5b6zu2t1Hh6",
+      "id": "yHPfNpoY0MdLPjIAugVoCnwIxK",
+      "questionTexts": {
+        "an2swDUmzfKa61MhdziL": "How many children do you have under 18?",
+        "hdPMbny6X0WNhwuiJiMt": "What is your Household's Total or Gross yearly income? (check line 150 of your tax return) Option: If you don't know your gross income, multiply your monthly income by 12.",
+        "VIXBl1tiUyAx8EPuZrzk": "Do you have a spouse or common-law partner?",
+        "HVZbfiR8XkcSwJ2FFBNq": "Do you have children under the age of 18 living with you?"
+      }
     }
   }
 ]

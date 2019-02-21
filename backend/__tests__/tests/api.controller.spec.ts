@@ -62,12 +62,12 @@ describe('/api', () => {
 
   it(`POST /notification -- returns programs`, () => {
     const data = {
-      "aish": false,
-      "albertaworks": false,
-      "spouse": false,
-      "children": true,
-      "numberchildren": 1,
-      "grossincome": 10000
+      "wPe0S0iQ23kToF7B2CJd": false,
+      "E9L05fKKsRFsNsfjaJ5U": false,
+      "VIXBl1tiUyAx8EPuZrzk": false,
+      "HVZbfiR8XkcSwJ2FFBNq": true,
+      "an2swDUmzfKa61MhdziL": 1,
+      "hdPMbny6X0WNhwuiJiMt": 10000
     };
 
     let res = request(app.getHttpServer())

@@ -10,14 +10,9 @@ import { ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms'
 import { StoreModule } from '@ngrx/store';
 import * as fromRoot from '../../reducer';
 import * as fromScreener from '../store/screener-reducer';
-import * as fromKeys from '../../keys/reducer';
 
 
 const questionOne = new FormGroup({
-  key: new FormGroup({
-    name: new FormControl('boolean_key'),
-    type: new FormControl('boolean')
-  }),
   label: new FormControl('question label'),
   controlType: new FormControl('Toggle'),
   id: new FormControl('fake_id'),
@@ -37,10 +32,6 @@ const screenerState: fromScreener.State  = {
   error: '',
   selectedConstantQuestion: 'fake_id',
   selectedConditionalQuestion: undefined,
-  keys: [
-    {name: 'boolean_key', type: 'boolean'},
-    {name: 'integer_key', type: 'integer'}
-  ],
   created: 0
 };
 

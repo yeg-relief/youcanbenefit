@@ -1,11 +1,11 @@
 <mat-card style="background-color: lightyellow;">
     <form novalidate [formGroup]="form">
 
-        <section [ngSwitch]="question.controlType">
+        <section [ngSwitch]="screenerQuestion.controlType">
 
             <div *ngSwitchCase="'NumberInput'">
 
-                <mat-card-title> {{ question.label }} </mat-card-title>
+                <mat-card-title> {{ screenerQuestion.label }} </mat-card-title>
 
                 <div class="py1"></div>
                 <mat-form-field>
@@ -13,7 +13,7 @@
                         type="number"
                         matInput
                         (input)="handleInput($event.target.value)"
-                        [formControlName]="question.key"
+                        [formControlName]="screenerQuestion.id"
                         placeholder="answer"
                         (keypress)="checkEnter($event)"
                     />
@@ -25,8 +25,8 @@
             </div>
 
             <div *ngSwitchCase="'Toggle'">
-                <mat-card-title> {{ question.label }} </mat-card-title>
-                <mat-button-toggle-group [formControlName]="question.key">
+                <mat-card-title> {{ screenerQuestion.label }} </mat-card-title>
+                <mat-button-toggle-group [formControlName]="screenerQuestion.id">
                     <mat-button-toggle value="true">
                         yes
                     </mat-button-toggle>
@@ -38,24 +38,24 @@
 
 
             <div *ngSwitchCase="'NumberSelect'" placeholder="select an option">
-                <mat-card-title> {{ question.label }} </mat-card-title>
-                <mat-select [formControlName]="question.key" placeholder="select an option">
+                <mat-card-title> {{ screenerQuestion.label }} </mat-card-title>
+                <mat-select [formControlName]="screenerQuestion.id" placeholder="select an option">
                    <!-- <mat-option selected disabled [value]="null"> Select an option </mat-option> -->
-                    <mat-option *ngFor="let option of question.options" [value]="option"> {{ option }} </mat-option>
+                    <mat-option *ngFor="let option of screenerQuestion.options" [value]="option"> {{ option }} </mat-option>
                 </mat-select>
             </div>
 
             <div *ngSwitchCase="'Multiselect'" class="multi-select">
-                <mat-card-title> {{ question.label }} </mat-card-title>
+                <mat-card-title> {{ screenerQuestion.label }} </mat-card-title>
                 <mat-list>
-                    <mat-list-item class="multi-select-option" *ngFor="let q of question.multiSelectOptions">
-                        <mat-checkbox class="multi-select-checkbox" [formControlName]="q.key.name"></mat-checkbox>
-                        {{ q.text }}
+                    <mat-list-item class="multi-select-option" *ngFor="let question of screenerQuestion.multiSelectOptions">
+                        <mat-checkbox class="multi-select-checkbox" [formControlName]="question.id"></mat-checkbox>
+                        {{ question.text }}
                     </mat-list-item>
                 </mat-list>
             </div>
 
-            <div *ngSwitchDefault> <strong> {{ question.controlType }} is invalid </strong> </div>
+            <div *ngSwitchDefault> <strong> {{ screenerQuestion.controlType }} is invalid </strong> </div>
         </section>
     </form>
 
@@ -66,7 +66,7 @@
     >
         <app-ycb-question
             *ngFor="let expandableQuestion of conditionalQuestions"
-            [question]="expandableQuestion"
+            [screenerQuestion]="expandableQuestion"
             [form]="form">
         </app-ycb-question>
     </div>

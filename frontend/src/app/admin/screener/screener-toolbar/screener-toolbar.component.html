@@ -1,4 +1,4 @@
-<mat-card style="height: 25vh;" *ngIf="form$ | async; let form">
+<mat-card style="height: 18vh;" *ngIf="form$ | async; let form">
    <mat-card-title> Screener Edit </mat-card-title>
   <div class="flex flex-justify">
     <section>
@@ -7,24 +7,13 @@
     
     <section class="flex flex-column flex-justify flex-stretch">
 
-      <button [disabled]="form.form.invalid" style="width: 10vw; height: 5vh" (click)="handleSave()" mat-raised-button color="primary"> SAVE </button>
+      <button [disabled]="form.form.invalid" style="width: 10vw; height: 5vh; margin-right: 0.5vw" (click)="handleSave()" mat-raised-button color="primary"> SAVE </button>
       
       <button [attr.disabled]="form.form.invalid" 
               style="width: 10vw; height: 5vh; margin-top: 1em;" 
               routerLink= "/admin/screener/preview"
               mat-raised-button color="primary"> PREVIEW </button>
-
     </section>
     
-  </div>
-  <div [formGroup]="adminControls" style="width: 40vw">
-    <mat-form-field style="width: 70%">
-      <input type="text" matInput formControlName="keyFilter" placeholder="filter by key name" [matAutocomplete]="auto">
-    </mat-form-field>
-    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFunction" style="width: 70%">
-      <mat-option *ngFor="let key of (allKeys$ | async)" [value]="key" >
-          {{ key?.name }}
-      </mat-option>
-    </mat-autocomplete>
   </div>
 </mat-card>

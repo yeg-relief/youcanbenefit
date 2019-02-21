@@ -10,13 +10,13 @@
 
 <main *ngIf="!loading" [@flyinHalf]>
     <div *ngIf="errorMessage" class="center"> <strong>{{errorMessage}} </strong></div>
-    <form novalidate (ngSubmit)="onSubmit()" [formGroup]="form" *ngIf="errorMessage.length === 0 && questions.length > 0">
+    <form novalidate (ngSubmit)="onSubmit()" [formGroup]="form" *ngIf="errorMessage.length === 0 && screenerQuestions.length > 0">
 
         <div class="questions">
             <app-ycb-question
-                *ngFor="let question of questions"
-                [question]="question"
-                [conditionalQuestions]="gatherConditionals(question)"
+                *ngFor="let screenerQuestion of screenerQuestions"
+                [screenerQuestion]="screenerQuestion"
+                [conditionalQuestions]="gatherConditionals(screenerQuestion)"
                 [form]="form"
                 (onExpand)="addControls($event)"
                 (onHide)="removeControls($event)">
@@ -36,7 +36,7 @@
 
 
     </form>
-    <div class="center" *ngIf="errorMessage.length === 0 && questions.length === 0"><strong>There are no questions available</strong></div>
+    <div class="center" *ngIf="errorMessage.length === 0 && screenerQuestions.length === 0"><strong>There are no questions available</strong></div>
 </main>
 
 <div *ngIf="loading">

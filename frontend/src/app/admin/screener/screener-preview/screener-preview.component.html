@@ -1,7 +1,7 @@
 <div *ngIf="(form | async) !== undefined">
-  <div *ngFor="let question of questions" class="clearfix flex">
+  <div *ngFor="let screenerQuestion of screenerQuestions" class="clearfix flex">
     <div class="questions">
-      <app-ycb-question [question]="question" [conditionalQuestions]="gatherConditionals(question)" [form]="(form | async)" (onExpand)="addControls($event)"
+      <app-ycb-question [screenerQuestion]="screenerQuestion" [conditionalQuestions]="gatherConditionals(screenerQuestion)" [form]="(form | async)" (onExpand)="addControls($event)"
         (onHide)="removeControls($event)"></app-ycb-question>
     </div>
   </div>

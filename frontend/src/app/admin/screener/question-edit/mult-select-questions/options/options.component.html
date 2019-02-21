@@ -1,10 +1,9 @@
 <mat-list>
     <mat-list-item *ngFor="let option of options">
-        <p mat-line>text: {{ option.text }}</p>
-        <p mat-line>key name: {{ option.key.name }}</p>
+        <p mat-line>{{ option.text }}</p>
         <div mat-line class="controls">
-            <button mat-raised-button color="warn" (click)="delete.emit(option.key.name)">delete</button>
-            <button mat-raised-button color="accent" (click)="edit.emit(option.key.name)" >edit</button>
+            <button mat-raised-button color="warn" (click)="delete.emit(option.id)">delete</button>
+            <button mat-raised-button color="accent" (click)="edit.emit(option.id)" >edit</button>
         </div>
     </mat-list-item>
 </mat-list>

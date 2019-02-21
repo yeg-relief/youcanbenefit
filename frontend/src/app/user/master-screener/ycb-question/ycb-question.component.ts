@@ -43,7 +43,7 @@ import {
     ]
 })
 export class YcbQuestionComponent implements OnInit, OnDestroy {
-    @Input() question;
+    @Input() screenerQuestion;
     @Input() form: FormGroup;
     @Input() conditionalQuestions;
     @Output() onExpand = new EventEmitter<any>();
@@ -58,7 +58,7 @@ export class YcbQuestionComponent implements OnInit, OnDestroy {
     ngOnInit() {
 
         if (this.isExpandableQuestion()) {
-            const change = this.form.get(this.question.key).valueChanges
+            const change = this.form.get(this.screenerQuestion.id).valueChanges
                 .pipe(
                     filter(value => typeof value === 'string' && (value === 'true' || value === 'false')),
                     map(val => val === 'true'),
@@ -70,14 +70,14 @@ export class YcbQuestionComponent implements OnInit, OnDestroy {
 
             const expand = change.pipe(
                 filter(value => value === true),
-                tap(_ => this.onExpand.emit({id: this.question.id, conditionals: this.question.conditionalQuestions})),
+                tap(_ => this.onExpand.emit({id: this.screenerQuestion.id, conditionals: this.screenerQuestion.conditionalQuestions})),
                 tap(_ => this.expand !== 'expanded' ? this.expand = 'expanded' : null)
             );
                 
 
             const hide = change.pipe(
                 filter(val => val === false),
-                tap(_ => this.onHide.emit({id: this.question.id, conditionals: this.question.conditionalQuestions})),
+                tap(_ => this.onHide.emit({id: this.screenerQuestion.id, conditionals: this.screenerQuestion.conditionalQuestions})),
                 tap(_ => this.expand !== 'collapsed' ? this.expand = 'collapsed' : null)
             );
 
@@ -89,12 +89,12 @@ export class YcbQuestionComponent implements OnInit, OnDestroy {
             this.subscriptions = [...this.subscriptions, merged];
 
         } else if (this.isNumberSelect()) {
-            this.question.options.sort( (a, b) => a > b);
+            this.screenerQuestion.options.sort( (a, b) => a > b);
         } else if (this.isMultiSelect()) {
-            const keys = this.question.multiSelectOptions.map(o => o.key.name);
-            keys.forEach(keyName => {
-                if (this.form.get(keyName)){
-                    this.form.get(keyName).setValue(false);
+            const questions = this.screenerQuestion.multiSelectOptions.map(q => q.id);
+            questions.forEach(id => {
+                if (this.form.get(id)){
+                    this.form.get(id).setValue(false);
                 }
             });
         }
@@ -115,9 +115,9 @@ export class YcbQuestionComponent implements OnInit, OnDestroy {
     }
 
     isExpandableQuestion() {
-        return this.question.expandable &&
-            Array.isArray(this.question.conditionalQuestions) &&
-            this.question.conditionalQuestions.length > 0;
+        return this.screenerQuestion.expandable &&
+            Array.isArray(this.screenerQuestion.conditionalQuestions) &&
+            this.screenerQuestion.conditionalQuestions.length > 0;
     }
 
     isNumberSelect() {
@@ -129,11 +129,11 @@ export class YcbQuestionComponent implements OnInit, OnDestroy {
         };
 
 
-        return Array.isArray(this.question.options) && this.question.options.length > 0 && allNumbers(this.question.options);
+        return Array.isArray(this.screenerQuestion.options) && this.screenerQuestion.options.length > 0 && allNumbers(this.screenerQuestion.options);
     }
 
     isMultiSelect() {
-        return Array.isArray(this.question.multiSelectOptions) && this.question.multiSelectOptions.length > 0;
+        return Array.isArray(this.screenerQuestion.multiSelectOptions) && this.screenerQuestion.multiSelectOptions.length > 0;
     }
 
     checkEnter(keyDownEvent) {
@@ -142,12 +142,12 @@ export class YcbQuestionComponent implements OnInit, OnDestroy {
     }
 
     handleInput(textInput: string) {
-        const isValid = this.form.get(this.question.key).valid;
+        const isValid = this.form.get(this.screenerQuestion.id).valid;
 
         if (!isValid) {
             this.addError();
-        } else if (isValid && this.form.hasError('invalid input', [this.question.key, 'number'])) {
-            console.warn(`form has error on key: ${this.question.key}, but the form says it is valid: ${isValid}`);
+        } else if (isValid && this.form.hasError('invalid input', [this.screenerQuestion.text, 'number'])) {
+            console.warn(`form has error on key: ${this.screenerQuestion.text}, but the form says it is valid: ${isValid}`);
         }
 
         if (!isValid && this.errorInDOM === 'outDOM'){
@@ -161,7 +161,7 @@ export class YcbQuestionComponent implements OnInit, OnDestroy {
     addError() {
         this.form.setErrors({
             ...this.form.errors,
-            [this.question.key]: {number: 'invalid input'}
+            [this.screenerQuestion.id]: {number: 'invalid input'}
         })
     }
 }

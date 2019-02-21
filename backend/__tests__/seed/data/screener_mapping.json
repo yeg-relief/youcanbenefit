@@ -19,12 +19,6 @@
                 }
               },
               "index": { "type": "long" },
-              "key": {
-                "type": "text",
-                "fields": {
-                  "keyword": { "type": "keyword", "ignore_above": 256 }
-                }
-              },
               "label": {
                 "type": "text",
                 "fields": {
@@ -33,18 +27,30 @@
               },
               "multiSelectOptions": {
                 "properties": {
+                  "id": {
+                    "type": "text",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
+                    }
+                  },
                   "key": {
                     "properties": {
                       "name": {
                         "type": "text",
                         "fields": {
-                          "keyword": { "type": "keyword", "ignore_above": 256 }
+                          "keyword": {
+                            "type": "keyword",
+                            "ignore_above": 256
+                          }
                         }
                       },
                       "type": {
                         "type": "text",
                         "fields": {
-                          "keyword": { "type": "keyword", "ignore_above": 256 }
+                          "keyword": {
+                            "type": "keyword",
+                            "ignore_above": 256
+                          }
                         }
                       }
                     }
@@ -62,6 +68,28 @@
           },
           "created": { "type": "long" },
           "questions": {
+            "properties": {
+              "id": {
+                "type": "text",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "text": {
+                "type": "text",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              },
+              "type": {
+                "type": "text",
+                "fields": {
+                  "keyword": { "type": "keyword", "ignore_above": 256 }
+                }
+              }
+            }
+          },
+          "screenerQuestions": {
             "properties": {
               "conditionalQuestions": {
                 "type": "text",
@@ -83,12 +111,6 @@
                 }
               },
               "index": { "type": "long" },
-              "key": {
-                "type": "text",
-                "fields": {
-                  "keyword": { "type": "keyword", "ignore_above": 256 }
-                }
-              },
               "label": {
                 "type": "text",
                 "fields": {
@@ -97,20 +119,10 @@
               },
               "multiSelectOptions": {
                 "properties": {
-                  "key": {
-                    "properties": {
-                      "name": {
-                        "type": "text",
-                        "fields": {
-                          "keyword": { "type": "keyword", "ignore_above": 256 }
-                        }
-                      },
-                      "type": {
-                        "type": "text",
-                        "fields": {
-                          "keyword": { "type": "keyword", "ignore_above": 256 }
-                        }
-                      }
+                  "id": {
+                    "type": "text",
+                    "fields": {
+                      "keyword": { "type": "keyword", "ignore_above": 256 }
                     }
                   },
                   "text": {

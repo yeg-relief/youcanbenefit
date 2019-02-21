@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { MasterScreenerService } from '../master-screener.service';
 import { QuestionControlService } from './question-control.service';
-import { Question } from '../../../admin/models';
+import { ScreenerQuestion } from '../../../admin/models';
 import { Animations } from '../../../shared/animations';
 
 
@@ -17,8 +17,8 @@ import { Animations } from '../../../shared/animations';
 })
 export class QuestionsComponent implements OnInit, OnDestroy {
     form: FormGroup;
-    questions: Question[] = [];
-    conditionalQuestions: Question[] = [];
+    screenerQuestions: ScreenerQuestion[] = [];
+    conditionalQuestions: ScreenerQuestion[] = [];
     errorMessage = '';
     timeout;
     loading = false;
@@ -35,10 +35,10 @@ export class QuestionsComponent implements OnInit, OnDestroy {
         if (data.error !== undefined) {
             this.errorMessage = 'Unable to load data from server, data may not be initialized.';
         }
-        this.questions = data.questions || [];
+        this.screenerQuestions = data.screenerQuestions || [];
         this.conditionalQuestions = data.conditionalQuestions || [];
         try {
-            this.form = this.questionControlService.toFormGroup(this.questions);
+            this.form = this.questionControlService.toFormGroup(this.screenerQuestions);
         } catch (error) {
             console.error(error);
             this.errorMessage = 'Internal program error, please contact admin.';
@@ -59,7 +59,7 @@ export class QuestionsComponent implements OnInit, OnDestroy {
 
     idsToKeys(ids) {
         return this.conditionalQuestions.filter(q => ids.includes(q.id)).map(q => {
-            return q.controlType !== 'Multiselect' ? q.key : q.multiSelectOptions.map(q => q.key.name);
+            return q.controlType !== 'Multiselect' ? q.id : q.multiSelectOptions.map(q => q.id);
         });
     }
 
@@ -88,7 +88,7 @@ export class QuestionsComponent implements OnInit, OnDestroy {
         });
     }
 
-    gatherConditionals(question: Question) {
+    gatherConditionals(question: ScreenerQuestion) {
         if (!question.expandable || question.conditionalQuestions.length === 0) {
             return [];
         }
@@ -96,8 +96,8 @@ export class QuestionsComponent implements OnInit, OnDestroy {
         return this.conditionalQuestions.filter(q => conditionals.includes(q.id));
     }
 
-    getQuestion(id): Question {
-        return [...this.questions, ...this.conditionalQuestions].find(q => q.id === id);
+    getQuestion(id): ScreenerQuestion {
+        return [...this.screenerQuestions, ...this.conditionalQuestions].find(q => q.id === id);
     }
 
 }

@@ -1,4 +1,4 @@
-import { Question } from '../../shared/models';
+import { ScreenerQuestion } from '../../shared/models';
 
 export interface QuestionMeta {
   totalCount: number;
@@ -6,7 +6,7 @@ export interface QuestionMeta {
 
 export interface MasterScreener {
   version: number;
-  questions: Question[];
+  questions: ScreenerQuestion[];
   meta: MasterScreenerMetaData;
 }
 

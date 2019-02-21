@@ -2,22 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Http, } from '@angular/http';
 import { Store } from '@ngrx/store';
-import { Key, Question, Question_2 } from '../../models';
 import { AuthService } from '../../core/services/auth.service';
 import * as fromRoot from '../../reducer';
 import { select } from '@ngrx/store'
 import { Observable, pipe, combineLatest } from 'rxjs';
 import {
   map,
-  withLatestFrom,
-  tap,
-  startWith,
   filter, 
   take,
   pluck
 } from 'rxjs/operators'
-import { KeyFilterService } from '../services/key-filter.service';
-import { environment } from '../../../../environments/environment'
+import { environment } from '../../../../environments/environment';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-screener-toolbar',
@@ -26,39 +22,20 @@ import { environment } from '../../../../environments/environment'
 })
 export class ScreenerToolbarComponent implements OnInit {
   count$: Observable<number>;
-  adminControls: FormGroup;
-  allKeys$: Observable<Key[]>;
   form$: Observable<any>;
   created$: Observable<any>;
   disabled = false;
   errors: any =  { error: '' };
 
   constructor(
-    private store: Store<fromRoot.State>, 
-    private keyFilter: KeyFilterService, 
+    private store: Store<fromRoot.State>,
     private auth: AuthService,
     private http: Http,
+    public snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
     this.form$ = this.store.pipe(select('root'), select('screener'))
-    const group = { keyFilter: new FormControl('') };
-    this.adminControls = new FormGroup(group);
-
-    this.allKeys$ = 
-      this.adminControls.get('keyFilter').valueChanges
-        .pipe(
-          map( (filterItem) => filterItem.name !== undefined ? filterItem.name : filterItem ),
-          withLatestFrom(this.store.pipe(select('root'), select('screener'), select('keys'))),
-          map( ([filterInput, _, ]) => [_, new RegExp(<string>filterInput, 'gi')]),
-          map( ([keys, filterRegex]) => (<Key[]>keys).filter(key => (<RegExp>filterRegex).test(key.name)) ),
-          tap ( keys => this.keyFilter.setValue(keys.map(k => k.name))),
-          startWith(this.adminControls.get('keyFilter').value)
-        )
-  }
-
-  displayFunction(key: Key){
-    return key ? key.name : key;
   }
 
   isConditional(id: string, questions: any[]): boolean {
@@ -77,68 +54,64 @@ export class ScreenerToolbarComponent implements OnInit {
         const array = this.toArray(screener)
         return {
           conditionalQuestions: array.filter(question => this.isConditional(question.id, array)),
-          questions: array.filter(question => !this.isConditional(question.id, array))
+          screenerQuestions: array.filter(question => !this.isConditional(question.id, array))
         }
       })
     )
 
-    const questions = this.form$.pipe(
+    const screenerQuestions = this.form$.pipe(
       pluck('form'),
       filter(form => form['valid']),
-      partitionQuestions,
-      map(this.removeKeyType),
-    )
-
-    const unusedKeys = this.form$.pipe(
-      map(screener => {
-        const questionData = screener['form'].value
-        const extractKeys = id => {
-          const question = questionData[id]
-          return question.controlType === "Multiselect" ? question.multiSelectOptions.map(q => q.key) : [question.key]
-        }
-
-        const keys = Object.keys(questionData).map(extractKeys).reduce((accum, keys) => [...keys, ...accum], [])
-        const unusedKeys = screener['keys'].filter(key => keys.every(screenerKey => screenerKey.name !== key.name))
-        return unusedKeys
-      })
+      partitionQuestions
     )
     
-    const keys = this.form$.pipe(
+    const questions = this.form$.pipe(
       map(screener => {
         const questionData = screener['form'].value
-        const extractKeys = id => {
-          const question = questionData[id]
-          return question.controlType === "Multiselect" ? question.multiSelectOptions.map(q => q.key) : [question.key]
-        }
-
-        const keys = Object.keys(questionData).map(extractKeys).reduce((accum, keys) => [...keys, ...accum], [])
-        const unusedKeys = screener['keys'].filter(key => keys.some(screenerKey => screenerKey.name === key.name))
-        return unusedKeys
+        return this.getQuestions(questionData)
       })
     )
 
     combineLatest(
+      screenerQuestions,
       questions,
-      keys,
-      unusedKeys,
-      (questions, keys, unusedKeys) => ({...questions, keys, unusedKeys})
+      (screenerQuestions, questions) => ({...screenerQuestions, questions})
     ).pipe(take(1))
       .subscribe(screener => {
-        return this.http.post(`${environment.api}/protected/screener`, screener, this.auth.getCredentials()).toPromise().then(console.log).catch(console.error)
+        return this.http.post(`${environment.api}/protected/screener/`, screener, this.auth.getCredentials())
+                .subscribe(res => {
+                  if (res.status === 201) {
+                    res = res.json();
+                    if ((res['screener']['result'] === 'created' || res['screener']['result'] === 'updated') &&
+                          res['questions']['acknowledged'] === true) {
+                      this.snackBar.open("screener saved", '', { duration: 2000})
+                      return
+                    }
+                  }
+                  this.snackBar.open("screener failed to save", '', { duration: 2000})
+                })
       })
   }
 
-  private removeKeyType(screener: {[key: string]: Question_2[]}) {
-    const _removeKeyType = (question: Question_2): Question => {
-      const keyName = question.key.name;
-      return (<any>Object).assign({}, question, {key: keyName});
-    };
-
-    return {
-      questions: screener['questions'].map(_removeKeyType),
-      conditionalQuestions: screener['conditionalQuestions'].map(_removeKeyType),
-      created: -1
-    }
+  getQuestions(questionData) : any[] {
+    const questionDataArray = this.toArray(questionData)
+    const questionArray = [];
+    questionDataArray.forEach(q => {
+      let questionType;
+      if (q.controlType === "Multiselect") {
+        q.multiSelectOptions.forEach(multiQuestion => {
+          questionArray.push({text: multiQuestion.text, id: multiQuestion.id, type: "boolean"})
+        });
+      } else if (q.controlType === "NumberInput") {
+        questionType = "integer";
+      } else if (q.controlType === "Toggle") {
+        questionType = "boolean";
+      }
+      if (questionType) {
+        questionArray.push({text: q.label, id: q.id, type: questionType})
+      }
+    })
+    return questionArray
   }
 
 }

@@ -19,19 +19,29 @@ export class EsQueryModel {
             throw new Error("EsQueryModel: unable to build query from invalid data.")
         }
 
+        
+
+        const questionTexts = {}
+
+        this.data.conditions.map( condition => {
+            questionTexts[condition.question.id] = condition.question.text
+        })
+
         const meta = {
             program_guid: this.data.guid,
-            id: this.data.id
+            id: this.data.id,
+            questionTexts
         };
+
 
         const query = {
             bool: {
                 must: this.data.conditions.map( (applicationCondition: any) => {
                     let type;
 
-                    const isNumberOrInteger = applicationCondition.key.type === "number" || applicationCondition.key.type === "integer";
+                    const isNumberOrInteger = applicationCondition.question.type === "number" || applicationCondition.question.type === "integer";
 
-                    if (applicationCondition.key.type === "boolean") {
+                    if (applicationCondition.question.type === "boolean") {
                         type = "term"
                     } else if (isNumberOrInteger && applicationCondition.qualifier === "equal") {
                         type = "term"
@@ -41,7 +51,7 @@ export class EsQueryModel {
 
                     const qualifier = this.nameMap[applicationCondition.qualifier];
 
-                    const property = applicationCondition.key.name;
+                    const property = applicationCondition.question.id;
 
                     let inner;
 

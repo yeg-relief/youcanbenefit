@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { FormGroup } from '@angular/forms';
 import * as fromRoot from '../../reducer';
-import { Question, Question_2 } from '../../models';
+import { ScreenerQuestion} from '../../models';
 import { QuestionControlService } from '../../../user/master-screener/questions/question-control.service';
 import { Observable, ReplaySubject } from 'rxjs';
 import { take, tap, map, mergeMap, reduce } from 'rxjs/operators'
@@ -15,8 +15,8 @@ import { take, tap, map, mergeMap, reduce } from 'rxjs/operators'
 })
 export class ScreenerPreviewComponent implements OnInit {
   form = new ReplaySubject<FormGroup>(1);
-  questions: Question[] = [];
-  conditionalQuestions: Question[] = [];
+  screenerQuestions: ScreenerQuestion[] = [];
+  conditionalQuestions: ScreenerQuestion[] = [];
 
   constructor(
     private store: Store<fromRoot.State>,
@@ -26,17 +26,20 @@ export class ScreenerPreviewComponent implements OnInit {
   ngOnInit() {
     this.store.pipe(fromRoot.getForm,take(1)).subscribe( (form: FormGroup) => this.form.next(form));
 
+    this.store.subscribe(
+      data => console.log(data)
+    )
     this.store
       .pipe(
         fromRoot.getForm,
         take(1),
         this.partitionQuestions.bind(this),
-        this.flattenKeys,
       )
       .subscribe( partitionedQuestions => {
-        this.questions = partitionedQuestions['questions'];
+        console.log(partitionedQuestions)
+        this.screenerQuestions = partitionedQuestions['screenerQuestions'];
         this.conditionalQuestions = partitionedQuestions['conditionalQuestions'];
-        this.form.next( this.questionControlService.toFormGroup(this.questions) );
+        this.form.next( this.questionControlService.toFormGroup(this.screenerQuestions) );
       });
   }
 
@@ -52,16 +55,16 @@ export class ScreenerPreviewComponent implements OnInit {
           if (this.isConditional(formValues, value)) {
             accum.conditionalQuestions = [...accum.conditionalQuestions, formValues[value]];
           } else {
-            accum.questions = [...accum.questions, formValues[value]];
+            accum.screenerQuestions = [...accum.screenerQuestions, formValues[value]];
           } 
           return accum;
-        }, {conditionalQuestions: [], questions: []})
+        }, {conditionalQuestions: [], screenerQuestions: []})
       )
   }
 
   private isConditional(questionValues, questionID){
     for (const key in questionValues) {
-      const q: Question_2 = questionValues[key];
+      const q: ScreenerQuestion = questionValues[key];
       if (Array.isArray(q.conditionalQuestions) && q.conditionalQuestions.find(cq_id => cq_id === questionID) !== undefined) {
         return true;
       }
@@ -69,26 +72,11 @@ export class ScreenerPreviewComponent implements OnInit {
     return false;
   }
 
-  private flattenKeys(input: Observable<{[key: string]: Question_2[]}>): Observable<{[key: string]: Question[] }> {
-    const removeKeyType = (question: Question_2): Question => {
-      const keyName = question.key.name;
-      return (<any>Object).assign({}, question, {key: keyName});
-    }
-
-
-    return input.pipe(map( screener => {
-      return {
-        questions: screener['questions'].map(removeKeyType),
-        conditionalQuestions: screener['conditionalQuestions'].map(removeKeyType),
-      }
-    }))
-  }
-
-  gatherConditionals(question) {
-    if (!question.expandable || !Array.isArray(question.conditionalQuestions) || question.conditionalQuestions.length === 0){
+  gatherConditionals(screenerQuestion) {
+    if (!screenerQuestion.expandable || !Array.isArray(screenerQuestion.conditionalQuestions) || screenerQuestion.conditionalQuestions.length === 0){
       return [];
     }
-    const conditionals = question.conditionalQuestions;
+    const conditionals = screenerQuestion.conditionalQuestions;
     return this.conditionalQuestions.filter( q => conditionals.find(id => id === q.id))
   }
 

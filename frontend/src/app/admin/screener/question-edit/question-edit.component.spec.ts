@@ -7,14 +7,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
 import * as fromRoot from '../../reducer';
 import * as fromScreener from '../store/screener-reducer';
-import * as fromKeys from '../../keys/reducer';
 import { QuestionEditErrorComponent } from './question-edit-error/question-edit-error.component';
 
 const questionOne = new FormGroup({
-  key: new FormGroup({
-    name: new FormControl('boolean_key'),
-    type: new FormControl('boolean')
-  }),
   label: new FormControl('question label'),
   controlType: new FormControl('Toggle'),
   id: new FormControl('fake_id'),
@@ -34,10 +29,6 @@ const screenerState: fromScreener.State  = {
   error: '',
   selectedConstantQuestion: 'fake_id',
   selectedConditionalQuestion: undefined,
-  keys: [
-    {name: 'boolean_key', type: 'boolean'},
-    {name: 'integer_key', type: 'integer'}
-  ],
   created: 0
 };
 
@@ -54,10 +45,6 @@ describe('QuestionEditComponent', () => {
       imports: [ 
         MaterialModule, 
         ReactiveFormsModule,
-        StoreModule.provideStore(fromRoot.reducer, { 
-          screener: screenerState, 
-          keyOverview: fromKeys.initialState,
-        }),
         BrowserAnimationsModule
       ],
       providers: [

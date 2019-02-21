@@ -28,11 +28,9 @@ import {
   mergeMap,
   switchMap,
   take,
-  tap,
   pluck
 } from 'rxjs/operators';
 import { DragDropManagerService } from '../question-list/drag-drop-manager.service';
-import { KeyFilterService } from '../services/key-filter.service';
 import { isConditionalQuestion, State } from '../store/screener-reducer';
 import { Animations } from '../../../shared/animations'
 
@@ -40,7 +38,7 @@ import { Animations } from '../../../shared/animations'
   selector: 'app-screener-overview',
   templateUrl: './screener-overview.component.html',
   styleUrls: ['./screener-overview.component.css'],
-  providers: [ DragDropManagerService, KeyFilterService ],
+  providers: [ DragDropManagerService],
   animations: [
     Animations.routeAnimation,
     Animations.conditionalQuestions,
