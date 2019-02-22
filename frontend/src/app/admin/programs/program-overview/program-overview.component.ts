@@ -75,6 +75,7 @@ export class ProgramOverviewComponent implements OnInit {
             this.model.deleteProgram(guid).pipe(take(1))
             .subscribe(success => {
                 if (success) {
+                    this.programs = this.model.getPrograms();
                     this.snackBar.open('program deleted successfully', '', { duration: 2000 })
                 } else {
                     this.snackBar.open('error deleting program', '', { duration: 2000 })
