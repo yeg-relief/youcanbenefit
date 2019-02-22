@@ -9,6 +9,7 @@ import { AuthService } from '../../core/services/auth.service'
 import { Program } from './program.class';
 import { FormBuilder } from '@angular/forms';
 import { environment } from '../../../../environments/environment'
+import { ProgramQueryClass } from './program-query.class';
 
 @Injectable()
 export class ProgramModelService {
@@ -57,9 +58,8 @@ export class ProgramModelService {
                     const val = cache.find(p => p.guid === program.guid);
                     if (val) {
                         val.user = program;
-                        //this._cache.next(cache);
                     } else {
-                        //this._cache.next([{guid: program.guid, application: [], user: program},  ...cache]);
+                        cache.push({guid: program.guid, application: [], user: program})
                     }
             })
         }
@@ -80,7 +80,10 @@ export class ProgramModelService {
         return this._deleteProgram(guid)
             .pipe(tap(res => {
                 if (res) {
-                    //this._cache.asObservable().pipe(take(1)).subscribe(cache => this._cache.next(cache.filter(p => p.guid !== guid)))
+                    this._cache.subscribe(cache => {
+                        const index = cache.findIndex(p => p.user.guid === guid)
+                        cache.splice(index, 1);
+                    })
                 }
             }))
     }

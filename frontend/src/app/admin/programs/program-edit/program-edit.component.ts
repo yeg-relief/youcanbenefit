@@ -65,7 +65,7 @@ export class ProgramEditComponent implements OnInit {
       this.program.pipe(
         take(1),
         map(p => p.data.guid),
-        flatMap(this.model.deleteProgram),
+        flatMap(guid => this.model.deleteProgram(guid)),
         tap(() => {
           this.display('delete success.')
           this.router.navigateByUrl('admin/programs/overview');
