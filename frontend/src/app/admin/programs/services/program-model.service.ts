@@ -46,7 +46,7 @@ export class ProgramModelService {
 
     getPrograms(): Observable<ApplicationFacingProgram[]> {
         if (this._cache) {
-            this._cache.subscribe(console.dir)
+            this._cache.subscribe();
             return this._cache
         } 
     }

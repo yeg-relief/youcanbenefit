@@ -32,20 +32,17 @@ export class ProgramOverviewComponent implements OnInit {
         private model: ProgramModelService) { }
 
     ngOnInit() {
-        console.log("HERE1")
         this.programs = merge(
             this.model.getPrograms(),
             this.filterService.form.valueChanges.pipe(distinctUntilChanged(), map(update => new helpers.FilterMessage(update))),
             this.programUpdate$
         )
         .pipe(
-            tap(console.log),
             helpers.updateState,
             helpers.applyFilter,
             pluck('programs'),
             shareReplay()
         )
-        console.log("HERE2")
     }
 
     handleDetailInspection(guid: string) {
