@@ -88,6 +88,20 @@ export class ProgramModelService {
             }))
     }
 
+    updateCachedQuery(updatedQuery: ProgramQueryClass) {
+        updatedQuery.form.value.conditions.forEach(condition => delete condition['type']);
+        this._cache.pipe(take(1))
+            .subscribe(cache => {
+                let program = cache.find(p => p.guid === updatedQuery.data.guid);
+                const index = program.application.findIndex(q => q.id === updatedQuery.data.id);
+                if (index >= 0) {
+                    program.application[index] = updatedQuery.form.value;
+                } else {
+                    program.application.push(updatedQuery.form.value);
+                }
+        })
+    }
+
     private getCredentials(): RequestOptions {
         try {
             return this.authService.getCredentials();
