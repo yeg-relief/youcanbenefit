@@ -102,6 +102,17 @@ export class ProgramModelService {
         })
     }
 
+    removeCachedQuery(program_guid: string, query_id: string) {
+        this._cache.pipe(take(1))
+            .subscribe(cache => {
+                let program = cache.find(p => p.guid === program_guid);
+                const index = program.application.findIndex(q => q.id === query_id);
+                if (index >= 0) {
+                    program.application.splice(index, 1);
+                }
+        })
+    }
+
     private getCredentials(): RequestOptions {
         try {
             return this.authService.getCredentials();
