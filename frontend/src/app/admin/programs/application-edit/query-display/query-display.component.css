@@ -21,4 +21,14 @@
   flex-direction: column;
 }
 
+table {
+  border-collapse: collapse;
+}
 
+th, td {
+  border: 1px dotted black;
+}
+
+.condition-value {
+  text-align: center;
+}
