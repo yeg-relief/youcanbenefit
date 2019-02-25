@@ -97,6 +97,7 @@ export class ClientService {
     async mGetById(ids: string[], index: string, type: string): Promise<any[]> {
         const params = {
             index,
+            size: ids.length,
             body: {
                 query: {
                     ids: {
