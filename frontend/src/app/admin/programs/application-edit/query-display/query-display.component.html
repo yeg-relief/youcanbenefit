@@ -12,7 +12,14 @@
     </thead>
     <tbody>
       <tr *ngFor="let condition of query.conditions">
-        <td class="condition-text">{{condition.question.text}}</td>
+        <td>
+        <span *ngIf="condition.question.text.length<61">
+            {{ condition.question.text }}
+        </span>
+        <span *ngIf="condition.question.text.length>=61">
+          {{ condition.question.text | slice: 0:61 }}...
+        </span>
+        </td>
         <td class="condition-value">
           <span *ngIf="condition.question.type=='number'">
             <span [ngSwitch]="condition.qualifier">
