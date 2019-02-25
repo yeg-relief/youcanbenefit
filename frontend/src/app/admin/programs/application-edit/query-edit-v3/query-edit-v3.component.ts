@@ -4,6 +4,7 @@ import { QueryService } from '../../services/query.service';
 import { Subscription } from 'rxjs';
 import { MatSnackBar } from '@angular/material';
 import { filter, take } from 'rxjs/operators'
+import { ProgramModelService } from '../../services/program-model.service';
 
 @Component({
     selector: 'app-query-edit-v3',
@@ -13,7 +14,7 @@ import { filter, take } from 'rxjs/operators'
 export class QueryEditV3Component implements OnInit, OnDestroy {
     @Input() programQuery: ProgramQueryClass;
     private _subscription: Subscription;
-    constructor(private service: QueryService, public snackBar: MatSnackBar) { }
+    constructor(private service: QueryService, private programModelService: ProgramModelService, public snackBar: MatSnackBar) { }
 
     ngOnInit() {
         this.programQuery.conditions.sort( (a, b) => a.data.question.text.localeCompare(b.data.question.text));
@@ -41,6 +42,7 @@ export class QueryEditV3Component implements OnInit, OnDestroy {
                 .subscribe(
                     val => {
                         if(val.result === 'created' || val.result === 'updated') {
+                            this.programModelService.updateCachedQuery(this.programQuery);
                             this.snackBar.open('query saved.', '', { duration: 2000 })
                         }else{
                             this.snackBar.open('error: query not saved.', '', { duration: 2000 })

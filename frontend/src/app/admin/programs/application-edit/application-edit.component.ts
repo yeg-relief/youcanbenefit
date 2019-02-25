@@ -62,6 +62,7 @@ export class ApplicationEditComponent implements OnInit {
         const index = program.application.findIndex(q => q.data.id === query_id);
         if (wasDeleted && index >= 0) {
           program.application.splice(index, 1);
+          this.modelService.removeCachedQuery(program.guid, query_id);
           
           this.snackBar.open('query deleted','', {
             duration: 2000
