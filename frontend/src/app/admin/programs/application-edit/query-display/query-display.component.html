@@ -1,8 +1,8 @@
 <div [ngClass]="styleClass">
   <table style="width:85%;" (click)="edit.emit(query.id)">
     <colgroup span="2">
-      <col style="width: 80%;">
-      <col style="width: 20%;">
+      <col style="width: 77%;">
+      <col style="width: 23%;">
     </colgroup>
     <thead class="border-bottom">
       <tr>
@@ -13,21 +13,21 @@
     <tbody>
       <tr *ngFor="let condition of query.conditions">
         <td>
-        <span *ngIf="condition.question.text.length<61">
+        <span *ngIf="condition.question.text.length<60">
             {{ condition.question.text }}
         </span>
-        <span *ngIf="condition.question.text.length>=61">
-          {{ condition.question.text | slice: 0:61 }}...
+        <span *ngIf="condition.question.text.length>=60">
+          {{ condition.question.text | slice: 0:60 }}...
         </span>
         </td>
         <td class="condition-value">
           <span *ngIf="condition.question.type=='number'">
             <span [ngSwitch]="condition.qualifier">
               <span *ngSwitchCase="'lessThan'"> &lt; </span>
-              <span *ngSwitchCase="'lessThanOrEqual'"> &lt; </span>
-              <span *ngSwitchCase="'equal'"> &lt; </span>
-              <span *ngSwitchCase="'greaterThanOrEqual'"> &lt; </span>
-              <span *ngSwitchCase="'greaterThan'"> &lt; </span>
+              <span *ngSwitchCase="'lessThanOrEqual'"> &lt;= </span>
+              <span *ngSwitchCase="'equal'"> = </span>
+              <span *ngSwitchCase="'greaterThanOrEqual'"> &gt;= </span>
+              <span *ngSwitchCase="'greaterThan'"> &gt; </span>
             </span>
           </span>
            {{condition.value}}
