@@ -13,34 +13,21 @@ pool:
   vmImage: 'Ubuntu-16.04'
 
 steps:
-- powershell: |
-    $editedFiles = git diff HEAD HEAD~ --name-only
-    $editedFiles | ForEach-Object {
-        Switch -Wildcard ($_ ) {
-            'backend/*' { Write-Output "##vso[task.setvariable variable=backendChanged]True" }
-            'frontend/*' { Write-Output "##vso[task.setvariable variable=frontendChanged]True" }
-            # Add more path filters here
-        }
-    }
-    
 - bash: |
     cd backend
     npm ci
     npm run unit-test
   displayName: 'docker unit-test backend'
-  condition: and(succeeded(), eq(variables['backendChanged'], 'True'))
 
 - bash: |
     cd backend
     docker build --tag $(registryServerName)/youcanbenefit-api:$(build.buildId) --tag $(registryServerName)/youcanbenefit-api:latest .
   displayName: 'docker build backend'
-  condition: and(succeeded(), eq(variables['backendChanged'], 'True'))
 
 - bash: |
     cd frontend
     docker build --tag $(registryServerName)/youcanbenefit-web:$(build.buildId) --tag $(registryServerName)/youcanbenefit-web:latest .
   displayName: 'docker build frontend'
-  condition: and(succeeded(), eq(variables['frontendChanged'], 'True'))
 
 - bash: echo $(docker.password) | docker login -u $(docker.username) --password-stdin
   displayName: 'docker login'
@@ -49,10 +36,8 @@ steps:
     docker push $(registryServerName)/youcanbenefit-api:$(build.buildId)
     docker push $(registryServerName)/youcanbenefit-api:latest
   displayName: 'docker push backend'
-  condition: and(succeeded(), eq(variables['backendChanged'], 'True'))
 
 - bash: |
     docker push $(registryServerName)/youcanbenefit-web:$(build.buildId)
     docker push $(registryServerName)/youcanbenefit-web:latest
   displayName: 'docker push frontend'
-  condition: and(succeeded(), eq(variables['frontendChanged'], 'True'))
