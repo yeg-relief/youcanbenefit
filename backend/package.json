@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "YouCanBenefit backend API.",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/yeg-relief/youcanbenefit"
+    "type": "git",
+    "url": "https://github.com/yeg-relief/youcanbenefit"
   },
   "license": "MIT",
   "scripts": {
@@ -12,7 +12,7 @@
     "start:watch": "NODE_ENV=development nodemon",
     "prestart:prod": "NODE_ENV=production tsc",
     "start:prod": "NODE_ENV=production node dist/server.js",
-    "unit-test": "NODE_ENV=test jest \".(test)\\.(ts|tsx|js)$\"",
+    "unit-test": "SET NODE_ENV=test && jest \".(test)\\.(ts|tsx|js)$\"",
     "generate-coverage": "NODE_ENV=test jest --coverage",
     "integration-test": "jest \"./__tests__/.*.(spec)\\.(ts|tsx|js)$\" --forceExit",
     "integration-test-update": "jest \"./__tests__/.*.(spec)\\.(ts|tsx|js)$\" -u --forceExit"
@@ -25,7 +25,7 @@
     "@types/ramda": "^0.25.40",
     "body-parser": "^1.18.3",
     "cors": "^2.8.4",
-    "elasticsearch": "^14.2.2",
+    "elasticsearch": "^15.4.1",
     "jest-html-reporter": "^0.5.8",
     "lodash.get": "^4.4.2",
     "lodash.uniqby": "^4.7.0",
@@ -43,10 +43,10 @@
     "@types/jest": "^21.1.10",
     "@types/node": "^8.10.36",
     "@types/winston": "^2.4.4",
-    "jest": "^21.2.1",
+    "jest": "^24.1.0",
     "nodemon": "^1.18.9",
     "supertest": "^3.3.0",
-    "ts-jest": "^21.2.4",
+    "ts-jest": "^24.0.0",
     "ts-node": "^3.3.0"
   },
   "jest": {
