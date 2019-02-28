@@ -43,8 +43,6 @@ export class OverviewControlsComponent implements OnInit, OnDestroy {
             'filter_inactive': true  
           })
         )
-
-    this.disableInput = formChanges.subscribe(this.filterService.effectInput)
   }
 
   ngOnDestroy(){
