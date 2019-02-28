@@ -3,7 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { Animations } from '../../../../shared/animations';
 import { FilterService } from '../services/filter.service';
 import { Observable, Subscription } from 'rxjs';
-import { debounceTime, distinctUntilChanged, map, tap, shareReplay, startWith } from 'rxjs/operators'
+import { debounceTime, distinctUntilChanged, map, shareReplay, startWith } from 'rxjs/operators'
 
 @Component({
   selector: 'app-overview-controls',
