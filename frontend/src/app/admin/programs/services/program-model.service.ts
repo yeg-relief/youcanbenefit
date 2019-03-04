@@ -136,7 +136,7 @@ export class ProgramModelService {
         return this.http.delete(`${environment.api}/protected/program/${guid}`, creds)
             .pipe(
                 map(res => res.json()),
-                map( (res: [boolean, object, Array<ApplicationFacingProgram>]) => res[0]),
+                map(res => res.deleted),
                 catchError(this.loadError)
             )
     }
