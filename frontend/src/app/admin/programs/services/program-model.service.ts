@@ -99,6 +99,7 @@ export class ProgramModelService {
                 })
             })
         })
+        tags.sort();
         return tags;
     }
 
