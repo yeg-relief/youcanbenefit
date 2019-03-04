@@ -70,7 +70,7 @@ export class EsQueryService {
         .then((res: any) => ({queries_deleted: res.deleted }))
     }
 
-    deleteById(id: string): any {
+    deleteById(id: string): Promise<any> {
         return this.clientService.delete(this.INDEX, this.TYPE, id)
     }
 
