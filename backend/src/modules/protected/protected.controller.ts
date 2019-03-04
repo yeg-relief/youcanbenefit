@@ -132,6 +132,7 @@ export class ProtectedController {
             this.programService.deleteByGuid(guid),
             this.queryService.deleteByGuid(guid)
         )
+        .map(([programDeleted, queriesDeleted]) => ({...programDeleted, ...queriesDeleted}))
     }
 
     @Delete('/query/:id')
