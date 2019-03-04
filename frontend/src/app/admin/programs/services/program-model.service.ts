@@ -88,6 +88,20 @@ export class ProgramModelService {
             }))
     }
 
+    getAllTags(): string[] {
+        let tags: string[] = []
+        this._cache.subscribe(cache => {
+            cache.forEach(program => {
+                program.user.tags.forEach(tag => {
+                    if (!tags.includes(tag)) {
+                        tags.push(tag)
+                    }
+                })
+            })
+        })
+        return tags;
+    }
+
     updateCachedQuery(updatedQuery: ProgramQueryClass) {
         updatedQuery.form.value.conditions.forEach(condition => delete condition['type']);
         this._cache.pipe(take(1))

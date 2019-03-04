@@ -12,6 +12,7 @@ import { tap, flatMap, pluck, multicast, refCount, take, map } from 'rxjs/operat
 })
 export class ProgramEditComponent implements OnInit {
   program: Observable<UserProgram>;
+  allTags: string[];
   constructor(
     private model: ProgramModelService,
     private route: ActivatedRoute,
@@ -22,7 +23,7 @@ export class ProgramEditComponent implements OnInit {
 
   ngOnInit(){
     const guid = this.route.snapshot.params['guid'];
-
+    
     if (guid) {
       this.program = this.model.findProgram(guid)
         .pipe(
@@ -31,6 +32,8 @@ export class ProgramEditComponent implements OnInit {
           refCount()
         )
     }
+
+    this.allTags = this.model.getAllTags();
   };
 
   handleQueryClick() {
