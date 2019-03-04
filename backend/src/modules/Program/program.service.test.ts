@@ -115,4 +115,25 @@ describe('ProgramService', () => {
             expect(await programService.mGetByGuid(guids)).toMatchObject(result);
         })
     })
+
+    describe('deleteByGuid', () => {
+
+        it('should return a delete response indicating true', async () => {
+            const guid = 'test guid7';
+            const result = {deleted: true};
+
+            jest.spyOn(programService, 'deleteByGuid').mockImplementation(() => result);
+
+            expect(await programService.deleteByGuid(guid)).toMatchObject(result);
+        })
+
+        it('should return a delete response indicating false', async () => {
+            const guid = 'test guid6';
+            const result = {deleted: false};
+
+            jest.spyOn(programService, 'deleteByGuid').mockImplementation(() => result);
+
+            expect(await programService.deleteByGuid(guid)).toMatchObject(result);
+        })
+    })
 });
