@@ -7,17 +7,17 @@ import { AboutService } from './about.service';
   styleUrls: ['./about.component.css']
 })
 export class AboutComponent implements OnInit {
-  dynamicDocument = "test document";
+  dynamicDocument = "";
+  error = "";
   constructor(
     private aboutService: AboutService
   ) {}
 
   ngOnInit() {
-    console.log('Asking for doc')
     this.aboutService.getDocument().then((doc) => {
       this.dynamicDocument = doc
     }, (err) => {
-      console.error(err)
+      this.error = err;
     })
   }
 

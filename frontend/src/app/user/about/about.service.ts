@@ -10,14 +10,15 @@ export class AboutService {
     documents;
 
     constructor(private http: Http) {
-        console.log('Creating aboutservice')
         this.documents =  this.http.get(`${environment.api}/api/document/about`).toPromise();
     }
 
 
     async getDocument(): Promise<string>  {
-        const httpRes = await this.documents;
-        return decodeURIComponent(httpRes._body);
+        const httpRes = await this.http.get(`${environment.api}/api/document/about`).toPromise();
+        
+        // const httpRes = await this.documents;
+        return decodeURIComponent(httpRes.url);
     }
 
 }

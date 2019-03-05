@@ -1,32 +1,11 @@
 <div *ngIf="!dynamicDocument; then thenBlock else elseBlock"></div>
 <ng-template #thenBlock>
-    <main>
-        <section>
-            <h1>Information about program and origins</h1>
-            <p>
-                You Can Benefit provides easy web access to information about a range of
-                financial benefits and subsidies. The web tool provides individuals, families, and
-                community workers with easy to access information on available municipal, provincial and
-                federal benefits. You Can Benefit is a made in Edmonton project that is a partnership
-                between the City of Edmonton, e4c, and volunteers from BetaCityYEG.  The tool will have
-                open source content and as such, it can be shared with other organizations and
-                municipalities nationwide. You Can Benefit does not collect or track your information.
-            </p>
-            <p>
-                If you would like to provide feedback on anything please contact
-                us
-                <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSdScFpcZi7G5sjPo6RKsg6BYbV6PFiH9nMWoawRYIbAyRucnA/viewform?usp=sf_link">
-                    here
-                </a>
-            </p>
-            <h3><img src="assets/GitHub-Mark-32px.png" /> Open Source <img src="assets/GitHub-Mark-32px.png" /></h3>
-            <p>
-                YouCanBenefit is an open source project. <a href="https://github.com/yeg-relief" target="_blank">Please check us out on Github.</a>
-            </p>
-        </section>
-    </main>
+    <h1>Loading Page...</h1>
+    
+    <h2 *ngIf="error">Failed to Load</h2>
 </ng-template>
 
 <ng-template #elseBlock>
     <div [innerHTML]="dynamicDocument"></div>
 </ng-template>
+

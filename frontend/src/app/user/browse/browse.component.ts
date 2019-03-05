@@ -11,7 +11,7 @@ import { take, map } from 'rxjs/operators'
 })
 export class BrowseComponent implements OnInit, OnDestroy {
     categories: Observable<string[]>;
-    errorMsg = 'biiiiig problem';
+    errorMsg = '';
     subscriptions: Subscription[] = [];
 
     currentCategory: string;
