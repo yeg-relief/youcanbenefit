@@ -15,9 +15,8 @@ export class AboutService {
 
 
     async getDocument(): Promise<string>  {
-        const httpRes = await this.http.get(`${environment.api}/api/document/about`).toPromise();
         
-        // const httpRes = await this.documents;
+        const httpRes = await this.documents;
         return decodeURIComponent(httpRes.url);
     }
 

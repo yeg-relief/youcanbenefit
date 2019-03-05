@@ -7,7 +7,6 @@ import "rxjs/add/operator/map"
 import "rxjs/add/operator/do"
 import * as sanitizeHtml from "sanitize-html";
 const uuidv4 = require("uuid/v4");
-console.log(sanitizeHtml)
 @Injectable()
 export class DocumentService {
     private readonly INDEX = "documents";
