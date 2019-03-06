@@ -60,23 +60,21 @@ export class ProgramEditComponent implements OnInit {
 
   handleDeleteClick() {
     const res = window.confirm("Are you sure that you would like to delete this program?")
-
+    
     if (res) {
       this.program.pipe(
         take(1),
         map(p => p.data.guid),
-        flatMap(guid => this.model.deleteProgram(guid)),
-        tap(() => {
-          this.display('delete success.')
+        flatMap(guid => this.model.deleteProgram(guid))
+      ).subscribe((deleteResponse) => {
+        if (deleteResponse) {
+          this.display('delete success.');
           this.router.navigateByUrl('admin/programs/overview');
-        })
-      ).subscribe({
-        error: e => {
-          console.error(e);
-          this.display('delete failure.')
+        } else {
+          this.display('delete failure.');
         }
       })
-    }    
+    }
   }
 
   private _goToQueries(){

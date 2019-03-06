@@ -89,4 +89,35 @@ describe('EsQueryService', () => {
             expect(await queryService.create(mockDTO)).toMatchObject(result);
         });
     });
+
+    describe('deleteById', () => {
+        it('should return an elasticsearch delete response', async () => {
+            const query_id = "74ofh3kZhnIglDGC7sKqYeDJJT";
+            const result = {
+                "_index": "master_screener",
+                "_type": "queries",
+                "_id": "74ofh3kZhnIglDGC7sKqYeDJJT",
+                "_version": 2,
+                "result": "deleted",
+                "_shards": {
+                    "total": 2,
+                    "successful": 1,
+                    "failed": 0
+                },
+                "_seq_no": 61,
+                "_primary_term": 1
+            };
+            jest.spyOn(queryService, 'deleteById').mockImplementation(() => result);
+            expect(await queryService.deleteById(query_id)).toMatchObject(result);
+        });
+    });
+
+    describe('deleteByGuid', () => {
+        it('should return the number of queries deleted', async () => {
+            const program_guid = "tWucjcIELoF0O1Z0DksuXWDGY7";
+            const result = {queries_deleted: 5};
+            jest.spyOn(queryService, 'deleteByGuid').mockImplementation(() => result);
+            expect(await queryService.deleteByGuid(program_guid)).toMatchObject(result);
+        });
+    });
 });

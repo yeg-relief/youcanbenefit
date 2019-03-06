@@ -57,15 +57,20 @@ export class EsQueryService {
         return Promise.all(guids.map(guid => this.getByGuid(guid)))
     }
 
-    deleteByGuid(guid: string): any {
+    deleteByGuid(guid: string): Promise<any> {
         return this.clientService.client.deleteByQuery({
             index: this.INDEX,
             type: this.TYPE,
             body: { query: { match: { "meta.program_guid": guid } } }
         })
+        .catch(err => {
+            console.log(err)
+            return err
+        })
+        .then((res: any) => ({queries_deleted: res.deleted }))
     }
 
-    deleteById(id: string): any {
+    deleteById(id: string): Promise<any> {
         return this.clientService.delete(this.INDEX, this.TYPE, id)
     }
 
