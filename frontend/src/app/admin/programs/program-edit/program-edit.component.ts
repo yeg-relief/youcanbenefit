@@ -68,10 +68,11 @@ export class ProgramEditComponent implements OnInit {
         flatMap(guid => this.model.deleteProgram(guid))
       ).subscribe((deleteResponse) => {
         if (deleteResponse) {
-          this.display('delete success.')
+          this.display('delete success.');
           this.router.navigateByUrl('admin/programs/overview');
+        } else {
+          this.display('delete failure.');
         }
-        this.display('delete failure.')
       })
     }
   }
