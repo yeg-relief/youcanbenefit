@@ -1,5 +1,10 @@
 <mat-form-field>
-    <input matInput [formControl]="linkInput" placeholder="tag"/>
+    <input matInput [formControl]="linkInput" placeholder="tag" [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let tag of allTags" [value]="tag">
+            {{ tag }}
+        </mat-option>
+    </mat-autocomplete>
 </mat-form-field>
 <button mat-button [attr.disabled]="!linkInput.valid">
     <mat-icon

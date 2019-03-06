@@ -8,6 +8,7 @@ import { FormArray, FormControl, Validators } from '@angular/forms'
 })
 export class TagEditComponent implements OnInit {
     @Input() tags: FormArray;
+    @Input() allTags: string[];
     linkInput = new FormControl('', Validators.pattern('[a-zA-Z0-9]{2,32}'));
     constructor() { }
 
