@@ -13,6 +13,7 @@ import { tap, flatMap, pluck, multicast, refCount, take, map } from 'rxjs/operat
 export class ProgramEditComponent implements OnInit {
   program: Observable<UserProgram>;
   allTags: string[];
+  quillModules: {}
   constructor(
     private model: ProgramModelService,
     private route: ActivatedRoute,
@@ -34,6 +35,19 @@ export class ProgramEditComponent implements OnInit {
     }
 
     this.allTags = this.model.getAllTags();
+    this.quillModules = {
+      imageResize: {},
+      syntax: true,
+      toolbar: [
+        ['bold', 'italic', 'underline'],
+        [{ 'header': 1}, { 'header': 2}],
+        [{ 'list': 'ordered'}, { 'list': 'bullet'}],
+        [{ 'size': ['small', false, 'large', 'huge'] }],
+        [{ 'color': [] }, { 'background': [] }],
+        [{ 'align': [] }],
+        ['link', 'image']
+      ]
+    }
   };
 
   handleQueryClick() {

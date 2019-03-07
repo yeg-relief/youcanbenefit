@@ -33,22 +33,19 @@
         </app-edit-row>
 
         <app-edit-row [icon]="'create'" [tooltip]="'Write more details about the program'">
-            <textarea id="program-details" rows="10" cols="50" name="details"  matInput formControlName="details">
-                {{program.data.details }}
-            </textarea>
+            <quill-editor matInput id="program-details" name="details" formControlName="details"></quill-editor>
         </app-edit-row>
 
-        <app-edit-row [icon]="'links'" [tooltip]="'Links that will appear in the details popup'">
-            <app-details-links [links]="program._form.get('detailLinks')"> </app-details-links>
-        </app-edit-row>
-
-
+        <!-- <app-edit-row [icon]="'links'" [tooltip]="'Links that will appear in the details popup'">
+                <app-details-links [links]="program._form.get('detailLinks')"> </app-details-links>
+            </app-edit-row>
+    
+    
         <app-edit-row [icon]="'link'" [tooltip]="'Every program can have an external link'">
             <mat-form-field id="link">
                 <span matPrefix> http:// </span>
                 <input matInput placeholder="www.link.ca" prefix formControlName="externalLink"/>
-            </mat-form-field>
-        </app-edit-row>
+            </mat-form-field> -->
 
         <app-edit-row [icon]="'label'" [tooltip]="'Tag the program with a category'">
             <app-tag-edit [tags]="program._form.get('tags')" [allTags]="allTags"></app-tag-edit>
