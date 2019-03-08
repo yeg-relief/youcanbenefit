@@ -47,7 +47,6 @@ export class UserFacingProgramComponent implements OnInit {
         const data =  {
             title: this.program.title,
             details: this.program.details,
-            detailLinks: this.program.detailLinks || []
         };
 
         const config: MatDialogConfig = {

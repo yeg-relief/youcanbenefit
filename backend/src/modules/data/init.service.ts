@@ -85,9 +85,7 @@ const PERCOLATOR_MAPPING = {
 const PROGRAM_MAPPING = {
     "created":{"type":"date"},
     "description":{"type":"text", "fields":{"keyword":{"type":"keyword","ignore_above":256}}},
-    "detailLinks":{"type":"text","fields":{"keyword":{"type":"keyword","ignore_above":256}}},
     "details":{"type":"text","fields":{"keyword":{"type":"keyword","ignore_above":256}}},
-    "externalLink":{"type":"text"},
     "guid":{"type":"text","fields":{"keyword":{"type":"keyword","ignore_above":256}}},
     "tags":{"type":"keyword"},
     "title":{"type":"text"}

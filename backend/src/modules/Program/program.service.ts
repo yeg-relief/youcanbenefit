@@ -6,6 +6,7 @@ import { Observable } from "rxjs/Observable";
 import "rxjs/add/observable/fromPromise"
 import "rxjs/add/operator/map"
 import "rxjs/add/operator/do"
+import * as sanitizeHtml from 'sanitize-html';
 const uuidv4 = require("uuid/v4");
 
 @Injectable()
@@ -34,6 +35,15 @@ export class ProgramService {
 
     index(program: ProgramDto) {
         program.created = Date.now();
+        program.details = sanitizeHtml(program.details, {
+            allowedTags: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'blockquote', 'p', 'a', 'ul', 'ol',
+            'nl', 'li', 'b', 'i', 'strong', 'em', 'strike', 'hr', 'br', 'div',
+            'table', 'thead', 'caption', 'tbody', 'tr', 'th', 'td', 'pre', 'iframe'],
+            allowedAttributes: {
+                '*' : [ 'class', 'style' ],
+                'a' : [ 'href', 'name', 'target' ]
+            }
+        })
         return this.clientService.index(program, this.INDEX, this.TYPE, program.guid)
     }
 
