@@ -33,7 +33,7 @@
         </app-edit-row>
 
         <app-edit-row [icon]="'create'" [tooltip]="'Write more details about the program'">
-            <quill-editor matInput id="program-details" name="details" formControlName="details"></quill-editor>
+            <quill-editor matInput id="program-details" formControlName="details" [modules]="quillModules" [placeholder]="quillPlaceholder"></quill-editor>
         </app-edit-row>
 
         <!-- <app-edit-row [icon]="'links'" [tooltip]="'Links that will appear in the details popup'">

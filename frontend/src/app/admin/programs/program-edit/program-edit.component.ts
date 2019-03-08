@@ -13,7 +13,8 @@ import { tap, flatMap, pluck, multicast, refCount, take, map } from 'rxjs/operat
 export class ProgramEditComponent implements OnInit {
   program: Observable<UserProgram>;
   allTags: string[];
-  quillModules: {}
+  quillModules: {};
+  quillPlaceholder = 'program details';
   constructor(
     private model: ProgramModelService,
     private route: ActivatedRoute,
@@ -36,8 +37,6 @@ export class ProgramEditComponent implements OnInit {
 
     this.allTags = this.model.getAllTags();
     this.quillModules = {
-      imageResize: {},
-      syntax: true,
       toolbar: [
         ['bold', 'italic', 'underline'],
         [{ 'header': 1}, { 'header': 2}],
