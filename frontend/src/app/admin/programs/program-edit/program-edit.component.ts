@@ -40,11 +40,11 @@ export class ProgramEditComponent implements OnInit {
       toolbar: [
         ['bold', 'italic', 'underline'],
         [{ 'header': 1}, { 'header': 2}],
+        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
         [{ 'list': 'ordered'}, { 'list': 'bullet'}],
-        [{ 'size': ['small', false, 'large', 'huge'] }],
-        [{ 'color': [] }, { 'background': [] }],
+        [{ 'indent': '-1'}, { 'indent': '+1' }], 
         [{ 'align': [] }],
-        ['link', 'image']
+        ['link']
       ]
     }
   };
