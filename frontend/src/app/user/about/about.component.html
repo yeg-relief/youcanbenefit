@@ -9,45 +9,58 @@
     <div [innerHTML]="dynamicDocument"></div>
 </ng-template> -->
 
-<main>
-    <div *ngIf="!editMode">
-        <button mat-raised-button (click)="toggleEditMode()" color="primary" title="edit">edit page</button>
-    </div>
-    <div *ngIf="editMode">
-        <button mat-raised-button (click)="toggleEditMode()" color="primary" title="preview">preview</button>
-        <br>
-        <br>
-        <button mat-raised-button (click)="save()" color="primary" title="save">save</button>
-    </div>
-    <table style="width:70%;">
-        <colgroup span="3">
-            <col style="width: 10%;">
-            <col style="width: 80%;">
-            <col style="width: 10%;">
-        </colgroup>
-        <tbody>
-            <tr *ngFor="let document of documents">
-                <td>
-                    <button class="edit-button" mat-button matTooltip="edit" (click)="editDocument(document.guid)"><i class="material-icons">create</i></button>
-                </td>
-                <td>
-                    <span *ngIf="editingDocuments[document.guid]">
-                        <span class="editor">
-                                <quill-editor [modules]="quillModules" [(ngModel)]="document.content"></quill-editor>
+
+
+<div class="my-container">
+    <main>
+        <table>
+            <colgroup span="3">
+                <col style="width: 10%;">
+                <col style="width: 80%;">
+                <col style="width: 10%;">
+            </colgroup>
+            <tbody>
+                <tr *ngFor="let document of documents">
+                    <td>
+                        <span *ngIf="editMode">
+                            <button class="edit-button" mat-button matTooltip="edit" (click)="editDocument(document.guid)"><i class="material-icons">create</i></button>
                         </span>
-                    </span>
-                    <span *ngIf="!editingDocuments[document.guid]">
-                            <span [innerHTML]="document.content"></span>
-                    </span>
-                </td>
-                <td>
-                    <button class="delete-button" mat-button matTooltip="edit" (click)="deleteDocument(document.guid)"><i class="material-icons">delete</i></button>
-                </td>
-        </tbody>
-    </table>
-    <div style="text-align: center">
-        <button class="add-button" mat-mini-fab (click)="addDocument()">
-                <i class="material-icons">add</i>
-        </button>
-    </div> 
-</main>
+                    </td>
+                    <td>
+                        <span *ngIf="editingDocuments[document.guid]">
+                            <span class="editor">
+                                    <quill-editor [modules]="quillModules" [(ngModel)]="document.content" [sanitize]="true"></quill-editor>
+                            </span>
+                        </span>
+                        <span *ngIf="!editingDocuments[document.guid]">
+                                <span [innerHTML]="document.content"></span>
+                        </span>
+                        <hr>
+                    </td>
+                    <td>
+                        <span *ngIf="editMode">
+                            <button class="delete-button" mat-button matTooltip="edit" (click)="deleteDocument(document.guid)"><i class="material-icons">delete</i></button>
+                        </span>
+                    </td>
+                    
+                </tr>
+            </tbody>
+        </table>
+        <div style="text-align: center" *ngIf="editMode">
+            <button class="add-button" mat-mini-fab (click)="addDocument()">
+                    <i class="material-icons">add</i>
+            </button>
+        </div>
+    </main>
+
+    <div class="actions">
+        <div *ngIf="!editMode && showEditButton">
+            <button class="action-button" mat-raised-button (click)="toggleEditMode()" color="primary" title="edit">edit page</button>
+        </div>
+            <div *ngIf="editMode">
+            <button class="action-button" mat-raised-button (click)="toggleEditMode()" color="primary" title="preview">preview</button>
+            <button class="action-button" mat-raised-button (click)="save()" color="primary" title="save">save</button>
+            <button class="action-button" mat-raised-button (click)="cancel()" color="primary" title="cancel">cancel</button>
+        </div>
+    </div>
+</div>

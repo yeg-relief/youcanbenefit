@@ -37,9 +37,32 @@ section {
     margin: 0 auto;
 }
 
-table {
-    margin: 2vh auto;
+
+.my-container {
+    display: flex;
+    justify-content: space-around;
 }
+
+.my-container > main {
+    width: 55%;
+    display: flex;
+    margin: 2vh 1vw 2vh 17vw;
+    flex-direction: column;
+    position: relative;
+  }
+
+
+.my-container > .actions {
+    margin: 2vh auto;
+    position: relative;
+}
+
+.action-button {
+    width: 8em;
+    margin: 2vh auto;
+    display: block;
+}
+
 
 
 @media(min-width: 52em) {
