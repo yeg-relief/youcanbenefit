@@ -32,12 +32,18 @@ section {
     border-radius: 10px;
 }
 
+.add-button {
+    background-color: #ff8c00;
+    margin: 0 auto;
+}
+
+table {
+    margin: 2vh auto;
+}
+
+
 @media(min-width: 52em) {
     section {
-        width: 50%;
-    }
-
-    hr {
         width: 50%;
     }
 }
@@ -46,10 +52,6 @@ section {
 @media(min-width: 40em) and (max-width: 52em) {
     section {
         width: 70%;
-    }
-
-    hr {
-        width: 75%;
     }
 }
 

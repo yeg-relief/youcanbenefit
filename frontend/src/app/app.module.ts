@@ -15,7 +15,7 @@ import { AuthService } from './admin/core/services/auth.service'
 import { AuthGuardService } from './admin/core/services/auth-guard.service';
 import { QuickLinksComponent } from './user/quick-links/quick-links.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ConstructionRibbonComponent } from './construction-ribbon/construction-ribbon.component';
 import { IeSucksComponent } from './user/home/ie-sucks/ie-sucks.component';
 import { ProgramsServiceService } from './user/programs-service.service';
@@ -58,7 +58,8 @@ import { QuillModule } from 'ngx-quill';
         MatSidenavModule,
         MatMenuModule,
         MatButtonModule,
-        QuillModule
+        QuillModule,
+        FormsModule
     ],
     providers: [
         MasterScreenerService,
