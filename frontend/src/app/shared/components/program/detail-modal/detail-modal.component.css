@@ -63,11 +63,6 @@ mat-dialog-content > textarea {
         resize: none;
         overflow: auto;
     }
-
-    .detail-links {
-        margin: 0 auto 3rem auto;
-        width: 80%;
-    }
 }
 
 @media screen and (min-width: 360px) and (max-width: 600px) {
@@ -78,11 +73,6 @@ mat-dialog-content > textarea {
         resize: none;
         overflow: auto;
     }
-
-    .detail-links {
-        margin: 0 auto 3rem auto;
-        width: 80%;
-    }
 }
 
 @media screen and (max-width: 360px) {
@@ -91,11 +81,6 @@ mat-dialog-content > textarea {
         width: 290px;
         font-size: large;
         resize: none;
-    }
-
-    .detail-links {
-        margin: 0 auto 5rem auto;
-        width: 80%;
     }
 
     mat-dialog-content {
