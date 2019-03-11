@@ -30,6 +30,7 @@ import {
     MatMenuModule, 
     MatButtonModule 
 } from '@angular/material';
+import { QuillModule } from 'ngx-quill';
 
 @NgModule({
     declarations: [
@@ -56,7 +57,8 @@ import {
         MatDividerModule,
         MatSidenavModule,
         MatMenuModule,
-        MatButtonModule
+        MatButtonModule,
+        QuillModule
     ],
     providers: [
         MasterScreenerService,

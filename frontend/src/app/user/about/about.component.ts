@@ -8,17 +8,22 @@ import { AboutService } from './about.service';
 })
 export class AboutComponent implements OnInit {
   dynamicDocument = "";
+  documents = ["A", "B", "C"];
   error = "";
   constructor(
     private aboutService: AboutService
   ) {}
 
   ngOnInit() {
-    this.aboutService.getDocument().then((doc) => {
-      this.dynamicDocument = doc
-    }, (err) => {
-      this.error = err;
-    })
+    // this.aboutService.getDocument().then((doc) => {
+    //   this.dynamicDocument = doc
+    // }, (err) => {
+    //   this.error = err;
+    // })
+  }
+
+  editDocument() {
+    
   }
 
 }

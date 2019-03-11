@@ -1,4 +1,4 @@
-<div *ngIf="!dynamicDocument; then thenBlock else elseBlock"></div>
+<!-- <div *ngIf="!dynamicDocument; then thenBlock else elseBlock"></div>
 <ng-template #thenBlock>
     <h1>Loading Page...</h1>
     
@@ -7,5 +7,20 @@
 
 <ng-template #elseBlock>
     <div [innerHTML]="dynamicDocument"></div>
-</ng-template>
+</ng-template> -->
 
+<main>
+    <div *ngFor="let document of documents">
+        <section>
+                <button mat-button matTooltip="edit" (click)="editDocument(document.id)"><i class="material-icons">create</i></button>
+                <span *ngIf="editingDocument(document.id)">
+                        <quill-editor>
+                            
+                        </quill-editor>
+                </span>
+                <span *ngIf="!editingDocument(document.id)">
+                        <span [innerHTML]="document"></span>
+                </span>
+        </section>
+    </div>
+</main>
