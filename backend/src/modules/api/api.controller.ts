@@ -31,9 +31,9 @@ export class ApiController {
         return this.programService.getByGuid(params.guid);
     }
 
-    @Get('document/:guid')
-    getDocumentByGuid(@Param() params): Promise<string>{
-        return this.documentService.getByTitle(params.guid);
+    @Get('document/:title')
+    getDocumentByTitle(@Param() params): Promise<string>{
+        return this.documentService.getByTitle(params.title);
     }
 
     @Post('document')

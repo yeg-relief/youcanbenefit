@@ -7,17 +7,21 @@ import { map, tap, multicast, refCount, switchMap, pluck, reduce } from 'rxjs/op
 
 @Injectable()
 export class AboutService {
-    documents;
+    documents$;
 
     constructor(private http: Http) {
-        this.documents =  this.http.get(`${environment.api}/api/document/about`).toPromise();
+        this.documents$ =  this.http.get(`${environment.api}/api/document/about`)
+                                        .pipe(
+                                            map(res => res.json()),
+                                            multicast(new ReplaySubject(1)),
+                                            refCount()
+                                        )
     }
 
-
-    async getDocument(): Promise<string>  {
-        
-        const httpRes = await this.documents;
-        return decodeURIComponent(httpRes.url);
+    getAboutPage(): Promise<string>  {
+        let prom = this.documents$.toPromise();
+        console.log(prom);
+        return prom;
     }
 
 }

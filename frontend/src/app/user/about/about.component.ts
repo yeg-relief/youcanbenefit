@@ -83,7 +83,15 @@ export class AboutComponent implements OnInit {
       ]
     }
     this.showEditButton = this.authService.isLoggedIn;
-    // this.aboutService.getDocument().then((doc) => {
+
+    this.aboutService.getAboutPage().then((doc) => {
+      console.log(doc)
+      this.dynamicDocument = doc
+    }, (err) => {
+      this.error = err;
+    })
+
+    // this.aboutService.getAboutPage().then((doc) => {
     //   this.dynamicDocument = doc
     // }, (err) => {
     //   this.error = err;
