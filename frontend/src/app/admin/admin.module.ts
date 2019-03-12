@@ -5,11 +5,8 @@ import { routing } from './admin.routes';
 import { StoreModule } from '@ngrx/store';
 import { reducer } from './reducer';
 import { EffectsModule } from '@ngrx/effects';
-import { DataService } from './data.service';
 import { AdminCoreModule } from './core/admin-core.module';
-import { KeyResolverService } from './keys/overview/key-resolver.service';
 import { ProgramsModule } from './programs/programs.module';
-import { KeysModule } from './keys/keys.module';
 import { HttpModule } from '@angular/http';
 import { ScreenerOverviewComponent } from './screener/screener-overview/screener-overview.component';
 import { ScreenerToolbarComponent } from './screener/screener-toolbar/screener-toolbar.component';
@@ -18,7 +15,6 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { QuestionListComponent } from './screener/question-list/question-list.component';
 import { QuestionEditComponent } from './screener/question-edit/question-edit.component';
 import { DragDropManagerService } from './screener/question-list/drag-drop-manager.service';
-import { KeyFilterService } from './screener/services/key-filter.service';
 import { ScreenerPreviewComponent } from './screener/screener-preview/screener-preview.component';
 import { ScreenerContainerComponent } from './screener/screener-container/screener-container.component';
 import { ScreenerImportsModule } from './screener/screener-imports/screener-imports.module';
@@ -60,7 +56,6 @@ import {
         EffectsModule.forRoot([ScreenerEffects]),
         AdminCoreModule,
         ProgramsModule,
-        KeysModule,
         ReactiveFormsModule,
         FormsModule,
         ScreenerImportsModule,
@@ -80,11 +75,8 @@ import {
         DataComponent,
     ],
     providers: [
-        DataService,
         HttpModule,
-        KeyResolverService,
         DragDropManagerService,
-        KeyFilterService,
         DataManagementService
     ]
 })

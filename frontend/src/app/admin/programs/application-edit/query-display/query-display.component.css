@@ -1,0 +1,34 @@
+.query {
+  position: relative;
+  display: flex;
+  border: solid 2px black;
+  width: 95%;
+  margin: 0 auto;
+  background-color: rgba(0,0,0,.125);
+  margin-top: 0.5em;
+  cursor: pointer;
+}
+
+.query.selected {
+  border-color: darkorange;
+}
+
+.query-actions{
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px dotted black;
+}
+
+.condition-value {
+  text-align: center;
+}

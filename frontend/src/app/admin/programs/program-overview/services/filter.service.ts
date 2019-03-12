@@ -6,15 +6,11 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class FilterService {
   public form: FormGroup;
 
-
-
-
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
       value: [''],
-      type: ['none', Validators.required]
+      type: ['title', Validators.required]
     });
-    this.form.get('value').disable();
   }
 
   effectInput(shouldEnable: boolean) {

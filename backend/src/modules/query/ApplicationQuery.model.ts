@@ -15,7 +15,7 @@ export class ApplicationQueryModel {
         const guid = this.data.meta.program_guid;
         const id = this.data.meta.id;
         const conditions = this.data.query.bool.must
-            .map( rawCondition => new EsConditionModel(rawCondition) )
+            .map( rawCondition => new EsConditionModel(rawCondition, this.data.meta.questionTexts) )
             .map( esCondition => esCondition.toApplicationModel() );
 
         this.applicationQueryDto = new ApplicationQueryDto({

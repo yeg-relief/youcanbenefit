@@ -1,13 +1,12 @@
 import { QuestionOption } from './question-option';
 
-export interface Question {
+export interface ScreenerQuestion {
   type: 'boolean' | 'number' | 'text';
   value?: string | number | boolean;
   label: string;
   expandable: boolean;
-  conditonalQuestions?: Question[];
+  conditonalQuestions?: ScreenerQuestion[];
   options?: QuestionOption[];
-  key: string;
   id: string;
   index: number;
   controlType: 'radio' | 'input';

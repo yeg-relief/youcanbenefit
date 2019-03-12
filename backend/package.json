@@ -25,7 +25,7 @@
     "@types/ramda": "^0.25.40",
     "body-parser": "^1.18.3",
     "cors": "^2.8.4",
-    "elasticsearch": "^14.2.2",
+    "elasticsearch": "^15.4.1",
     "jest-html-reporter": "^0.5.8",
     "lodash.get": "^4.4.2",
     "lodash.uniqby": "^4.7.0",
@@ -44,15 +44,15 @@
     "@types/jest": "^21.1.10",
     "@types/node": "^8.10.36",
     "@types/winston": "^2.4.4",
-    "jest": "^21.2.1",
+    "jest": "^24.1.0",
     "nodemon": "^1.18.9",
     "supertest": "^3.3.0",
-    "ts-jest": "^21.2.4",
+    "ts-jest": "^24.0.0",
     "ts-node": "^3.3.0"
   },
   "jest": {
     "transform": {
-      "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+      "^.+\\.tsx?$": "ts-jest"
     },
     "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
     "moduleFileExtensions": [

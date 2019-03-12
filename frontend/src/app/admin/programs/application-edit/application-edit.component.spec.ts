@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { QueryDisplayComponent } from '../common/query-display/query-display.component'
+import { QueryDisplayComponent } from './query-display/query-display.component'
 import { ApplicationEditComponent } from './application-edit.component';
 import { MdIconModule, MdButtonToggleModule, MdSnackBar, MdSnackBarModule } from '@angular/material'
 import { RouterModule, ActivatedRoute } from "@angular/router";

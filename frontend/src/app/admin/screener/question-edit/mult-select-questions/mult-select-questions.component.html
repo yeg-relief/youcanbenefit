@@ -1,14 +1,7 @@
 <main [formGroup]="form">
     <mat-form-field>
-        <textarea cols="30" rows="2" matInput placeholder="question text" formControlName="text"></textarea>
+        <textarea cols="30" rows="2" matInput placeholder="option text" formControlName="text"></textarea>
     </mat-form-field>
-    <div class="key" formGroupName="key">
-        <mat-select placeholder="key" formControlName="name" >
-            <mat-option *ngFor="let key of unusedKeys" [value]="key.name">
-                <pre>{{ key.name }} : {{ key.type }}</pre>
-            </mat-option>
-        </mat-select>
-    </div>
-    <button mat-button [style.background-color]="'darkorange'" (click)="commit()">Save</button>
+    <button mat-button [style.background-color]="'darkorange'" (click)="commit()" [disabled]="!form.valid">Save</button>
 </main>
 <app-options [options]="options" (delete)="handleDelete($event)" (edit)="handleEdit($event)"></app-options>

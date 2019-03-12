@@ -53,10 +53,14 @@ type Condition =
     {[key: string]: {[key:string]: boolean | number }} |
     {[key:string]: {[key:string]: {[key:string]: number } } }
 
-type Meta = {[key: string]: string}
-
 interface bool {
     readonly must: Condition[]
+}
+
+interface Meta {
+  program_guid: string;
+  id: string;
+  questionTexts : {[key: string] : string};
 }
 
 export class EsQueryDto {

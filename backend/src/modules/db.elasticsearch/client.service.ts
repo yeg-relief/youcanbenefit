@@ -66,7 +66,7 @@ export class ClientService {
             console.log(err);
             return err
         })
-        .then(() => ({ deleted: true}) )
+        .then((res: any) => res.result === 'deleted' ? {deleted: true} : {deleted: false})
     }
 
     async findAll(baseParams): Promise<any[]> {
@@ -97,6 +97,7 @@ export class ClientService {
     async mGetById(ids: string[], index: string, type: string): Promise<any[]> {
         const params = {
             index,
+            size: ids.length,
             body: {
                 query: {
                     ids: {

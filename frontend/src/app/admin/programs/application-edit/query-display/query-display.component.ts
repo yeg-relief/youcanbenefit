@@ -10,9 +10,10 @@ import { ProgramQuery } from '../../../models'
 })
 export class QueryDisplayComponent implements OnChanges, OnInit {
     @Input() query: ProgramQuery;
-    @Input() selected: ProgramQueryClass
+    @Input() selected: ProgramQueryClass;
     @Output() edit = new EventEmitter();
     @Output() delete = new EventEmitter();
+    @Output() copy = new EventEmitter();
     styleClass = {
         query: true,
         selected: false
@@ -25,13 +26,23 @@ export class QueryDisplayComponent implements OnChanges, OnInit {
     }
 
     ngOnInit() {
-        this.query.conditions.sort( (a, b) => a.key.name.localeCompare(b.key.name) )
+        try{
+            this.query.conditions.sort( (a, b) => a.question.text.localeCompare(b.question.text) );
+        } catch(e) {
+            console.log("~~~~~~~~~~~~~");
+            console.log("BAD QUERY", this.query);
+            console.log("~~~~~~~~~~~~~")
+        }
     }
 
     handleDelete(query_id) {
-        const result = window.confirm("Are you sure you want to delete this query?")
+        const result = window.confirm("Are you sure you want to delete this query?");
         if (result) {
             this.delete.emit(query_id)
         }
+    }
+
+    handleCopy(query_id) {
+      this.copy.emit(query_id);
     }
 }

@@ -59,27 +59,19 @@ export class Program {
     return null;
   }
 
-  updateQuery(id: string, update: ProgramQueryClass){
-    const targetQuery = this.application.find(q => q.data.id === update.data.id)
-    if (targetQuery !== undefined) {
-      targetQuery.form.setValue(update.form.value);
-      targetQuery.commit();
-    }
-  }
-
-  _addQuery(query: ProgramQuery): void {
+  _addQuery(query): void {
     const query_obj = new ProgramQueryClass(query, this.fb);
-    this.data.application = [ query_obj.data, ...this.data.application ]
+    this.data.application = [ query_obj.data, ...this.data.application ];
     this.application = [query_obj, ...this.application ];
     this._initForm();
   }
 
   generateRandomString(): string {
     const LENGTH = 26;
-    const lowerCaseCharSet = "abcdefghijklmnopqrstuvwxyz"
+    const lowerCaseCharSet = "abcdefghijklmnopqrstuvwxyz";
     const charSet = lowerCaseCharSet
       .concat(lowerCaseCharSet.toUpperCase())
-      .concat("1234567890")
+      .concat("1234567890");
 
     const generateCharacters = () => {
       const arr = new Array(LENGTH);
@@ -87,7 +79,7 @@ export class Program {
         arr[i] = charSet[Math.floor(Math.random() * charSet.length)];
       }
       return arr;
-    }
+    };
     
     return generateCharacters().join('');
   }

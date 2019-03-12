@@ -30,7 +30,7 @@ export class OverviewControlsComponent implements OnInit, OnDestroy {
         debounceTime(100),
         distinctUntilChanged(),
         map(value => value.type !== undefined && value.type !== '' && value.type !== 'none'),
-        shareReplay(),
+        shareReplay()
       )
 
       
@@ -43,8 +43,6 @@ export class OverviewControlsComponent implements OnInit, OnDestroy {
             'filter_inactive': true  
           })
         )
-
-    this.disableInput = formChanges.subscribe(this.filterService.effectInput)
   }
 
   ngOnDestroy(){

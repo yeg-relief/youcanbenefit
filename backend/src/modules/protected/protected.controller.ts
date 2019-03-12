@@ -12,8 +12,8 @@ import "rxjs/add/operator/mergeMap"
 import "rxjs/add/observable/throw"
 import "rxjs/add/observable/of"
 import "rxjs/add/operator/catch"
-import {KeyService} from "../key/key.service";
-import {KeyDto} from "../key/key.dto";
+import { QuestionService } from '../question/question.service';
+import { QuestionDto } from '../question/question.dto';
 import {ScreenerDto} from "../screener/screener.dto";
 import {ScreenerService} from "../screener/screener.service";
 import { PageService } from '../page/page.service';
@@ -26,7 +26,7 @@ export class ProtectedController {
     constructor(
         private programService: ProgramService,
         private queryService: ApplicationQueryService,
-        private keyService: KeyService,
+        private questionService: QuestionService,
         private screenerService: ScreenerService,
         private pageService: PageService
     ) {}
@@ -36,33 +36,30 @@ export class ProtectedController {
         return Observable.of({created: true})
     }
 
-    @Get('/key/')
-    getAllKeys(): Observable<KeyDto[]> {
-        return this.keyService.findAll();
-    }
-
-    @Post('/key')
-    saveKey(@Body() data) {
-        return Observable.fromPromise( this.keyService.create(data.key || data) )
-            .map(update => ({ update }) )
+    @Get('/question/')
+    getQuestions(): Observable<QuestionDto[]> {
+        return this.questionService.getQuestions();
     }
 
     @Get('/screener/')
-    getScreenerWithKeys(): Observable<any> {
+    getScreenerWithQuestions(): Observable<any> {
         return Observable.zip(
             this.screenerService.getLatest(),
-            this.keyService.findAll()
-        ).map( ([screener, keys]) => {
+        ).map( ([screener]) => {
             return {
-                ...screener,
-                keys: keys
+                ...screener
             }
         })
     }
 
     @Post('/screener/')
     saveScreener(@Body() data) {
-        return this.screenerService.update((<ScreenerDto> data))
+        return Observable.zip(
+            this.screenerService.update((<ScreenerDto> data)),
+            this.questionService.updateQuestions(data['questions'])
+        ).map(([screener, questions]) => {
+            return {screener, questions}
+        })
     }
 
     @Get('/program/')
@@ -136,6 +133,7 @@ export class ProtectedController {
             this.programService.deleteByGuid(guid),
             this.queryService.deleteByGuid(guid)
         )
+        .map(([programDeleted, queriesDeleted]) => ({...programDeleted, ...queriesDeleted}))
     }
 
     @Delete('/query/:id')

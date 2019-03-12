@@ -9,7 +9,7 @@
                     (click)="handleDeleteClick()"> clear </mat-icon>
             <mat-icon
                     id="save-program"
-                    matTooltip="save program queries"
+                    matTooltip="save program details"
                     (click)="handlSaveClick()">save</mat-icon>
             <mat-icon
                     id="edit-queries"
@@ -26,13 +26,13 @@
             </mat-form-field>
         </app-edit-row>
 
-        <app-edit-row [icon]="'subject'" [tooltip]="'Write a one line description.'">
+        <app-edit-row [icon]="'subject'" [tooltip]="'Write a one line description'">
             <mat-form-field [style.width]="'100%'">
                 <input matInput formControlName="description" placeholder="program description"/>
             </mat-form-field>
         </app-edit-row>
 
-        <app-edit-row [icon]="'create'" [tooltip]="'Write a more detailed overview.'">
+        <app-edit-row [icon]="'create'" [tooltip]="'Write more details about the program'">
             <textarea id="program-details" rows="10" cols="50" name="details"  matInput formControlName="details">
                 {{program.data.details }}
             </textarea>
@@ -50,8 +50,8 @@
             </mat-form-field>
         </app-edit-row>
 
-        <app-edit-row [icon]="'label'" [tooltip]="'tag the program with a category'">
-            <app-tag-edit [tags]="program._form.get('tags')"></app-tag-edit>
+        <app-edit-row [icon]="'label'" [tooltip]="'Tag the program with a category'">
+            <app-tag-edit [tags]="program._form.get('tags')" [allTags]="allTags"></app-tag-edit>
         </app-edit-row>
 
     </form>

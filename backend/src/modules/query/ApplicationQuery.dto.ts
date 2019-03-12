@@ -1,10 +1,11 @@
-interface Key {
-    name: string,
+interface Question {
+    text: string,
+    id: string,
     type: "boolean" | "number"
 }
 
 interface ApplicationCondition {
-    key: Key,
+    question: Question,
     value: boolean | number,
     qualifier: "lessThanOrEqual" | "lessThan" | "equal" | "greaterThan" | "greaterThanOrEqual"
 }

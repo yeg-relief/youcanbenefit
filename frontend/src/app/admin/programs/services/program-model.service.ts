@@ -3,17 +3,18 @@ import { throwError as observableThrowError, Observable , ReplaySubject, of } fr
 import { map, flatMap, take, zip, catchError, tap, refCount, multicast } from 'rxjs/operators'
 import { Injectable } from '@angular/core';
 import { Http, RequestOptions} from '@angular/http';
-import { ApplicationFacingProgram, ProgramQuery, Key } from '../../models'
+import { ApplicationFacingProgram, ProgramQuery, Question} from '../../models'
 import { UserFacingProgram } from '../../../shared/models'
 import { AuthService } from '../../core/services/auth.service'
 import { Program } from './program.class';
 import { FormBuilder } from '@angular/forms';
 import { environment } from '../../../../environments/environment'
+import { ProgramQueryClass } from './program-query.class';
 
 @Injectable()
 export class ProgramModelService {
     private _cache: Observable<ApplicationFacingProgram[]>;
-    keys: Observable<Key[]>;
+    questions: Observable<Question[]>;
     constructor(
         private http: Http,
         private authService: AuthService,
@@ -27,7 +28,7 @@ export class ProgramModelService {
             )
         )
 
-        this.keys = withSharing(this._getKeys)
+        this.questions = withSharing(this._getQuestions)
         this._cache = withSharing(this._loadPrograms)
     }
 
@@ -45,7 +46,7 @@ export class ProgramModelService {
 
     getPrograms(): Observable<ApplicationFacingProgram[]> {
         if (this._cache) {
-            this._cache.subscribe(console.dir)
+            this._cache.subscribe();
             return this._cache
         } 
     }
@@ -57,9 +58,8 @@ export class ProgramModelService {
                     const val = cache.find(p => p.guid === program.guid);
                     if (val) {
                         val.user = program;
-                        //this._cache.next(cache);
                     } else {
-                        //this._cache.next([{guid: program.guid, application: [], user: program},  ...cache]);
+                        cache.push({guid: program.guid, application: [], user: program})
                     }
             })
         }
@@ -80,9 +80,52 @@ export class ProgramModelService {
         return this._deleteProgram(guid)
             .pipe(tap(res => {
                 if (res) {
-                    //this._cache.asObservable().pipe(take(1)).subscribe(cache => this._cache.next(cache.filter(p => p.guid !== guid)))
+                    this._cache.subscribe(cache => {
+                        const index = cache.findIndex(p => p.user.guid === guid)
+                        cache.splice(index, 1);
+                    })
                 }
             }))
+    }
+
+    getAllTags(): string[] {
+        let tags: string[] = []
+        this._cache.subscribe(cache => {
+            cache.forEach(program => {
+                program.user.tags.forEach(tag => {
+                    if (!tags.includes(tag)) {
+                        tags.push(tag)
+                    }
+                })
+            })
+        })
+        tags.sort();
+        return tags;
+    }
+
+    updateCachedQuery(updatedQuery: ProgramQueryClass) {
+        updatedQuery.form.value.conditions.forEach(condition => delete condition['type']);
+        this._cache.pipe(take(1))
+            .subscribe(cache => {
+                let program = cache.find(p => p.guid === updatedQuery.data.guid);
+                const index = program.application.findIndex(q => q.id === updatedQuery.data.id);
+                if (index >= 0) {
+                    program.application[index] = updatedQuery.form.value;
+                } else {
+                    program.application.push(updatedQuery.form.value);
+                }
+        })
+    }
+
+    removeCachedQuery(program_guid: string, query_id: string) {
+        this._cache.pipe(take(1))
+            .subscribe(cache => {
+                let program = cache.find(p => p.guid === program_guid);
+                const index = program.application.findIndex(q => q.id === query_id);
+                if (index >= 0) {
+                    program.application.splice(index, 1);
+                }
+        })
     }
 
     private getCredentials(): RequestOptions {
@@ -108,14 +151,14 @@ export class ProgramModelService {
         return this.http.delete(`${environment.api}/protected/program/${guid}`, creds)
             .pipe(
                 map(res => res.json()),
-                map( (res: [boolean, object, Array<ApplicationFacingProgram>]) => res[0]),
+                map(res => res.deleted),
                 catchError(this.loadError)
             )
     }
 
-    private _getKeys = () => {
+    private _getQuestions = () => {
         const creds = this.getCredentials();
-        return this.http.get(`${environment.api}/protected/key/`, creds)
+        return this.http.get(`${environment.api}/protected/question/`, creds)
             .pipe(map( res => res.json()), catchError(this.loadError))
     }
 

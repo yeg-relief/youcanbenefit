@@ -1,0 +1,46 @@
+<div [ngClass]="styleClass">
+  <table style="width:85%;" (click)="edit.emit(query.id)">
+    <colgroup span="2">
+      <col style="width: 77%;">
+      <col style="width: 23%;">
+    </colgroup>
+    <thead class="border-bottom">
+      <tr>
+        <th>Question</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let condition of query.conditions">
+        <td>
+        <span *ngIf="condition.question.text.length<60">
+            {{ condition.question.text }}
+        </span>
+        <span *ngIf="condition.question.text.length>=60">
+          {{ condition.question.text | slice: 0:60 }}...
+        </span>
+        </td>
+        <td class="condition-value">
+          <span *ngIf="condition.question.type=='number'">
+            <span [ngSwitch]="condition.qualifier">
+              <span *ngSwitchCase="'lessThan'"> &lt; </span>
+              <span *ngSwitchCase="'lessThanOrEqual'"> &lt;= </span>
+              <span *ngSwitchCase="'equal'"> = </span>
+              <span *ngSwitchCase="'greaterThanOrEqual'"> &gt;= </span>
+              <span *ngSwitchCase="'greaterThan'"> &gt; </span>
+            </span>
+          </span>
+           {{condition.value}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="query-actions">
+    <button mat-button color="warn" (click)="handleDelete(query.id)">
+      <i class="material-icons">clear</i>
+    </button>
+    <button *ngIf="query.conditions.length" mat-button color="primary" (click)="handleCopy(query.id)">
+      <i class="material-icons">content_copy</i>
+    </button>
+  </div>
+</div>

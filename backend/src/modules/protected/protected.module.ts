@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { ProgramModule } from '../Program'
 import { QueryModule } from "../query";
 import { ProtectedController } from "./protected.controller";
-import { KeyModule } from "../key";
+import { QuestionModule } from "../question";
 import { ScreenerModule } from "../screener";
 import { PageModule } from '../page/page.module';
 
@@ -10,7 +10,7 @@ import { PageModule } from '../page/page.module';
     imports: [
         ProgramModule,
         QueryModule,
-        KeyModule,
+        QuestionModule,
         ScreenerModule,
         PageModule
     ],

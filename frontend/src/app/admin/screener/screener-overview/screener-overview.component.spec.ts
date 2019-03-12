@@ -9,7 +9,6 @@ import { Observable } from 'rxjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import * as fromRoot from '../../reducer';
 import * as fromScreener from '../store/screener-reducer';
-import * as fromKeys from '../../keys/reducer';
 import { DragDropManagerService } from '../question-list/drag-drop-manager.service';
 import { QuestionListComponent } from '../question-list/question-list.component'
 import { ScreenerToolbarComponent } from '../screener-toolbar/screener-toolbar.component'
@@ -42,10 +41,6 @@ const screenerState: fromScreener.State  = {
   error: '',
   selectedConstantQuestion: 'fake_id',
   selectedConditionalQuestion: undefined,
-  keys: [
-    {name: 'boolean_key', type: 'boolean'},
-    {name: 'integer_key', type: 'integer'}
-  ],
   created: 0
 };
 

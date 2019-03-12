@@ -11,9 +11,8 @@
   <div>
     
     <mat-select formControlName="type" id="programFilter">
-      <mat-option [value]="'none'"> <i class="material-icons filter_inactive select-option">search</i> disabled </mat-option>
-      <mat-option [value]="'tag'"> <i class="material-icons select-option">search</i> tag </mat-option>
       <mat-option [value]="'title'"> <i class="material-icons select-option">search</i> title </mat-option>
+      <mat-option [value]="'tag'"> <i class="material-icons select-option">search</i> tag </mat-option>
     </mat-select>
 
     <section [@fadeinAndOut]>

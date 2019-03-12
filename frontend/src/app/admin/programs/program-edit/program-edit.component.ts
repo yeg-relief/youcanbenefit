@@ -12,6 +12,7 @@ import { tap, flatMap, pluck, multicast, refCount, take, map } from 'rxjs/operat
 })
 export class ProgramEditComponent implements OnInit {
   program: Observable<UserProgram>;
+  allTags: string[];
   constructor(
     private model: ProgramModelService,
     private route: ActivatedRoute,
@@ -22,7 +23,7 @@ export class ProgramEditComponent implements OnInit {
 
   ngOnInit(){
     const guid = this.route.snapshot.params['guid'];
-
+    
     if (guid) {
       this.program = this.model.findProgram(guid)
         .pipe(
@@ -31,6 +32,8 @@ export class ProgramEditComponent implements OnInit {
           refCount()
         )
     }
+
+    this.allTags = this.model.getAllTags();
   };
 
   handleQueryClick() {
@@ -60,23 +63,21 @@ export class ProgramEditComponent implements OnInit {
 
   handleDeleteClick() {
     const res = window.confirm("Are you sure that you would like to delete this program?")
-
+    
     if (res) {
       this.program.pipe(
         take(1),
         map(p => p.data.guid),
-        flatMap(this.model.deleteProgram),
-        tap(() => {
-          this.display('delete success.')
+        flatMap(guid => this.model.deleteProgram(guid))
+      ).subscribe((deleteResponse) => {
+        if (deleteResponse) {
+          this.display('delete success.');
           this.router.navigateByUrl('admin/programs/overview');
-        })
-      ).subscribe({
-        error: e => {
-          console.error(e);
-          this.display('delete failure.')
+        } else {
+          this.display('delete failure.');
         }
       })
-    }    
+    }
   }
 
   private _goToQueries(){

@@ -27,11 +27,11 @@ export function applyFilter(source: Observable<ProgramState>): Observable<Progra
           }
   
           case 'tag': {
-            const filterTag = state.filter.value;
+            const regexp = new RegExp(state.filter.value.toLowerCase().trim());
   
             return from(programs)
               .pipe(
-                filter(program => program.user.tags.find(tag => tag === filterTag) !== undefined),
+                filter(program => program.user.tags.find(tag => regexp.test(tag.toLowerCase().trim())) !== undefined),
                 toArray(),
                 map(programs => new ProgramState(programs, state.filter))
               )
@@ -39,11 +39,6 @@ export function applyFilter(source: Observable<ProgramState>): Observable<Progra
           }
   
           case 'title': {
-            if (state.filter.value === '') {
-              return of(new ProgramState([], state.filter));
-            }
-  
-  
             const regexp = new RegExp(state.filter.value.toLowerCase().trim());
   
             return from(programs)

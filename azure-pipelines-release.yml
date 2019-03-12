@@ -1,0 +1,33 @@
+# Builds release candidate images for release branches. A test environment can be stood
+# up using these images.
+
+trigger:
+  branches:
+    include:
+    - release/*
+pr: none
+
+pool:
+  vmImage: 'Ubuntu-16.04'
+
+steps:
+- bash: |
+    echo '##vso[task.setvariable variable=tag]release-$(build.buildId)'
+    echo 'Tag is $(tag)'
+    echo '##vso[task.setvariable variable=branch]$(Build.SourceBranch)'
+    echo 'Branch is $(branch)'
+  displayName: 'set variables'
+- bash: |
+    cd backend
+    docker build --tag $(registryServerName)/youcanbenefit-api:$(tag) .
+    cd ../frontend
+    docker build --tag $(registryServerName)/youcanbenefit-web:$(tag) .
+  displayName: 'docker build'
+
+- bash: echo $(docker.password) | docker login -u $(docker.username) --password-stdin
+  displayName: 'docker login'
+
+- bash: |
+    docker push $(registryServerName)/youcanbenefit-api:$(tag)
+    docker push $(registryServerName)/youcanbenefit-web:$(tag)
+  displayName: 'docker push'
