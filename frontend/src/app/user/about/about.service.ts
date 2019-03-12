@@ -24,8 +24,7 @@ export class AboutService {
     }
 
     savePage(page: Page) {
-        console.log(page);
-        return this.http.post(`${environment.api}/api/page`, page)
+        return this.http.post(`${environment.api}/protected/page`, page)
                 .pipe(
                     map(res => res.json())
                 );
