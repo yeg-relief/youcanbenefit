@@ -21,7 +21,7 @@ export class PageService {
         private readonly clientService: ClientService
     ) {}
 
-    create(page: PageDto): Promise<any> {
+    createOrUpdate(page: PageDto): Promise<any> {
         page.documents.forEach(document => {
             document.content = sanitizeHtml(document.content, {
                 allowedTags: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'blockquote', 'p', 'a', 'ul', 'ol',
@@ -38,9 +38,8 @@ export class PageService {
         return this.clientService.index(page, this.INDEX, this.TYPE, page.title);
     }
 
-    async getByTitle(title: string): Promise<string> {
-        const document = await this.clientService.getById(this.baseParams, title);
-        return document.content;
+    async getByTitle(title: string): Promise<PageDto> {
+        return await this.clientService.getById(this.baseParams, title);;
     }
 
 }

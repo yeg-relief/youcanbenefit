@@ -20,7 +20,7 @@
                 <col style="width: 10%;">
             </colgroup>
             <tbody>
-                <tr *ngFor="let document of documents">
+                <tr *ngFor="let document of page.documents">
                     <td>
                         <span *ngIf="editMode">
                             <button class="edit-button" mat-button matTooltip="edit" (click)="editDocument(document.guid)"><i class="material-icons">create</i></button>
@@ -59,7 +59,7 @@
         </div>
             <div *ngIf="editMode">
             <button class="action-button" mat-raised-button (click)="toggleEditMode()" color="primary" title="preview">preview</button>
-            <button class="action-button" mat-raised-button (click)="save()" color="primary" title="save">save</button>
+            <button class="action-button" mat-raised-button (click)="savePage()" color="primary" title="save">save</button>
             <button class="action-button" mat-raised-button (click)="cancel()" color="primary" title="cancel">cancel</button>
         </div>
     </div>

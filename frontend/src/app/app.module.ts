@@ -28,7 +28,8 @@ import {
     MatDividerModule, 
     MatSidenavModule, 
     MatMenuModule, 
-    MatButtonModule 
+    MatButtonModule, 
+    MatSnackBarModule
 } from '@angular/material';
 import { QuillModule } from 'ngx-quill';
 
@@ -58,6 +59,7 @@ import { QuillModule } from 'ngx-quill';
         MatSidenavModule,
         MatMenuModule,
         MatButtonModule,
+        MatSnackBarModule,
         QuillModule,
         FormsModule
     ],

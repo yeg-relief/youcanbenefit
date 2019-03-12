@@ -32,13 +32,13 @@ export class ApiController {
     }
 
     @Get('page/:title')
-    getPageByTitle(@Param() params): Promise<string>{
+    getPageByTitle(@Param() params): Promise<PageDto>{
         return this.pageService.getByTitle(params.title);
     }
 
     @Post('page')
-    createPage(@Body() body): Promise<any>{
-        return this.pageService.create(body);
+    createOrUpdatePage(@Body() body): Promise<any>{
+        return this.pageService.createOrUpdate(body);
     }
 
     @Post('notification')

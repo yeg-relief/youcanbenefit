@@ -3,14 +3,15 @@ import { ReplaySubject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { environment } from '../../../environments/environment';
-import { map, tap, multicast, refCount, switchMap, pluck, reduce } from 'rxjs/operators'
+import { map, tap, multicast, refCount, switchMap, pluck, reduce, take } from 'rxjs/operators';
+import { Page } from '../../shared/models';
 
 @Injectable()
 export class AboutService {
-    documents$;
+    page$;
 
     constructor(private http: Http) {
-        this.documents$ =  this.http.get(`${environment.api}/api/document/about`)
+        this.page$ =  this.http.get(`${environment.api}/api/page/about`)
                                         .pipe(
                                             map(res => res.json()),
                                             multicast(new ReplaySubject(1)),
@@ -18,10 +19,16 @@ export class AboutService {
                                         )
     }
 
-    getAboutPage(): Promise<string>  {
-        let prom = this.documents$.toPromise();
-        console.log(prom);
-        return prom;
+    getPage(): Promise<Page>  {
+        return this.page$.toPromise();
+    }
+
+    savePage(page: Page) {
+        console.log(page);
+        return this.http.post(`${environment.api}/api/page`, page)
+                .pipe(
+                    map(res => res.json())
+                );
     }
 
 }
