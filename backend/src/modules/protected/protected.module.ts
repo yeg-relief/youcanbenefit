@@ -4,13 +4,15 @@ import { QueryModule } from "../query";
 import { ProtectedController } from "./protected.controller";
 import { KeyModule } from "../key";
 import { ScreenerModule } from "../screener";
+import { PageModule } from '../page/page.module';
 
 @Module({
     imports: [
         ProgramModule,
         QueryModule,
         KeyModule,
-        ScreenerModule
+        ScreenerModule,
+        PageModule
     ],
     controllers: [ ProtectedController ],
     providers: [ ProtectedController ]

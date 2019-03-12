@@ -16,7 +16,7 @@ import {KeyService} from "../key/key.service";
 import {KeyDto} from "../key/key.dto";
 import {ScreenerDto} from "../screener/screener.dto";
 import {ScreenerService} from "../screener/screener.service";
-import { ConstantsReadonly } from "../constants.readonly"
+import { PageService } from '../page/page.service';
 const fs = require('fs');
 const path = require('path');
 
@@ -27,7 +27,8 @@ export class ProtectedController {
         private programService: ProgramService,
         private queryService: ApplicationQueryService,
         private keyService: KeyService,
-        private screenerService: ScreenerService
+        private screenerService: ScreenerService,
+        private pageService: PageService
     ) {}
 
     @Get('/login/')
@@ -154,5 +155,10 @@ export class ProtectedController {
     @Put('/program-description/')
     updateUserFacingProgram(@Body() data): Promise<any> {
         return this.programService.index(data)
+    }
+
+    @Post('/page/')
+    createOrUpdatePage(@Body() body): Promise<any>{
+        return this.pageService.createOrUpdate(body);
     }
 }

@@ -36,11 +36,6 @@ export class ApiController {
         return this.pageService.getByTitle(params.title);
     }
 
-    @Post('page')
-    createOrUpdatePage(@Body() body): Promise<any>{
-        return this.pageService.createOrUpdate(body);
-    }
-
     @Post('notification')
     getProgramsFromForm(@Body() body): Observable<ProgramDto[]> {
         return this.percolateService.precolate(body);

@@ -43,7 +43,7 @@ export class AboutComponent implements OnInit {
 
     this.page.documents = [
       {
-        guid: "1",
+        guid: this.randomString(),
         content: `<h2>Information about program and origins</h2>
         <p>
             YouCanBenefit provides easy web access to information about a range of
@@ -67,7 +67,7 @@ export class AboutComponent implements OnInit {
         </p>`
       },
       {
-        guid: "2",
+        guid: this.randomString(),
         content: `<h1><a href="https://www.linkedin.com/in/steven-myers-7b750789/" target="_blank">Steven Myers</a></h1>
         <div class="detail-section">
           <img src="assets/steven-profile.jpg" />
@@ -79,7 +79,7 @@ export class AboutComponent implements OnInit {
         </div>`
       },
       {
-        guid: "3",
+        guid: this.randomString(),
         content: `<h2><a href="https://e4calberta.org/" target="_blank">e4c</a></h2>
         <div class="detail-section">
             <img src="assets/rsz_1mainlogo_55796721-010e-435f-9c40-0dc1a644656e.png" />
@@ -91,7 +91,59 @@ export class AboutComponent implements OnInit {
                 skill development and education, and food security.
             </p>
         </div>`
+      },
+      {
+        guid: this.randomString(),
+        content: `<h2><a href="https://www.edmonton.ca/" target="_blank">City of Edmonton</a> </h2>
+        <div class="detail-section">
+              <img src="assets/city-of-edmonton.jpg" />    
+              <p>
+                As the government closest to Canadians, municipalities touch almost every aspect of our citizens’ daily lives.
+                We’re citizens too - 12,000 employees who provide services to our nearly 900,000 neighbours in the most open
+                and responsive way we can.
+                <br><br>
+                The City of Edmonton doesn't do this alone. We’re part of a larger ecosystem of government, post-secondary institutions, the arts,
+                not-for-profits, school boards, private business and citizens —  integral partners in an intelligent community.
+                Embracing the perspectives from individuals, industry and academic sectors is how we can best achieve our goals,
+                deliver programs and services and provide an exceptional quality of life for citizens.
+            </p>
+            
+        </div>`
+      },
+      {
+        guid: this.randomString(),
+        content: `
+          <h2><a href="http://www.endpovertyedmonton.ca" target="_blank">EndPovertyEdmonton</a> </h2>
+          <div class="detail-section">
+              <img src="assets/end-poverty.png" />
+              <p> EndPovertyEdmonton is a community-based collective launched in 2017 to steward the vision and movement to end poverty in
+                  Edmonton in a generation and to advance the actions in the five year EndPovertyEdmonton Road Map.  Road Map Action #16
+                  specifically calls for an expansion of the spectrum of financial empowerment initiatives, of which You Can Benefit,
+                  is an outstanding example.</p>
+          </div>`
+      },
+      {
+        guid: this.randomString(),
+        content: `
+          <h2><a href="https://betacity.ca/" target="_blank">BETA CITY YEG</a></h2>
+            <div class="detail-section">
+                <p>BetaCityYEG is Canada's oldest civic technology meetup and meets monthly at <a href="http://www.startupedmonton.com/" target="_blank">Startup Edmonton</a>. It brings together
+                    civic-minded data scientists, programmers, and public and nonprofit employees to co-create solutions for the city and region.
+                </p>
+            </div>`
+      },
+      {
+        guid: this.randomString(),
+        content: `
+          <h2>Disclaimer</h2>
+          <div class="detail-section">
+              <p>YouCanBenefit contains information provided by a variety of parties.  YouCanBenefit does not make any representations or warranty about 
+                  the accuracy, reliability, currency or completeness of the information provided. YouCanBenefit does not endorse the information contained 
+                  herein and will not be liable for any reliance thereon.
+              </p>
+          </div>`
       }
+      
     ]
 
     // this.aboutService.getPage()
