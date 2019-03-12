@@ -124,6 +124,7 @@ export class ScreenerToolbarComponent implements OnInit {
       (questions, keys, unusedKeys) => ({...questions, keys, unusedKeys})
     ).pipe(take(1))
       .subscribe(screener => {
+        console.log(screener);
         return this.http.post(`${environment.api}/protected/screener`, screener, this.auth.getCredentials()).toPromise().then(console.log).catch(console.error)
       })
   }

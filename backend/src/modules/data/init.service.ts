@@ -14,9 +14,9 @@ export class InitService {
         const masterScreenerExists = await this.client.indices.exists({ index: 'master_screener'});
         const questionsExists = await this.client.indices.exists({ index: 'questions'});
         const programsExists = await this.client.indices.exists({ index: 'programs'});
-        const documentsExists = await this.client.indices.exists({index: 'documents'})
+        const pagesExists = await this.client.indices.exists({index: 'pages'})
 
-        return masterScreenerExists && questionsExists && programsExists && documentsExists ;
+        return masterScreenerExists && questionsExists && programsExists && pagesExists ;
     }
 
 
@@ -24,8 +24,8 @@ export class InitService {
         const masterScreenerExists = await this.client.indices.exists({ index: 'master_screener'});
         const questionsExists = await this.client.indices.exists({ index: 'questions'});
         const programsExists = await this.client.indices.exists({ index: 'programs'});
-        const documentsExists = await this.client.indices.exists({index: 'documents'})
-        const hasBeenInitialized = masterScreenerExists && questionsExists && programsExists && documentsExists;
+        const pagesExists = await this.client.indices.exists({index: 'pages'})
+        const hasBeenInitialized = masterScreenerExists && questionsExists && programsExists && pagesExists;
 
 
         if (hasBeenInitialized && !force) {
@@ -43,8 +43,8 @@ export class InitService {
         if (programsExists) {
             await this.client.indices.delete({ index: 'programs'});
         }
-        if (documentsExists) {
-            await this.client.indices.delete({ index: 'documents'});
+        if (pagesExists) {
+            await this.client.indices.delete({ index: 'pages'});
         }
 
         await this.client.indices.create({ index: 'master_screener'});
@@ -68,7 +68,7 @@ export class InitService {
             body: { properties: { ...PROGRAM_MAPPING } }
         });
 
-        await this.client.indices.create({ index: 'documents'});
+        await this.client.indices.create({ index: 'pages'});
         
 
         return [

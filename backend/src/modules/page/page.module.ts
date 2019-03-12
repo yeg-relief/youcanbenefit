@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
-import { DocumentService } from "./document.service";
+import { PageService } from "./page.service";
 import { DbElasticsearchModule } from "../db.elasticsearch/db.elasticsearch.module"
 
 @Module({
     imports: [ DbElasticsearchModule ],
-    providers: [ DocumentService ],
-    exports: [ DocumentService ]
+    providers: [ PageService ],
+    exports: [ PageService ]
 })
-export class DocumentModule {}
+export class PageModule {}

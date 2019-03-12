@@ -3,14 +3,14 @@ import { ProgramModule } from '../Program'
 import { ApiController } from "./api.controller";
 import { ScreenerModule } from "../screener";
 import { PercolateModule } from "../percolate/percolate.module";
-import { DocumentModule } from "../document/document.module";
+import { PageModule } from "../page/page.module";
 
 @Module({
     imports: [
         ProgramModule,
         ScreenerModule,
         PercolateModule,
-        DocumentModule
+        PageModule
     ],
     controllers: [ ApiController ]
 })
