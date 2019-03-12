@@ -15,13 +15,16 @@ export class UploadService {
         let screenerRes,
             programRes,
             queryRes,
+            pageRes,
             programMappings,
             queryMappings,
-            screenerMappings;
+            screenerMappings,
+            pageMappings;
 
         const masterScreenerExists = await this.client.indices.exists({ index: Schema.queries.index});
         const questionsExists = await this.client.indices.exists({ index: Schema.master_screener.index});
         const programsExists = await this.client.indices.exists({ index: Schema.programs.index});
+        const pagesExists = await this.client.indices.exists({ index: Schema.pages.index});
 
         if (masterScreenerExists) {
             await this.client.indices.delete({ index: Schema.queries.index});
@@ -99,13 +102,40 @@ export class UploadService {
             throw new Error("No screener")
         }
 
+        if (pagesExists) {
+            await this.client.indices.delete({ index: Schema.pages.index});
+        }
+        await this.client.indices.create({ index: Schema.pages.index});
+        if (data.pageMappings) {
+            const normalizedMapping = this.normaliseMapping(
+                data,
+                Schema.pages.type,
+                Schema.pages.index,
+                'pageMappings'
+            );
+            pageMappings = await this.client.indices.putMapping({
+                index: Schema.programs.index,
+                type:  Schema.programs.type,
+                body: { properties: { ...normalizedMapping } }
+            })
+        } else {
+            throw new Error("No pageMappings")
+        }
+        if (data.pages) {
+            pageRes = await this.uploadPages(data.pages)
+        } else {
+            throw new Error("No pages")
+        }
+
         return {
             screenerRes,
             programRes,
             queryRes,
+            pageRes,
             queryMappings,
             programMappings,
-            screenerMappings
+            screenerMappings,
+            pageMappings
         }
     }
 
@@ -162,6 +192,26 @@ export class UploadService {
                     }
             }).catch(err => {
                 console.log("\x1b[31m", 'ERROR: uploading queries');
+                console.log(err);
+                process.exit(102);
+                return new Error(err)
+            })
+        )
+    }
+
+    private uploadPages(pages): Promise<any> {
+        const _pages = this.uploadPagesWithOverwrite(pages);
+        return Promise.all(_pages)
+    }
+
+    private uploadPagesWithOverwrite(pages): Promise<any>[] {
+        return  pages.map( page => this.client.index( {
+                    index: Schema.pages.index,
+                    type: Schema.pages.type,
+                    id: page.title,
+                    body: page
+            }).catch(err => {
+                console.log("\x1b[31m", 'ERROR: uploading pages');
                 console.log(err);
                 process.exit(102);
                 return new Error(err)
