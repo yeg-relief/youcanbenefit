@@ -114,8 +114,8 @@ export class UploadService {
                 'pageMappings'
             );
             pageMappings = await this.client.indices.putMapping({
-                index: Schema.programs.index,
-                type:  Schema.programs.type,
+                index: Schema.pages.index,
+                type:  Schema.pages.type,
                 body: { properties: { ...normalizedMapping } }
             })
         } else {

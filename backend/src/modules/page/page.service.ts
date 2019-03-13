@@ -1,12 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { DocumentDto } from './document.dto';
 import { ClientService } from "../db.elasticsearch/client.service"
-import { Observable } from "rxjs/Observable";
 import "rxjs/add/observable/fromPromise"
 import "rxjs/add/operator/map"
 import "rxjs/add/operator/do"
 import * as sanitizeHtml from "sanitize-html";
-const uuidv4 = require("uuid/v4");
 import { PageDto } from "./page.dto";
 @Injectable()
 export class PageService {
@@ -22,7 +20,7 @@ export class PageService {
     ) {}
 
     createOrUpdate(page: PageDto): Promise<any> {
-        page.documents.forEach(document => {
+        page.documents.forEach((document: DocumentDto) => {
             document.content = sanitizeHtml(document.content, {
                 allowedTags: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'blockquote', 'p', 'a', 'ul', 'ol', 
                 'nl', 'li', 'b', 'i', 'u', 'strong', 'em', 'strike', 'code', 'hr', 'br', 'div',
@@ -34,6 +32,7 @@ export class PageService {
                 }
             });
         });
+
         page.created = Date.now();
         return this.clientService.index(page, this.INDEX, this.TYPE, page.title);
     }
