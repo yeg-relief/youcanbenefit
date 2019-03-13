@@ -4,6 +4,9 @@ import { AuthService } from 'src/app/admin/core/services/auth.service';
 import { Page, Document } from '../../shared/models';
 import { take } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material';
+import { Http } from '@angular/http';
+import { map } from 'rxjs/operators'
+import { QuillService } from '../quill/quill.service';
 
 @Component({
   selector: 'app-about',
@@ -25,19 +28,35 @@ export class AboutComponent implements OnInit {
   constructor(
     private aboutService: AboutService,
     private authService: AuthService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private quillService: QuillService
   ) {}
 
   ngOnInit() {
+    // this.quillModules = {
+    //   toolbar: [
+    //     ['bold', 'italic', 'underline'],
+    //     [{ 'header': 1}, { 'header': 2}],
+    //     [{ 'list': 'ordered'}, { 'list': 'bullet'}],
+    //     [{ 'indent': '-1'}, { 'indent': '+1' }], 
+    //     [{ 'align': [] }],
+    //     ['link', 'image']
+    //   ]
+    // }
     this.quillModules = {
-      toolbar: [
-        ['bold', 'italic', 'underline'],
-        [{ 'header': 1}, { 'header': 2}],
-        [{ 'list': 'ordered'}, { 'list': 'bullet'}],
-        [{ 'indent': '-1'}, { 'indent': '+1' }], 
-        [{ 'align': [] }],
-        ['link', 'image']
-      ]
+      toolbar: {
+        container: [
+          ['bold', 'italic', 'underline'],
+          [{ 'header': 1}, { 'header': 2}],
+          [{ 'list': 'ordered'}, { 'list': 'bullet'}],
+          [{ 'indent': '-1'}, { 'indent': '+1' }], 
+          [{ 'align': [] }],
+          ['link', 'image']
+        ],
+        handlers: {
+          'image': () => { this.quillService.uploadImage() }
+        }
+      }
     }
     this.showEditButton = this.authService.isLoggedIn;
 

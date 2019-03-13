@@ -1,0 +1,50 @@
+import { Injectable } from '@angular/core';
+import { Http, Headers, RequestOptions} from '@angular/http';
+import { environment } from '../../../environments/environment';
+import { map, tap } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class QuillService {
+
+  IMGUR_CLIENT_ID = 'e52c61fa40312d4';
+  IMGUR_API_URL = 'https://api.imgur.com/3/image'
+
+  constructor(private http: Http, private snackBar: MatSnackBar) {  }
+
+  getRequestOptions(): RequestOptions {
+    const headers = new Headers();
+    headers.append("Authorization", `Client-ID ${this.IMGUR_CLIENT_ID}`);
+    return new RequestOptions({ headers: headers });
+  }
+
+  uploadImage() {
+    const fileInput = document.createElement('input');
+    fileInput.setAttribute('type', 'file');
+    fileInput.setAttribute('accept', 'image/png, image/gif, image/jpeg, image/bmp');
+
+    fileInput.addEventListener('change', () => {
+      const file: File = fileInput.files[0];
+      if (file != null) {
+        this.http.post(this.IMGUR_API_URL, file, this.getRequestOptions())
+                                    .toPromise()
+                                    .then(res => {
+                                      res = res.json();
+                                      if (res.status == 200) {
+                                        this.snackBar.open(res['data']['link'],'', { duration: 2000 });
+                                      } else {
+                                        this.snackBar.open('error uploading image.','', { duration: 2000 });
+                                      }
+                                      
+                                    })
+                                    .catch(() => this.snackBar.open('error uploading image.','', { duration: 2000 }));
+      }
+    })
+
+    fileInput.click();
+  }
+
+
+}
