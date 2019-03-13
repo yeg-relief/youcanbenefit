@@ -14,7 +14,8 @@ import { QuillService } from '../quill/quill.service';
   styleUrls: ['./about.component.css']
 })
 export class AboutComponent implements OnInit {
-  quillModules: {};
+  quillEditor: any;
+  quillModules = {};
   showEditButton = false;
   editMode = false;
   
@@ -33,16 +34,7 @@ export class AboutComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.quillModules = {
-    //   toolbar: [
-    //     ['bold', 'italic', 'underline'],
-    //     [{ 'header': 1}, { 'header': 2}],
-    //     [{ 'list': 'ordered'}, { 'list': 'bullet'}],
-    //     [{ 'indent': '-1'}, { 'indent': '+1' }], 
-    //     [{ 'align': [] }],
-    //     ['link', 'image']
-    //   ]
-    // }
+
     this.quillModules = {
       toolbar: {
         container: [
@@ -54,7 +46,7 @@ export class AboutComponent implements OnInit {
           ['link', 'image']
         ],
         handlers: {
-          'image': () => { this.quillService.uploadImage() }
+          'image': () => { this.quillService.uploadImage(this.quillEditor) }
         }
       }
     }
@@ -168,6 +160,11 @@ export class AboutComponent implements OnInit {
     // this.aboutService.getPage()
     //                   .then((page: Page) => this.page.documents = page.documents)
     //                   .catch(err => console.log(err));
+  }
+
+  editorCreated(editor: any) {
+    this.quillEditor = editor;
+    console.log(this.quillEditor);
   }
 
   editDocument(guid) {

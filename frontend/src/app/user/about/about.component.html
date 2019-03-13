@@ -29,7 +29,7 @@
                     <td>
                         <span *ngIf="editingDocuments[document.guid]">
                             <span class="editor">
-                                    <quill-editor [modules]="quillModules" [(ngModel)]="document.content" [sanitize]="true"></quill-editor>
+                                    <quill-editor [modules]="quillModules" [(ngModel)]="document.content" [sanitize]="true" (onEditorCreated)="editorCreated($event)"></quill-editor>
                             </span>
                         </span>
                         <span *ngIf="!editingDocuments[document.guid]">
