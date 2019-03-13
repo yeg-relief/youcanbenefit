@@ -6,7 +6,7 @@ import { take } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material';
 import { Http } from '@angular/http';
 import { map } from 'rxjs/operators'
-import { QuillService } from '../quill/quill.service';
+import { QuillService } from '../../admin/quill/quill.service';
 
 @Component({
   selector: 'app-about',
