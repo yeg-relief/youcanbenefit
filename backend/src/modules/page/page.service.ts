@@ -2,10 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { DocumentDto } from './document.dto';
 import { ClientService } from "../db.elasticsearch/client.service"
 import "rxjs/add/observable/fromPromise"
-import "rxjs/add/operator/map"
-import "rxjs/add/operator/do"
 import * as sanitizeHtml from "sanitize-html";
 import { PageDto } from "./page.dto";
+import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class PageService {
     private readonly INDEX = "pages";
@@ -37,8 +36,8 @@ export class PageService {
         return this.clientService.index(page, this.INDEX, this.TYPE, page.title);
     }
 
-    async getByTitle(title: string): Promise<PageDto> {
-        return await this.clientService.getById(this.baseParams, title);;
+    getByTitle(title: string): Observable<PageDto> {
+        return Observable.fromPromise(this.clientService.getById(this.baseParams, title));
     }
 
 }

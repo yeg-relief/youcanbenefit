@@ -32,7 +32,7 @@ export class ApiController {
     }
 
     @Get('page/:title')
-    getPageByTitle(@Param() params): Promise<PageDto>{
+    getPageByTitle(@Param() params): Observable<PageDto>{
         return this.pageService.getByTitle(params.title);
     }
 
