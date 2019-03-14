@@ -8,7 +8,7 @@ import { MatSnackBar } from '@angular/material';
 export class QuillService {
 
   IMGUR_CLIENT_ID = 'e52c61fa40312d4';
-  IMGUR_API_URL = 'https://api.imgur.com/3/image'
+  IMGUR_API_URL = 'https://api.imgur.com/3/image';
 
   constructor(private http: Http, private snackBar: MatSnackBar) {  }
 
@@ -33,9 +33,8 @@ export class QuillService {
           res = res.json();
           if (res.status === 200) {
             const range = editor.getSelection();
-            editor.insertEmbed(range.index, 'image', `${res['data']['link']}`)
+            editor.insertEmbed(range.index, 'image', `${res['data']['link']}`);
             editorContainer.innerHTML = editorContainer.innerHTML + "\n";
-            editorContainer.innerHTML = editorContainer.innerHTML;
           } else {
             this.snackBar.open('error uploading image.','', { duration: 2000 });
           }
