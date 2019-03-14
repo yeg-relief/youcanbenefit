@@ -8,26 +8,15 @@ import { Page } from '../../shared/models';
 
 @Injectable()
 export class AboutService {
-    page$;
 
-    constructor(private http: Http) {
-        this.page$ =  this.http.get(`${environment.api}/api/page/about`)
-                                        .pipe(
-                                            map(res => res.json()),
-                                            multicast(new ReplaySubject(1)),
-                                            refCount()
-                                        )
-    }
+    constructor(private http: Http) {}
 
     getPage(): Promise<Page>  {
-        return this.page$.toPromise();
+        return this.http.get(`${environment.api}/api/page/about`).pipe(map(res => res.json())).toPromise();
     }
 
     savePage(page: Page) {
-        return this.http.post(`${environment.api}/protected/page`, page)
-                .pipe(
-                    map(res => res.json())
-                );
+        return this.http.post(`${environment.api}/protected/page`, page).pipe(map(res => res.json()));
     }
 
 }

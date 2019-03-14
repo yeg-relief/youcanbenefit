@@ -53,7 +53,10 @@ export class AboutComponent implements OnInit {
 
     this.aboutService.getPage()
     .then((page: Page) => this.page.documents = page.documents)
-    .catch(err => console.log(err));
+    .catch(err => {
+      console.log(err)
+      this.snackBar.open('error: unable to retrieve page.', '', { duration: 2000 });
+    });
   }
 
   editorCreated(editor: any) {
@@ -94,7 +97,6 @@ export class AboutComponent implements OnInit {
 
   savePage() {
     this.aboutService.savePage(this.page)
-    .pipe(take(1))
     .subscribe(
       val => {
         if(val.result === 'created' || val.result === 'updated') {
@@ -111,6 +113,12 @@ export class AboutComponent implements OnInit {
 
   cancel() {
     this.editMode = false;
+    this.aboutService.getPage()
+    .then((page: Page) => this.page.documents = page.documents)
+    .catch(err => {
+      console.log(err)
+      this.snackBar.open('error: unable to retrieve page.', '', { duration: 2000 });
+    });
   }
 
   private randomString() {
