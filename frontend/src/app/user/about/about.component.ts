@@ -41,16 +41,18 @@ export class AboutComponent implements OnInit {
           [{ 'indent': '-1'}, { 'indent': '+1' }], 
           [{ 'align': [] }],
           ['link', 'image']
-        ],
-        handlers: {
-          'image': () => { this.quillService.uploadImage(this.quillEditor) }
-        }
+        ]
       }
     }
+
+    
     this.showEditButton = this.authService.isLoggedIn;
 
     this.aboutService.getPage()
-    .then((page: Page) => this.page.documents = page.documents)
+    .then((page: Page) => {
+      this.page.documents = page.documents 
+      this.quillEditor.getModule("toolbar").addHandler("image", this.quillService.uploadImage(this.quillEditor));
+    })
     .catch(err => {
       console.log(err)
       this.snackBar.open('error: unable to retrieve page.', '', { duration: 2000 });
@@ -95,6 +97,7 @@ export class AboutComponent implements OnInit {
     .subscribe(
       val => {
         if(val.result === 'created' || val.result === 'updated') {
+            this.editingDocument = "";
             this.snackBar.open('page saved.', '', { duration: 2000 });
         }else{
             this.snackBar.open('error: page not saved.', '', { duration: 2000 });

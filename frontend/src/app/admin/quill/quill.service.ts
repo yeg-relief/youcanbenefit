@@ -19,7 +19,6 @@ export class QuillService {
   }
 
   uploadImage(editor) {
-    let editorContainer: HTMLElement = editor.container.firstChild;
     const fileInput = document.createElement('input');
     fileInput.setAttribute('type', 'file');
     fileInput.setAttribute('accept', 'image/png, image/gif, image/jpeg, image/bmp');
@@ -34,7 +33,6 @@ export class QuillService {
           if (res.status === 200) {
             const range = editor.getSelection();
             editor.insertEmbed(range.index, 'image', `${res['data']['link']}`);
-            editorContainer.innerHTML = editorContainer.innerHTML + "\n";
           } else {
             this.snackBar.open('error uploading image.','', { duration: 2000 });
           }
