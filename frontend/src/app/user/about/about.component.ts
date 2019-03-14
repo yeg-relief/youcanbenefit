@@ -1,17 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { AboutService } from './about.service';
 import { AuthService } from 'src/app/admin/core/services/auth.service';
 import { Page, Document } from '../../shared/models';
-import { take } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material';
-import { Http } from '@angular/http';
-import { map } from 'rxjs/operators'
 import { QuillService } from '../../admin/quill/quill.service';
 
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
-  styleUrls: ['./about.component.css']
+  styleUrls: ['./about.component.css', '../../admin/quill/quill.css']
 })
 export class AboutComponent implements OnInit {
   quillEditor: any;
@@ -114,10 +111,7 @@ export class AboutComponent implements OnInit {
     this.editingDocument = "";
     this.aboutService.getPage()
     .then((page: Page) => this.page.documents = page.documents)
-    .catch(err => {
-      console.log(err)
-      this.snackBar.open('error: unable to retrieve page.', '', { duration: 2000 });
-    });
+    .catch(err => console.log(err));
   }
 
   private randomString() {
