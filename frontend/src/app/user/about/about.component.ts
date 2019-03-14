@@ -25,7 +25,8 @@ export class AboutComponent implements OnInit {
     created: -1
   }
   
-  editingDocuments = {}
+  editingDocument: string;
+
   constructor(
     private aboutService: AboutService,
     private authService: AuthService,
@@ -64,10 +65,10 @@ export class AboutComponent implements OnInit {
   }
 
   editDocument(guid) {
-    if (!this.editingDocuments[guid]) {
-      this.editingDocuments[guid] = true;
+    if (this.editingDocument == guid) {
+      this.editingDocument = "";
     } else {
-      this.editingDocuments[guid] = false;
+      this.editingDocument = guid;
     }
   }
 
@@ -81,7 +82,6 @@ export class AboutComponent implements OnInit {
   deleteDocument(guid) {
     const ind = this.page.documents.findIndex(doc => doc.guid == guid);
     this.page.documents.splice(ind, 1);
-    delete this.editDocument[guid];
   }
 
   toggleEditMode() {
@@ -90,9 +90,7 @@ export class AboutComponent implements OnInit {
     } else {
       this.editMode = false;
     }
-    for (const guid in this.editingDocuments) {
-      this.editingDocuments[guid] = false;
-    }
+    this.editingDocument = "";
   }
 
   savePage() {
@@ -113,6 +111,7 @@ export class AboutComponent implements OnInit {
 
   cancel() {
     this.editMode = false;
+    this.editingDocument = "";
     this.aboutService.getPage()
     .then((page: Page) => this.page.documents = page.documents)
     .catch(err => {

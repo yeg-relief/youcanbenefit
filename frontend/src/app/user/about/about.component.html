@@ -27,12 +27,12 @@
                         </span>
                     </td>
                     <td>
-                        <span *ngIf="editingDocuments[document.guid]">
+                        <span *ngIf="editingDocument === document.guid">
                             <span class="editor">
                                     <quill-editor [modules]="quillModules" [(ngModel)]="document.content" [sanitize]="true" (onEditorCreated)="editorCreated($event)"></quill-editor>
                             </span>
                         </span>
-                        <span *ngIf="!editingDocuments[document.guid]">
+                        <span *ngIf="editingDocument !== document.guid">
                                 <span [innerHTML]="document.content"></span>
                         </span>
                         <hr>
