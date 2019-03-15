@@ -78,8 +78,18 @@ export class ScreenerToolbarComponent implements OnInit {
       (screenerQuestions, questions) => ({...screenerQuestions, questions})
     ).pipe(take(1))
       .subscribe(screener => {
-        console.log(screener);
-        return this.http.post(`${environment.api}/protected/screener`, screener, this.auth.getCredentials()).toPromise().then(console.log).catch(console.error)
+        return this.http.post(`${environment.api}/protected/screener/`, screener, this.auth.getCredentials())
+                .subscribe(res => {
+                  if (res.status === 201) {
+                    res = res.json();
+                    if ((res['screener']['result'] === 'created' || res['screener']['result'] === 'updated') &&
+                          res['questions']['acknowledged'] === true) {
+                      this.snackBar.open("screener saved", '', { duration: 2000})
+                      return
+                    }
+                  }
+                  this.snackBar.open("screener failed to save", '', { duration: 2000})
+                })
       })
   }
 
