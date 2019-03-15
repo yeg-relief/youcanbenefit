@@ -53,11 +53,8 @@ export class PageComponent implements OnInit {
     this.showEditButton = this.authService.isLoggedIn;
 
     this.pageService.getPage(this.title)
-    .then((page: Page) => {
-      this.page.documents = page.documents 
-    })
-    .catch(err => {
-      console.log(err)
+    .then((page: Page) => this.page.documents = page.documents )
+    .catch(() => {
       this.snackBar.open('error: unable to retrieve page.', '', { duration: 2000 });
     });
   }
