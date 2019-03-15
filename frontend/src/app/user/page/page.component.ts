@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 import { PageService } from './page.service';
 import { AuthService } from 'src/app/admin/core/services/auth.service';
 import { Page } from '../../shared/models';
@@ -11,16 +11,12 @@ import { QuillService } from '../../admin/quill/quill.service';
   styleUrls: ['./page.component.css', '../../admin/quill/quill.css']
 })
 export class PageComponent implements OnInit {
+  @Input() title: string;
+  page: Page;
   quillEditor: any;
-  quillModules = {};
+  quillModules: {};
   showEditButton = false;
   editMode = false;
-  
-  page: Page = {
-    title: 'about',
-    documents: [],
-    created: -1
-  }
   
   editingDocument: string;
 
@@ -32,6 +28,12 @@ export class PageComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.page = {
+      title: this.title,
+      documents: [],
+      created: -1
+    }
+
     this.quillModules = {
       toolbar: {
         container: [
@@ -48,10 +50,9 @@ export class PageComponent implements OnInit {
       }
     }
 
-    
     this.showEditButton = this.authService.isLoggedIn;
 
-    this.pageService.getPage()
+    this.pageService.getPage(this.title)
     .then((page: Page) => {
       this.page.documents = page.documents 
     })
@@ -115,7 +116,7 @@ export class PageComponent implements OnInit {
   cancel() {
     this.editMode = false;
     this.editingDocument = "";
-    this.pageService.getPage()
+    this.pageService.getPage(this.title)
     .then((page: Page) => this.page.documents = page.documents)
     .catch(err => console.log(err));
   }

@@ -9,8 +9,8 @@ export class PageService {
 
     constructor(private http: Http) {}
 
-    getPage(): Promise<Page>  {
-        return this.http.get(`${environment.api}/api/page/about`).pipe(map(res => res.json())).toPromise();
+    getPage(title: string): Promise<Page>  {
+        return this.http.get(`${environment.api}/api/page/${title}`).pipe(map(res => res.json())).toPromise();
     }
 
     savePage(page: Page) {

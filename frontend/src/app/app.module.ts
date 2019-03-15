@@ -13,13 +13,11 @@ import { MasterScreenerService } from './user/master-screener/master-screener.se
 import { BrowseService } from './user/browse/browse.service';
 import { AuthService } from './admin/core/services/auth.service'
 import { AuthGuardService } from './admin/core/services/auth-guard.service';
-import { QuickLinksComponent } from './user/quick-links/quick-links.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ConstructionRibbonComponent } from './construction-ribbon/construction-ribbon.component';
 import { IeSucksComponent } from './user/home/ie-sucks/ie-sucks.component';
 import { ProgramsServiceService } from './user/programs-service.service';
-import { QuickLinksContentComponent } from './user/quick-links/quick-links-content/quick-links-content.component';
 import { InitialRedirectService } from './initial-redirect.service';
 import { HttpClientModule} from '@angular/common/http';
 import { 
@@ -32,6 +30,8 @@ import {
     MatSnackBarModule
 } from '@angular/material';
 import { QuillModule } from 'ngx-quill';
+import { AboutPageComponent } from './user/page/about-page/about-page.component';
+import { ResourcesPageComponent } from './user/page/resources-page/resources-page.component';
 
 @NgModule({
     declarations: [
@@ -39,11 +39,11 @@ import { QuillModule } from 'ngx-quill';
         ToolbarComponent,
         PageNotFoundComponent,
         PageComponent,
-        HomeComponent,
-        QuickLinksComponent,
         ConstructionRibbonComponent,
         IeSucksComponent,
-        QuickLinksContentComponent,
+        HomeComponent,
+        AboutPageComponent,
+        ResourcesPageComponent
     ],
     imports: [
         BrowserModule,
