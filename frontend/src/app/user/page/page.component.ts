@@ -1,16 +1,16 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { AboutService } from './about.service';
+import { Component, OnInit} from '@angular/core';
+import { PageService } from './page.service';
 import { AuthService } from 'src/app/admin/core/services/auth.service';
-import { Page, Document } from '../../shared/models';
+import { Page } from '../../shared/models';
 import { MatSnackBar } from '@angular/material';
 import { QuillService } from '../../admin/quill/quill.service';
 
 @Component({
-  selector: 'app-about',
-  templateUrl: './about.component.html',
-  styleUrls: ['./about.component.css', '../../admin/quill/quill.css']
+  selector: 'app-page',
+  templateUrl: './page.component.html',
+  styleUrls: ['./page.component.css', '../../admin/quill/quill.css']
 })
-export class AboutComponent implements OnInit {
+export class PageComponent implements OnInit {
   quillEditor: any;
   quillModules = {};
   showEditButton = false;
@@ -25,7 +25,7 @@ export class AboutComponent implements OnInit {
   editingDocument: string;
 
   constructor(
-    private aboutService: AboutService,
+    private pageService: PageService,
     private authService: AuthService,
     private snackBar: MatSnackBar,
     private quillService: QuillService
@@ -48,7 +48,7 @@ export class AboutComponent implements OnInit {
     
     this.showEditButton = this.authService.isLoggedIn;
 
-    this.aboutService.getPage()
+    this.pageService.getPage()
     .then((page: Page) => {
       this.page.documents = page.documents 
       this.quillEditor.getModule("toolbar").addHandler("image", this.quillService.uploadImage(this.quillEditor));
@@ -93,7 +93,7 @@ export class AboutComponent implements OnInit {
   }
 
   savePage() {
-    this.aboutService.savePage(this.page)
+    this.pageService.savePage(this.page)
     .subscribe(
       val => {
         if(val.result === 'created' || val.result === 'updated') {
@@ -104,6 +104,7 @@ export class AboutComponent implements OnInit {
         }
     },
       err => {
+        console.log(err);
         this.snackBar.open('error: page not saved.', '', { duration: 2000 });
       }
     );
@@ -112,7 +113,7 @@ export class AboutComponent implements OnInit {
   cancel() {
     this.editMode = false;
     this.editingDocument = "";
-    this.aboutService.getPage()
+    this.pageService.getPage()
     .then((page: Page) => this.page.documents = page.documents)
     .catch(err => console.log(err));
   }

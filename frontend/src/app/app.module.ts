@@ -4,8 +4,8 @@ import { routing } from './app.routes';
 import { AppComponent } from './app.component';
 import { ToolbarComponent } from './shared/components/toolbar/toolbar.component';
 import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
-import { AboutComponent } from './user/about/about.component';
-import { AboutService } from './user/about/about.service'
+import { PageComponent } from './user/page/page.component';
+import { PageService } from './user/page/page.service';
 import { MasterScreenerModule } from './user/master-screener/master-screener.module';
 import { BrowseModule } from './user/browse/browse.module';
 import { HomeComponent } from './user/home/home.component';
@@ -38,7 +38,7 @@ import { QuillModule } from 'ngx-quill';
         AppComponent,
         ToolbarComponent,
         PageNotFoundComponent,
-        AboutComponent,
+        PageComponent,
         HomeComponent,
         QuickLinksComponent,
         ConstructionRibbonComponent,
@@ -70,7 +70,7 @@ import { QuillModule } from 'ngx-quill';
         AuthGuardService,
         ProgramsServiceService,
         InitialRedirectService,
-        AboutService
+        PageService
     ],
     bootstrap: [AppComponent]
 })
