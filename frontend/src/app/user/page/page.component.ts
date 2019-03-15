@@ -41,7 +41,10 @@ export class PageComponent implements OnInit {
           [{ 'indent': '-1'}, { 'indent': '+1' }], 
           [{ 'align': [] }],
           ['link', 'image']
-        ]
+        ],
+        handlers: {
+          'image': () => { this.quillService.uploadImage(this.quillEditor) }
+        }
       }
     }
 
@@ -51,7 +54,6 @@ export class PageComponent implements OnInit {
     this.pageService.getPage()
     .then((page: Page) => {
       this.page.documents = page.documents 
-      this.quillEditor.getModule("toolbar").addHandler("image", this.quillService.uploadImage(this.quillEditor));
     })
     .catch(err => {
       console.log(err)

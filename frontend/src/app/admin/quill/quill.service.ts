@@ -32,12 +32,13 @@ export class QuillService {
           res = res.json();
           if (res.status === 200) {
             const range = editor.getSelection();
-            editor.insertEmbed(range.index, 'image', `${res['data']['link']}`);
+            editor.insertEmbed(range.index, 'image', res['data']['link'], 'user');
           } else {
             this.snackBar.open('error uploading image.','', { duration: 2000 });
           }
         })
         .catch(err => {
+          console.log(err);
           this.snackBar.open('error uploading image.','', { duration: 2000 })
         });
       }
