@@ -31,7 +31,6 @@ import { ConditionEditV3Component } from './application-edit/condition-edit-v3/c
 import { QueryService } from './services/query.service';
 import { TagEditComponent } from './program-edit/tag-edit/tag-edit.component';
 import { EditRowComponent } from './program-edit/edit-row/edit-row.component';
-import { DetailsLinksComponent } from './program-edit/details-links/details-links.component';
 import { QuillModule } from 'ngx-quill';
 
 @NgModule({
@@ -66,8 +65,7 @@ import { QuillModule } from 'ngx-quill';
     QueryEditV3Component,
     ConditionEditV3Component,
     TagEditComponent,
-    EditRowComponent,
-    DetailsLinksComponent
+    EditRowComponent
   ],
   providers: [
     ProgramModelService,
