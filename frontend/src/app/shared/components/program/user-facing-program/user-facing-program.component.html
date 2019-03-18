@@ -13,13 +13,6 @@
         <p> <a [routerLink]="['./details' + '/' + program.guid]"> details </a>
       </div>
   </mat-card-content>
-  <a 
-    *ngIf="program.externalLink?.length"
-    matTooltip="{{ program.externalLink }}"
-    href="http://{{ program.externalLink }}" 
-    target="_blank">
-    more information
-  </a>
   <mat-card-actions>
     <button mat-button
       *ngFor="let tag of program?.tags" 

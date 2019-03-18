@@ -2,8 +2,7 @@ export class ProgramDto {
     created: number;
     guid: string;
     readonly description: string;
-    readonly details: string;
-    readonly externalLink: string;
+    details: string;
     readonly tags: string[];
     readonly title: string;
 

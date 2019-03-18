@@ -25,25 +25,8 @@ export class ProgramDetailComponent implements OnInit {
         if (guid) {
             this.program =
                 this.programService.getProgram(guid)
-                    .then(program => {
-                        program.detailLinks = program.detailLinks || [];
-                        return program;
-                    })
-                    .then( program => {
-                        this.allLinks = [program.externalLink, ...program.detailLinks];
-                        return program;
-                    })
-                    .then(program => {
-                        this.allLinks = this.allLinks.map(link => {
-                            if (link.substring(0, 8) !== 'http://') {
-                                return 'http://' + link;
-                            }
-                            return link;
-                        });
-                        return program;
-                    })
                     .catch(_ => {
-                        this.error = 'Can not retrieve program.';
+                        this.error = 'Cannot retrieve program.';
                         return undefined;
                     });
 

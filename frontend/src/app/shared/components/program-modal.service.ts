@@ -73,7 +73,6 @@ export class ProgramModalService {
         const data =  {
             title: program.title,
             details: program.details,
-            detailLinks: program.detailLinks || []
         };
 
         const config: MatDialogConfig = {
