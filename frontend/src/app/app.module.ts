@@ -27,7 +27,8 @@ import {
     MatSidenavModule, 
     MatMenuModule, 
     MatButtonModule, 
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatTooltipModule
 } from '@angular/material';
 import { QuillModule } from 'ngx-quill';
 import { AboutPageComponent } from './user/page/about-page/about-page.component';
@@ -60,6 +61,7 @@ import { ResourcesPageComponent } from './user/page/resources-page/resources-pag
         MatMenuModule,
         MatButtonModule,
         MatSnackBarModule,
+        MatTooltipModule,
         QuillModule,
         FormsModule
     ],

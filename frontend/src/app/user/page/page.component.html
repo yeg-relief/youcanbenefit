@@ -26,7 +26,7 @@
                     </td>
                     <td>
                         <span *ngIf="editMode">
-                            <button class="delete-button" mat-button matTooltip="edit" (click)="deleteDocument(document.guid)"><i class="material-icons">delete</i></button>
+                            <button class="delete-button" mat-button matTooltip="delete" (click)="deleteDocument(document.guid)"><i class="material-icons">delete</i></button>
                         </span>
                     </td>
                     
@@ -42,12 +42,12 @@
 
     <div class="actions">
         <div *ngIf="!editMode && showEditButton">
-            <button class="action-button" mat-raised-button (click)="toggleEditMode()" color="primary" title="edit">edit page</button>
+            <button class="action-button" mat-raised-button (click)="toggleEditMode()" color="primary">edit page</button>
         </div>
             <div *ngIf="editMode">
-            <button class="action-button" mat-raised-button (click)="toggleEditMode()" color="primary" title="preview">preview</button>
-            <button class="action-button" mat-raised-button (click)="savePage()" color="primary" title="save">save</button>
-            <button class="action-button" mat-raised-button (click)="cancel()" color="primary" title="cancel">cancel</button>
+            <button class="action-button" mat-raised-button (click)="toggleEditMode()" color="primary">preview</button>
+            <button class="action-button" mat-raised-button (click)="savePage()" color="primary">save</button>
+            <button class="action-button" mat-raised-button (click)="cancel()" color="primary">cancel</button>
         </div>
     </div>
 </div>

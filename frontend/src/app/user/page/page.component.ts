@@ -12,7 +12,7 @@ import * as Quill from 'quill';
   styleUrls: ['./page.component.css', '../../admin/quill/quill.css']
 })
 export class PageComponent implements OnInit {
-  @Input() title: string;
+  @Input() pageTitle: string;
   page: Page;
   quillEditor: any;
   quillModules: {};
@@ -30,7 +30,7 @@ export class PageComponent implements OnInit {
 
   ngOnInit() {
     this.page = {
-      title: this.title,
+      title: this.pageTitle,
       documents: [],
       created: -1
     }
@@ -60,7 +60,7 @@ export class PageComponent implements OnInit {
 
     this.showEditButton = this.authService.isLoggedIn;
 
-    this.pageService.getPage(this.title)
+    this.pageService.getPage(this.pageTitle)
     .then((page: Page) => this.page.documents = page.documents )
     .catch(() => {
       this.snackBar.open('error: unable to retrieve page.', '', { duration: 2000 });
@@ -121,7 +121,7 @@ export class PageComponent implements OnInit {
   cancel() {
     this.editMode = false;
     this.editingDocument = "";
-    this.pageService.getPage(this.title)
+    this.pageService.getPage(this.pageTitle)
     .then((page: Page) => this.page.documents = page.documents)
     .catch(err => console.log(err));
   }
