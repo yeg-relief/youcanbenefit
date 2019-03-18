@@ -1,16 +1,16 @@
 <mat-form-field>
-    <input matInput [formControl]="linkInput" placeholder="tag" [matAutocomplete]="auto">
+    <input matInput [formControl]="tagInput" placeholder="tag" [matAutocomplete]="auto">
     <mat-autocomplete #auto="matAutocomplete">
         <mat-option *ngFor="let tag of allTags" [value]="tag">
             {{ tag }}
         </mat-option>
     </mat-autocomplete>
 </mat-form-field>
-<button mat-button [attr.disabled]="!linkInput.valid">
+<button mat-button [attr.disabled]="!tagInput.valid">
     <mat-icon
         (click)="addTag()"
         matTooltip="add tag"
-        [style.color]="!linkInput.valid ? 'red' : 'green'">done</mat-icon>
+        [style.color]="!tagInput.valid ? 'red' : 'green'">done</mat-icon>
 </button>
 <mat-chip-list class="flex-grow">
     <mat-chip (click)="removeTagAt(i)" *ngFor="let tag of tags.value; let i = index">{{ tag }}</mat-chip>
