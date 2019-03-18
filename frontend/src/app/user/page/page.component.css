@@ -19,40 +19,20 @@ main {
 }
 
 .my-container > main {
-    width: 55%;
+    width: 70%;
     display: flex;
-    margin: 2vh 1vw 2vh 17vw;
+    margin: 2vh 1vw 2vh 8vw;
     flex-direction: column;
     position: relative;
   }
 
 .my-container > .actions {
-    margin: 2vh auto;
-    position: relative;
+    margin: 2vh 17vh 2vh 0;
+    /* position: relative; */
 }
 
 .action-button {
     width: 8em;
     margin: 2vh auto;
     display: block;
-}
-
-@media(min-width: 52em) {
-    section {
-        width: 50%;
-    }
-}
-
-
-@media(min-width: 40em) and (max-width: 52em) {
-    section {
-        width: 70%;
-    }
-}
-
-@media(max-width: 40em){
-
-    section {
-        width: 90%;
-    }
 }
