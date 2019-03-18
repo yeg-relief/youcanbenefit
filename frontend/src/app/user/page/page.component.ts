@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/admin/core/services/auth.service';
 import { Page } from '../../shared/models';
 import { MatSnackBar } from '@angular/material';
 import { QuillService } from '../../admin/quill/quill.service';
+import * as Quill from 'quill';
 
 @Component({
   selector: 'app-page',
@@ -49,6 +50,13 @@ export class PageComponent implements OnInit {
         }
       }
     }
+
+    let link = Quill.import('formats/link');
+    link.sanitize = (url) => {
+      const regexp = new RegExp('^(http://|https://)');
+      return regexp.test(url) ? url : 'http://' + url;
+    };
+    Quill.register(link, true);
 
     this.showEditButton = this.authService.isLoggedIn;
 

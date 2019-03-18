@@ -6,6 +6,7 @@ import { MatSnackBar, MatDialog, MatDialogRef } from '@angular/material';
 import { Observable, ReplaySubject } from 'rxjs';
 import { tap, flatMap, pluck, multicast, refCount, take, map } from 'rxjs/operators'
 import { QuillService } from '../../quill/quill.service';
+import * as Quill from 'quill';
 
 @Component({
   templateUrl: './program-edit.component.html',
@@ -54,6 +55,13 @@ export class ProgramEditComponent implements OnInit {
         }
       }
     }
+
+    let link = Quill.import('formats/link');
+    link.sanitize = (url) => {
+      const regexp = new RegExp('^(http://|https://)');
+      return regexp.test(url) ? url : 'http://' + url;
+    };
+    Quill.register(link, true);
   }
 
   editorCreated(editor) {
