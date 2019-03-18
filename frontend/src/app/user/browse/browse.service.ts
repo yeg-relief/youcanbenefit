@@ -15,8 +15,6 @@ export class BrowseService {
             .pipe(
                 map(res => res.json()),
                 tap(programs => this.programService.addPrograms(programs)),
-                multicast( new ReplaySubject(1) ),
-                refCount(),
             )
     }
 

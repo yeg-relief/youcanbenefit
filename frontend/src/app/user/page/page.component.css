@@ -1,5 +1,3 @@
-
-
 :host {
     width: 100%;
     margin-top: 2em;
@@ -10,33 +8,10 @@ main {
     width: 90%;
 }
 
-section {
-    margin: 0 auto;
-}
-
-.detail-section {
-    display: flex;
-    flex-direction: column-reverse;
-    align-items: center;
-}
-
-.detail-section > img {
-    width: 200px;
-    align-self: flex-start;
-    margin-bottom: 0.5em;
-}
-
-#cybera-logo {
-    background-color: #70707f;
-    padding: 0.5em;
-    border-radius: 10px;
-}
-
 .add-button {
     background-color: #ff8c00;
     margin: 0 auto;
 }
-
 
 .my-container {
     display: flex;
@@ -51,7 +26,6 @@ section {
     position: relative;
   }
 
-
 .my-container > .actions {
     margin: 2vh auto;
     position: relative;
@@ -62,8 +36,6 @@ section {
     margin: 2vh auto;
     display: block;
 }
-
-
 
 @media(min-width: 52em) {
     section {
