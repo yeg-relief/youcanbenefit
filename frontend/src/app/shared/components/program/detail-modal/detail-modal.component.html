@@ -1,14 +1,11 @@
-<!DOCTYPE html>
 <main class="wrapper">
     <h2 mat-dialog-title> {{ data.title }} </h2>
     <button mat-button class="close-button">
         <mat-icon [style.color]="'white'" (click)="close()">cancel</mat-icon>
     </button>
 
-
     <mat-dialog-content>
         <div [innerHTML]="data.details"></div>
     </mat-dialog-content>
-
-    <button mat-button mat-dialog-close>Close</button>
+    
 </main>
