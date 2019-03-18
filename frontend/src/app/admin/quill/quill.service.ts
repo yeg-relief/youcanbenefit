@@ -44,4 +44,11 @@ export class QuillService {
       }
     })
   }
+
+  insertHr(editor) {
+    const range = editor.getSelection();
+    if (range) {
+      editor.insertEmbed(range.index, 'hr', '', 'user')
+    }
+  }
 }

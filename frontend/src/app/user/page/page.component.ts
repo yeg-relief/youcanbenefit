@@ -35,6 +35,20 @@ export class PageComponent implements OnInit {
       created: -1
     }
 
+    let Link = Quill.import('formats/link');
+    Link.sanitize = (url) => {
+      const regexp = new RegExp('^(http://|https://)');
+      return regexp.test(url) ? url : 'http://' + url;
+    };
+    Quill.register(Link, true);
+
+    let Embed = Quill.import('blots/embed');
+    class Hr extends Embed {
+      static blotName = 'hr';
+      static tagName = 'hr';
+    }
+    Quill.register(Hr);
+
     this.quillModules = {
       toolbar: {
         container: [
@@ -43,20 +57,14 @@ export class PageComponent implements OnInit {
           [{ 'list': 'ordered'}, { 'list': 'bullet'}],
           [{ 'indent': '-1'}, { 'indent': '+1' }], 
           [{ 'align': [] }],
-          ['link', 'image']
+          ['link', 'image', 'code']
         ],
         handlers: {
-          'image': () => { this.quillService.uploadImage(this.quillEditor) }
+          'image': () => { this.quillService.uploadImage(this.quillEditor) },
+          'code' : () => { this.quillService.insertHr(this.quillEditor) }
         }
       }
     }
-
-    let link = Quill.import('formats/link');
-    link.sanitize = (url) => {
-      const regexp = new RegExp('^(http://|https://)');
-      return regexp.test(url) ? url : 'http://' + url;
-    };
-    Quill.register(link, true);
 
     this.showEditButton = this.authService.isLoggedIn;
 
