@@ -9,7 +9,6 @@ describe('ProgramService', () => {
         created: 0,
         description: "test description",
         details: "test details",
-        externalLink: "test externalLink",
         guid: "test guid7",
         tags: ["test tags"],
         title: "test title"
@@ -52,7 +51,6 @@ describe('ProgramService', () => {
                     created: 0,
                     description: 'test description',
                     details: 'test details',
-                    externalLink: 'test externalLink',
                     guid: 'test guid6',
                     tags: 'test tags',
                     title: 'test title'
@@ -74,7 +72,6 @@ describe('ProgramService', () => {
                 "created": 0,
                 "description": "test description",
                 "details": "test details",
-                "externalLink": "test externalLink",
                 "guid": "test guid6",
                 "tags": ["test tags"],
                 "title": "test title"
@@ -94,7 +91,6 @@ describe('ProgramService', () => {
                     "created": 0,
                     "description": "test description",
                     "details": "test details",
-                    "externalLink": "test externalLink",
                     "guid": "test guid1",
                     "tags": "test tags",
                     "title": "test title"
@@ -103,7 +99,6 @@ describe('ProgramService', () => {
                     "created": 0,
                     "description": "test description",
                     "details": "test details",
-                    "externalLink": "test externalLink",
                     "guid": "test guid6",
                     "tags": ["test tags"],
                     "title": "test title"

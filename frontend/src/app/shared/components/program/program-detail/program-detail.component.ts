@@ -11,7 +11,6 @@ import { UserFacingProgram } from "../../../models/program";
 export class ProgramDetailComponent implements OnInit {
     program: Promise<UserFacingProgram | string>;
     guid: string;
-    allLinks = [];
     error = '';
 
     constructor(
