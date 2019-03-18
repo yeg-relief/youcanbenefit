@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar, MatDialog, MatDialogRef } from '@angular/material';
 import { Observable, ReplaySubject } from 'rxjs';
 import { tap, flatMap, pluck, multicast, refCount, take, map } from 'rxjs/operators'
+import { QuillService } from '../../quill/quill.service';
 
 @Component({
   templateUrl: './program-edit.component.html',
@@ -13,6 +14,7 @@ import { tap, flatMap, pluck, multicast, refCount, take, map } from 'rxjs/operat
 export class ProgramEditComponent implements OnInit {
   program: Observable<UserProgram>;
   allTags: string[];
+  quillEditor: any;
   quillModules: {};
   quillPlaceholder = 'program details';
   constructor(
@@ -20,7 +22,8 @@ export class ProgramEditComponent implements OnInit {
     private route: ActivatedRoute,
     public dialog: MatDialog,
     public snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private quillService: QuillService
   ) {}
 
   ngOnInit(){
@@ -37,17 +40,25 @@ export class ProgramEditComponent implements OnInit {
 
     this.allTags = this.model.getAllTags();
     this.quillModules = {
-      toolbar: [
-        ['bold', 'italic', 'underline'],
-        [{ 'header': 1}, { 'header': 2}],
-        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-        [{ 'list': 'ordered'}, { 'list': 'bullet'}],
-        [{ 'indent': '-1'}, { 'indent': '+1' }], 
-        [{ 'align': [] }],
-        ['link']
-      ]
+      toolbar: {
+        container: [
+          ['bold', 'italic', 'underline'],
+          [{ 'header': 1}, { 'header': 2}],
+          [{ 'list': 'ordered'}, { 'list': 'bullet'}],
+          [{ 'indent': '-1'}, { 'indent': '+1' }], 
+          [{ 'align': [] }],
+          ['link', 'image']
+        ],
+        handlers: {
+          'image': () => { this.quillService.uploadImage(this.quillEditor) }
+        }
+      }
     }
-  };
+  }
+
+  editorCreated(editor) {
+    this.quillEditor = editor;
+  }
 
   handleQueryClick() {
     this._goToQueries()

@@ -36,14 +36,15 @@ export class ProgramService {
     index(program: ProgramDto) {
         program.created = Date.now();
         program.details = sanitizeHtml(program.details, {
-            allowedTags: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'blockquote', 'p', 'a', 'ul', 'ol',
-            'nl', 'li', 'b', 'i', 'strong', 'em', 'strike', 'hr', 'br', 'div',
-            'table', 'thead', 'caption', 'tbody', 'tr', 'th', 'td', 'pre', 'iframe'],
+            allowedTags: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'blockquote', 'p', 'a', 'ul', 'ol', 
+            'nl', 'li', 'b', 'i', 'u', 'strong', 'em', 'strike', 'code', 'hr', 'br', 'div',
+            'table', 'thead', 'caption', 'tbody', 'tr', 'th', 'td', 'pre', 'iframe', 'img'],
             allowedAttributes: {
                 '*' : [ 'class', 'style' ],
-                'a' : [ 'href', 'name', 'target' ]
+                'a' : [ 'href', 'name', 'target' ],
+                'img' : [ 'src' ]
             }
-        })
+        });
         return this.clientService.index(program, this.INDEX, this.TYPE, program.guid)
     }
 

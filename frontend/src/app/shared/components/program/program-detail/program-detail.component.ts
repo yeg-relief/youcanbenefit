@@ -6,7 +6,7 @@ import { UserFacingProgram } from "../../../models/program";
 @Component({
     selector: 'app-program-detail',
     templateUrl: './program-detail.component.html',
-    styleUrls: ['./program-detail.component.css']
+    styleUrls: ['./program-detail.component.css', '../../../../admin/quill/quill.css']
 })
 export class ProgramDetailComponent implements OnInit {
     program: Promise<UserFacingProgram | string>;
