@@ -24,7 +24,6 @@ import { YcbQuestionComponent } from './ycb-question/ycb-question.component';
 import { YcbConditionalQuestionComponent } from './ycb-question/ycb-conditional-question/ycb-conditional-question.component';
 import { masterScreenerRouting } from './master-screener.routes';
 import { ResultListComponent } from './results/result-list/result-list.component';
-import { QuillModule } from 'ngx-quill';
 
 @NgModule({
     imports: [
