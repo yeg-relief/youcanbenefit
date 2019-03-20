@@ -4,7 +4,7 @@ import { AuthService } from 'src/app/admin/core/services/auth.service';
 import { Page } from '../../shared/models';
 import { MatSnackBar } from '@angular/material';
 import { QuillService } from '../../admin/quill/quill.service';
-import * as Quill from 'quill';
+
 
 @Component({
   selector: 'app-page',
@@ -14,8 +14,7 @@ import * as Quill from 'quill';
 export class PageComponent implements OnInit {
   @Input() pageTitle: string;
   page: Page;
-  quillEditor: any;
-  quillModules: {};
+  quillModules = {};
   showEditButton = false;
   editMode = false;
   
@@ -35,36 +34,7 @@ export class PageComponent implements OnInit {
       created: -1
     }
 
-    let Link = Quill.import('formats/link');
-    Link.sanitize = (url) => {
-      const regexp = new RegExp('^(http://|https://)');
-      return regexp.test(url) ? url : 'http://' + url;
-    };
-    Quill.register(Link, true);
-
-    let Embed = Quill.import('blots/embed');
-    class Hr extends Embed {
-      static blotName = 'hr';
-      static tagName = 'hr';
-    }
-    Quill.register(Hr);
-
-    this.quillModules = {
-      toolbar: {
-        container: [
-          ['bold', 'italic', 'underline'],
-          [{ 'header': 1}, { 'header': 2}],
-          [{ 'list': 'ordered'}, { 'list': 'bullet'}],
-          [{ 'indent': '-1'}, { 'indent': '+1' }], 
-          [{ 'align': [] }],
-          ['link', 'image', 'code']
-        ],
-        handlers: {
-          'image': () => { this.quillService.uploadImage(this.quillEditor) },
-          'code' : () => { this.quillService.insertHr(this.quillEditor) }
-        }
-      }
-    }
+    this.quillModules = this.quillService.getQuillModules();
 
     this.showEditButton = this.authService.isLoggedIn;
 
@@ -75,8 +45,8 @@ export class PageComponent implements OnInit {
     });
   }
 
-  editorCreated(editor: any) {
-    this.quillEditor = editor;
+  editorCreated(editor) {
+    this.quillService.setQuillEditor(editor);
   }
 
   editDocument(guid) {

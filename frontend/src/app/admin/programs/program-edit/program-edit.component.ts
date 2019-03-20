@@ -15,8 +15,7 @@ import * as Quill from 'quill';
 export class ProgramEditComponent implements OnInit {
   program: Observable<UserProgram>;
   allTags: string[];
-  quillEditor: any;
-  quillModules: {};
+  quillModules = {};
   quillPlaceholder = 'program details';
   constructor(
     private model: ProgramModelService,
@@ -41,40 +40,11 @@ export class ProgramEditComponent implements OnInit {
 
     this.allTags = this.model.getAllTags();
 
-    let Link = Quill.import('formats/link');
-    Link.sanitize = (url) => {
-      const regexp = new RegExp('^(http://|https://)');
-      return regexp.test(url) ? url : 'http://' + url;
-    };
-    Quill.register(Link, true);
-
-    let Embed = Quill.import('blots/block/embed');
-    class Hr extends Embed {
-      static blotName: string = 'hr';
-      static tagName: string = 'hr';
-    }
-    Quill.register(Hr);
-    
-    this.quillModules = {
-      toolbar: {
-        container: [
-          ['bold', 'italic', 'underline'],
-          [{ 'header': 1}, { 'header': 2}],
-          [{ 'list': 'ordered'}, { 'list': 'bullet'}],
-          [{ 'indent': '-1'}, { 'indent': '+1' }], 
-          [{ 'align': [] }],
-          ['link', 'image', 'code'],
-        ],
-        handlers: {
-          'image': () => { this.quillService.uploadImage(this.quillEditor) },
-          'code' : () => { this.quillService.insertHr(this.quillEditor) }
-        }
-      }
-    }
+    this.quillModules = this.quillService.getQuillModules();
   }
 
   editorCreated(editor) {
-    this.quillEditor = editor;
+    this.quillService.setQuillEditor(editor);
   }
 
   handleQueryClick() {
