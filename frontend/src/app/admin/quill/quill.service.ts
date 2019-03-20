@@ -7,7 +7,7 @@ import * as Quill from 'quill';
   providedIn: 'root'
 })
 export class QuillService {
-  quillEditor: any;
+  quillEditor: Quill;
 
   IMGUR_CLIENT_ID = 'e52c61fa40312d4';
   IMGUR_API_URL = 'https://api.imgur.com/3/image';
@@ -30,7 +30,7 @@ export class QuillService {
 
    }
 
-  setQuillEditor(editor) {
+  setQuillEditor(editor: Quill) {
     this.quillEditor = editor;
   }
 
@@ -57,7 +57,7 @@ export class QuillService {
     return new RequestOptions({ headers: headers });
   }
 
-  uploadImage(editor) {
+  uploadImage(editor: Quill) {
     const fileInput = document.createElement('input');
     fileInput.setAttribute('type', 'file');
     fileInput.setAttribute('accept', 'image/png, image/gif, image/jpeg, image/bmp');
@@ -84,7 +84,7 @@ export class QuillService {
     })
   }
 
-  insertHr(editor) {
+  insertHr(editor: Quill) {
     const range = editor.getSelection();
     if (range) {
       editor.insertEmbed(range.index, 'hr', '', 'user')

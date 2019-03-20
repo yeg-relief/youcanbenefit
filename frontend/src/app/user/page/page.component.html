@@ -20,7 +20,7 @@
                             </span>
                         </span>
                         <span *ngIf="editingDocument !== document.guid">
-                                <span [innerHTML]="document.content"></span>
+                                <span class="quill-editor-display" [innerHTML]="document.content"></span>
                         </span>
                     </td>
                     <td>
