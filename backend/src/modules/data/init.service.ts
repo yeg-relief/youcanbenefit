@@ -69,12 +69,17 @@ export class InitService {
         });
 
         await this.client.indices.create({ index: 'pages'});
-        
+        const pagesMapping = await this.client.indices.putMapping({
+            index: 'pages',
+            type: 'user_facing',
+            body: { properties: { ...PAGES_MAPPING } }
+        });
 
         return [
             [ masterScreenerExists, masterScreenerPutMapping],
             [ questionsExists, questionScreenerMapping ],
-            [ programsExists, programsMapping ]
+            [ programsExists, programsMapping ],
+            [ pagesExists, pagesMapping ]
         ]
     }
 }
@@ -140,3 +145,40 @@ const SCREENER_MAPPING = {
         }
     }
 };
+
+const PAGES_MAPPING = {
+    "created": {
+        "type": "long"
+    },
+    "documents": {
+        "properties": {
+            "content": {
+                "type": "text",
+                "fields": {
+                    "keyword": {
+                        "type": "keyword",
+                        "ignore_above": 256
+                    }
+                }
+            },
+            "guid": {
+                "type": "text",
+                "fields": {
+                    "keyword": {
+                        "type": "keyword",
+                        "ignore_above": 256
+                    }
+                }
+            }
+        }
+    },
+    "title": {
+        "type": "text",
+        "fields": {
+            "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+            }
+        }
+    }
+}
