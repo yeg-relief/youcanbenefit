@@ -57,6 +57,7 @@ export class ProgramEditComponent implements OnInit {
       .pipe(
         take(1),
         tap(p => program = p),
+        tap(p => { if (p._form.value.details === null) { p._form.value.details = ''; } }),
         flatMap(p => this.model.saveUserProgram(p._form.value))
       )
       .subscribe(
