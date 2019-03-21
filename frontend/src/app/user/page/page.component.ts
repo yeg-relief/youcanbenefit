@@ -79,6 +79,11 @@ export class PageComponent implements OnInit {
   }
 
   savePage() {
+    this.page.documents.forEach(doc => {
+      if (doc.content === null) {
+        doc.content = "";
+      }
+    })
     this.pageService.savePage(this.page)
     .subscribe(
       val => {
