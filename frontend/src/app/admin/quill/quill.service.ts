@@ -21,7 +21,7 @@ export class QuillService {
     };
     Quill.register(Link, true);
 
-    let Embed = Quill.import('blots/embed');
+    let Embed = Quill.import('blots/block/embed');
     class Hr extends Embed {
       static blotName = 'hr';
       static tagName = 'hr';
