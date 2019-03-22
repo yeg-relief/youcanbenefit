@@ -52,9 +52,8 @@ export class BrowseService {
         return new Error(errMsg);
     }
 
-    updateProgramInCache(program: UserFacingProgram, res: any) {
-        if (res.result === 'updated' || res.result === 'created') {
-            this.programs$.pipe(take(1))
+    updateProgramInCache(program: UserFacingProgram) {
+        this.programs$.pipe(take(1))
                 .subscribe(cache => {
                     let index = cache.findIndex(p => p.guid === program.guid);
                     if (index >= 0) {
@@ -63,7 +62,16 @@ export class BrowseService {
                         cache.push(program)
                     }
                     this.programService.addPrograms(cache);
+                })
+    }
+
+    deleteProgramInCache(guid: string) {
+        this.programs$.pipe(take(1))
+            .subscribe(cache => {
+                let index = cache.findIndex(p => p.guid === guid);
+                if (index >= 0) {
+                    cache.splice(index, 1);
+                }
             })
-        }
     }
 }

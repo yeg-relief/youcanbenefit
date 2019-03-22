@@ -53,9 +53,8 @@ export class ProgramModelService {
         } 
     }
 
-    private _updateUserProgramInCache(program: UserFacingProgram, resp: any) {
-        if (resp.result === 'updated' || resp.result === 'created') {
-            this._cache.pipe(take(1))
+    private _updateUserProgramInCache(program: UserFacingProgram) {
+        this._cache.pipe(take(1))
                 .subscribe(cache => {
                     const val = cache.find(p => p.guid === program.guid);
                     if (val) {
@@ -64,19 +63,19 @@ export class ProgramModelService {
                         cache.push({guid: program.guid, application: [], user: program})
                     }
             })
-        }
     }
 
     saveUserProgram(program: UserFacingProgram){
         const creds = this.getCredentials();
         creds.headers.append('Content-Type', 'application/json' );
 
-        return this.http.put(`${environment.api}/protected/program-description/`, program, creds)
-            .pipe(
-                map(res => res.json()),
-                tap(res => this._updateUserProgramInCache(program, res)),
-                tap(res => this.browseService.updateProgramInCache(program, res))
-            )
+        return this._saveProgram(program)
+            .pipe(tap(res => {
+                if (res.result === 'updated' || res.result === 'created') {
+                    this._updateUserProgramInCache(program);
+                    this.browseService.updateProgramInCache(program);
+                }
+            }))
     }
 
     deleteProgram(guid: string): Observable<boolean> {
@@ -87,6 +86,7 @@ export class ProgramModelService {
                         const index = cache.findIndex(p => p.user.guid === guid)
                         cache.splice(index, 1);
                     })
+                    this.browseService.deleteProgramInCache(guid);
                 }
             }))
     }
@@ -147,6 +147,16 @@ export class ProgramModelService {
         const creds = this.getCredentials();
         return this.http.get(`${environment.api}/protected/program/`, creds)
             .pipe(map( res => res.json()), catchError(this.loadError))
+    }
+
+    private _saveProgram(program: UserFacingProgram){
+        const creds = this.getCredentials();
+        creds.headers.append('Content-Type', 'application/json' );
+        return this.http.put(`${environment.api}/protected/program-description/`, program, creds)
+            .pipe(
+                map(res => res.json()),
+                catchError(this.loadError)
+            )
     }
 
     private _deleteProgram(guid: string) {
