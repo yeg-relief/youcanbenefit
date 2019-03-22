@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { UserFacingProgram } from '../shared/models';
 import { HttpClient } from "@angular/common/http";
-
+import { take } from 'rxjs/operators';
 
 
 
@@ -11,7 +11,7 @@ import { environment } from '../../environments/environment';
 export class ProgramsServiceService {
     private programs: {[key: string]: any} = {};
 
-    constructor(private httpClient: HttpClient) {}
+    constructor(private http: HttpClient) {}
 
     public addPrograms(newPrograms: UserFacingProgram[]) {
         newPrograms.forEach(p => this.programs[p.guid] = p);
@@ -23,7 +23,7 @@ export class ProgramsServiceService {
                 resolve(this.programs[guid]);
             } else {
                 this.fetchProgram(guid)
-                    .take(1)
+                    .pipe(take(1))
                     .subscribe(
                         (program) => {
                             if (program && program['guid']) {
@@ -38,6 +38,6 @@ export class ProgramsServiceService {
     }
 
     private fetchProgram(guid: string) {
-        return this.httpClient.get(`${environment.api}/api/program/${guid}`)
+        return this.http.get(`${environment.api}/api/program/${guid}`);
     }
 }
