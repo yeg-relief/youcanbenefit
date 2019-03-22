@@ -10,6 +10,7 @@ import { Program } from './program.class';
 import { FormBuilder } from '@angular/forms';
 import { environment } from '../../../../environments/environment'
 import { ProgramQueryClass } from './program-query.class';
+import { BrowseService } from 'src/app/user/browse/browse.service';
 
 @Injectable()
 export class ProgramModelService {
@@ -18,7 +19,8 @@ export class ProgramModelService {
     constructor(
         private http: Http,
         private authService: AuthService,
-        private fb: FormBuilder
+        private fb: FormBuilder,
+        private browseService: BrowseService
     ) {
         const withSharing = obs => typeof obs === "function" && (
             obs().pipe(
@@ -72,7 +74,8 @@ export class ProgramModelService {
         return this.http.put(`${environment.api}/protected/program-description/`, program, creds)
             .pipe(
                 map(res => res.json()),
-                tap(res => this._updateUserProgramInCache(program, res))
+                tap(res => this._updateUserProgramInCache(program, res)),
+                tap(res => this.browseService.updateProgramInCache(program, res))
             )
     }
 
