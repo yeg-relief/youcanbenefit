@@ -36,3 +36,7 @@ main {
     margin: 2vh auto;
     display: block;
 }
+
+.quill-editor-display {
+    margin: 1vh auto;
+}
