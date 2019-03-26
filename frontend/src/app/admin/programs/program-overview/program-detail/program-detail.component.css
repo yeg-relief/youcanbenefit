@@ -1,6 +1,5 @@
 mat-card {
   font-family: 'Open Sans', sans-serif;
-  min-height: 15vh;
 }
 
 mat-card-title {
@@ -28,7 +27,6 @@ mat-card-actions > button[mat-button]:hover {
 
 mat-card-content {
   width: 100%;
-  min-height: 4vh;
   overflow-y: hidden;
   background-color: lightgray;
   padding: 2px 2px;
