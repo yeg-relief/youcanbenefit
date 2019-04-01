@@ -32,7 +32,11 @@ export class ProgramOverviewComponent implements OnInit {
         private model: ProgramModelService) { }
 
     ngOnInit() {
-        this.programs = merge(
+        this.programs = this.getPrograms();
+    }
+
+    getPrograms() {
+        return merge(
             this.model.getPrograms(),
             this.filterService.form.valueChanges.pipe(distinctUntilChanged(), map(update => new helpers.FilterMessage(update))),
             this.programUpdate$
@@ -75,7 +79,7 @@ export class ProgramOverviewComponent implements OnInit {
             this.model.deleteProgram(guid).pipe(take(1))
             .subscribe(success => {
                 if (success) {
-                    this.programs = this.model.getPrograms();
+                    this.programs = this.getPrograms();
                     this.snackBar.open('program deleted successfully', '', { duration: 2000 })
                 } else {
                     this.snackBar.open('error deleting program', '', { duration: 2000 })
