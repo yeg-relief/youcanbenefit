@@ -3,30 +3,22 @@ app-condition-edit-v3 {
 }
 
 #header {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%;
+  white-space: nowrap;
 }
 
-#header > button {
-  margin-left: 10px;
+#save-btn {
+  margin-left: 4vw;
 }
 
-#header > *:last-child {
-  margin-right: 10px;
-}
-
-#header > p {
-  width: 30%;
-  overflow: hidden; 
-  text-overflow: ellipsis;
+#new-condition-btn {
+  margin-left: 2vw;
 }
 
 #conditions {
   display: flex;
   flex-direction: column;
   border-top: lightgrey 1px solid;
+  margin-top: 1em;
 }
 
 main {

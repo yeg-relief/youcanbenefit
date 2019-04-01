@@ -16,12 +16,16 @@ mat-list.ng-invalid {
   background-color: lightcoral;
 }
 
+mat-list-item {
+  white-space: nowrap;
+}
+
 .material-icons {
   cursor: pointer;
 }
 
 .question-text {
-  width: 20em;
+  width: 75%;
   margin: 0 0.5em;
 }
 
