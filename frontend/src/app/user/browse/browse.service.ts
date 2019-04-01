@@ -1,10 +1,10 @@
-
 import { ReplaySubject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { ProgramsServiceService } from '../programs-service.service';
 import { environment } from '../../../environments/environment';
-import { map, tap, multicast, refCount, switchMap, pluck, reduce } from 'rxjs/operators'
+import { map, tap, multicast, refCount, switchMap, pluck, reduce, take } from 'rxjs/operators'
+import { UserFacingProgram } from 'src/app/shared';
 
 @Injectable()
 export class BrowseService {
@@ -50,5 +50,28 @@ export class BrowseService {
         }
         console.error(errMsg);
         return new Error(errMsg);
+    }
+
+    updateProgramInCache(program: UserFacingProgram) {
+        this.programs$.pipe(take(1))
+                .subscribe(cache => {
+                    let index = cache.findIndex(p => p.guid === program.guid);
+                    if (index >= 0) {
+                        cache[index] = program;
+                    } else {
+                        cache.push(program)
+                    }
+                    this.programService.addPrograms(cache);
+                })
+    }
+
+    deleteProgramInCache(guid: string) {
+        this.programs$.pipe(take(1))
+            .subscribe(cache => {
+                let index = cache.findIndex(p => p.guid === guid);
+                if (index >= 0) {
+                    cache.splice(index, 1);
+                }
+            })
     }
 }
