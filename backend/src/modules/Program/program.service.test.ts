@@ -162,14 +162,5 @@ describe('ProgramService', () => {
 
             expect(await programService.index(program)).toMatchObject(result);
         })
-
-        it('should return a delete response indicating false', async () => {
-            const guid = 'test guid6';
-            const result = {deleted: false};
-
-            jest.spyOn(programService, 'deleteByGuid').mockImplementation(() => result);
-
-            expect(await programService.deleteByGuid(guid)).toMatchObject(result);
-        })
     })
 });
