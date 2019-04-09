@@ -23,27 +23,6 @@ describe('ProgramService', () => {
         programService = module.get<ProgramService>(ProgramService);
     });
 
-    describe('create', () => {
-        it('should return an elasticsearch create response', async () => {
-            const result = {
-                "_index": "programs",
-                "_type": "user_facing",
-                "_id": "test guid7",
-                "_version": 1,
-                "result": "created",
-                "_shards": {
-                    "total": 2,
-                    "successful": 1,
-                    "failed": 0
-                },
-                "created": true
-            };
-            jest.spyOn(programService, 'create').mockImplementation(() => result);
-            // tested by hand against db this is an actual response... figure out better test later
-            expect(await programService.create(mockDTO)).toMatchObject(result);
-        });
-    });
-
     describe('getAll', () => {
         it('should return an array of Program Data Transfer Objects', async () => {
             const result: ProgramDto[] = [

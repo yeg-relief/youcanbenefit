@@ -25,10 +25,6 @@ export class ProgramService {
         this.client = this.clientService.client;
     }
 
-    create(program: ProgramDto): Promise<any> {
-        return this.clientService.create(program, this.INDEX, this.TYPE, program.guid);
-    }
-
     findAll(): Observable<ProgramDto[]> {
         return Observable.fromPromise( this.clientService.findAll(this.baseParams) )
     }
