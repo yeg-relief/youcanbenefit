@@ -62,7 +62,7 @@ describe('/protected', () => {
       "guid": "abcdefg",
       "title": "test title",
       "description": "test description",
-      "details": "<a href=\"javascript:alert('Hello')\">link text</a>",
+      "details": "<p>test details</p>",
       "created": 0,
       "tags": [
         "tag1",
