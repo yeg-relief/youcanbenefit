@@ -29,98 +29,12 @@ h2[mat-dialog-title] {
     color: ghostwhite;
 }
 
-.header {
-    width: 100%;
-    display: flex;
-}
-
-mat-dialog-actions {
-    padding-bottom: 1.25rem;
-    padding-left: 2em
-}
-
 mat-dialog-content {
-    margin: 0 auto;
+    margin: auto;
     border-radius: 5px;
     width: 80%;
     overflow-x: hidden;
     overflow-y: auto;
     border: solid 1px lightgray;
     background-color: ghostwhite;
-}
-
-mat-dialog-content > textarea {
-    width: 100%;
-    background-color: transparent;
-    border: none;
-}
-
-@media screen and (min-width: 600px) {
-    textarea {
-        height: 223px;
-        width: 426px;
-        font-size: large;
-        resize: none;
-        overflow: auto;
-    }
-
-    .detail-links {
-        margin: 0 auto 3rem auto;
-        width: 80%;
-    }
-}
-
-@media screen and (min-width: 360px) and (max-width: 600px) {
-    textarea {
-        height: 223px;
-        width: 375px;
-        font-size: large;
-        resize: none;
-        overflow: auto;
-    }
-
-    .detail-links {
-        margin: 0 auto 3rem auto;
-        width: 80%;
-    }
-}
-
-@media screen and (max-width: 360px) {
-    textarea {
-        height: 400px;
-        width: 290px;
-        font-size: large;
-        resize: none;
-    }
-
-    .detail-links {
-        margin: 0 auto 5rem auto;
-        width: 80%;
-    }
-
-    mat-dialog-content {
-        margin: 0 auto 100px auto !important;
-        height: 100% !important;
-    }
-}
-
-ul {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-li {
-    margin-right: 2rem;
-}
-
-
-
-button[mat-dialog-close] {
-    position: absolute;
-    left: 2px;
-    bottom: 1em;
-    color: darkorange;
-    font-size: large;
-    font-weight: bold;
 }

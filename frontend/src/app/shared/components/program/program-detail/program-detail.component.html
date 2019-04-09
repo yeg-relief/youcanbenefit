@@ -11,17 +11,8 @@
         </mat-card-header>
 
         <mat-card-content>
-            <pre>
-              {{ program.details }}
-            </pre>
-            <section class="detail-links">
-                <h3 *ngIf="allLinks > 0"> Additional Links</h3>
-                <ul>
-                    <li *ngFor="let link of allLinks">
-                        <a [href]=link target="_blank">{{link}}</a>
-                    </li>
-                </ul>
-            </section>
+            <div class="quill-editor-display" [innerHTML]="program.details"></div>
+            
         </mat-card-content>
 
 

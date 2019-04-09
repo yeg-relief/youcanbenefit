@@ -18,8 +18,6 @@ export class UserProgram {
             title: opts.title ? opts.title : '',
             description: opts.description ? opts.description : '',
             details: opts.details ? opts.details : '',
-            detailLinks: opts.detailLinks ? [...opts.detailLinks] : [],
-            externalLink: opts.externalLink ? opts.externalLink : '',
             created: opts.created ? opts.created : 0,
             tags: opts.tags && Array.isArray(opts.tags) ? [...opts.tags] : []
         };
@@ -36,8 +34,6 @@ export class UserProgram {
             title: new FormControl(this.data.title, Validators.required),
             description: new FormControl(this.data.description, Validators.required),
             details: new FormControl(this.data.details, Validators.required),
-            detailLinks: new FormArray(this.data.detailLinks.map(link => new FormControl(link))),
-            externalLink: new FormControl(this.data.externalLink),
             created: new FormControl(this.data.created),
             tags: new FormArray(this.data.tags.map(tag => new FormControl(tag)))
         })

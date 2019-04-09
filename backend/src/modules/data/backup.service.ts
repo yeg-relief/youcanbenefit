@@ -49,6 +49,18 @@ export class BackupService {
                 index: Schema.master_screener.index,
                 type: Schema.master_screener.type
             }),
+
+            this.client.search( {
+                index: Schema.pages.index,
+                type: Schema.pages.type,
+                size: this.PAGE_SIZE,
+                body: { query: { match_all: {} } }
+            }),
+
+            this.client.indices.getMapping({
+                index: Schema.pages.index,
+                type: Schema.pages.type
+            })
         ];
 
         const [
@@ -57,16 +69,20 @@ export class BackupService {
             queries,
             queryMappings,
             master_screener,
-            screenerMappings
+            screenerMappings,
+            pages,
+            pageMappings
         ] = await Promise.all(requests);
 
         return {
             programs: this.filterSource(programs),
             queries:  this.filterSource(queries),
             screener: this.getRecentScreener(this.filterSource(master_screener)),
+            pages: this.filterSource(pages),
             programMappings,
             queryMappings,
-            screenerMappings
+            screenerMappings,
+            pageMappings
         };
     }
 

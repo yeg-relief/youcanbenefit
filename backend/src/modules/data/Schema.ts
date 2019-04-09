@@ -11,5 +11,9 @@ export const Schema = {
   "programs": {
     index: "programs",
     type: "user_facing",
+  },
+  "pages": {
+    index: "pages",
+    type: "user_facing",
   }
 };

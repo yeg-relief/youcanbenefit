@@ -5,6 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar, MatDialog, MatDialogRef } from '@angular/material';
 import { Observable, ReplaySubject } from 'rxjs';
 import { tap, flatMap, pluck, multicast, refCount, take, map } from 'rxjs/operators'
+import { QuillService } from '../../quill/quill.service';
+import * as Quill from 'quill';
 
 @Component({
   templateUrl: './program-edit.component.html',
@@ -13,12 +15,15 @@ import { tap, flatMap, pluck, multicast, refCount, take, map } from 'rxjs/operat
 export class ProgramEditComponent implements OnInit {
   program: Observable<UserProgram>;
   allTags: string[];
+  quillModules = {};
+  quillPlaceholder = 'program details';
   constructor(
     private model: ProgramModelService,
     private route: ActivatedRoute,
     public dialog: MatDialog,
     public snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private quillService: QuillService
   ) {}
 
   ngOnInit(){
@@ -34,7 +39,13 @@ export class ProgramEditComponent implements OnInit {
     }
 
     this.allTags = this.model.getAllTags();
-  };
+
+    this.quillModules = this.quillService.getQuillModules();
+  }
+
+  editorCreated(editor) {
+    this.quillService.setQuillEditor(editor);
+  }
 
   handleQueryClick() {
     this._goToQueries()
@@ -46,6 +57,7 @@ export class ProgramEditComponent implements OnInit {
       .pipe(
         take(1),
         tap(p => program = p),
+        tap(p => { if (p._form.value.details === null) { p._form.value.details = ''; } }),
         flatMap(p => this.model.saveUserProgram(p._form.value))
       )
       .subscribe(

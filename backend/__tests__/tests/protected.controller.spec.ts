@@ -57,6 +57,31 @@ describe('/protected', () => {
     });
   });
 
+  describe('/program-description', () => {
+    const program = {
+      "guid": "abcdefg",
+      "title": "test title",
+      "description": "test description",
+      "details": "<p>test details</p>",
+      "created": 0,
+      "tags": [
+        "tag1",
+        "tag2"
+      ]
+    }
+
+    it('PUT /program-description will create a program', () => {
+      return request(app.getHttpServer())
+        .put('/protected/program-description')
+        .set('Content-Type', 'application/json')
+        .send(program)
+        .expect(200)
+        .expect(res => {
+          expect(res.body.result).toMatch(new RegExp('(created|updated)'));
+        })
+    })
+  })
+
   afterAll(async () => {
     await app.close();
   });

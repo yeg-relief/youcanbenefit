@@ -56,7 +56,6 @@ export class ProgramOverviewComponent implements OnInit {
                 data: {
                     title: programToInspect.user.title,
                     details: programToInspect.user.details,
-                    detailLinks: programToInspect.user.detailLinks || []
                 },
                 width: '75vw',
                 height: '75vh'

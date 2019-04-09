@@ -89,8 +89,12 @@ export class ClientService {
                 id
             }
         };
-
-        const rawResponse = await this.client.get(params);
+        let rawResponse;
+        try {
+            rawResponse = await this.client.get(params);
+        } catch (e) {
+            rawResponse = {};
+        }
         return rawResponse ? rawResponse._source : null;
     }
 

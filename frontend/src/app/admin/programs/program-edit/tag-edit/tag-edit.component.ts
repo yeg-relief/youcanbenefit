@@ -9,15 +9,15 @@ import { FormArray, FormControl, Validators } from '@angular/forms'
 export class TagEditComponent implements OnInit {
     @Input() tags: FormArray;
     @Input() allTags: string[];
-    linkInput = new FormControl('', Validators.pattern('[a-zA-Z0-9]{2,32}'));
+    tagInput = new FormControl('', Validators.pattern('[a-zA-Z0-9]{2,32}'));
     constructor() { }
 
     ngOnInit() {}
 
     addTag() {
-        if (this.linkInput.valid && this.linkInput.value.trim().length > 0 ) {
-            this.tags.push(new FormControl(this.linkInput.value));
-            this.linkInput.setValue('');
+        if (this.tagInput.valid && this.tagInput.value.trim().length > 0 ) {
+            this.tags.push(new FormControl(this.tagInput.value));
+            this.tagInput.setValue('');
         }
     }
 

@@ -19,14 +19,12 @@ export class Program {
       guid: this.generateRandomString(),
       title: '',
       details: '',
-      externalLink: '',
       created: 0,
       tags: []
     } : {
       guid: this.generateRandomString(),
       title: '',
       details: '',
-      externalLink: '',
       created: 0,
       tags: []
     };

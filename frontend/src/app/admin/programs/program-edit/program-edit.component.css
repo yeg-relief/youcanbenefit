@@ -68,6 +68,10 @@ mat-form-field {
   padding: 2px;
 }
 
-#program-details {
+
+quill-editor {
   border: solid 1px lightslategray;
+  min-width: 90%;
+  margin-left: 0.5em;
+  margin-bottom: 0.5em;
 }

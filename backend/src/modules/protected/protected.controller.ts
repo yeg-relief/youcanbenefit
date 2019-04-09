@@ -16,7 +16,7 @@ import { QuestionService } from '../question/question.service';
 import { QuestionDto } from '../question/question.dto';
 import {ScreenerDto} from "../screener/screener.dto";
 import {ScreenerService} from "../screener/screener.service";
-import { ConstantsReadonly } from "../constants.readonly"
+import { PageService } from '../page/page.service';
 const fs = require('fs');
 const path = require('path');
 
@@ -27,7 +27,8 @@ export class ProtectedController {
         private programService: ProgramService,
         private queryService: ApplicationQueryService,
         private questionService: QuestionService,
-        private screenerService: ScreenerService
+        private screenerService: ScreenerService,
+        private pageService: PageService
     ) {}
 
     @Get('/login/')
@@ -97,33 +98,6 @@ export class ProtectedController {
 
     }
 
-    @Post('/program/')
-    createProgramWithQueries(
-        @Body("user") user,
-        @Body("application") application,
-    ): any {
-        return Observable.zip(
-            this.programService.create(user),
-            Observable.from(application)
-                .mergeMap( (query: ApplicationQueryDto) => this.queryService.create(query))
-                .catch(() => Observable.throw(false))
-        )
-            .map( ([{created}, queriesCreated]) => {
-                return created === true && queriesCreated === true ? { created: true} : { created: false }
-            })
-    }
-
-    @Put('/program/')
-    updateProgramWithQueries(@Body() data: any): any {
-        return Observable.zip(
-            this.programService.index(data.user),
-            Observable.from(data.application).mergeMap((query: ApplicationQueryDto) => this.queryService.index(query))
-        )
-            .map( ([userUpdated, queriesUpdated]) => {
-                return userUpdated.created === true && queriesUpdated.created === true ? { updated: true} : { updated: false }
-            })
-    }
-
     @Delete('/program/:guid')
     deleteProgramAndQueries(@Param() params): Observable<any> {
         const guid = params.guid;
@@ -152,5 +126,10 @@ export class ProtectedController {
     @Put('/program-description/')
     updateUserFacingProgram(@Body() data): Promise<any> {
         return this.programService.index(data)
+    }
+
+    @Post('/page/')
+    createOrUpdatePage(@Body() body): Promise<any>{
+        return this.pageService.createOrUpdate(body);
     }
 }

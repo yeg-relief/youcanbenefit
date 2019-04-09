@@ -31,7 +31,7 @@ import { ListTagContainerComponent } from "../components/program-list/list-tag-c
         MatListModule,
         MatTooltipModule,
         MatIconModule,
-        RouterModule,
+        RouterModule
     ],
     declarations: [
         UserFacingProgramComponent,

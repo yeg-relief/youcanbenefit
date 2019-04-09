@@ -14,8 +14,9 @@ export class InitService {
         const masterScreenerExists = await this.client.indices.exists({ index: 'master_screener'});
         const questionsExists = await this.client.indices.exists({ index: 'questions'});
         const programsExists = await this.client.indices.exists({ index: 'programs'});
+        const pagesExists = await this.client.indices.exists({index: 'pages'})
 
-        return masterScreenerExists && questionsExists && programsExists;
+        return masterScreenerExists && questionsExists && programsExists && pagesExists ;
     }
 
 
@@ -23,8 +24,8 @@ export class InitService {
         const masterScreenerExists = await this.client.indices.exists({ index: 'master_screener'});
         const questionsExists = await this.client.indices.exists({ index: 'questions'});
         const programsExists = await this.client.indices.exists({ index: 'programs'});
-
-        const hasBeenInitialized = masterScreenerExists && questionsExists && programsExists;
+        const pagesExists = await this.client.indices.exists({index: 'pages'})
+        const hasBeenInitialized = masterScreenerExists && questionsExists && programsExists && pagesExists;
 
 
         if (hasBeenInitialized && !force) {
@@ -41,6 +42,9 @@ export class InitService {
 
         if (programsExists) {
             await this.client.indices.delete({ index: 'programs'});
+        }
+        if (pagesExists) {
+            await this.client.indices.delete({ index: 'pages'});
         }
 
         await this.client.indices.create({ index: 'master_screener'});
@@ -64,10 +68,18 @@ export class InitService {
             body: { properties: { ...PROGRAM_MAPPING } }
         });
 
+        await this.client.indices.create({ index: 'pages'});
+        const pagesMapping = await this.client.indices.putMapping({
+            index: 'pages',
+            type: 'user_facing',
+            body: { properties: { ...PAGES_MAPPING } }
+        });
+
         return [
             [ masterScreenerExists, masterScreenerPutMapping],
             [ questionsExists, questionScreenerMapping ],
-            [ programsExists, programsMapping ]
+            [ programsExists, programsMapping ],
+            [ pagesExists, pagesMapping ]
         ]
     }
 }
@@ -85,9 +97,7 @@ const PERCOLATOR_MAPPING = {
 const PROGRAM_MAPPING = {
     "created":{"type":"date"},
     "description":{"type":"text", "fields":{"keyword":{"type":"keyword","ignore_above":256}}},
-    "detailLinks":{"type":"text","fields":{"keyword":{"type":"keyword","ignore_above":256}}},
     "details":{"type":"text","fields":{"keyword":{"type":"keyword","ignore_above":256}}},
-    "externalLink":{"type":"text"},
     "guid":{"type":"text","fields":{"keyword":{"type":"keyword","ignore_above":256}}},
     "tags":{"type":"keyword"},
     "title":{"type":"text"}
@@ -135,3 +145,40 @@ const SCREENER_MAPPING = {
         }
     }
 };
+
+const PAGES_MAPPING = {
+    "created": {
+        "type": "long"
+    },
+    "documents": {
+        "properties": {
+            "content": {
+                "type": "text",
+                "fields": {
+                    "keyword": {
+                        "type": "keyword",
+                        "ignore_above": 256
+                    }
+                }
+            },
+            "guid": {
+                "type": "text",
+                "fields": {
+                    "keyword": {
+                        "type": "keyword",
+                        "ignore_above": 256
+                    }
+                }
+            }
+        }
+    },
+    "title": {
+        "type": "text",
+        "fields": {
+            "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+            }
+        }
+    }
+}
