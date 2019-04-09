@@ -2,9 +2,11 @@ import { Test } from '@nestjs/testing';
 import { ProgramService } from "./program.service";
 import { ProgramDto } from "./program.dto";
 import { DbElasticsearchModule } from '../db.elasticsearch/db.elasticsearch.module';
+import { ClientService } from "../db.elasticsearch/client.service";
 
 describe('ProgramService', () => {
     let programService: ProgramService;
+    let clientService: ClientService;
     const mockDTO: ProgramDto = {
         created: 0,
         description: "test description",
@@ -20,7 +22,9 @@ describe('ProgramService', () => {
             imports: [DbElasticsearchModule],
             providers: [ProgramService],
         }).compile();
+
         programService = module.get<ProgramService>(ProgramService);
+        clientService = module.get<ClientService>(ClientService);
     });
 
     describe('getAll', () => {
@@ -108,6 +112,34 @@ describe('ProgramService', () => {
             jest.spyOn(programService, 'deleteByGuid').mockImplementation(() => result);
 
             expect(await programService.deleteByGuid(guid)).toMatchObject(result);
+        })
+    })
+
+    describe('index', () => {
+
+        it('should sanitize the details of a program', async () => {
+            const program = new ProgramDto({
+                "created": 0,
+                "description": "test description",
+                "details": "<a href=\"javascript:alert('test')\">test</a><script></script><img src=\"test\" onerror=alert('test') />",
+                "guid": "test guid6",
+                "tags": ["test tags"],
+                "title": "test title"
+            })
+            const result = new ProgramDto({
+                "created": 0,
+                "description": "test description",
+                "details": "<a>test</a><img src=\"test\" />",
+                "guid": "test guid6",
+                "tags": ["test tags"],
+                "title": "test title"
+            })
+            jest.spyOn(clientService, 'index').mockImplementation((sanitized: ProgramDto) => {
+                sanitized.created = 0;
+                return sanitized;
+            });
+
+            expect(await programService.index(program)).toMatchObject(result);
         })
     })
 });
