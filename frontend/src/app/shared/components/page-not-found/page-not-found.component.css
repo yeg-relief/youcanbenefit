@@ -1,20 +1,46 @@
 main {
-  height: 94vh;
+  height: 95vh;
   width: 100vw;
   position: fixed;
 }
 
+
 mat-card {
-  background-color: silver;
+  background-color: lightgoldenrodyellow;
   font-family: 'Open Sans', sans-serif;
 }
 
 
+mat-card-title{
+  font-size: 13em;
+  width: 567px;
+  max-width: 100%;
+  margin:0;
+}
+
+
+mat-card-subtitle{
+  font-size: 2.5em;
+  width: 567px;
+  max-width: 100%;
+}
+
+.separator{
+  margin-top: 0;
+  padding:0;
+  margin-left: 20%;
+}
+
+p {
+  text-align: left;
+  font-size: larger;
+  font-weight: bold;
+}
+
 @media(min-width: 40em) {
  
   mat-card {
-    height: 50vh;
-    
+    height: 55vh;
   }
 }
 
@@ -22,7 +48,13 @@ mat-card {
 @media(max-width: 40em){
 
   mat-card {
-    height: 40vh;
+    height: 45vh;
     margin-top: 5%;
-  }
+  }  
+}
+
+
+a > button {
+  background-color: darkorange;
+  color: white;
 }
