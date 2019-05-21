@@ -43,6 +43,6 @@
   }
 
   errors {
-    404 /index.html
+    404 index.html
   }
 }
