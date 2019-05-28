@@ -1,28 +1,44 @@
+.mat-elevation-z0
+
 main {
-  height: 94vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   position: fixed;
 }
 
 mat-card {
-  background-color: silver;
+  background-color: lightgoldenrodyellow;
   font-family: 'Open Sans', sans-serif;
 }
 
 
-@media(min-width: 40em) {
- 
-  mat-card {
-    height: 50vh;
-    
-  }
+mat-card-title{
+  font-size: 13em;
+  width: 567px;
+  max-width: 100%;
+  margin:0;
 }
 
 
-@media(max-width: 40em){
+mat-card-subtitle{
+  font-size: 2.5em;
+  width: 567px;
+  max-width: 100%;
+}
 
-  mat-card {
-    height: 40vh;
-    margin-top: 5%;
-  }
+.separator{
+  margin-top: 0;
+  padding:0;
+  margin-left: 20%;
+}
+
+p {
+  text-align: left;
+  font-size: larger;
+  font-weight: bold;
+}
+
+a > button {
+  background-color: darkorange;
+  color: white;
 }
