@@ -25,7 +25,6 @@
     "@types/ramda": "^0.25.40",
     "body-parser": "^1.18.3",
     "elasticsearch": "^15.4.1",
-    "jest-html-reporter": "^0.5.8",
     "lodash.get": "^4.4.2",
     "lodash.uniqby": "^4.7.0",
     "ramda": "^0.25.0",
@@ -60,7 +59,6 @@
       "tsx",
       "js",
       "json"
-    ],
-    "testResultsProcessor": "./node_modules/jest-html-reporter"
+    ]
   }
 }
