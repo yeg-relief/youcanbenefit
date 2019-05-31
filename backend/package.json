@@ -22,7 +22,6 @@
     "@nestjs/core": "^6.2.4",
     "@nestjs/platform-express": "^6.2.4",
     "@nestjs/elasticsearch": "^6.0.1",
-    "@nestjs/testing": "^6.2.4",
     "@types/ramda": "^0.25.40",
     "body-parser": "^1.18.3",
     "elasticsearch": "^15.4.1",
@@ -40,6 +39,7 @@
     "winston": "^2.4.4"
   },
   "devDependencies": {
+    "@nestjs/testing": "^6.2.4",
     "@types/elasticsearch": "^5.0.28",
     "@types/jest": "^21.1.10",
     "@types/node": "^8.10.36",
