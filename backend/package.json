@@ -18,15 +18,13 @@
     "integration-test-update": "jest \"./__tests__/.*.(spec)\\.(ts|tsx|js)$\" -u --forceExit"
   },
   "dependencies": {
-    "@nestjs/common": "^5.4.0",
-    "@nestjs/core": "^5.4.0",
-    "@nestjs/elasticsearch": "^0.2.0",
-    "@nestjs/testing": "^5.4.0",
+    "@nestjs/common": "^6.3.0",
+    "@nestjs/core": "^6.3.0",
+    "@nestjs/elasticsearch": "^6.0.1",
+    "@nestjs/platform-express": "^6.3.0",
     "@types/ramda": "^0.25.40",
     "body-parser": "^1.18.3",
-    "cors": "^2.8.4",
     "elasticsearch": "^15.4.1",
-    "jest-html-reporter": "^0.5.8",
     "lodash.get": "^4.4.2",
     "lodash.uniqby": "^4.7.0",
     "ramda": "^0.25.0",
@@ -40,6 +38,7 @@
     "winston": "^2.4.4"
   },
   "devDependencies": {
+    "@nestjs/testing": "^6.3.0",
     "@types/elasticsearch": "^5.0.28",
     "@types/jest": "^21.1.10",
     "@types/node": "^8.10.36",
@@ -60,7 +59,6 @@
       "tsx",
       "js",
       "json"
-    ],
-    "testResultsProcessor": "./node_modules/jest-html-reporter"
+    ]
   }
 }
