@@ -33,7 +33,7 @@
     "rxjs": "^6.3.3",
     "rxjs-compat": "^6.3.3",
     "sanitize-html": "^1.20.0",
-    "typescript": "^2.9.2",
+    "typescript": "^3.0.3",
     "uuid": "^3.3.2",
     "winston": "^2.4.4"
   },
