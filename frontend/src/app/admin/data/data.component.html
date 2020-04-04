@@ -27,16 +27,16 @@
         <section *ngIf="states.INIT.active === true">
             <h1>INITIALIZE SEARCH ENGINE</h1>
             <p>The search engine will need to be initialized before programs and questions can be created.</p>
-
-            <div *ngIf="hasBeenInitialized" [style.display]="'flex'">
+            <h4>Doing so can reset an <strong>EXISTING</strong> system.</h4>
+            <!--  BUGGY BEHAVIOR -->
+            <!-- <div *ngIf="hasBeenInitialized" [style.display]="'flex'">
                 <mat-icon [style.color]="'green'">done</mat-icon>
                 <div>The search engine has been initialized</div>
-            </div>
-
+            </div> 
             <div *ngIf="!hasBeenInitialized" [style.display]="'flex'">
                 <mat-icon [style.color]="'red'">cancel</mat-icon>
                 <div>The search engine has not been initialized</div>
-            </div>
+            </div> -->
 
 
             <mat-checkbox [value]="force" (change)="force = $event.checked">Force the update (will reset search engine)</mat-checkbox>
