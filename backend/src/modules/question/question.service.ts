@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { QuestionDto } from './question.dto';
-import { Client } from "elasticsearch";
 import { ClientService } from "../db.elasticsearch/client.service"
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/observable/fromPromise";
@@ -8,7 +7,7 @@ import "rxjs/add/operator/pluck";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/reduce";
 import { EsQueryService } from '../query/EsQuery.service';
-import { EsQueryDto } from '../query/EsQuery.dto';
+
 
 @Injectable()
 export class QuestionService {
@@ -44,6 +43,6 @@ export class QuestionService {
             body: { query: { match_all: {} } }
         }))
             .map( searchResponse => searchResponse.hits.hits.map(h => h._source))
-            .map( screenerData => screenerData[0]['questions'])
+            .map( screenerData => screenerData[screenerData.length - 1]['questions'])
     }
 }
