@@ -1,3 +1,7 @@
 .DS_STORE
 backend/test-report.html
 .idea/
+ycb-backend.tar
+ycb-es.tar
+ycb-frontend.tar
+deploy.sh

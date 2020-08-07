@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-root="$(git rev-parse --show-toplevel)"
-hash="$(git rev-parse HEAD)"
+root="$(pwd)"
+hash="$(date +%F)"
 echo "Project root is $root"
 images=()
 

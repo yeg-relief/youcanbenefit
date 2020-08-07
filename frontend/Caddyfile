@@ -1,6 +1,6 @@
-:443,
-:80,
-0.0.0.0:80 {
+:8443,
+:8080,
+0.0.0.0:8080 {
   tls off #internal service
 
   proxy /api {$API_SERVICE}:{$API_PORT}
